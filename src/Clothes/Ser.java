@@ -9,7 +9,7 @@ public class Ser extends Service{
 //	Ser
 	@Override
 	public IBinder onBind(Intent arg0) {
-		// TODO Autoo-generated method stub
+		// TODO Auto-generated method stub
 		return null;
 	}
 
