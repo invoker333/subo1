@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- <string name="app_name">超级大冒险</string> -->
+    <string name="app_name">火星猎人</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="icon_width">40</string>
+      <string name="circle_width">128dp</string>
+    <string name="title_activity_stagechoosser">关卡选择</string>
+    <string name="_item">物品</string>
+    <string name="_shop">商店</string>
+
+</resources>

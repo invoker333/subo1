@@ -1,0 +1,158 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/buttonwindow"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <View
+        android:id="@+id/maskview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/pause"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/pause1" />
+
+    <com.mingli.toms.mySeekBar
+        android:id="@+id/jumpSeekbar1"
+        style="@style/Widget.SeekBar.directionSeekBarStyle"
+        android:layout_width="64sp"
+        android:layout_height="164sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:thumb="@drawable/button_thumb2" />
+
+    <!-- android:background="@drawable/button_up" -->
+
+    <Button
+        android:id="@+id/right"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignBaseline="@+id/left"
+        android:layout_alignBottom="@+id/left"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/left"
+        android:background="@drawable/button_right1"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/left"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/button_left1"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#AAdd5522"
+        android:visibility="gone" >
+    </LinearLayout>
+
+    <Clothes.CircleSurface
+        android:id="@+id/circlesurface1"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_above="@+id/attack"
+        android:layout_alignLeft="@+id/attack"
+        android:visibility="gone" />
+
+    <SeekBar
+        android:id="@+id/directionSeekBar"
+        style="@style/Widget.SeekBar.directionSeekBarStyle"
+        android:layout_width="192dp"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:progress="50"
+        android:thumb="@drawable/button_thumb" />
+
+    <Clothes.Circle
+        android:id="@+id/circle1"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/jumpSeekbar1" />
+
+    <Button
+        android:id="@+id/ride"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_above="@+id/jumpSeekbar1"
+        android:layout_toRightOf="@+id/circle1"
+        android:background="@drawable/ride" />
+
+    <SlidingDrawer
+        android:id="@+id/slidingDrawer1"
+        android:layout_width="100dp"
+        android:layout_height="128dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/attack"
+        android:layout_toRightOf="@+id/right"
+        android:content="@+id/content"
+        android:handle="@+id/handle" >
+
+        <Button
+            android:id="@+id/handle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button"
+            android:text="@string/_item"
+            android:textColor="#ffffff" />
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#AAdd5522" >
+
+            <GridView
+                android:id="@+id/itemGridView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_selected"
+                android:numColumns="4"
+                android:scrollbars="vertical|horizontal" >
+            </GridView>
+        </LinearLayout>
+    </SlidingDrawer>
+
+    <Button
+        android:id="@+id/shopbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pause"
+        android:layout_marginTop="32dp"
+        android:layout_toLeftOf="@+id/right"
+        android:background="@drawable/bg_button"
+        android:text="@string/_shop"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/buildButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/shopbutton"
+        android:background="@drawable/bg_button"
+        android:text=" 地图制作 " />
+
+    <Button
+        android:id="@+id/attack"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_above="@+id/circle1"
+        android:layout_alignRight="@+id/circle1"
+        android:background="@drawable/button_attack" />
+
+</RelativeLayout>

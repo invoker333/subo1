@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/shopitem"
+    android:layout_width="110dp"
+    android:layout_height="150dp"
+    android:background="@drawable/whitestroke"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/goodsname"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:shadowColor="#772200"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
+        android:text="name"
+        android:textColor="#ff5500"
+        android:textSize="24sp" />
+
+    <View
+        android:id="@+id/goodsicon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/goodsname"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/tomato" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/goodsicon"
+        android:layout_margin="3dp"
+        android:background="@drawable/orange"
+        android:padding="3dp" >
+
+        <RelativeLayout
+            android:id="@+id/goodscostlayout"
+            android:layout_weight="0.5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/goodscost"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="50"
+                android:textColor="#ffffff"
+                android:textSize="12sp" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/coinicon" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/chancecostlayout"
+              android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+             android:layout_weight="0.5"
+            >
+
+            <TextView
+                android:id="@+id/chancecost"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:text="50"
+                android:textColor="#ffffff"
+                android:textSize="12sp" />
+
+            <View
+                android:id="@+id/View01"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:background="@drawable/egg" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

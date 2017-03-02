@@ -1,0 +1,208 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/startmenu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/butset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="44dp"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/startgame"
+            android:layout_width="128dp"
+            android:layout_height="64dp"
+            android:background="@drawable/orange"
+            android:padding="8dp"
+            android:text="开始冒险"
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/stageChoose"
+            android:layout_width="128dp"
+            android:layout_height="64dp"
+            android:background="@drawable/qingse"
+            android:padding="8dp"
+            android:text="关卡选择"
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ExpandableListView
+        android:id="@+id/charts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/butset" >
+
+    </ExpandableListView>
+
+    <SlidingDrawer
+        android:id="@+id/slidingDrawer1"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/butset"
+        android:content="@+id/content"
+        android:handle="@+id/handle1" >
+
+        <Button
+            android:id="@+id/handle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:text="设置"
+            android:textColor="#555555" />
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical" >
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:cursorVisible="false"
+                android:selectAllOnFocus="false"
+                android:text="游戏音效"
+                android:textColor="#555555" />
+
+            <CheckBox
+                android:id="@+id/checkBox1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="背景音乐"
+                android:textColor="#444444" />
+        </LinearLayout>
+    </SlidingDrawer>
+
+    <Button
+        android:id="@+id/more"
+        android:layout_width="128dp"
+        android:layout_height="64dp"
+        android:layout_alignLeft="@+id/butset"
+        android:layout_alignParentBottom="true"
+        android:background="#ffdd00"
+        android:padding="8dp"
+        android:text="应用推荐"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/fileChoose"
+        android:layout_width="128dp"
+        android:layout_height="64dp"
+        android:layout_above="@+id/slidingDrawer1"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/bg_selected"
+        android:padding="8dp"
+        android:text="选择文件"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <GridLayout
+        android:id="@+id/gameModel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/more"
+        android:columnCount="1" >
+
+        <RadioGroup
+            android:id="@+id/radioGroup1"
+            android:layout_gravity="left" >
+
+            <RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="普通模式" />
+
+            <RadioButton
+                android:id="@+id/alwaysgun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#88ff99"
+                android:text="走火模式" />
+
+            <RadioButton
+                android:id="@+id/nowepon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffaa55"
+                android:text="缴械模式" />
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/rampage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_row="2"
+            android:background="#33eeff"
+            android:text="追击模式" />
+    </GridLayout>
+
+    <RelativeLayout
+        android:id="@+id/user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/gameModel"
+        android:layout_alignParentLeft="true" >
+
+        <ImageView
+            android:id="@+id/touxiang"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/cap" />
+
+        <EditText
+            android:id="@+id/geqian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/touxiang"
+            android:layout_below="@+id/nicheng"
+            android:layout_toRightOf="@+id/touxiang"
+            android:hint="您的个性签名"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="14dp" >
+
+            <requestFocus />
+        </EditText>
+
+        <TextView
+            android:id="@+id/nicheng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/geqian"
+            android:layout_alignParentTop="true"
+            android:text="火星猎人"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#00ffff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

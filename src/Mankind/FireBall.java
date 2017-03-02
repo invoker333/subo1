@@ -1,0 +1,79 @@
+package Mankind;
+
+import javax.microedition.khronos.opengles.GL10;
+
+import Enviroments.GrassSet;
+
+import com.mingli.toms.R;
+import com.mingli.toms.World;
+
+import element2.TexId;
+
+public class FireBall extends Enemy{
+	private float angleSpeed;
+	Damage da;
+	public FireBall(char bi, GrassSet gra, float x, float y) {
+		super(bi,gra, x, y);
+		setJumpHeight((int) y);
+		// TODO Auto-generated constructor stub
+		changeLifeRate(0.1f);
+		setSoundId(EnemySet.FIREBALL);
+		attack=(int) (0.2f*World.baseAttack);
+		
+		
+		
+		
+		
+		da=new Damage( x, 0+getH());
+		da.loadTexture();
+	}
+	public void drawElement(GL10 gl){
+		super.drawElement(gl);
+		da.drawElement(gl);
+	}
+	protected void afterInit(){
+		setG(0.3f);
+		y=0;
+		super.afterInit();
+	}
+	protected void init(){
+		setTextureId(TexId.FIREBALL);
+		loadSound();
+		setwRate(-1);sethRate(-1);
+		setW(32);setH(32);
+		sizeCheck();
+		setAnimationFinished(true);// �ܹ�����
+		setTexture();
+	}
+	public void randomAction(){
+		if(y<0){
+//			y=0;
+			playSound();
+			jump();
+		}
+	}
+	  public void attackAnotherOne(EnemySet es){
+		 Creature another;
+			for (int i = 0; i < es.cList.size(); i++) {
+				another = es.cList.get(i);
+				if (Math.abs(x - another.x) < another.getwEdge() + getW()
+					&&Math.abs(y - another.y) < another.gethEdge() + getH()) {
+					tooClose(another,es);
+					
+				}
+				da.targetEnemyCheck(another, es);
+			}
+	}
+	  protected void tooClose(Creature another,EnemySet es) {
+		es.attacked(another, attack);// 伤人判定
+	}
+	protected void gravityCheck(){
+//		if(false)super.gravityCheck();
+	}
+	protected void moveCheck(){
+		angleSpeed=ySpeed;
+		setAngle(getAngle() +angleSpeed);
+		xSpeed=0;
+//		if(false)super.moveCheck();
+	}
+}

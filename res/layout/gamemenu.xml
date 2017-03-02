@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#aaaaaaaa"
+    android:orientation="vertical"
+    android:padding="10dp" >
+
+    <LinearLayout
+        android:id="@+id/gamemenuadcontainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tomenu"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/music"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tomenu"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/tomenu2" />
+
+        <TextView
+            android:id="@+id/stageText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/biankaungorange"
+            android:gravity="center"
+            android:shadowColor="#ffaa00"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="5"
+            android:text="主菜单"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/ex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="#aaaaffaa"
+        android:checked="true"
+        android:text="音效"
+        android:textColor="#ffffff"
+        android:visibility="invisible" />
+
+    <CheckBox
+        android:id="@+id/music"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ex"
+        android:layout_alignLeft="@+id/ex"
+        android:background="#aaffaaaa"
+        android:checked="true"
+        android:text="音乐"
+        android:textColor="#ffffff"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/white"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/gameMenuTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/pink"
+                android:gravity="center"
+                android:padding="10dp"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="2"
+                android:text="第X关"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#ffffff"
+                android:textSize="36dp" />
+        </RelativeLayout>
+
+        <GridLayout
+            android:id="@+id/ratinggrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/white"
+            android:columnCount="10" >
+
+            <TextView
+                android:id="@+id/dialogue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_row="3"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="2"
+                android:text="时间"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="4"
+                android:layout_gravity="center"
+                android:layout_row="3"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="2"
+                android:text="道具"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_gravity="center"
+                android:layout_row="2"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="2"
+                android:text="金币"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_gravity="center_horizontal|fill_vertical"
+                android:layout_row="5"
+                android:gravity="center"
+                android:shadowDx="4"
+                android:shadowDy="4"
+                android:shadowRadius="4"
+                android:text="综合"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="36dp"
+                android:textStyle="bold|italic" />
+
+            <RatingBar
+                android:id="@+id/ratingBar3"
+                style="@style/gamesucceedRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="5"
+                android:layout_gravity="left|center_vertical"
+                android:layout_row="3"
+                android:isIndicator="true"
+                android:max="3"
+                android:numStars="3"
+                android:stepSize="1" />
+
+            <RatingBar
+                android:id="@+id/ratingBar1"
+                style="@style/gamesucceedRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_gravity="center"
+                android:layout_row="3"
+                android:isIndicator="true"
+                android:max="3"
+                android:numStars="3"
+                android:rating="1"
+                android:stepSize="1" />
+
+            <RatingBar
+                android:id="@+id/ratingBar2"
+                style="@style/gamesucceedRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="4"
+                android:layout_gravity="center"
+                android:layout_row="2"
+                android:isIndicator="true"
+                android:max="3"
+                android:numStars="3"
+                android:stepSize="1" />
+
+            <RatingBar
+                android:id="@+id/ratingBar4"
+                style="@style/gamesucceedRatingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="4"
+                android:layout_gravity="center"
+                android:layout_row="5"
+                android:isIndicator="true"
+                android:max="3"
+                android:numStars="3"
+                android:stepSize="1" />
+        </GridLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ratinggrid"
+            android:layout_centerHorizontal="true"
+            android:gravity="center" >
+
+            <LinearLayout
+                android:id="@+id/resume"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/back" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/resume"
+                    android:layout_toLeftOf="@+id/retry"
+                    android:gravity="center"
+                    android:shadowColor="#ffaa00"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="2"
+                    android:text="继续"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/retry"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/retry" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/resume"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:shadowColor="#ffaa00"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="2"
+                    android:text="重来"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/next"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/next" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/imageView1"
+                    android:layout_alignLeft="@+id/imageView1"
+                    android:gravity="center"
+                    android:shadowColor="#ffaa00"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="2"
+                    android:text="下一关"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/getLifeabout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/music"
+        android:layout_toRightOf="@+id/relativeLayout1"
+        android:background="@drawable/whitestroke"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <Button
+            android:id="@+id/buyLife"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_selected"
+            android:text="买活" />
+
+        <Button
+            android:id="@+id/getLifeFree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_selected"
+            android:padding="5dp"
+            android:text="免费复活" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/savemap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/relativeLayout1"
+        android:background="@drawable/bg_pressed"
+        android:text=" 保存地图 "
+        android:textColor="#ffffff" />
+
+    <LinearLayout
+        android:id="@+id/backtostagechoosser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tomenu"
+        android:layout_marginTop="48dp"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/tomenu"
+            android:textColor="#ff0000" />
+
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/biankaungorange"
+            android:gravity="center"
+            android:shadowColor="#ffaa00"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="5"
+            android:text="关卡选择"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,69 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="AnimationFade">
+
+        <!-- PopupWindow左右弹出的效果 -->
+        <item name="android:windowEnterAnimation">@anim/selfin</item>
+        <item name="android:windowExitAnimation">@anim/selfout</item>
+    </style>
+
+    <!--
+显示壁纸也是launcher必不可少的功能，下面我们看看如何让我们开发的launcher来显示壁纸。
+
+要在我们的activity里显示一个壁纸非常简单（包括动态壁纸也如此），我们只需要定义一个theme使其继承自android:Theme.Wallpaper，然后在activity中使用这个theme就ok了。
+在res/valuse下面增加一个xml文件，其名称为styles.xml(AndroidStudio新建的项目会自动创建styles.xml我们只需要在resources标记对下添加),内容如下：
+    -->
+    <style name="bizhiTheme" parent="android:Theme.Wallpaper">
+
+        <!-- windowNoTitle设置为true，去掉标题栏 -->
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="myDialog" parent="@android:style/Theme.Dialog">
+
+        <!-- 更换背景图片实现全透明 -->
+        <!-- <item name="android:windowBackground">@drawable/ic_launcher</item> -->
+        <!-- 屏幕背景不变暗 -->
+        <item name="android:backgroundDimEnabled">false</item>
+        <!-- 隐藏标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="stagechooserRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@layout/ratingbar_drawable_stagechooser</item>
+        <item name="android:minHeight">32dip</item>
+        <item name="android:maxHeight">32dip</item>
+    </style>
+     <style name="gamesucceedRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@layout/ratingbar_drawable_gamesucceed</item>
+        <item name="android:minHeight">32dip</item>
+        <item name="android:maxHeight">32dip</item>
+    </style>
+     <style name="Widget.SeekBar.directionSeekBarStyle" parent="@android:style/Widget.SeekBar">  
+        <item name="android:maxHeight">48.0dip</item>  
+        <item name="android:indeterminateOnly">false</item>  
+        <item name="android:indeterminateDrawable">@android:drawable/progress_indeterminate_horizontal</item>  
+        <item name="android:progressDrawable">@drawable/seekhor</item>  
+        <item name="android:minHeight">10.0dip</item>  
+        <item name="android:thumbOffset">16.0dip</item>  
+    </style>  
+
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/white"
+    android:padding="20dp" >
+
+    <ImageView
+        android:id="@+id/speaker"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/xiake" />
+
+    <TextView
+        android:id="@+id/speakername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/speaker"
+        android:layout_toRightOf="@+id/speaker"
+        android:text="小软蛋："
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#00ffff"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/dialogue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/speakername"
+        android:layout_below="@+id/speakername"
+        android:text="FLAPPY BIRD 你看见有人过去吗？"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>
