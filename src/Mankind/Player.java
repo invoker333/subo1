@@ -52,8 +52,13 @@ public class Player extends JointCreature {
 	public int autoBulletTime;
 	private boolean tooLong;
 	
+	
+	private Shader shader;	
     public Player(char mapSign,GrassSet gra, World world,float x,float y) {
     	super(mapSign, gra, x, y);
+    	shader=new Shader(gra, 0.1f, this);
+    	
+    	
         DEATHSPEED=super.DEATHSPEED/2;
         
         clothTail=new Tail(2,TexId.CLOTH);
@@ -280,6 +285,8 @@ public class Player extends JointCreature {
     public void drawElement(GL10 gl) {
     	if(touched)drawGuideTail(gl);	
     	timerTask();
+    	
+    	shader.drawElement(gl);
      
    
        if(gun!=null)gun.drawElement(gl);

@@ -36,6 +36,7 @@ public class PlayerSet extends EnemySet{
 //		addCreature(new JointCreature(gra,player.x,player.y));
 //		addCreature(new Creeper(gra,player.x,player.y));
 		addEmplacement(new EpAuto(bi,gra, 500, 500));
+//		addCreature(new Shader(gra, 0.5f, player));
 		
 		
 		   final float w=16;
