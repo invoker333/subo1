@@ -21,6 +21,7 @@ import Mankind.Hedgehog;
 import Mankind.JointCreature;
 import Mankind.Player;
 import Mankind.Spide;
+import Mankind.Spide3;
 import Mankind.TestEnemy;
 import Mankind.Walker;
 import Mankind.WeaponMan;
@@ -44,7 +45,7 @@ public class GrassSet extends Set{
 	public Grass [][]grassMap;
 	private ArrayList<Grass>gList;
 	private ArrayList<Grass>drawList;
-	private ArrayList<Draw>effectList;
+//	private ArrayList<Draw>effectList;
 	public ArrayList<Animation>animationList; 
 	private ArrayList<Fruit>coinList;
 	private ArrayList<Fruit>fruitList;
@@ -185,7 +186,6 @@ public class GrassSet extends Set{
 		enemyList=new ArrayList<Creature>();
 		emplacementList = new ArrayList<Emplacement>();;
 		drawList=new ArrayList<Grass>();
-		effectList=new ArrayList<Draw>();
 		animationList=new ArrayList<Animation>(); 
 		fruitList=new ArrayList<Fruit>();
 		char bi ;
@@ -261,7 +261,6 @@ public class GrassSet extends Set{
 					break;//E paotai
 				case 70:
 					enemyList.add(new FireBall(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid));
-					effectList.add(new FireSet(5,(x+0.5f)*grid,grid));
 					break;//F
 				case 97:enemyList.add(new Walker(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid));break;		//a
 				case 98:enemyList.add(new Flyer(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid));break;//b
@@ -269,25 +268,30 @@ public class GrassSet extends Set{
 				case 100:enemyList.add(new Baller(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid));break;//d
 				case 101:enemyList.add(new Hedgehog(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid));break;//e
 				case 106://j
-//					float dy=Spide.dsmax;
-/*					Creature[] spideMans = new Creature[]{//j
-							new Walker(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid),
-							new Walker(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid),
-							new Walker(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid),
-							new Walker(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid),
-							};
-					for(Creature spideMan:spideMans){
-						enemyList.add(spideMan);
-						}
-					emplacementList.add(new Spide(bi,this,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,spideMans));*/
-					
-					emplacementList.add(new Spide(bi,this,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid));
+					int ran1=(int) (Math.random()*2);
+					if(ran1==0){
+//					if(false){
+						float dy=Spide.dsmax;
+								Creature[] spideMans = new Creature[]{//j
+											new Walker(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid),
+											new Walker(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid),
+											new Walker(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid),
+											new Walker(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid),
+											};
+									for(Creature spideMan:spideMans){
+										enemyList.add(spideMan);
+										}
+						emplacementList.add(new Spide3(bi,this,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,spideMans));
+										
+					}
+					else 
+						emplacementList.add(new Spide(bi,this,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid));
 					break;
 				case 107:
-					enemyList.add(new TestEnemy(this,(x+0.25f)*grid,(mapHeight-y-0.25f)*grid,new Creature[0]));
-					enemyList.add(new TestEnemy(this,(x+0.25f)*grid,(mapHeight-y-0.75f)*grid,new Creature[0]));
-					enemyList.add(new TestEnemy(this,(x+0.75f)*grid,(mapHeight-y-0.25f)*grid,new Creature[0]));
-					enemyList.add(new TestEnemy(this,(x+0.75f)*grid,(mapHeight-y-0.75f)*grid,new Creature[0]));
+					enemyList.add(new TestEnemy(this,(x+0.25f)*grid,(mapHeight-y-0.25f)*grid));
+					enemyList.add(new TestEnemy(this,(x+0.25f)*grid,(mapHeight-y-0.75f)*grid));
+					enemyList.add(new TestEnemy(this,(x+0.75f)*grid,(mapHeight-y-0.25f)*grid));
+					enemyList.add(new TestEnemy(this,(x+0.75f)*grid,(mapHeight-y-0.75f)*grid));
 					break;
 				case 53: break;//5 结束标志
 				case 13:x=0;y++;break;
@@ -459,8 +463,8 @@ public class GrassSet extends Set{
 		}
 		gl.glColor4f(1,1,1,1);
 		
-		for(Draw draw :effectList)
-			draw.drawElement(gl);
+//		for(Draw draw :effectList)
+//			draw.drawElement(gl);
 		
 		ps.drawElement(gl);
 

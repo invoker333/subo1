@@ -27,7 +27,6 @@ public class MusicId {
 	public static int bomb;
 	public static int shotGun;
 	public static int missile;
-	public static int gunLight;
 	public static int juji;
 
 	public static void loadSoundId(Music music) {

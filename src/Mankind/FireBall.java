@@ -2,6 +2,7 @@ package Mankind;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import Element.FireSet;
 import Enviroments.GrassSet;
 
 import com.mingli.toms.R;
@@ -11,7 +12,7 @@ import element2.TexId;
 
 public class FireBall extends Enemy{
 	private float angleSpeed;
-	Damage da;
+	private FireSet fireSet;
 	public FireBall(char bi, GrassSet gra, float x, float y) {
 		super(bi,gra, x, y);
 		setJumpHeight((int) y);
@@ -20,16 +21,11 @@ public class FireBall extends Enemy{
 		setSoundId(EnemySet.FIREBALL);
 		attack=(int) (0.2f*World.baseAttack);
 		
-		
-		
-		
-		
-		da=new Damage( x, 0+getH());
-		da.loadTexture();
+		fireSet=new FireSet(5,x,gra.getGrid());
 	}
 	public void drawElement(GL10 gl){
 		super.drawElement(gl);
-		da.drawElement(gl);
+		fireSet.drawElement(gl);
 	}
 	protected void afterInit(){
 		setG(0.3f);
@@ -45,13 +41,6 @@ public class FireBall extends Enemy{
 		setAnimationFinished(true);// �ܹ�����
 		setTexture();
 	}
-	public void randomAction(){
-		if(y<0){
-//			y=0;
-			playSound();
-			jump();
-		}
-	}
 	  public void attackAnotherOne(EnemySet es){
 		 Creature another;
 			for (int i = 0; i < es.cList.size(); i++) {
@@ -59,9 +48,12 @@ public class FireBall extends Enemy{
 				if (Math.abs(x - another.x) < another.getwEdge() + getW()
 					&&Math.abs(y - another.y) < another.gethEdge() + getH()) {
 					tooClose(another,es);
-					
 				}
-				da.targetEnemyCheck(another, es);
+				else if (Math.abs(fireSet.x - another.x) < another.getwEdge() + fireSet.w
+						&&another.y+another.h>fireSet.h
+						&&another.y-another.h<fireSet.y+fireSet.h) {
+						tooClose(another,es);
+				}
 			}
 	}
 	  protected void tooClose(Creature another,EnemySet es) {
@@ -69,6 +61,11 @@ public class FireBall extends Enemy{
 	}
 	protected void gravityCheck(){
 //		if(false)super.gravityCheck();
+		if(y<fireSet.h){
+//			y=0;
+			playSound();
+			jump();
+		}
 	}
 	protected void moveCheck(){
 		angleSpeed=ySpeed;

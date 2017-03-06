@@ -18,6 +18,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -34,9 +36,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MenuActivity extends Activity {
-	boolean bgm = true;
 
-	boolean ex = true;
 
 	private SharedPreferences sp;
 	private static Context content;
@@ -139,7 +139,7 @@ public class MenuActivity extends Activity {
 		myHandler = new MyHandler();
 
 		// if (world == null)
-		world = new World(this, bgm, ex, myHandler);
+		world = new World(this,myHandler);
 		addView(world);
 		// addContentView(world, new
 		// LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
@@ -257,7 +257,7 @@ public class MenuActivity extends Activity {
 		// if (gameMenu == null)
 		gameMenu = new GameMenu(this, world);
 		// if(shopView==null)
-		shop = new Shop(this, world, tips);
+		shop = new Shop(this, world);
 		
 		if(World.editMode)
 			animationShop = new Producer(this, world, tips);
@@ -267,7 +267,6 @@ public class MenuActivity extends Activity {
 		btnc.adController();
 
 		// if (itemWindow == null)
-		world.loadPlayerEqu();
 	}
 
 	protected void onDestroy() {
@@ -616,12 +615,38 @@ public class MenuActivity extends Activity {
 		    }
 		}
 
-	public void getLifeFree() {
+	public boolean getLifeFree() {
 		// TODO Auto-generated method stub
-		ad.showInterstitial();
-		MenuActivity.showDialog("", "复活蛋已发放", R.drawable.egg);
-		FruitSet.pickedList.add(FruitSet.shopList.get(0));
-		btnc.freshItem();
+		if(isNetworkAvailable(this)){
+			ad.showInterstitial();
+			return true;
+		}else {
+			showDialog("网络错误", "请在联网状态下观看广告复活", R.drawable.coinicon);
+		}
+		if(World.rpgMode){
+			btnc.freshItem();
+//			MenuActivity.showDialog("", "复活蛋已发放", R.drawable.egg);
+			FruitSet.pickedList.add(FruitSet.shopList.get(0));
+		}
+		return false;
+	}
+	public static boolean isNetworkAvailable(Context context) {   
+        ConnectivityManager cm = (ConnectivityManager) context   
+                .getSystemService(Context.CONNECTIVITY_SERVICE);   
+        if (cm == null) {   
+        } else {
+	//如果仅仅是用来判断网络连接
+	 //则可以使用 cm.getActiveNetworkInfo().isAvailable();  
+            NetworkInfo[] info = cm.getAllNetworkInfo();   
+            if (info != null) {   
+                for (int i = 0; i < info.length; i++) {   
+                    if (info[i].getState() == NetworkInfo.State.CONNECTED) {   
+                        return true;   
+                    }
+                }
+            }
+        }
+		return false;
 	}
 
 	public void showAnimationShop(View v) {

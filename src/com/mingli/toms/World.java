@@ -137,11 +137,11 @@ public class World extends GLSurfaceView implements Runnable {
 		Toast.makeText(context, "地图保存成功", Toast.LENGTH_SHORT).show();
 	}
 
-	public World(Context context, boolean bgm, boolean ex, Handler handler) {//
+	public World(Context context,Handler handler) {//
 		super(context);
 		this.context = context;
 		this.handler = handler;
-		music = new Music(context, bgm, ex);
+		music = new Music(context);
 
 //		this.setDebugFlags(1111111111);
 		texId = new TexId(context);
@@ -378,11 +378,11 @@ public class World extends GLSurfaceView implements Runnable {
 		increaseTime(0);
 		increaseChance(0);
 		increaseScore(0);
-		music.setBGM(R.raw.bolailuo);
-		music.setLooping(true);
+		setGameMusic();
 		
 		if(true){
-			MenuActivity.showDialog(null, "恭喜到达第"+i+"关", R.drawable.cup);
+			if(i!=0)
+			MenuActivity.showDialog(null, "欢迎来到第"+i+"关", R.drawable.cup);
 //			MenuActivity.showDialog(null, "你还是挺有实力的嘛", R.drawable.wood);
 //			MenuActivity.showDialog(null, "加油", R.drawable.wood);
 		}
@@ -567,8 +567,6 @@ public class World extends GLSurfaceView implements Runnable {
 	}
 
 	public void quitGame() {
-		playerEqs[0]=player.gunFruitId;
-		playerEqs[1]=player.baldeFruitId;
 //		isGameRunning=false;
 		ct.close();
 		for (int i = 0; i < drawList.size(); i++) {
@@ -790,7 +788,6 @@ public class World extends GLSurfaceView implements Runnable {
 	private Draw sucDraw;
 	public int timerMax=255;
 	private FireSet fireSet;
-	private int[] playerEqs={-1,-1};
 	public static ArrayList<Animation> animationshopList;
 	
 	public static boolean editMode;
@@ -840,8 +837,20 @@ public class World extends GLSurfaceView implements Runnable {
 		handler.sendEmptyMessage(B);
 	}
 
-	public void loadPlayerEqu() {
+	public void relife() {
 		// TODO Auto-generated method stub
-		player.extendsEqu(playerEqs);
+		setGameMusic();
+		
+		 int gameTimeMax=timerMax;
+		if((gameTime+=gameTimeMax/3)>gameTimeMax)
+			gameTime=gameTimeMax;
+		
+	}
+
+	private void setGameMusic() {
+		// TODO Auto-generated method stub
+		music.pauseBGM();
+		music.setBGM(R.raw.bolailuo);
+		music.setLooping(true);
 	}
 }

@@ -62,7 +62,7 @@ public class Player extends JointCreature {
     	
         DEATHSPEED=super.DEATHSPEED/2;
         
-        clothTail=new Tail(2,TexId.CLOTH);
+        clothTail=new Tail(2,TexId.RAINBOW);
         {
         	clothMove=new AnimationGravity();//20170131
         	//        	clothMove=new Creature(gra);//20170131
@@ -71,6 +71,7 @@ public class Player extends JointCreature {
         	clothMove.h=cw;
         	
         	clothMove.loadTexture();
+        	clothMove.setPosition(x, y);
         }
         controller=this;
 		vtDestory=-(float) Math.sqrt(2*getGra().getGrid()*getG());
@@ -94,20 +95,13 @@ public class Player extends JointCreature {
         
         initGuideTail(gra);     	
         
-   
+        changeGun(gunFruitId);
+        changeBlade(bladeFruitId);
+        
     }
     public void setEnemySet(EnemySet enemySet){
     	super.setEnemySet(enemySet);
     	 ab=new AutoBubble(enemySet,  this);
-    }
-    public void extendsEqu(int playerEq[]){
-    	changeGun(playerEq[0]);
-        changeBlade(playerEq[1]);
-        
-//        haveGun();
-//        gun=new AutoBulletGun(enemySet,  controller, 5);
-       
-        
     }
     public void startTouch(float ex1,float ey1){
     	this.ex1 = ex1;
@@ -282,6 +276,8 @@ public class Player extends JointCreature {
     Creature guideCre;
     
     AnimationMove clothMove;
+   int wudiTimeBorn=180;
+	private int wudiTime=wudiTimeBorn;// wudi time
     
     public void drawElement(GL10 gl) {
     	if(touched)drawGuideTail(gl);	
@@ -296,17 +292,22 @@ public class Player extends JointCreature {
            clothTail.tringer(clothMove.x, clothMove.y);
            clothTail.drawElement(gl);
            
-       		float dsmax=getwEdge();
+       		float dsmax=getH();
        		float tanxingxishu= 0.1f;
-       		float zuni=0.99f;
+       		float zuni=0.9f;
            
           this.stringCheck(clothMove, dsmax, tanxingxishu, zuni); 
           clothMove.drawElement(gl);
        }
        if(autoBulletTime>0)ab.drawElement(gl);
-//       gl.glColor4f(red, green, blue, getAlpha());
-       super.drawElement(gl);// �Ȼ��ӽ�����
-//       gl.glColor4f(1, 1, 1, 1);
+       
+       
+       if(wudiTime>0){
+    	   gl.glColor4f(0.5f,0.5f,0.5f,0.5f);
+       		super.drawElement(gl);
+       		wudiTime--;
+       }// draw as alpha as wudi
+       else super.drawElement(gl);
     }
     
 	private void initGuideTail(GrassSet gra) {
@@ -432,6 +433,8 @@ public class Player extends JointCreature {
 	}
 
     private void timerTask() {
+    	
+    	
     	 if (y < 0 && !isDead) {
 //         	isDead = true;
     		 die();
@@ -451,6 +454,7 @@ public class Player extends JointCreature {
 //         actCheck(wheel);
 	}
 	public void attacked(int attack) {
+		if(wudiTime>0)return;
     	if(isDead)return;
     	super.attacked(attack);
         world.showLifeColumn(this);
@@ -471,6 +475,7 @@ public class Player extends JointCreature {
 		super.drawDeath(gl);
 	}
 	public void reLife(){
+		wudiTime=wudiTimeBorn;
 		isDead=false;
 //		setGotGoal(false);
 		setLife(getLifeMax());
@@ -482,11 +487,7 @@ public class Player extends JointCreature {
 		setPosition(footGrass.data[0]+gra.getGrid()/2, footGrass.data[3]+gethEdge()*1.2f);
 		
 		
-		music.setBGM(R.raw.snowtown);
-		
-		 int gameTimeMax=world.timerMax;
-		if((world.gameTime+=gameTimeMax/3)>gameTimeMax)world.gameTime=gameTimeMax;
-		
+		world.relife();
 	}
     public void die() {
     	if(isDead)return;
@@ -733,9 +734,6 @@ public class Player extends JointCreature {
         playSound(destorySound);
     }
 
-    private int toukuiTime;
-    private int gaoTime;
-    public int flyTime;
     float vtDestory;//�ƻ�����С�ٶ�
     private double E;//�ƻ�����С����
 	private int coolingId;
@@ -890,9 +888,15 @@ public class Player extends JointCreature {
 	public int secondaryLife=getLifeMax();
 	public Gun gun;
 
-	public int gunFruitId=-0;
 	private int EXjump;
-	public int baldeFruitId=-0;
+	
+
+	public  static int gunFruitId=-1;
+	public  static int bladeFruitId=-1;
+    private static int toukuiTime;
+    private static int gaoTime;
+    public static int flyTime;
+	
 	public boolean touched;
 
     private void goreEnemyCheck() {
@@ -1016,14 +1020,14 @@ public class Player extends JointCreature {
 	}
 	public void changeBlade(int textureId) {
 		if(textureId==-1)return;
-		final int noBladeId=0;
+		final int noBladeId=-1;
 		// TODO Auto-generated method stub
 		if(haveBlade(textureId)) {
 			noBlade();
-			baldeFruitId=noBladeId;
+			bladeFruitId=noBladeId;
 		} else {
 			haveBlade();
-			baldeFruitId=textureId;
+			bladeFruitId=textureId;
 		}
 	}
 	public void haveBlade() {
@@ -1044,7 +1048,7 @@ public class Player extends JointCreature {
 		}
 	 
 	public boolean haveBlade(int textureId) {
-		return baldeFruitId==textureId;
+		return bladeFruitId==textureId;
 	}
 	public void increaseCoinBy(int i) {
 		// TODO Auto-generated method stub
@@ -1052,6 +1056,11 @@ public class Player extends JointCreature {
 	}
 	public void increaseChanceBy(int ch){
 		world.increaseChance(ch);
+	}
+	public void addFlyTime(int time) {
+		// TODO Auto-generated method stub
+		flyTime+=time;
+		clothMove.setPosition(x, y);
 	}
 	
 }

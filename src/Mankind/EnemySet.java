@@ -200,8 +200,8 @@ public class EnemySet extends Set {
 			for (int i = 0; i < enemySet.cList.size(); i++) {
 				another = enemySet.cList.get(i);
 				if (Math.abs(self.x - another.x) < another.getW() + self.getW()
-						&& another.y - another.gethEdge() < self.y - self.gethEdge()
-						&& another.y > self.y - self.gethEdge()) {
+						&& another.y - another.getH() < self.y // foot
+						&& another.y + another.getH() > self.y - self.getH()) {// head higher than foot
 					tooClose(self,another);
 				}
 			}
@@ -240,11 +240,11 @@ public class EnemySet extends Set {
 		gl.glTranslatef(w, h, 0);
 
 		backLife.drawElement(gl);
-
+		gl.glColor4f(0, 1, 0, 1);
 		gl.glScalef(rate, 1, 1);
 		lifecolumn.drawElement(gl);
 		gl.glScalef(1 / rate, 1, 1);
-
+		gl.glColor4f(1, 1, 1, 1);
 		gl.glTranslatef(-w, -h, 0);
 	}
 

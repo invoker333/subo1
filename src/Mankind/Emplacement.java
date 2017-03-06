@@ -29,7 +29,9 @@ public class Emplacement extends Creature {
 	public Emplacement(char bi,GrassSet gra, float x, float y) {
 		super(bi,gra,x,y);
 		// TODO Auto-generated constructor stub
-	
+	setJumpHeight(10);
+	setxSpeedMax(1);
+	setxSpeedMin(-1);
 	}// 炮台
 
 	protected void init(){

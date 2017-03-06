@@ -11,8 +11,10 @@ import com.mingli.toms.Render;
 import element2.TexId;
 
 public class FireSet extends BubbleSet{
-	private  float x;
-	private  float y;
+	public  float x;
+	public  float y;
+	public float w=32;
+	public float h=128;
 	private float T;
 	public FireSet(int fireCount) {
 		super(fireCount);
@@ -57,6 +59,7 @@ public class FireSet extends BubbleSet{
 //
 	}
 	int index;
+	
 	public void drawElement(GL10 gl){
 		super.drawElement(gl);
 		if(index++%T==0)tringer(x + 16 * (float) Math.random(), y, 1);

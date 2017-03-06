@@ -54,7 +54,7 @@ public class FruitSet extends Set {
 		
 		if(chanceFruit!=null){
 			final int cost = 10;
-			chanceFruit.cost=cost;
+//			chanceFruit.cost=cost;
 			chanceFruit.chancecost=cost;
 		}
 		
@@ -163,7 +163,8 @@ public class FruitSet extends Set {
 		fruit.use(player, pickedList);// whatever fruit will be used at once
 		
 		if (fruit.loadAble(player)) {
-			pickedList.add(fruit);
+			if(World.rpgMode)
+				pickedList.add(fruit);
 			gunLoseCheck(fruit);
 		}
 		effectList.add(fruit);

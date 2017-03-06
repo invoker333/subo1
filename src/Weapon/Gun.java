@@ -58,7 +58,7 @@ public class Gun extends Set {// 子弹
 			b.h=ww;
 		}
 		loadTexture();
-		setSoundId(MusicId.gunLight);
+		setSoundId(MusicId.gun);
 		for (int i = 0; i < bCount; i++) {
 			b=bList.get(i);
 			b.w=ww/3;

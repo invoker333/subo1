@@ -256,8 +256,9 @@ public class GameMenu {
 				case R.id.getLifeFree:
 					// viewList.get(1).setBackgroundResource(R.drawable.back);
 					
-					menuActivity.getLifeFree();
-					player.reLife();
+					if(menuActivity.getLifeFree()){
+						player.reLife();
+					}
 					break;
 				case R.id.savemap:
 					world.saveMap();

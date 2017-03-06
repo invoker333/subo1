@@ -67,7 +67,7 @@ class FruitFly extends ShakeFruit{
 		loadTexture(TexId.FRUITFLY);
 	}
 	public void use(Player player,ArrayList<Fruit> pickedList){
-		player.flyTime+=time;
+		player.addFlyTime(time);
 	}
 	public void effectCheck(Player p, ArrayList<Fruit> pickedList){
 //		super.effectCheck(p,pickedList);

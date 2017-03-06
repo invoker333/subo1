@@ -171,11 +171,11 @@ public class StartMenu{
 //			t-=3;
 			
 			if (v.getId() == R.id.checkBox2) {
-				acti.ex = isChecked;
+				Music.ex = isChecked;
 				str+=0;
 			}
-			if (v.getId() == R.id.checkBox1) {
-				acti.bgm = isChecked;
+			else if (v.getId() == R.id.checkBox1) {
+				Music.bgm = isChecked;
 				str+=1;
 			}
 			

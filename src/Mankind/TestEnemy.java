@@ -6,8 +6,8 @@ import Enviroments.GrassSet;
 
 public class TestEnemy extends Spide{
 
-	public TestEnemy(GrassSet gra, float x, float y, Creature[] cc) {
-		super(' ',gra, x, y, cc);
+	public TestEnemy(GrassSet gra, float x, float y) {
+		super(' ',gra, x, y);
 		// TODO Auto-generated constructor stub
 	}
 	protected void init(){

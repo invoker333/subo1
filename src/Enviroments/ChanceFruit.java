@@ -17,6 +17,14 @@ public class ChanceFruit extends ShakeFruit{
 		// TODO Auto-generated constructor stub
 		loadTexture(TexId.EGG,0,0);
 	}
+	public void use(Player player,ArrayList<Fruit> pickedList){
+		final int max=80;
+		if(cost<max&&chancecost<max){
+			cost+=cost;
+			chancecost+=chancecost;
+		}
+		super.use(player, pickedList);
+	}
 	public boolean loadAble(Player player){
 		if(World.rpgMode)	
 		for(Fruit f:FruitSet.pickedList)
@@ -26,9 +34,7 @@ public class ChanceFruit extends ShakeFruit{
 			}
 		
 		
-		cost+=cost;
-		chancecost+=chancecost;
-		Log.i("ChanceFruit.score:"+score);
+	
 		 super.loadAble(player);
 		 return true;
 	}

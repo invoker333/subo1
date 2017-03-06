@@ -17,11 +17,13 @@ public class Music {
 	public static boolean bgm;
 	int musicId;
 	public int soundPoolTime=4;
-	public Music(Context context,boolean bgm,boolean ex){
+	public Music(Context context){
 		this.context = context;
+		initSoundPool();
+	}
+	static void setSwitch(boolean bgm,boolean ex){
 		Music.bgm = bgm;
 		Music.ex = ex;
-		initSoundPool();
 	}
 	public void setBGM(int resId){
 		if(mp!=null&&musicId==resId)return;
@@ -98,6 +100,10 @@ public class Music {
 	}
 	public void setLooping(boolean b) {
 		// TODO Auto-generated method stub
-		mp.setLooping(b);
+		if(mp!=null)mp.setLooping(b);
+	}
+	public void pauseBGM() {
+		// TODO Auto-generated method stub
+		if(mp!=null)mp.pause();
 	}
 }

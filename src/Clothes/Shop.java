@@ -56,13 +56,11 @@ public class Shop {
 	private World world;
 	// private ArrayList<Fruit> fruList;
 	private FruitSet fs;
-	private Tips tips;
 	private ViewGroup shopadcontainer;
 
-	public Shop(MenuActivity acti, World world, Tips tips) {
+	public Shop(MenuActivity acti, World world) {
 		this.acti = acti;
 		this.world = world;
-		this.tips = tips;
 	}
 
 	public void showWindow(View v) {
@@ -150,9 +148,9 @@ public class Shop {
 					}
 				} else {
 					if (acti.coinCount - selectedItem.cost < 0)
-						tips.showAtTip(world, "金币不够",0,0);
+						MenuActivity.showDialog("", "金币不够",R.drawable.coin);
 					else if (acti.chance - selectedItem.chancecost < 0)
-						tips.showAtTip(world, "生命数量不够！",0,0);
+						MenuActivity.showDialog("", "生命能量",R.drawable.egg);
 				}
 //				selectedItem = null;
 				itemadapter.notifyDataSetChanged();

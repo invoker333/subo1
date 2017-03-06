@@ -17,9 +17,6 @@ public class Enemy extends Creature {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void randomAction() {
-	}
-
 	protected void init() {
 		setFrameCount(4, 2);
 		super.init();

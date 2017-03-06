@@ -51,14 +51,18 @@ public class ButtonController {
 			View right = (View) buttonView.findViewById(R.id.right);
 			SeekBar directionSeekBar = (SeekBar) buttonView
 					.findViewById(R.id.directionSeekBar);
-			attack = (View) buttonView.findViewById(R.id.attack);
 			ride = buttonView.findViewById(R.id.ride);
 			View shopButton = buttonView.findViewById(R.id.shopbutton);
 			View buildButton = buttonView.findViewById(R.id.buildButton);
 			// View itembutton=acti.findViewById(R.id.itembutton);
 			mySeekBar jumpSeekBar = (mySeekBar) buttonView
 					.findViewById(R.id.jumpSeekbar1);
+			attack = (View) buttonView.findViewById(R.id.attack);
 			circle = (Circle) buttonView.findViewById(R.id.circle1);
+			
+			if(Player.bladeFruitId==-1)attack.setVisibility(View.INVISIBLE);
+			if(Player.gunFruitId==-1)circle.setVisibility(View.INVISIBLE);
+			
 			circle.player = world.player;
 			circleSurface = (CircleSurface) buttonView
 					.findViewById(R.id.circlesurface1);
