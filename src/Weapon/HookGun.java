@@ -21,7 +21,7 @@ public class HookGun extends Gun {
 		Hook h;
 		for (int i = 0; i < bCount; i++) {
 			bList.add(i,h= new Hook(enemySet,   player));// 子弹敌对势力
-			h.range=500;
+			h.setRange(500);
 		}
 		bSpeed=((Hook)bList.get(0)).speed;// set first speed
 		loadTexture();

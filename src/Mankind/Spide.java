@@ -48,8 +48,8 @@ public class Spide extends Emplacement {
 			}
 		};
 		b.loadTexture(TexId.THUNDER);
-		dsmax =((Hook) b).range;
-		setRange(((Hook) b).range);
+		dsmax =((Hook) b).getRange();
+		setRange(((Hook) b).getRange());
 		
 	}
 	  protected boolean targetCanbeCatched(Creature gp) {

@@ -7,6 +7,7 @@ import javax.microedition.khronos.opengles.GL10;
 import Mankind.Player;
 
 import com.mingli.toms.Music;
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.World;
 
@@ -32,7 +33,7 @@ public class CoinSet extends FruitSet {
 		coin.playSound();
 	}
 	public void loadSound() {
-		setSoundId(music.loadSound(R.raw.coin));
+		setSoundId(MusicId.coin);
 		for (int i = 0; i < fruitList.size(); i++) {
 			Fruit coin = fruitList.get(i);
 			coin.setSoundId(getSoundId());

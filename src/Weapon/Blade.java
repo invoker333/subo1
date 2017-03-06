@@ -7,10 +7,10 @@ import javax.microedition.khronos.opengles.GL10;
 
 import Mankind.Creature;
 import Mankind.EnemySet;
-
 import android.net.Uri;
 
 import com.mingli.toms.Log;
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 
 import element2.Joint;
@@ -24,7 +24,7 @@ public class Blade extends Joint {
 	float angleA;
 //	private int attack = 100;
 	private boolean fire;
-	private Creature p;
+	private Creature player;
 
 	float attackHandCentre = 15;
 
@@ -38,7 +38,7 @@ public class Blade extends Joint {
 
 	public Blade(Creature p, EnemySet es) {
 		this.es = es;
-		this.p = p;
+		this.player = p;
 
 		setSpeed((angend - angstart) / (3f / p.getAniStep2()[1]));
 		loadTexture(TexId.SWORD);
@@ -80,15 +80,15 @@ public class Blade extends Joint {
 		setDagree(getDagree() + angleA);
 		double anglePi = getAngle() / 180 * 3.14;
 
-		float length = p.getxScaleRate() * this.length / 1.4f;// 触发点
+		float length = player.getxScaleRate() * this.length / 1.4f;// 触发点
 
 		float cos = (float) Math.cos(anglePi) * getDirection();
 		float sin = (float) Math.sin(anglePi);
 
-		float xx = p.x + (cos * (xp + length));// ��
-		float yy = p.y + (sin * (yp + length));// +r
+		float xx = player.x + (cos * (xp + length));// ��
+		float yy = player.y + (sin * (yp + length));// +r
 
-		float width = p.getxScaleRate() * this.length / 2f;
+		float width = player.getxScaleRate() * this.length / 2f;
 		tail.width = (int) width;// change size AutoMa..cly
 		tail.tringer(xx, yy, -cos, sin);
 	}
@@ -107,11 +107,11 @@ public class Blade extends Joint {
 
 			
 			
-			dx = spi.x - p.x;// a bigger shanxing
+			dx = spi.x - player.x;// a bigger shanxing
 			dx=getDirection()==-1?-dx:dx;
-			dy = spi.y - p.y;//if you want to know why  ) please look draw picture let check more right
+			dy = spi.y - player.y;//if you want to know why  ) please look draw picture let check more right
 			s2 = Math.pow(dx, 2) + Math.pow(dy, 2);
-			s2=s2/(p.getyScaleRate()); //mormal it is equals i do not know why these two xiangcheng now but i think i know but i am a little mengbi
+			s2=s2/(player.getyScaleRate()); //mormal it is equals i do not know why these two xiangcheng now but i think i know but i am a little mengbi
 			
 			if (
 //					w1 < s2 && 
@@ -150,7 +150,7 @@ public class Blade extends Joint {
 			stop();
 		} else if (getAngle() < angend) {
 			// setDagree(- getDagree()/2);
-			p.setAnimationFinished(true);// holder can translate body
+			player.setAnimationFinished(true);// holder can translate body
 			setDagree(0);
 //			angleA = angleAMax / 2;
 			angleA = angleAMax / 5 ;
@@ -167,7 +167,7 @@ public class Blade extends Joint {
 	public void attack() {
 		if (fire)
 			return;
-		p.setAnimationFinished(false);
+		player.setAnimationFinished(false);
 		fire = true;
 		
 		playSound();
@@ -185,17 +185,17 @@ public class Blade extends Joint {
 		// }
 		
 		final float speedToAttackRate = 15;
-		int demage=(int) (speedToAttackRate*(Math.abs(getDagree())+Math.abs(p.getxSpeed())+Math.abs(p.getySpeed()))+attack);
+		int demage=(int) (speedToAttackRate*(Math.abs(getDagree())+Math.abs(player.getxSpeed())+Math.abs(player.getySpeed()))+attack);
 		// c's speed has not calculate
-		es.attacked(c, demage);
-			p.attacked((int) (-demage*bloodGetRate));
-			if(p.getLife()>p.getLifeMax())
-				p.setLife(p.getLifeMax());
+		es.attacked(player,c, demage);
+			player.attacked((int) (-demage*bloodGetRate));
+			if(player.getLife()>player.getLifeMax())
+				player.setLife(player.getLifeMax());
 		
 	}
 
 	public void loadSound() {
-		setSoundId(music.loadSound(R.raw.sword));// �Ӵ�Ŀ�������
+		setSoundId(MusicId.sword);// �Ӵ�Ŀ�������
 		
 	}
 

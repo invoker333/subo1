@@ -4,11 +4,9 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import element2.ParticleBallRandom;
+import Enviroments.GrassSet;
 import element2.Tail;
 import element2.TexId;
-
-import Enviroments.GrassSet;
 
 public class PlayerSet extends EnemySet{
 //	  Creature wheel;
@@ -20,10 +18,18 @@ public class PlayerSet extends EnemySet{
 		this(gra, player);
 
 	}
+	
+	public void setPlayer(Creature player) {
+		this.player = player;
+		setSystemAttacker(new Creature(player.getGra()));
+	}
+	 
+
 	public PlayerSet(GrassSet gra, Player player) {
 		super(gra);
 		char bi=0;
 		this.setPlayer(player);
+		
 		// TODO Auto-generated constructor stub
 		this.cList=new ArrayList<Creature>();
 		this.emplacementList=new ArrayList<Emplacement>();

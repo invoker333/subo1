@@ -10,6 +10,7 @@ import Enviroments.GrassSet;
 import Menu.State;
 
 import com.mingli.toms.Log;
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.World;
 
@@ -43,6 +44,7 @@ public class EnemySet extends Set {
 	float bloodH = 16;
 	private Animation guideCircle;
 	private EnemySet friendSet;
+	private Creature systemAttacker;// to avoid attacker is null
 
 	public EnemySet(GrassSet gra) {
 		this.cList = gra.getEnemyList();
@@ -56,12 +58,13 @@ public class EnemySet extends Set {
 		backLife = new State(-edge, -edge, bloodW + edge, bloodH + edge);
 		backLife.loadTexture(TexId.BLACK);
 		initGuideCircle();
+	
 	}
 
 	public void setPlayer(Creature creature) {
 		this.player = creature;
+		this.setSystemAttacker(player);
 	}
-
 	
 	private void initGuideCircle() {
 		// TODO Auto-generated method stub
@@ -86,14 +89,14 @@ public class EnemySet extends Set {
 //		setSoundId(music.loadSound(R.raw.fresh));
 //		METAL=music.loadSound(R.raw.kill);
 //		int soundId;
-		int FIREBALL1 = music.loadSound(R.raw.firecolumn);
-		int BALLER1 = music.loadSound(R.raw.baller);
-		int WALKER1 = music.loadSound(R.raw.walker);
-		int EMPLACEMENT1 = music.loadSound(R.raw.gun2);
-		int FLYER1 = music.loadSound(R.raw.flyer);
-		int HEDGEHOG1 = music.loadSound(R.raw.hedgehog);
-		int CREEPER1 = music.loadSound(R.raw.creeper4);
-		int SPIDE1 = music.loadSound(R.raw.zhizhu);
+		int FIREBALL1 = MusicId.firecolumn;
+		int BALLER1 = MusicId.baller;
+		int WALKER1 = MusicId.walker;
+		int EMPLACEMENT1 = MusicId.emplacementAttack;
+		int FLYER1 = MusicId.flyer;
+		int HEDGEHOG1 = MusicId.hedgehog;
+		int CREEPER1 = MusicId.creeper4;
+		int SPIDE1 = MusicId.zhizhu;
 
 		for (Creature e : cList) {
 			switch (e.getSoundId()) {
@@ -197,8 +200,8 @@ public class EnemySet extends Set {
 			for (int i = 0; i < enemySet.cList.size(); i++) {
 				another = enemySet.cList.get(i);
 				if (Math.abs(self.x - another.x) < another.getW() + self.getW()
-						&& another.y - another.gethEdge() < self.y
-						&& another.y + another.gethEdge() > self.y - self.gethEdge()) {
+						&& another.y - another.gethEdge() < self.y - self.gethEdge()
+						&& another.y > self.y - self.gethEdge()) {
 					tooClose(self,another);
 				}
 			}
@@ -208,7 +211,7 @@ public class EnemySet extends Set {
 
 	private void tooClose(Creature self, Creature another) {
 		// TODO Auto-generated method stub
-		attacked(another,self.attack);
+		attacked(self,another,self.attack);
 	}
 
 	private void drawGuideCircle(GL10 gl) {
@@ -250,19 +253,22 @@ public class EnemySet extends Set {
 			cList.get(i).resetSpirit();
 	}
 
-	public boolean attacked(Creature spi, int attack) {
-		if (!spi.isDead) {
-			spi.attacked(attack);
+	public boolean attacked(Creature another, int attack) {
+//		Log.i("systemAttacker.score:"+systemAttacker.score);
+		return attacked(getSystemAttacker(),another,attack);
+	}
+	public boolean attacked(Creature attacker,Creature enemy, int attack) {
+		if (!enemy.isDead) {
+			enemy.attacked(attack);
 			bloodSet.tringerExplode(
-					(float) (spi.x + spi.getwEdge() * (2 * Math.random() - 1)),
-					(float) (spi.y + spi.getwEdge() * (2 * Math.random() - 1)),
-					1.5f * spi.getxSpeed(), 1.5f * spi.getySpeed(),
-					(int)(Math.random()*bloodSet.getCount()*Math.min(attack,spi.getLifeMax())/spi.getLifeMax()));
-			if (spi.isDead) {// 被攻击致死
+					(float) (enemy.x + enemy.getwEdge() * (2 * Math.random() - 1)),
+					(float) (enemy.y + enemy.getwEdge() * (2 * Math.random() - 1)),
+					1.5f * enemy.getxSpeed(), 1.5f * enemy.getySpeed(),
+					(int)(Math.random()*bloodSet.getCount()*Math.min(attack,enemy.getLifeMax())/enemy.getLifeMax()));
+			if (enemy.isDead) {// 被攻击致死
 			// World.recycleDraw(spi);
-
-				player.increaseScoreBy(spi.getScore());
-				player.increaseChanceBy(spi.chance);
+				attacker.increaseScoreBy(enemy.getScore());
+				attacker.increaseChanceBy(enemy.chance);
 
 				// eList.remove(spi);
 				return true;
@@ -321,4 +327,13 @@ public class EnemySet extends Set {
 			emplacementList.get(i).initbullet(es);
 		}
 	}
+
+	public Creature getSystemAttacker() {
+		return systemAttacker;
+	}
+
+	public void setSystemAttacker(Creature systemAttacker) {
+		this.systemAttacker = systemAttacker;
+	}
+
 }

@@ -279,6 +279,10 @@ public class World extends GLSurfaceView implements Runnable {
 		enemySet.setFriendSet(enemySet);
 		enemySet.setEnemySet(playerSet);
 		
+		playerSet.cList.clear();
+		playerSet.cList.add(player);
+		
+		
 		cs = new CoinSet(player, gra.getCoinList(), gra, this);
 		fruitSet = new FruitSet(player, gra.getFruitList(), gra);
 		
@@ -332,7 +336,7 @@ public class World extends GLSurfaceView implements Runnable {
 		
 		recycleList.clear();
 
-		drawList.add(bg);
+//		drawList.add(bg);
 		 if(bg!=null&&(bg.getTextureId()==TexId.HUANGSHAN)||bg.getTextureId()==TexId.SEA)
 		drawList.add(lightSpotSet);
 		 
@@ -374,13 +378,13 @@ public class World extends GLSurfaceView implements Runnable {
 		increaseTime(0);
 		increaseChance(0);
 		increaseScore(0);
-		music.setBGM(R.raw.silence);
+		music.setBGM(R.raw.bolailuo);
 		music.setLooping(true);
 		
-		if(i==3){
-			MenuActivity.showDialog(null, "恭喜到达第三关", R.drawable.wood);
-			MenuActivity.showDialog(null, "你还是挺有实力的嘛", R.drawable.wood);
-			MenuActivity.showDialog(null, "加油", R.drawable.wood);
+		if(true){
+			MenuActivity.showDialog(null, "恭喜到达第"+i+"关", R.drawable.cup);
+//			MenuActivity.showDialog(null, "你还是挺有实力的嘛", R.drawable.wood);
+//			MenuActivity.showDialog(null, "加油", R.drawable.wood);
 		}
 	}
 

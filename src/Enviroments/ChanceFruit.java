@@ -2,6 +2,7 @@ package Enviroments;
 
 import java.util.ArrayList;
 
+import com.mingli.toms.Log;
 import com.mingli.toms.MenuActivity;
 import com.mingli.toms.World;
 
@@ -17,7 +18,6 @@ public class ChanceFruit extends ShakeFruit{
 		loadTexture(TexId.EGG,0,0);
 	}
 	public boolean loadAble(Player player){
-		
 		if(World.rpgMode)	
 		for(Fruit f:FruitSet.pickedList)
 			if(f.getTextureId()==getTextureId()){
@@ -28,7 +28,7 @@ public class ChanceFruit extends ShakeFruit{
 		
 		cost+=cost;
 		chancecost+=chancecost;
-		
+		Log.i("ChanceFruit.score:"+score);
 		 super.loadAble(player);
 		 return true;
 	}

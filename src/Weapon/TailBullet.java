@@ -16,13 +16,16 @@ public class TailBullet extends Bullet{
 
 	public TailBullet(EnemySet es, float time) {
 		super(es);
+		tail=new Tail(6, TexId.CANDLETAIL);
 		setSize(4, 4);
 		setTextureId(TexId.BULLET);
-		tail=new Tail(6, TexId.CANDLETAIL);
-		tail.width=(int) (w);
 		this.attack=(int) (time*World.baseAttack);
 	}
-	
+	void setSize(float a,float b)
+	{
+		super.setSize(a, b);
+		if(tail!=null)tail.width=(int) (w);
+	}
 	public TailBullet(EnemySet es) {
 		this(es, 4);
 	}
@@ -66,7 +69,6 @@ class ToBigBullet extends Bullet{
 		shot();
 		move();
 		gravity();
-		gl.glTranslatef(x, y, 0);
 		
 		if(isFire()){
 			setW(getW() + 0.15f);
@@ -75,6 +77,7 @@ class ToBigBullet extends Bullet{
 		}
 		
 		
+		gl.glTranslatef(x, y, 0);
 		gl.glScalef(scaleTime, scaleTime, 0);
 		super.baseDrawElement(gl);
 		gl.glScalef(backTime, backTime, 0);

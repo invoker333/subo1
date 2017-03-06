@@ -2,6 +2,7 @@ package Weapon;
 
 import java.util.ArrayList;
 
+import com.mingli.toms.MusicId;
 import com.mingli.toms.World;
 
 import Enviroments.GrassSet;
@@ -15,6 +16,7 @@ public class TailGun extends Gun{
 		super(es,  c, bCount);
 		// TODO Auto-generated constructor stub
 		cd=(int) (3.5*super.cd);
+		
 	}
 
 	protected void setBullet(int bCount) {
@@ -24,6 +26,7 @@ public class TailGun extends Gun{
 			bList.add(i, new TailBullet(enemySet, attackTime));// 子弹敌对势力
 		}
 		loadTexture();
+		setSoundId(MusicId.juji);
 	}
 	protected void tringerCheck(Bullet bullet) {
 		bullet.attack=attackTime*World.baseAttack;

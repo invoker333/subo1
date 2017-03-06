@@ -15,7 +15,7 @@ public class Hook extends TailBullet {
 	public final  int speed = 20;
 	private Creature player;
 	protected Creature huckEnemy;
-	public  int range=256;
+	private  int range=256;
 	
 	public Hook(EnemySet es,  Creature player) {
 		super(es,   2);// 必须是2 //以上也行 浪费了
@@ -23,6 +23,9 @@ public class Hook extends TailBullet {
 		// TODO Auto-generated constructor stub
 		attack=(int) (0.2f*World.baseAttack);
 		this.player = player;
+		
+		setSize(12,12);
+		
 		setTextureId(TexId.GAO);
 		tail.setTextureId(TexId.LIGHTNING);
 		
@@ -122,5 +125,14 @@ public class Hook extends TailBullet {
 		if (back)
 			return;
 		super.tringer(x, y, sx, sy);
+	}
+
+	public int getRange() {
+		return range;
+	}
+
+	public void setRange(int range) {
+		this.range = range;
+		frameMax=range/speed;
 	}
 }

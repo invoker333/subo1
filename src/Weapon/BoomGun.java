@@ -2,6 +2,8 @@ package Weapon;
 
 import java.util.ArrayList;
 
+import com.mingli.toms.MusicId;
+
 import Enviroments.GrassSet;
 import Mankind.Creature;
 import Mankind.EnemySet;
@@ -27,5 +29,7 @@ public class BoomGun extends Gun {
 			bList.add(i, new BoomBullet( enemySet, gra));//i bao
 		}
 		loadTexture();
+		
+		setSoundId(MusicId.missile);
 	}
 }

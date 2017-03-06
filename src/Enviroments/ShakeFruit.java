@@ -18,7 +18,6 @@ public class ShakeFruit extends Fruit{
 		super(bi,x,y);
 		mapSign=bi;
 	}
-	
 	public void drawElement(GL10 gl){
 		if(angle<0){//7*7=49 居中位置
 //			angleSpeed=-angleSpeed;

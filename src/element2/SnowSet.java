@@ -86,7 +86,6 @@ public class SnowSet extends Set{
 			firework.setxSpeed((float) ((2*Math.random()-1)*dSpeed));
 			firework.jump((float) ((2*Math.random()-1)*dSpeed));
 		}
-		playSound();
 	}
 	
 	public void tringer(double d, double e, double random, double random2,

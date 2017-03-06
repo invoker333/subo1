@@ -2,6 +2,8 @@ package Element;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import com.mingli.toms.MusicId;
+
 import element2.TexId;
 
 public class Boom extends LightSpot{
@@ -35,8 +37,8 @@ public class Boom extends LightSpot{
 	//a=x*v^2 v=v-a   v=v-x*v^2=v(1-x*v)
 	// rate��ô˵Ҳ�ñȿ��С��
 	public void tringer(float x,float y){
-		this.x=x;
-		this.y=y;
+		super.tringer(x, y);
+		playSound(MusicId.bomb);
 		resetBooom();
 		fruSpeed=40;//应先嘎爆炸速度
 	}

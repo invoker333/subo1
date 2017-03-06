@@ -2,7 +2,9 @@ package element2;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
+
 
 
 import Enviroments.GrassSet;
@@ -12,10 +14,6 @@ public class FireworkSet extends SnowSet{
 	
 	public FireworkSet(int count,GrassSet gra) {
 		super(count, gra);
-		loadSound();
-	}
-	public void loadSound(){
-		soundId=music.loadSound(R.raw.gun2);
 	}
 	public void resume(){		
 	}

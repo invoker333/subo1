@@ -21,6 +21,7 @@ import Weapon.TailGun;
 
 import com.mingli.toms.Log;
 import com.mingli.toms.MenuActivity;
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.Render;
 import com.mingli.toms.World;
@@ -56,7 +57,7 @@ public class Player extends JointCreature {
 	private Shader shader;	
     public Player(char mapSign,GrassSet gra, World world,float x,float y) {
     	super(mapSign, gra, x, y);
-    	shader=new Shader(gra, 0.1f, this);
+    	shader=new Shader(gra, 0.05f, this);
     	
     	
         DEATHSPEED=super.DEATHSPEED/2;
@@ -486,7 +487,6 @@ public class Player extends JointCreature {
 		 int gameTimeMax=world.timerMax;
 		if((world.gameTime+=gameTimeMax/3)>gameTimeMax)world.gameTime=gameTimeMax;
 		
-		
 	}
     public void die() {
     	if(isDead)return;
@@ -914,11 +914,11 @@ public class Player extends JointCreature {
     }
 
     public void loadSound() {
-        brake = music.loadSound(R.raw.brake01);
+        brake = MusicId.brake01;
         setSoundId(EnemySet.WALKER);
-        EXjump=music.loadSound(R.raw.land);
-        death = music.loadSound(R.raw.gameover);
-        destorySound = music.loadSound(R.raw.wood2);
+        EXjump=MusicId.land;
+        death = MusicId.gameover;
+        destorySound = MusicId.wood2;
     }
 
     public void succeed1() {
@@ -926,10 +926,9 @@ public class Player extends JointCreature {
     }
 
     public void increaseScoreBy(int score) {
-        super.increaseScoreBy(score);
+    	this.score+=score;
         world.increaseScore(score);
     }
-
 
     public boolean isPlayerDead() {
         return isDead;

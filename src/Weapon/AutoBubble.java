@@ -54,7 +54,9 @@ public class AutoBubble extends AutoBullet {
 			resetBullet();return;
 		}
 		speed = speed *0.9f;
-		es.attacked(enemy, attack);
+		if(es.attacked(enemy, attack)){
+			resetBullet();
+		};
 //		enemy.setxSpeed(speed);
 //		enemy.setySpeed(speed);
 //		final tanxingxishu=0.1f;

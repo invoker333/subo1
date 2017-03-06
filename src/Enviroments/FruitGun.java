@@ -47,7 +47,6 @@ public class FruitGun extends RotateFruit{
 		}
 	}
 	public boolean loadAble(Player player){
-
 		for(Fruit f:FruitSet.pickedList)
 			if(f.getTextureId()==getTextureId()){
 				MenuActivity.showDialog("", "限购一个", getIcon());

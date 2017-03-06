@@ -57,7 +57,7 @@ public class Shader extends JointCreature{
 			setPosition(position[id2][0],position[id2][1]);
 			id2++;
 			
-			if(id2%2==0)continue;
+//			if(id2%2==0)continue;
 			gl.glTranslatef(x, y, 0);
 			baseDrawElement(gl);
 			gl.glTranslatef(-x, -y, 0);

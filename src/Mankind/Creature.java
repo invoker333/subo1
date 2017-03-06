@@ -33,7 +33,7 @@ public class Creature extends AnimationGrass {
 
 	private int lifeMax = World.baseLifeMax;
 	private int life = lifeMax;
-	private int score = 2;
+	protected int score = 2;
 	
 	public int attack = World.baseAttack;// ������
 	float speedSizeMax = xSpeedMax;// ����ߴ�ȷ�����ٶȼ���
@@ -373,10 +373,10 @@ public class Creature extends AnimationGrass {
 	}
 
 	public void increaseScoreBy(int score) {
-		this.setScore(this.getScore() + score);
+//		this.score+=score;
 	}
 	public void increaseChanceBy(int ch){
-		this.chance+=ch;
+//		this.chance+=ch;
 	}
 	public void attacked(int attack) {
 		baseAttacked(attack);

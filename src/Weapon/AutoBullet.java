@@ -7,6 +7,7 @@ import Mankind.Creature;
 import Mankind.EnemySet;
 
 import com.mingli.toms.Log;
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.Render;
 
@@ -85,9 +86,9 @@ public class AutoBullet extends ToBigBullet {
 
 
 	public void loadSound() {
-		setSoundId(music.loadSound(R.raw.gun));
+		setSoundId(MusicId.gun);
 	}
-
+	
 
 }
 

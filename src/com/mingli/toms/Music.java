@@ -44,6 +44,7 @@ public class Music {
 	}
 	void initSoundPool(){
 		sp=new SoundPool(soundPoolTime, AudioManager.STREAM_MUSIC, 0);//同时播放数量
+		MusicId.loadSoundId(this);
 	}
 
 	public int loadSound(int resId){

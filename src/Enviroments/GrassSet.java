@@ -26,6 +26,7 @@ import Mankind.Walker;
 import Mankind.WeaponMan;
 
 import com.mingli.toms.Log;
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.World;
 
@@ -504,7 +505,7 @@ public class GrassSet extends Set{
 //	private float xMax;// x s max not grid index
 	private ArrayList<Emplacement> emplacementList;
 	public void loadSound() {
-		setSoundId(music.loadSound(R.raw.gore));
+		setSoundId(MusicId.gore);
 	}
 
 	@Override

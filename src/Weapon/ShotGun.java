@@ -2,6 +2,7 @@ package Weapon;
 
 import java.util.ArrayList;
 
+import com.mingli.toms.MusicId;
 import com.mingli.toms.World;
 
 import Enviroments.GrassSet;
@@ -16,6 +17,7 @@ public class ShotGun extends Gun{
 //		count = bCount-1;
 		cd=2*super.cd;
 		bSpeed = 18;// 射速系数
+		setSoundId(MusicId.shotGun);
 	}
 	public void gunCheck(float ex, float ey){
 		gunCheck(ex,ey,count);
@@ -31,6 +33,7 @@ public class ShotGun extends Gun{
 	public void gunCheck(float angle){
 		super.gunCheck(angle);
 		otherBulletCheck(count);
+		
 	}
 	private void otherBulletCheck(int count) {
 //		this.count=count-1;//去掉上个方法触发的一发
@@ -46,10 +49,17 @@ public class ShotGun extends Gun{
 			setAngle(0.6*(Math.random()-0.5)+superAngle);
 			
 			tringerCheck(b);
+			playSound2();
 			
 		}
 		setAngle(superAngle);
 	}
+	private void playSound2() {
+		super.playSound();
+	}
+	// these two mathod to avoid playSound twice or do not play sound
+	public void playSound(){	}
+	
 	protected void setBullet(int bCount) {
 		bList = new ArrayList<Bullet>();
 //		LightSpotSet lss=new BoomSet(10);

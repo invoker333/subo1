@@ -9,6 +9,7 @@ import Mankind.Creature;
 import Mankind.EnemySet;
 import android.util.Log;
 
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.Render;
 
@@ -38,13 +39,12 @@ public class Gun extends Set {// 子弹
 		this.enemySet = es;
 		this.sList = es.cList;// 着弹对象
 		this.player = c;
-		loadSound();
 		setBullet(bCount);
 		// ps=new ParticleSet(gra, count);
 	}
 
 	public void loadSound() {
-		setSoundId(music.loadSound(R.raw.gun));
+		setSoundId(MusicId.gun);
 	}
 
 	protected void setBullet(int bCount) {
@@ -58,6 +58,7 @@ public class Gun extends Set {// 子弹
 			b.h=ww;
 		}
 		loadTexture();
+		setSoundId(MusicId.gunLight);
 		for (int i = 0; i < bCount; i++) {
 			b=bList.get(i);
 			b.w=ww/3;

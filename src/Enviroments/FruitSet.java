@@ -9,6 +9,7 @@ import Mankind.Player;
 
 import com.mingli.toms.Log;
 import com.mingli.toms.Music;
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.World;
 
@@ -158,8 +159,10 @@ public class FruitSet extends Set {
 	}
 
 	protected void picked(Fruit fruit) {
+		
+		fruit.use(player, pickedList);// whatever fruit will be used at once
+		
 		if (fruit.loadAble(player)) {
-			fruit.use(player, pickedList);
 			pickedList.add(fruit);
 			gunLoseCheck(fruit);
 		}
@@ -181,7 +184,7 @@ public class FruitSet extends Set {
 	}
 
 	public void loadSound() {
-		setSoundId(music.loadSound(R.raw.magic));
+		setSoundId(MusicId.magic);
 		for (int i = 0; i < fruitList.size(); i++) {
 			Fruit fruit = fruitList.get(i);
 			fruit.setSoundId(getSoundId());

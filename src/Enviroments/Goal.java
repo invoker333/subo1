@@ -8,6 +8,7 @@ import Element.LightSpot;
 import Mankind.Player;
 
 import com.mingli.toms.Log;
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.Render;
 
@@ -106,7 +107,7 @@ public class Goal extends RotateFruit{
 //		if(mapIndex==Map.max)MenuActivity.showDialog("完结撒花", "亲爱的玩家！恭喜您到了旅程的终点。更多内容的新版本即将到来！敬请期待！（游戏会循环进行）");
 	}
 	public void loadSound() {
-		setSoundId(music.loadSound(R.raw.finalcoin));
+		setSoundId(MusicId.finalcoin);
 	
 	}
 
