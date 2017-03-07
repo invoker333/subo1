@@ -25,8 +25,7 @@ public class Toukui extends ShakeFruit{
 	public void use(Player player,ArrayList<Fruit> pickedList){
 		if(player.getToukuiTime()>0) {
 		} else {
-			player.setToukuiTime(player.getToukuiTime() + time);
-			player.getCap().setTextureId(TexId.TOUKUI);
+			player.changeToukui(time);
 		}
 		super.use(player, pickedList);
 	}
@@ -47,7 +46,7 @@ class Gao extends ShakeFruit{
 		loadTexture(TexId.GAO);
 	}
 	public void use(Player player,ArrayList<Fruit> pickedList){
-		player.setGaoTime(player.getGaoTime() + time);
+		player.changeGao(time);
 	}
 //	Tail footTail;
 	public void effectCheck(Player p, ArrayList<Fruit> pickedList){

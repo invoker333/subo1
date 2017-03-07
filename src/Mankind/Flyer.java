@@ -19,7 +19,6 @@ public class Flyer extends Enemy {
 		yStart=y+1;
 	}
 	public void drawElement(GL10 gl){
-		
 		super.drawElement(gl);
 	}
 	protected void init() {

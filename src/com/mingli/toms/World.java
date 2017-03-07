@@ -316,9 +316,6 @@ public class World extends GLSurfaceView implements Runnable {
 		touchTail.width = 8;
 
 		guidePost = new GuidePost();
-		guidePost.tringer(Render.px + 1280 / 2, Render.py + 720 * 2 / 3,
-				gra.getGoal().x - guidePost.x, gra.getGoal().y - guidePost.y);
-		// bloodSet=new BloodSet(10);
 		
 		 if(editMode)initAnimationShopList();
 		 

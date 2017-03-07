@@ -36,7 +36,7 @@ public class GunDraw extends Joint{
 		holdIndex=0;
 	}
 	int holdIndex;// hold time index
-	protected void positionCheck(){
+	public void positionCheck(){
 		
 		
 //		if(holdIndex++<60)return;

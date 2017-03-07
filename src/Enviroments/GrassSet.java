@@ -246,8 +246,8 @@ public class GrassSet extends Set{
 					if(World.editMode){
 						Creature c=new JointCreature(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid);
 						c.name="初始位置";
-						c.setLifeMax(999999999);
-						c.setLife(999999999);
+						c.setLifeMax(99999);
+						c.setLife(99999);
 						enemyList.add(c);
 					}
 					break;
@@ -271,16 +271,15 @@ public class GrassSet extends Set{
 					int ran1=(int) (Math.random()*2);
 					if(ran1==0){
 //					if(false){
-						float dy=Spide.dsmax;
-								Creature[] spideMans = new Creature[]{//j
-											new Walker(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid),
-											new Walker(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid),
-											new Walker(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid),
-											new Walker(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid),
-											};
-									for(Creature spideMan:spideMans){
-										enemyList.add(spideMan);
-										}
+						int size=(int) (3*Math.random()+1);// +1 to avoid length is zero
+						Creature[] spideMans = new Creature[size];
+//						float dy=Spide.dsmax;
+						for(int j=0;j<spideMans.length;j++){
+								spideMans[j]=new Walker(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid);
+						};
+						for(Creature spideMan:spideMans){
+							enemyList.add(spideMan);
+						}
 						emplacementList.add(new Spide3(bi,this,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,spideMans));
 										
 					}

@@ -154,6 +154,11 @@ public class Tail extends Square {
         fbSpi.put(buffer);
         fbSpi.flip();
     }
+    public void drawScale(GL10 gl){
+        if(drawStartIndex!=tringerIndex)
+            syncTextureSize();
+        super.drawScale(gl);
+    }
     public void drawElement(GL10 gl){
         if(drawStartIndex!=tringerIndex)
             syncTextureSize();

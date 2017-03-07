@@ -29,7 +29,10 @@ public class Spide3 extends Spide{
 				for(int i=0;i<cc.length;i++){
 					if(cc[i]==null || cc[i].isDead) {
 						cc[i]=enemy;
+						return;// one is one
 					}
+					// can't catch who is catched
+					else	if(cc[i].equals(enemy))return;
 				}
 			}
 		};
@@ -59,7 +62,8 @@ public class Spide3 extends Spide{
 			tail.startTouch(x, y);
 			
 			float dsmax=Spide.dsmax;
-			for (Creature c : cc) {
+			for (int i=0;i<cc.length;i++) {
+				Creature c = cc[i];
 				if (c==null||c.isDead) {
 					dsmax+=Spide.dsmax;
 					continue;

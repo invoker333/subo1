@@ -93,11 +93,16 @@ public class Joint extends State {
 	public void faceRight() {
 		direction=1;
 	}
-
-	public void drawElement(GL10 gl) {
-		angle += dagree;
+	public void drawNotMove(GL10 gl) {
 		positionCheck();
 		baseJointDrawElement(gl);
+	}
+	public void drawElement(GL10 gl) {
+		incAngle();
+		drawNotMove(gl);
+	}
+	public void incAngle() {
+		angle += dagree;
 	}
 
 	public void baseJointDrawElement(GL10 gl) {
@@ -107,8 +112,7 @@ public class Joint extends State {
 		gl.glRotatef(-angle, 0, 0, 1);
 		gl.glTranslatef(-xp, -yp, 0);
 	}
-	protected void positionCheck() {
-
+	public void positionCheck() {
 		if(direction==0) {//逆时针为证
 			if (angle > speed)//dagree>0
 				setDagree(-speed);

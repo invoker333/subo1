@@ -10,6 +10,7 @@ import Element.AnimationMove;
 import Enviroments.Goal;
 import Enviroments.Grass;
 import Enviroments.GrassSet;
+import Enviroments.Toukui;
 import Weapon.AutoBubble;
 import Weapon.AutoBullet;
 import Weapon.AutoBulletGun;
@@ -53,24 +54,25 @@ public class Player extends JointCreature {
 	public int autoBulletTime;
 	private boolean tooLong;
 	
+	Tail footTail;
 	
 	private Shader shader;	
     public Player(char mapSign,GrassSet gra, World world,float x,float y) {
     	super(mapSign, gra, x, y);
-    	shader=new Shader(gra, 0.05f, this);
+    	shader=new Shader(0.05f, this);
     	
     	
         DEATHSPEED=super.DEATHSPEED/2;
         
         clothTail=new Tail(2,TexId.RAINBOW);
+        footTail=new Tail(5,TexId.CANDLETAIL);
+        footTail.width=4;
         {
         	clothMove=new AnimationGravity();//20170131
-        	//        	clothMove=new Creature(gra);//20170131
-        	float cw=8;
-        	clothMove.w=cw;
-        	clothMove.h=cw;
-        	
-        	clothMove.loadTexture();
+//        	float cw=8;
+//        	clothMove.w=cw;
+//        	clothMove.h=cw;
+//        	clothMove.loadTexture();
         	clothMove.setPosition(x, y);
         }
         controller=this;
@@ -97,9 +99,20 @@ public class Player extends JointCreature {
         
         changeGun(gunFruitId);
         changeBlade(bladeFruitId);
-        
+        if(toukuiTime>0)this.changeToukui(0);
+        if(gaoTime>0)this.changeGao(0);
     }
-    public void setEnemySet(EnemySet enemySet){
+	public void changeToukui(int time) {
+		// TODO Auto-generated method stub
+		this.setToukuiTime(this.getToukuiTime() + time);
+		this.getCap().setTextureId(TexId.TOUKUI);
+	}
+    public void changeGao(int time) {
+		// TODO Auto-generated method stub
+    	  Player.gaoTime += time;
+    	  footTail.startTouch(x, y);
+	}
+	public void setEnemySet(EnemySet enemySet){
     	super.setEnemySet(enemySet);
     	 ab=new AutoBubble(enemySet,  this);
     }
@@ -291,14 +304,14 @@ public class Player extends JointCreature {
     	   clothTail.startTouch(x, y);
            clothTail.tringer(clothMove.x, clothMove.y);
            clothTail.drawElement(gl);
-           
-       		float dsmax=getH();
-       		float tanxingxishu= 0.1f;
-       		float zuni=0.9f;
-           
-          this.stringCheck(clothMove, dsmax, tanxingxishu, zuni); 
-          clothMove.drawElement(gl);
        }
+       
+       if(gaoTime>0){
+    	   footTail.tringer(x, y-getH());
+//    	   footTail.drawElement(gl);
+    	   footTail.drawScale(gl);
+       }
+       
        if(autoBulletTime>0)ab.drawElement(gl);
        
        
@@ -422,9 +435,9 @@ public class Player extends JointCreature {
 	public void jump(float rate) {
 		super.jump(rate);
 		playSound(EXjump);
-		Log.i("Player.jumpRate: "+rate);
-		Log.i("Player.jumpHeight: "+getJumpHeight());
-		Log.i("Player.ySpeed "+ySpeed);
+//		Log.i("Player.jumpRate: "+rate);
+//		Log.i("Player.jumpHeight: "+getJumpHeight());
+//		Log.i("Player.ySpeed "+ySpeed);
 	}
 	public void setJumpHeight(int jumpHeight) {
 		super.setJumpHeight(jumpHeight);
@@ -452,6 +465,15 @@ public class Player extends JointCreature {
      	gra.downHoleCheck(x, y);
          
 //         actCheck(wheel);
+    	clothMove(); 
+	}
+	private void clothMove() {
+		final float dsmax=getH();
+    	final float tanxingxishu= 0.1f;
+    	final float zuni=0.9f;
+    	clothMove.move();
+    	clothMove.gravity();
+   		this.stringCheck(clothMove, dsmax, tanxingxishu, zuni);
 	}
 	public void attacked(int attack) {
 		if(wudiTime>0)return;
@@ -499,7 +521,6 @@ public class Player extends JointCreature {
    
     
 	public void baseDrawElement(GL10 gl){
-    	
     	super.baseDrawElement(gl);
     }
    
@@ -954,11 +975,7 @@ public class Player extends JointCreature {
         return gaoTime;
     }
 
-    public void setGaoTime(int gaoTime) {
-        this.gaoTime = gaoTime;
-//        clothTail.startTouch(x, y);
-        setFootColor(1	, 0.8f, 0.f, 1);
-    }
+ 
 
 	public boolean isGotGoal() {
 		return gotGoal;
@@ -1062,5 +1079,6 @@ public class Player extends JointCreature {
 		flyTime+=time;
 		clothMove.setPosition(x, y);
 	}
+
 	
 }

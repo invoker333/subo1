@@ -60,15 +60,10 @@ public class Spide extends Emplacement {
 	
 	 protected void moveCheck(){
 		tailCheck();
-		
-//		xSpeed=0;
-//		super.moveCheck();
+		xSpeed=0;
 	}
 	 protected void gravityCheck(){
-//		ySpeed=0;
-//		y+=getG();
-//		super.gravityCheck();
-//		 Log.i(" ys : "+ySpeed+" g:"+getG());
+		ySpeed=0;
 	}
 
 	protected void tailCheck() {

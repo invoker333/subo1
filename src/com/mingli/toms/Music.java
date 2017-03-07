@@ -13,8 +13,8 @@ public class Music {
 	private SoundPool sp;
 	private Context context;
 
-	public static boolean ex;
-	public static boolean bgm;
+	public static boolean ex=true;
+	public static boolean bgm=true;
 	int musicId;
 	public int soundPoolTime=4;
 	public Music(Context context){

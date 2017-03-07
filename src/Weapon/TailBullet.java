@@ -13,12 +13,13 @@ import Mankind.EnemySet;
 
 public class TailBullet extends Bullet{
 	Tail tail;
-
+	int attackMax;
 	public TailBullet(EnemySet es, float time) {
 		super(es);
 		tail=new Tail(6, TexId.CANDLETAIL);
 		setSize(4, 4);
 		setTextureId(TexId.BULLET);
+		attackMax=
 		this.attack=(int) (time*World.baseAttack);
 	}
 	void setSize(float a,float b)
@@ -52,6 +53,7 @@ public class TailBullet extends Bullet{
 	}
 	public void tringer(float x, float y, double sx, double sy){
 		super.tringer(x, y, sx, sy);
+		attack=attackMax;
 		tail.startTouch(x, y);
 	}
 }

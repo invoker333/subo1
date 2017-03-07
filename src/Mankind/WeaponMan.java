@@ -33,5 +33,11 @@ public class WeaponMan extends Player{
 		downData[0]=false;
 		downData[1]=true;
 	}
+	
+//	public void quitgame(){
+//		for(int i=0;i<downData.length;i++){
+//			downData[i]=false;
+//		}
+//	}
 
 }

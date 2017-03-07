@@ -10,7 +10,6 @@ import Weapon.GunDraw;
 
 import com.mingli.toms.Log;
 
-import element2.ColorJoint;
 import element2.Joint;
 import element2.TexId;
 
@@ -30,7 +29,7 @@ public class JointCreature extends Creature {
 	private GunDraw haveGunDraw;
 	private GunDraw noGunDraw;
 	protected Blade noBlade;
-	ColorJoint foot;ColorJoint foot1;
+	Joint foot;Joint foot1;
 	
 
 	void haveGun(){
@@ -72,12 +71,13 @@ public class JointCreature extends Creature {
 		jointList = new ArrayList<Joint>();// blade 的空间也算上
 		shakeList = new ArrayList<Joint>();// blade 的空间也算上
 		
-		jointList.add(foot1=new ColorJoint(this, -9, -24, 9, 0, 9, -31, TexId.FOOT));
+		jointList.add(foot1=new Joint(this, -9, -24, 9, 0, 9, -31, TexId.FOOT));
 		realBlade = new Blade(this, null);
 		noBlade=new Blade(this,null){
-			 public void drawElement(GL10 gl){};
+			public void drawElement(GL10 gl){};
+			 public void drawNotMove(GL10 gl){};
 			  public void drawTail(GL10 gl){};
-			    public void attack(){}
+			    public void attack(){};
 		};
 		jointList.add(noBlade);
 		blade=noBlade;
@@ -87,12 +87,14 @@ public class JointCreature extends Creature {
 		jointList.add(expression=new Joint(4, this, -20, -24, 20, 24, 16, 18,
 				TexId.EXPRESSION, 1, 5));
 		
-		jointList.add(foot=new ColorJoint(this, -9, -24, 9, 0, -9, -31, TexId.FOOT, -1));
+		jointList.add(foot=new Joint(this, -9, -24, 9, 0, -9, -31, TexId.FOOT, -1));
 		Joint cloth;
 		jointList.add(cloth=new Joint(this, -36, -25, 36, 25, 0, -12, TexId.CLOTH, 1,5));// �㷨����124 84
 		jointList.add(cap = new Joint(this, -49, -31, 49, 31, 0, 60, TexId.CAP,
 				1, 5));
-			noGunDraw=new GunDraw(0, this, -32, -23, 96, 23, -10, -0,TexId.GUN, 1, 5){				public void drawElement(GL10 gl){}};
+			noGunDraw=new GunDraw(0, this, -32, -23, 96, 23, -10, -0,TexId.GUN, 1, 5){	
+				public void drawElement(GL10 gl){}
+				 public void drawNotMove(GL10 gl){}};
 			haveGunDraw= new GunDraw(0, this, -32, -23, 96, 23, -10, -0,				TexId.GUN, 1, 5);
 			normalHand=new Joint( this, -11, -23, 11, 5, -15, -0,				TexId.HAND);
 			gunHand=new GunDraw(45, this, -11, -23, 11, 5, -15, -0,				TexId.HAND,1,5);
@@ -145,6 +147,7 @@ public class JointCreature extends Creature {
 
 	public JointCreature(char bi,GrassSet gra,float	 x,float y) {
 		super(bi, gra, x, y);
+		rightDirection=1;
 		setTextureId(TexId.CAP);
 	}
 
@@ -215,9 +218,6 @@ public class JointCreature extends Creature {
 	}
 
 	public void drawElement(GL10 gl) {
-		
-		
-
 	
 		if (fdirection == 0 && Math.abs(ySpeed) < 2)
 			changeState(0.01f, 0.25f, expression);
@@ -229,9 +229,9 @@ public class JointCreature extends Creature {
 
 		float yAngle = getDirection() == -1 ? 180f : 0;
 		gl.glRotatef(yAngle, 0, 1, 0);
+		incAngle();
 		baseDrawElement(gl);
 		gl.glRotatef(-yAngle, 0, 1, 0);
-
 		gl.glScalef(1 / getxScaleRate(), 1 / getyScaleRate(), 0);
 		gl.glTranslatef(-x, -y, 0);
 		
@@ -242,11 +242,14 @@ public class JointCreature extends Creature {
 	
 		
 	}
-
+	public void incAngle() {
+		for (Joint joint : jointList){
+			joint.incAngle();
+		}
+	}
 	public void baseDrawElement(GL10 gl) {
 		for (Joint joint : jointList){
-			
-			joint.drawElement(gl);
+			joint.drawNotMove(gl);
 		}
 	}
 
@@ -303,10 +306,6 @@ public class JointCreature extends Creature {
 	public void setEnemySet(EnemySet enemySet) {
 		super.setEnemySet(enemySet);
 		realBlade.setEs(enemySet);
-	}
-	void setFootColor(float red,float green,float blue,float alpha){
-		 foot1.setColor(red, green, blue, alpha);
-		 foot.setColor(red, green, blue, alpha);
 	}
 
 }

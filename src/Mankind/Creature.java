@@ -252,6 +252,7 @@ public class Creature extends AnimationGrass {
 	int chance=1;
 	protected int attackSoundId;
 	protected EnemySet enemySet;
+	public int rightDirection=-1;
 
 
 
