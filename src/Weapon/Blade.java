@@ -138,7 +138,6 @@ public class Blade extends Joint {
 	}
 
 	public void positionCheck() {
-		setAngle(getAngle() + getDagree());// round
 		// setAngle(getAngle()%360);//无限转防止
 //		if (!fire) {
 //			super.positionCheck();

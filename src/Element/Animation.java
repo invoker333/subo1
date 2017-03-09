@@ -9,6 +9,13 @@ import javax.microedition.khronos.opengles.GL10;
 import element2.TexId;
 
 public class Animation extends Draw implements Cloneable{
+	public Animation(float x, float y) {
+		// TODO Auto-generated constructor stub
+setPosition(x, y);
+		}
+	public Animation() {
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public Object clone(){
 		// TODO Auto-generated method stub
@@ -56,6 +63,10 @@ public class Animation extends Draw implements Cloneable{
 	public String name="神秘物";
 	public int cost=1;
 	public int chancecost=1;
+	public void setGoodsCost(int cost,int chancecost){
+		this.cost=cost;
+		this.chancecost=chancecost;
+	}
 	public int getIcon() {
 		// TODO Auto-generated method stub
 		return TexId.resIcon[getTextureId()];

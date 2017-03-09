@@ -69,6 +69,7 @@ public class FruitSet extends Set {
 			shopList.add(new Gao(bi,1, 1, 9999));
 			shopList.add(new FruitFly(bi,1, 1, 9999));
 			shopList.add(new FruitAuto(bi,1, 1, 9999));
+			shopList.add(new Wudi(bi,1, 1));
 			shopList.add(new FruitGun(bi,1, 1, TexId.S));
 			shopList.add(new FruitGun(bi,1, 1, TexId.B));
 			shopList.add(new FruitGun(bi,1, 1, TexId.D));

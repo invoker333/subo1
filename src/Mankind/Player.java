@@ -7,6 +7,7 @@ import javax.microedition.khronos.opengles.GL10;
 import Element.Animation;
 import Element.AnimationGravity;
 import Element.AnimationMove;
+import Element.Pifeng;
 import Enviroments.Goal;
 import Enviroments.Grass;
 import Enviroments.GrassSet;
@@ -46,7 +47,7 @@ public class Player extends JointCreature {
     public static boolean[] downData = new boolean[7];
 //    private ParticleSet ps;
     Creature controller;
-    float speedMaxBack;
+//    float speedMaxBack;
 	public Goal goal;
     private boolean gotGoal;
     
@@ -59,49 +60,51 @@ public class Player extends JointCreature {
 	private Shader shader;	
     public Player(char mapSign,GrassSet gra, World world,float x,float y) {
     	super(mapSign, gra, x, y);
-    	shader=new Shader(0.05f, this);
-    	
-    	
-        DEATHSPEED=super.DEATHSPEED/2;
+    	this.world = world;
+    	controller=this;
+    	initEffect(x, y);
+        loadSound();
+        initView();
+        initVtDestory();
+        setTextureId(TexId.BUBBLE);
+//        speedMaxBack=10;
+//        		getxSpeedMax();
+        initGuideTail(gra);     
+        reSetDownDate();
         
-        clothTail=new Tail(2,TexId.RAINBOW);
-        footTail=new Tail(5,TexId.CANDLETAIL);
-        footTail.width=4;
-        {
-        	clothMove=new AnimationGravity();//20170131
-//        	float cw=8;
-//        	clothMove.w=cw;
-//        	clothMove.h=cw;
-//        	clothMove.loadTexture();
-        	clothMove.setPosition(x, y);
-        }
-        controller=this;
+    }
+	private void initVtDestory() {
+		// TODO Auto-generated method stub
 		vtDestory=-(float) Math.sqrt(2*getGra().getGrid()*getG());
 		Log.i("vtDestory"+vtDestory);
 //        vtDestory = -(float) Math.sqrt(2 * (getJumpHeight() - getGra().getGrid()) * getgMax()) - 2 * getgMax();
         E = Math.pow(vtDestory, 2);//�� ���ܹ�ʽΪE=v^2
-        this.world = world;
-        xMax =  gra.getGrid()*gra.getMapWidth() - Render.width - gra.getViewGrid();
-        loadSound();
-      
-      
+	}
+	private void initEffect(float x, float y) {
+		DEATHSPEED=super.DEATHSPEED/2;
+    	
+		
+		shader=new Shader(0.05f, this);
+        
+		pifeng=new Pifeng(this,5);
+		
+        footTail=new Tail(15,TexId.CANDLETAIL);
+        footTail.width=4;
+        
 
-        
-        initView();
-        setTextureId(TexId.BUBBLE);
-        
-        
-        speedMaxBack=10;
-//        		getxSpeedMax();
-        
-        
-        initGuideTail(gra);     	
-        
-        changeGun(gunFruitId);
-        changeBlade(bladeFruitId);
-        if(toukuiTime>0)this.changeToukui(0);
-        if(gaoTime>0)this.changeGao(0);
-    }
+	}
+	private void extendsDate() {
+		  changeGun(gunFruitId);
+	        changeBlade(bladeFruitId);
+	        if(toukuiTime>0)this.changeToukui(0);
+	        if(gaoTime>0)this.changeGao(0);
+	}
+	private void reSetDownDate() {
+		// TODO Auto-generated method stub
+		for(int i=0;i<downData.length;i++){
+		downData[i]=false;
+		}
+	}
 	public void changeToukui(int time) {
 		// TODO Auto-generated method stub
 		this.setToukuiTime(this.getToukuiTime() + time);
@@ -115,6 +118,7 @@ public class Player extends JointCreature {
 	public void setEnemySet(EnemySet enemySet){
     	super.setEnemySet(enemySet);
     	 ab=new AutoBubble(enemySet,  this);
+    	 extendsDate();
     }
     public void startTouch(float ex1,float ey1){
     	this.ex1 = ex1;
@@ -124,10 +128,12 @@ public class Player extends JointCreature {
     		ab.tringerCheck(ex1, ey1);
     		autoBulletTime--;
     	}
-    	
-    	if(flyTime<1)return;
-    	flyTime--;
-    	touched=true;
+    	else {
+    		if(flyTime<1)return;
+    		
+    		flyTime--;
+    		touched=true;
+    	}
     
     }
 
@@ -150,7 +156,8 @@ public class Player extends JointCreature {
     	
     	float rangeTime=2;
     	
-    	if(Math.abs(xGuideSpeed)>rangeTime*this.getxSpeedMax()
+    	if(isJumpAble()||
+    			Math.abs(xGuideSpeed)>rangeTime*this.getxSpeedMax()
     			||Math.abs(yGuideSpeed)>rangeTime*this.getySpeedMax()){
     		gl.glColor4f(1, 0, 0, 0.5f);
     		tooLong=true;
@@ -187,7 +194,7 @@ public class Player extends JointCreature {
 //    	drager.setPosition(Render.px+ex2, Render.py+ey2);
     	
     	
-    	final float length=40;
+    	final float length=30;
     	float dey=ey2-ey1;
     	float dex=ex2-ex1;
     	if(World.editMode){
@@ -284,14 +291,15 @@ public class Player extends JointCreature {
 	}
 
 //	private float angle;
-    Tail clothTail;
+    
     Tail guideTail;
     Creature guideCre;
-    
-    AnimationMove clothMove;
+  
    int wudiTimeBorn=180;
-	private int wudiTime=wudiTimeBorn;// wudi time
-    
+	 public int wudiTime=wudiTimeBorn;// wudi time
+	private Pifeng pifeng;
+//	 private Pifeng pifeng2;
+	 
     public void drawElement(GL10 gl) {
     	if(touched)drawGuideTail(gl);	
     	timerTask();
@@ -300,27 +308,28 @@ public class Player extends JointCreature {
      
    
        if(gun!=null)gun.drawElement(gl);
-       if(flyTime>0){
-    	   clothTail.startTouch(x, y);
-           clothTail.tringer(clothMove.x, clothMove.y);
-           clothTail.drawElement(gl);
-       }
+      
        
        if(gaoTime>0){
     	   footTail.tringer(x, y-getH());
 //    	   footTail.drawElement(gl);
     	   footTail.drawScale(gl);
        }
-       
        if(autoBulletTime>0)ab.drawElement(gl);
        
-       
+       final float alpw=0.2f;// alpha wudi
        if(wudiTime>0){
-    	   gl.glColor4f(0.5f,0.5f,0.5f,0.5f);
+    	   gl.glColor4f(alpw,alpw,alpw,alpw);
        		super.drawElement(gl);
        		wudiTime--;
        }// draw as alpha as wudi
        else super.drawElement(gl);
+       
+       if(flyTime>0){
+    	   pifeng.timerTask();
+    	   pifeng.drawElement(gl);
+       }
+     
     }
     
 	private void initGuideTail(GrassSet gra) {
@@ -392,6 +401,7 @@ public class Player extends JointCreature {
                 faceRight();
             }
         }
+        xMax =  gra.getGrid()*gra.getMapWidth() - Render.width - gra.getViewGrid();
     }
    
 
@@ -465,15 +475,6 @@ public class Player extends JointCreature {
      	gra.downHoleCheck(x, y);
          
 //         actCheck(wheel);
-    	clothMove(); 
-	}
-	private void clothMove() {
-		final float dsmax=getH();
-    	final float tanxingxishu= 0.1f;
-    	final float zuni=0.9f;
-    	clothMove.move();
-    	clothMove.gravity();
-   		this.stringCheck(clothMove, dsmax, tanxingxishu, zuni);
 	}
 	public void attacked(int attack) {
 		if(wudiTime>0)return;
@@ -580,6 +581,7 @@ public class Player extends JointCreature {
     }
 
     public float growSpeed;
+	private int treadAttack;
 
 //    boolean tread;// ��
 	
@@ -626,8 +628,8 @@ public class Player extends JointCreature {
             	attack();
 //            }
         } 
-        if (downData[3] && controller.isJumpAble())
-        	controller.jump(jumpRate);
+        if (downData[3] && isJumpAble())
+        	jump(jumpRate);
         
         if(coolingId>0)coolingId--;
         if(GunAngle!=_4){
@@ -656,16 +658,21 @@ public class Player extends JointCreature {
     	  if(treader!=controller) 
           	  controller=this;//can't controll people who has been not  treaded
     	
-        if(treadListCheck( enemyList))return;//caizhong le fan hui
-        if(treadListCheck( friendList))return;
-        
+    	if(downData[5])treadAttack=attack;
+    	else	treadAttack=0;
+    	
+        if(treadListCheck( enemySet))return;//caizhong le fan hui
+//        treadAttack=0;
+        if(treadListCheck( friendSet))return;
+      
         world.haveTreadIcon(World.NOTREADICON);
      
         
 //        if(downData[6])        
     }
 
-    private boolean treadListCheck(ArrayList<Creature>enemyList) {
+    private boolean treadListCheck(EnemySet es) {
+    	ArrayList<Creature>enemyList=es.cList;
     	Creature c;
     	 for (int i = 0; i < enemyList.size(); i++) {
              c = enemyList.get(i);
@@ -692,7 +699,7 @@ public class Player extends JointCreature {
              
              
                 
-                if(treader!=c)enemySet.treaded(this, c, 0);// not tread one much time
+                if(treader!=c)enemySet.treaded(this, c, treadAttack);// not tread one much time
                 treader=c;
                 fallen=true;
                  
@@ -1009,13 +1016,13 @@ public class Player extends JointCreature {
 	public void changeGun(int textureId) {
 		if(textureId==-1)return;
 		
-		if(haveGun(textureId)){
+		if(World.rpgMode&&haveGun(textureId)){
 			noGun();
 			gunFruitId=-1;
 			gun=null;
 			return;
 		}
-		{
+		else{
 			if(textureId== TexId.S)
 				gun=new ShotGun(getEnemySet(),  this, 10);
 			else if(textureId== TexId.M)// 
@@ -1036,10 +1043,10 @@ public class Player extends JointCreature {
 		return gunFruitId==textureId;
 	}
 	public void changeBlade(int textureId) {
-		if(textureId==-1)return;
 		final int noBladeId=-1;
+		if(textureId==noBladeId)return;
 		// TODO Auto-generated method stub
-		if(haveBlade(textureId)) {
+		if(World.rpgMode&&haveBlade(textureId)) {
 			noBlade();
 			bladeFruitId=noBladeId;
 		} else {
@@ -1077,7 +1084,7 @@ public class Player extends JointCreature {
 	public void addFlyTime(int time) {
 		// TODO Auto-generated method stub
 		flyTime+=time;
-		clothMove.setPosition(x, y);
+		pifeng.setPosition(x, y);
 	}
 
 	

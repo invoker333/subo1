@@ -2,6 +2,8 @@ package com.mingli.toms;
 
 import java.util.ArrayList;
 
+import javax.microedition.khronos.opengles.GL10;
+
 import element2.FireworkSet;
 import element2.Tail;
 import Element.Animation;
@@ -24,10 +26,6 @@ public class TouchMove implements OnTouchListener {
 	private Player player;
 	private Tail tail;
 
-	public TouchMove( Tail tail, Player player) {
-		this.player = player;
-		this.tail = tail;
-	}
 //	private Gun gun;
 	private Curtain ct;
 //	private World world;
@@ -35,7 +33,10 @@ public class TouchMove implements OnTouchListener {
 	private  FireworkSet fireWorkSet;
 	private  ArrayList<Animation> animationList;
 	private Animation editTarget;
+	private boolean build8;
 //	private boolean moved;
+	private Animation[] build8group;
+	private float grid=64;
 
 	public TouchMove( LightSpotSet lightSpotSet, Player player){
 //		this.bts = bts;
@@ -45,10 +46,19 @@ public class TouchMove implements OnTouchListener {
 	public TouchMove(Player player) {
 		// TODO Auto-generated constructor stub
 		this.player = player;
+		build8group=new Animation[8];
+		for(int i=0;i<build8group.length;i++){
+			build8group[i]=new Animation();
+			build8group[i].loadTexture();
+		}
 	}
 
 
 
+	public TouchMove( Tail tail, Player player) {
+		this(player);
+		this.tail = tail;
+	}
 
 	public TouchMove(  Curtain ct, Player player2) {
 		// TODO Auto-generated constructor stub
@@ -85,6 +95,11 @@ public class TouchMove implements OnTouchListener {
 			ArrayList<Animation> animationList) {
 		this(touchTail,player2);
 		this.animationList = animationList;
+		
+		for(int i=0;i<build8group.length;i++){
+			animationList.add(build8group[i]);
+		}
+		
 	}
 	public boolean onTouch(View v, MotionEvent e) {
 		if(lightSpotSet!=null)lightSpotSet.tringer(e.getX(), MenuActivity.screenHeight - e.getY());
@@ -131,7 +146,7 @@ public class TouchMove implements OnTouchListener {
 //				player.setSpeed(xGuideSpeed,yGuideSpeed);
 				
 			}
-			stopEditTarget();	
+			stopEditTarget(ux,uy);	
 			break;
 		case MotionEvent.ACTION_MOVE:
 //			moved=true;
@@ -178,10 +193,11 @@ public class TouchMove implements OnTouchListener {
 		}
 		return true;
 	}
-	private void stopEditTarget() {
+	private void stopEditTarget(float ux, float uy) {
 		// TODO Auto-generated method stub
 		if(!World.editMode||editTarget==null)return;
 		
+		build8CHeck(ux,uy);
 		
 		float xx=editTarget.x;
 		float yy=editTarget.y;
@@ -199,11 +215,35 @@ public class TouchMove implements OnTouchListener {
 		editTarget.setStartXY(xx, yy);
 		
 		
-		if(World.editMode)editTarget=null;
+//		if(World.editMode)editTarget=null;
 	}
 
+	private void build8CHeck(float ex,float ey) {
+		// TODO Auto-generated method stub
+		
+		// TODO Auto-generated method stub
+		if(build8&&editTarget!=null){
+			build8group[0].setStartXY(editTarget.x-grid,editTarget.y+grid);
+			build8group[1].setStartXY(editTarget.x,		  editTarget.y+grid);
+			build8group[2].setStartXY(editTarget.x+grid,editTarget.y+grid);
+			build8group[3].setStartXY(editTarget.x-grid,editTarget.y);
+			build8group[4].setStartXY(editTarget.x+grid,editTarget.y);
+			build8group[5].setStartXY(editTarget.x-grid,editTarget.y-grid);
+			build8group[6].setStartXY(editTarget.x,editTarget.y-grid);
+			build8group[7].setStartXY(editTarget.x+grid,editTarget.y-grid);
+			
+			for(Animation aa:build8group){
+				if (Math.abs(ex - aa.x) < aa.getW()
+						&& Math.abs(ey - aa.y) < aa.getH()) {
+					animationList.add(new Animation(aa.x,aa.y));
+				}
+			}
+			return;
+		}
+	}
 	private boolean moveEditTarget() {
 		// TODO Auto-generated method stub
+		build8=false;
 		if(editTarget!=null){
 			float xx = Render.px+ex2;
 			float yy = Render.py+ey2;
@@ -214,8 +254,9 @@ public class TouchMove implements OnTouchListener {
 		return false;
 	}
 	private void searchEditTarget(float ex, float ey) {
-		// TODO Auto-generated method stub
+		
 		Animation a;
+		build8=true;
 		for(int i=animationList.size()-1;i>-1;i--){
 			a=animationList.get(i);
 			if (Math.abs(ex - a.x) < a.getW()
@@ -223,6 +264,21 @@ public class TouchMove implements OnTouchListener {
 				editTarget=a;
 				return;
 			}
+		}
+	}
+	public void drawElement(GL10 gl){
+		
+		if(editTarget!=null&&
+				editTarget.x>Player.gx1&&editTarget.x<Player.gx2
+				&&editTarget.y>Player.gy1&&editTarget.y<Player.gy2) {
+				for(Animation aa:build8group){
+//					aa.drawElement(gl);
+					
+					
+					gl.glTranslatef(aa.x, aa.y, 0);
+					editTarget.baseDrawElement(gl);
+					gl.glTranslatef(-aa.x, -aa.y, 0);
+				}
 		}
 	}
 	private void calcuPlayerSpeed111(float x, float y) {

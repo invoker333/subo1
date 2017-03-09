@@ -18,6 +18,7 @@ public class Toukui extends ShakeFruit{
 		// TODO Auto-generated constructor stub
 		this.time = time;
 		name="头盔";
+		setGoodsCost(5,0);
 	}
 	void init(){
 		loadTexture(TexId.TOUKUI);
@@ -40,6 +41,7 @@ class Gao extends ShakeFruit{
 		// TODO Auto-generated constructor stub
 		this.time = time;
 		name="十字镐";
+		setGoodsCost(5,0);
 //		footTail=new Tail(15,x,y,8);
 	}
 	void init(){
@@ -61,6 +63,7 @@ class FruitFly extends ShakeFruit{
 		// TODO Auto-generated constructor stub
 		this.time = time;
 		name="飞天鞋";
+		setGoodsCost(10,5);
 	}
 	void init(){
 		loadTexture(TexId.FRUITFLY);
@@ -80,6 +83,7 @@ class FruitAuto extends ShakeFruit{
 		// TODO Auto-generated constructor stub
 		this.time = time;
 		name="束缚泡泡";
+		setGoodsCost(5,10);
 	}
 	void init(){
 		loadTexture(TexId.RED);
@@ -90,4 +94,31 @@ class FruitAuto extends ShakeFruit{
 	public void effectCheck(Player p, ArrayList<Fruit> pickedList){
 //		super.effectCheck(p,pickedList);
 	}
+}
+
+
+ class Wudi extends ShakeFruit{
+
+	private int time;
+
+	public Wudi(char bi,float x, float y,int time) {
+		super(bi,x, y);
+		// TODO Auto-generated constructor stub
+		this.time = time;
+		name="无敌果";
+		setGoodsCost(20,20);
+	}
+	public Wudi(char bi,float x, float y) {
+		this(bi,x,y,10*60);
+		// TODO Auto-generated constructor stub
+	}
+	void init(){
+		loadTexture(TexId.HIKARI2);
+	}
+	public void use(Player player,ArrayList<Fruit> pickedList){
+		if((player.wudiTime+=time)>time) player.wudiTime=time;
+		super.use(player, pickedList);
+	}
+
+//	public
 }

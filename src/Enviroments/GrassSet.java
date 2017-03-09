@@ -239,7 +239,7 @@ public class GrassSet extends Set{
 				case 84:fruitList.add(new Tomato(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid, 500));break;//T 加血道具
 				case 110:fruitList.add(new Toukui(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,9999));break;//n toukui
 				case 'x':fruitList.add(new FruitAuto(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,9999));break;//
-				
+				case 'V':fruitList.add(new Wudi(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;//
 				case 65:
 					player = new Player(bi, this, world,(x+0.5f)*grid,(mapHeight-y)*grid);
 //					setStartPosition(bi,(x+0.5f)*grid,(mapHeight-y)*grid);
@@ -322,6 +322,8 @@ public class GrassSet extends Set{
 		animationList.addAll(fruitList);
 		animationList.addAll(enemyList);
 		animationList.addAll(gList);
+		
+		if(goal==null)goal=new Goal(' ', -50, 0);
 		animationList.add(goal);
 		player.goal=goal;
 	}

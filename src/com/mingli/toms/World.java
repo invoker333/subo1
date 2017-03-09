@@ -333,7 +333,7 @@ public class World extends GLSurfaceView implements Runnable {
 		
 		recycleList.clear();
 
-//		drawList.add(bg);
+		drawList.add(bg);
 		 if(bg!=null&&(bg.getTextureId()==TexId.HUANGSHAN)||bg.getTextureId()==TexId.SEA)
 		drawList.add(lightSpotSet);
 		 
@@ -394,11 +394,12 @@ public class World extends GLSurfaceView implements Runnable {
 	public int gameTime = 256;
 	private boolean isGameRunning;
 	private boolean paused;
+	private TouchMove touchMove;
 
 	public void onTouch() {
 		// Touch touch=new Touch(gun,ab,lightBallSet,player);
 		touch = new Touch(player);
-		this.setOnTouchListener(new TouchMove(touchTail,player,gra.animationList));// move
+		this.setOnTouchListener(touchMove=new TouchMove(touchTail,player,gra.animationList));// move
 		
 		OnTouchListener moveaction = null;
 		// this.setOnTouchListener(touch);// 触摸事件监听器
@@ -559,6 +560,7 @@ public class World extends GLSurfaceView implements Runnable {
 		for (int i = 0; i < drawList.size(); i++) {
 			drawList.get(i).drawElement(gl);
 		}
+		if(editMode&&touchMove!=null)touchMove.drawElement(gl);
 //		if(paused)return;
 		timerTask();
 	}
@@ -787,7 +789,7 @@ public class World extends GLSurfaceView implements Runnable {
 	private FireSet fireSet;
 	public static ArrayList<Animation> animationshopList;
 	
-	public static boolean editMode;
+	public static boolean editMode=true;
 	public static boolean rpgMode;
 
 	public void astarSearch(float x, float y) {

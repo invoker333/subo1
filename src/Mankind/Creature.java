@@ -252,6 +252,7 @@ public class Creature extends AnimationGrass {
 	int chance=1;
 	protected int attackSoundId;
 	protected EnemySet enemySet;
+	protected EnemySet friendSet;
 	public int rightDirection=-1;
 
 
@@ -655,5 +656,10 @@ public class Creature extends AnimationGrass {
 	public void setEnemySet(EnemySet es) {
 		// TODO Auto-generated method stub
 		this.enemySet=es;
+	}
+
+	public void setFriendSet(EnemySet friendSet) {
+		// TODO Auto-generated method stub
+		this.friendSet=friendSet;
 	}
 }

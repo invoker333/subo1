@@ -14,6 +14,7 @@ public class ChanceFruit extends ShakeFruit{
 	public ChanceFruit(char bi,float x, float y) {
 		super(bi,x, y);
 		name="复活蛋";
+		setGoodsCost(0, 10);
 		// TODO Auto-generated constructor stub
 		loadTexture(TexId.EGG,0,0);
 	}

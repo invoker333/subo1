@@ -314,6 +314,7 @@ public class EnemySet extends Set {
 		// TODO Auto-generated method stub
 		this.friendSet=friendSet;
 		for(Creature c:cList){
+			c.setFriendSet(friendSet);
 			c.friendList=friendSet.cList;
 		}
 	}

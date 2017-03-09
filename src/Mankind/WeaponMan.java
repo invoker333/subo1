@@ -12,14 +12,21 @@ public class WeaponMan extends Player{
 	public WeaponMan(char bi, GrassSet grassSet, World world,float x, float y) {
 		// TODO Auto-generated constructor stub
 		super(bi, grassSet,world, x, y);
+		setFlag();
+		setPosition(x, y);
+	}
+	private void setFlag() {
+		wudiTime=0;
+		
+		
 		attack=1;
 		haveBlade();
 		noGun();
 		downData[0]=true;
-		
 		realBlade.tail=new SceneTail(20,TexId.REDCREEPER);
 		realBlade.angstart=60;
-		setPosition(x, y);
+		realBlade.tail.setTextureId(TexId.CUP);
+		realBlade.setTextureId(TexId.JINGUBANG);
 	}
 	protected void tooRight() {
 		super.tooRight();

@@ -228,6 +228,9 @@ public class Shop {
 			name = (TextView) v.findViewById(R.id.goodsname);
 			cost = (TextView) v.findViewById(R.id.goodscost);
 			chancecost = (TextView) v.findViewById(R.id.chancecost);
+			
+			View goodsLayout = v.findViewById(R.id.goodscostlayout);
+			View chanceLayout=v.findViewById(R.id.chancecostlayout);
 			// 设置大小
 
 			/*
@@ -240,11 +243,19 @@ public class Shop {
 			Fruit f = shopList.get(position);
 			icon.setBackgroundResource(f.getIcon());
 			name.setText(f.name);
-			cost.setText("" + f.cost);
-			if (f.chancecost > 0)
+			if(f.cost>0) {
+				cost.setText("" + f.cost);
+				goodsLayout.setVisibility(View.VISIBLE);
+			} else {
+				goodsLayout.setVisibility(View.GONE);
+			}
+		
+			if (f.chancecost > 0) {
+				chanceLayout.setVisibility(View.VISIBLE);
 				chancecost.setText("" + f.chancecost);
-			else
-				v.findViewById(R.id.chancecostlayout).setVisibility(View.GONE);
+			} else {
+				chanceLayout.setVisibility(View.GONE);
+			}
 
 			return v;
 

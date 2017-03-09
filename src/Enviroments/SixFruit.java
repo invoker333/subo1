@@ -13,6 +13,7 @@ import com.mingli.toms.Log;
 public class SixFruit extends Fruit{
 	public SixFruit(char bi,float x, float y) {
 		super(bi,x,y);
+		
 		// TODO Auto-generated constructor stub
 	}
 	private int angleSpeed=3;

@@ -25,6 +25,7 @@ public class TexId{
 	private int textureId;
 	public static int[] resIcon;
 	
+	public static int PIFENG;
 	public static int STONEGRASS;
 	public static int PRICKX;
 	public static int EGG;
@@ -129,6 +130,7 @@ public class TexId{
 	public static int FRUITFLY;
 	public  void loadTextureId(GL10 gl) {
 //		if(1<2)return;
+		PIFENG=loadTexture(gl,R.drawable.pifeng);
 		FRUITFLY=loadTexture(gl,R.drawable.fruitfly);
 		STONEGRASS=loadTexture(gl,R.drawable.stonegrass);
 		GUIDERECT=loadTexture(gl,R.drawable.guiderect);

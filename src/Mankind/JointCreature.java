@@ -86,6 +86,8 @@ public class JointCreature extends Creature {
 				.add(body=new Joint(this, -x0, -y0, x0, y0, 0, 11, TexId.BODY, 1, 5));
 		jointList.add(expression=new Joint(4, this, -20, -24, 20, 24, 16, 18,
 				TexId.EXPRESSION, 1, 5));
+//		jointList.add(expression=new Joint(4, this, -20, -24, 20, 34, 16, 18,
+//				TexId.MEIMAO, 1, 5));
 		
 		jointList.add(foot=new Joint(this, -9, -24, 9, 0, -9, -31, TexId.FOOT, -1));
 		Joint cloth;

@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -35,6 +36,7 @@ public class StartMenu{
 	private CheckBox rampage;
 
 	private View startView;
+	private TextView et;
     StartMenu(MenuActivity acti){
         this.acti = acti;
 //        this.click = click;
@@ -65,6 +67,8 @@ public class StartMenu{
         rampage = (CheckBox) startView.findViewById(R.id.rampage);
         noweapon = (RadioButton) startView.findViewById(R.id.nowepon);
         alwaysgun = (RadioButton) startView.findViewById(R.id.alwaysgun);
+        user = startView.findViewById(R.id.user);
+        user.setVisibility(View.INVISIBLE);
         
         CheckBox cb1 = (CheckBox) startView.findViewById(R.id.checkBox1);
         CheckBox cb2 = (CheckBox) startView.findViewById(R.id.checkBox2);
@@ -194,7 +198,7 @@ public class StartMenu{
 		}
 		
 		else	if(str.equals(moneyStr)){
-//				et.setVisibility(View.VISIBLE);
+				user.setVisibility(View.VISIBLE);
 //				et.setHint("豪礼相送！");
 				acti.chance+=10000;
 				acti.coinCount+=10000;
@@ -228,8 +232,9 @@ public class StartMenu{
 		}
 
 	};
-	private EditText et;
+//	private EditText et;
 	private Button fileChoose;
+	private View user;
 	public void hide() {
 		// TODO Auto-generated method stub
 		acti.removeView(startView);

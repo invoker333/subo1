@@ -10,8 +10,7 @@ public class FruitBlade extends RotateFruit{
 	public FruitBlade(char bi,float x, float y) {
 		super(bi,x, y);
 		name="桃木剑";
-		cost=50;
-		chancecost=50;
+		setGoodsCost(10, 20);
 		// TODO Auto-generated constructor stub
 		setTextureId(TexId.K);
 	}

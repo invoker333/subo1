@@ -20,7 +20,7 @@ public class Tomato extends ShakeFruit{
 		if (bloodMax>1000)name="无限活力番茄！！";else 
 		name="活力番茄";
 		
-		cost=50;
+		setGoodsCost(0, 5);
 		// TODO Auto-generated constructor stub
 		maxback=bloodMax;
 		

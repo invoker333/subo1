@@ -24,24 +24,29 @@ public class FruitGun extends RotateFruit{
 		name="泡泡枪";
 		nameCheck(getIcon());
 		kind="fruitgun";
-		cost=50;
+		
 	}
 	private void nameCheck(int textureId) {
 		// TODO Auto-generated method stub
 		switch(textureId){
 		case R.drawable.s:
 			name="霰弹枪";
+			setGoodsCost(20,0);
 			break;
 		case R.drawable.putongdan:
 			name="光弹枪";
+			setGoodsCost(10,0);
 			break;
 		case R.drawable.jujidan:
 			name="狙击枪";
+			setGoodsCost(30,0);
 			break;
 		case R.drawable.huck:
+			setGoodsCost(15,0);
 			name="钩爪";
 			break;
 		case R.drawable.daodan:
+			setGoodsCost(40,0);
 			name="火箭筒";
 			break;
 		}

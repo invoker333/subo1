@@ -11,7 +11,7 @@ import Mankind.Player;
 public class sizeFruit extends Fruit{
 	public sizeFruit(){
 		name="变形瓜";
-		cost=25;
+		setGoodsCost(0, 5);
 		loadTexture(TexId.H);
 		maxScaleLengthX=1.5f*getW();
 		setScaleZuni(0.5f);
