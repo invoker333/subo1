@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import Element.Animation;
 import Enviroments.GrassSet;
 import Weapon.Blade;
 import Weapon.GunDraw;
@@ -13,7 +14,7 @@ import com.mingli.toms.Log;
 import element2.Joint;
 import element2.TexId;
 
-public class JointCreature extends Creature {
+public class JointCreature extends Creature{
 	private ArrayList<Joint> jointList;
 	private ArrayList<Joint> shakeList;
 	protected ArrayList<Joint> holdList;
@@ -30,7 +31,15 @@ public class JointCreature extends Creature {
 	private GunDraw noGunDraw;
 	protected Blade noBlade;
 	Joint foot;Joint foot1;
-	
+//	public Animation clone(){
+//		return clone();
+//	}
+	public JointCreature clone(){
+		// TODO Auto-generated method stub
+		JointCreature a=null;
+		a=(JointCreature) superClone();
+		return a;
+	}
 
 	void haveGun(){
 		int id;

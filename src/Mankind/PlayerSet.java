@@ -12,7 +12,7 @@ public class PlayerSet extends EnemySet{
 //	  Creature wheel;
 //   	Creature wheel2;
 //   	Creature wheel3;
-	private Tail body;
+//	private Tail body;
 	private Creature greenWalker;
 	public PlayerSet(GrassSet gra, Player player,EnemySet enemySet) {
 		this(gra, player);
@@ -52,8 +52,8 @@ public class PlayerSet extends EnemySet{
 //		   wheel3.setPosition(gra.getSx(), gra.getSy());
 //	       wheel.setPosition(gra.getSx(), gra.getSy());
 //	       wheel2.setPosition(gra.getSx(), gra.getSy());
-	       body = new Tail(4);
-	       body.width=4;
+//	       body = new Tail(4);
+//	       body.width=4;
 		
 		
 		player.setPlayerList(new ArrayList<Creature>(cList));
@@ -63,9 +63,9 @@ public class PlayerSet extends EnemySet{
 	public void timerTask() {};
 	public void drawElement(GL10 gl){
 		
-		gl.glColor4f(1f, 1f, 1f, 0.5f);
+//		gl.glColor4f(1f, 1f, 1f, 0.5f);
 		super.drawElement(gl);
-		gl.glColor4f(1, 1, 1, 1);
+//		gl.glColor4f(1, 1, 1, 1);
 		
 		
 
@@ -95,7 +95,7 @@ public class PlayerSet extends EnemySet{
 //       wheel.drawElement(gl);
 //       wheel2.drawElement(gl);
 //       wheel3.drawElement(gl);
-       body.drawElement(gl);
+//       body.drawElement(gl);
        
 		
 	}

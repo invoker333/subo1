@@ -141,7 +141,7 @@ public class Player extends JointCreature {
     public void endTouch(float ex1,float ey1){
     	if(touched)// else it will be set speed but not touch
     		if(!tooLong)
-    			if(fallen)
+//    			if(fallen)
     			setSpeed(xGuideSpeed, yGuideSpeed);
 		touched=false;
 		this.ex1 = ex1;
@@ -156,7 +156,7 @@ public class Player extends JointCreature {
     	
     	float rangeTime=2;
     	
-    	if(isJumpAble()||
+    	if(!isJumpAble()||
     			Math.abs(xGuideSpeed)>rangeTime*this.getxSpeedMax()
     			||Math.abs(yGuideSpeed)>rangeTime*this.getySpeedMax()){
     		gl.glColor4f(1, 0, 0, 0.5f);
@@ -304,7 +304,7 @@ public class Player extends JointCreature {
     	if(touched)drawGuideTail(gl);	
     	timerTask();
     	
-    	shader.drawElement(gl);
+    	if(doubleClicked)shader.drawElement(gl);
      
    
        if(gun!=null)gun.drawElement(gl);
@@ -312,8 +312,8 @@ public class Player extends JointCreature {
        
        if(gaoTime>0){
     	   footTail.tringer(x, y-getH());
-//    	   footTail.drawElement(gl);
-    	   footTail.drawScale(gl);
+    	   footTail.drawElement(gl);
+//    	   footTail.drawScale(gl);
        }
        if(autoBulletTime>0)ab.drawElement(gl);
        
@@ -321,9 +321,12 @@ public class Player extends JointCreature {
        if(wudiTime>0){
     	   gl.glColor4f(alpw,alpw,alpw,alpw);
        		super.drawElement(gl);
+       		gl.glColor4f(1,1,1,1);
        		wudiTime--;
        }// draw as alpha as wudi
-       else super.drawElement(gl);
+       else{
+    	   super.drawElement(gl);
+       }
        
        if(flyTime>0){
     	   pifeng.timerTask();
@@ -596,7 +599,34 @@ public class Player extends JointCreature {
     	
         treadCheck();
     }
+    
+	public  void setLeftData(boolean b) {
+		// TODO Auto-generated method stub
+		downData[0] = b;
+		doubleClickCheck();
+	}
+	private void doubleClickCheck() {
+		// TODO Auto-generated method stub
+		if(downIndex<36)doubleClicked=true;
+//		else doubleClicked=false;
+		downIndex=0;
+	}
+	public  void setRightData(boolean b) {
+		// TODO Auto-generated method stub
+		downData[1] = true;
+		doubleClickCheck();
+	}
+    int downIndex;
+    
     void actCheck(Creature controller) {
+    	
+        if (!downData[0] && !downData[1]) {
+			controller. stopMove();
+			doubleClicked=false;
+		}
+        downIndex++;
+//    	Log.i("downIndex+clicked"+downIndex+doubleClicked);
+    	
         if (downData[0]) {
             downData[1] = false;// ��ֹ�����ж�
             if (doubleClicked)
@@ -620,8 +650,7 @@ public class Player extends JointCreature {
             
             if (controller.getxSpeed() == getxSpeedMin() && isJumpAble()) playSound(brake);
         }
-        if (!downData[0] && !downData[1])
-        	controller. stopMove();
+    
         if (downData[2]) {
 //            if (controller.isAttackAble()) {
             	controller.attack();
@@ -1086,6 +1115,7 @@ public class Player extends JointCreature {
 		flyTime+=time;
 		pifeng.setPosition(x, y);
 	}
+
 
 	
 }

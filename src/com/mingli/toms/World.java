@@ -167,26 +167,36 @@ public class World extends GLSurfaceView implements Runnable {
 		// TODO Auto-generated method stub
 		
 		
-		char[] ch={'s','	','g','	','0','	','t','	','w','	','f','	','1','	','A','	','T','	','C','	','n','	','U','	','a','x','	','b','	','c','	','d','	','e','	','i','	','H','	','z','	','2','	','↑','	','↓','	','←','	','→','	','B','	','D','	','K','	','M','	','O','	','S','	','j','	','E','	','F','	','l',13};
+		char[] ch={'s','	','g','	','0','	','t','	','w','	','f','	','1','	','A','	','T','	','C','	','n','	','U','	','a','x','	','b','	','c','	','d','	','e','	','i','	','H','	','z','	','2','	','↑','	','↓','	','←','	','→','	','B','	','D','	','K','	','M','	','O','	','S','	','j','	','E','	','F','V','l',13};
 		GrassSet gs=new GrassSet(gra.getGrid(), ch, lightningSet, this);
 		
 		
 		
-		animationshopList=new ArrayList<Animation>();
-		animationshopList.addAll(gs.animationList);
+//		animationshopList=new ArrayList<Animation>();
+		animationshopList=gs.animationList;
 		
 		
 		for(int i=0;i<animationshopList.size();i++){
 			Animation ani=animationshopList.get(i);
 			ani.name=""+ani.mapSign;//////////
-			
-			if(ani.getIcon()==0){
+			if(ani.mapSign==0){
 				animationshopList.remove(ani);// remove whitch has no icon
 				MenuActivity.showDialog("remove whitch has no icon", "", 0);
 			}
-			
-			if(ani.getIcon()=='j'||ani.getIcon()=='E'){
-				((Emplacement) animationshopList.get(i)).setEnemySet(enemySet);
+		}
+		
+		Log.i("ani.getClass().getName()"+animationshopList.get(0).getClass().getName());
+		Log.i("对象 instanceof 类"+(animationshopList.get(0) instanceof Emplacement));
+		
+		
+		for(int i=0;i<animationshopList.size();i++){
+			Animation ani=animationshopList.get(i);
+		
+		
+//			if(ani.mapSign=='j'||ani.mapSign=='E'){
+			if(ani instanceof Emplacement){
+				Log.i("ani.mapSign："+ani.mapSign);
+				((Emplacement) ani).setEnemySet(enemySet);
 				MenuActivity.showDialog("has added enemySet!", "", 0);
 			}
 			

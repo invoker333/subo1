@@ -49,7 +49,11 @@ public class Emplacement extends Creature {
 		super.init();
 	}
 	
-
+	public void setEnemySet(EnemySet es){
+		super.setEnemySet(es);
+		initbullet(es);
+	}
+	
 	void initbullet(EnemySet es) {
 		this.es = es;
 		b = new TailBullet(es, 3.33f);

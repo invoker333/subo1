@@ -27,12 +27,13 @@ public class ButtonController {
 	Touch touch;
 	private ItemWindow itemWindow;
 	private CircleSurface circleSurface;
+	private Player player;
 
 	ButtonController(Activity acti, World world, GameMenu gameMenu) {
 		this.acti = (MenuActivity) acti;
 		this.world = world;
 		this.gameMenu = gameMenu;
-
+		player=world.player;
 		touch = world.touch;
 	}
 	void freshItem(){
@@ -47,8 +48,8 @@ public class ButtonController {
 		if(!World.rpgMode)itemWindow.hide();
 			
 		menu = (View) buttonView.findViewById(R.id.pause);
-			View left = buttonView.findViewById(R.id.left);
-			View right = (View) buttonView.findViewById(R.id.right);
+//			View left = buttonView.findViewById(R.id.left);
+//			View right = (View) buttonView.findViewById(R.id.right);
 			SeekBar directionSeekBar = (SeekBar) buttonView
 					.findViewById(R.id.directionSeekBar);
 			ride = buttonView.findViewById(R.id.ride);
@@ -72,8 +73,8 @@ public class ButtonController {
 			jumpSeekBar.setOnSeekBarChangeListener(seekListener);
 			ontl = new ClickGame();
 			jumpSeekBar.setOnTouchListener(ontl);
-			left.setOnTouchListener(ontl);
-			right.setOnTouchListener(ontl);
+//			left.setOnTouchListener(ontl);
+//			right.setOnTouchListener(ontl);
 			attack.setOnTouchListener(ontl);
 			ride.setOnTouchListener(ontl);
 			shopButton.setOnTouchListener(ontl);
@@ -118,24 +119,24 @@ public class ButtonController {
 			if(itemWindow!=null)itemWindow.closeDrawer();
 			// if(true)return true;
 			switch (v.getId()) {
-			case R.id.left:
-				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					Player.downData[0] = true;
-					v.setBackgroundResource(R.drawable.button_left);
-				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					Player.downData[0] = false;
-					v.setBackgroundResource(R.drawable.button_left1);
-				}
-				break;
-			case R.id.right:
-				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					Player.downData[1] = true;
-					v.setBackgroundResource(R.drawable.button_right);
-				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					Player.downData[1] = false;
-					v.setBackgroundResource(R.drawable.button_right1);
-				}
-				break;
+//			case R.id.left:
+//				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//					player.setLeftData(true);
+//					v.setBackgroundResource(R.drawable.button_left);
+//				} else if (event.getAction() == MotionEvent.ACTION_UP) {
+//					Player.downData[0] = false;
+//					v.setBackgroundResource(R.drawable.button_left1);
+//				}
+//				break;
+//			case R.id.right:
+//				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//					player.setRightData(true);
+//					v.setBackgroundResource(R.drawable.button_right);
+//				} else if (event.getAction() == MotionEvent.ACTION_UP) {
+//					Player.downData[1] = false;
+//					v.setBackgroundResource(R.drawable.button_right1);
+//				}
+//				break;
 			case R.id.attack:
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
 					Player.downData[2] = true;
@@ -226,8 +227,8 @@ public class ButtonController {
 				Player.downData[3] = false;
 				break;
 			case R.id.directionSeekBar:
-				Player.downData[0] = false;
-				Player.downData[1] = false;
+				Player.downData[0]=false;
+				Player.downData[1]=false;
 				seekBar.setProgress(50);
 				break;
 			}
@@ -250,10 +251,10 @@ public class ButtonController {
 				break;
 			case R.id.directionSeekBar:
 				if (progress < 50) {
-					Player.downData[0] = true;
+					player.setLeftData(true);
 					Player.downData[1] = false;
 				}else if (progress > 50) {
-					Player.downData[1] = true;
+					player.setRightData(true);
 					Player.downData[0] = false;
 				}
 				break;

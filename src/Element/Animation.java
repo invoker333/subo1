@@ -16,17 +16,19 @@ setPosition(x, y);
 	public Animation() {
 		// TODO Auto-generated constructor stub
 	}
-	@Override
-	public Object clone(){
-		// TODO Auto-generated method stub
-		Animation a=null;
+	protected Object superClone(){
 		try {
-			a=(Animation) super.clone();
+			return super.clone();
 		} catch (CloneNotSupportedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		return null;
+	}
+	@Override
+	public Animation clone(){
+		// TODO Auto-generated method stub
+		Animation a = (Animation) superClone();
 		return a;
 	}
 	

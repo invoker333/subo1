@@ -33,10 +33,10 @@ public class TouchMove implements OnTouchListener {
 	private  FireworkSet fireWorkSet;
 	private  ArrayList<Animation> animationList;
 	private Animation editTarget;
-	private boolean build8;
 //	private boolean moved;
 	private Animation[] build8group;
 	private float grid=64;
+	private Animation cloner;
 
 	public TouchMove( LightSpotSet lightSpotSet, Player player){
 //		this.bts = bts;
@@ -49,7 +49,7 @@ public class TouchMove implements OnTouchListener {
 		build8group=new Animation[8];
 		for(int i=0;i<build8group.length;i++){
 			build8group[i]=new Animation();
-			build8group[i].loadTexture();
+//			build8group[i].loadTexture();
 		}
 	}
 
@@ -95,11 +95,6 @@ public class TouchMove implements OnTouchListener {
 			ArrayList<Animation> animationList) {
 		this(touchTail,player2);
 		this.animationList = animationList;
-		
-		for(int i=0;i<build8group.length;i++){
-			animationList.add(build8group[i]);
-		}
-		
 	}
 	public boolean onTouch(View v, MotionEvent e) {
 		if(lightSpotSet!=null)lightSpotSet.tringer(e.getX(), MenuActivity.screenHeight - e.getY());
@@ -136,15 +131,6 @@ public class TouchMove implements OnTouchListener {
 			
 			if(player!=null){
 				player.endTouch(ux, uy);
-				
-//				if(ySpeed==player.getySpeedMax()&&
-//						(xSpeed==player.getxSpeedMax()||
-//							xSpeed==player.getxSpeedMin())) {
-//						break;
-//					}
-				
-//				player.setSpeed(xGuideSpeed,yGuideSpeed);
-				
 			}
 			stopEditTarget(ux,uy);	
 			break;
@@ -171,24 +157,7 @@ public class TouchMove implements OnTouchListener {
 				if(!(World.editMode&&moveEditTarget())){					
 					player.moveAction(ex2, ey2);
 				}
-//					calcuPlayerSpeed(ex2,ey2);
-//					player.setGuideSpeed(xGuideSpeed,yGuideSpeed);
 			}
-			
-//			if (e.getActionIndex() == 0) {
-//				ex = e.getX();
-//				ey = MenuActivity.screenHeight - e.getY();
-//				ad3=bts.buttonCheckMove(ex, ey);
-//			}
-
-//			player.actionCheckUp(ad3);
-			// mouse.slide(ex,ey);
-			// if(ey>ey3)dy=1;else dy=-1;//����
-			// player.changeSize(player.getW()+dy,player.getH()+dy);
-			// ex3=ex;ey3=ey;
-			
-			
-			
 			break;
 		}
 		return true;
@@ -215,36 +184,27 @@ public class TouchMove implements OnTouchListener {
 		editTarget.setStartXY(xx, yy);
 		
 		
-//		if(World.editMode)editTarget=null;
+		if(World.editMode)editTarget=null;
 	}
 
 	private void build8CHeck(float ex,float ey) {
 		// TODO Auto-generated method stub
-		
-		// TODO Auto-generated method stub
-		if(build8&&editTarget!=null){
-			build8group[0].setStartXY(editTarget.x-grid,editTarget.y+grid);
-			build8group[1].setStartXY(editTarget.x,		  editTarget.y+grid);
-			build8group[2].setStartXY(editTarget.x+grid,editTarget.y+grid);
-			build8group[3].setStartXY(editTarget.x-grid,editTarget.y);
-			build8group[4].setStartXY(editTarget.x+grid,editTarget.y);
-			build8group[5].setStartXY(editTarget.x-grid,editTarget.y-grid);
-			build8group[6].setStartXY(editTarget.x,editTarget.y-grid);
-			build8group[7].setStartXY(editTarget.x+grid,editTarget.y-grid);
-			
-			for(Animation aa:build8group){
-				if (Math.abs(ex - aa.x) < aa.getW()
-						&& Math.abs(ey - aa.y) < aa.getH()) {
-					animationList.add(new Animation(aa.x,aa.y));
-				}
-			}
+		if(cloner!=null){
+			build8group[0].setPosition(cloner.x-grid,cloner.y+grid);
+			build8group[1].setPosition(cloner.x,		  cloner.y+grid);
+			build8group[2].setPosition(cloner.x+grid,cloner.y+grid);
+			build8group[3].setPosition(cloner.x-grid,cloner.y);
+			build8group[4].setPosition(cloner.x+grid,cloner.y);
+			build8group[5].setPosition(cloner.x-grid,cloner.y-grid);
+			build8group[6].setPosition(cloner.x,cloner.y-grid);
+			build8group[7].setPosition(cloner.x+grid,cloner.y-grid);
 			return;
 		}
 	}
 	private boolean moveEditTarget() {
-		// TODO Auto-generated method stub
-		build8=false;
+		cloner=null;
 		if(editTarget!=null){
+			
 			float xx = Render.px+ex2;
 			float yy = Render.py+ey2;
 			
@@ -254,30 +214,41 @@ public class TouchMove implements OnTouchListener {
 		return false;
 	}
 	private void searchEditTarget(float ex, float ey) {
+//		if(cloner!=null)
+//		for(Animation aa:build8group){
+//			if (Math.abs(ex - aa.x) < aa.getW()
+//					&& Math.abs(ey - aa.y) < aa.getH()) {
+//				animationList.add(aa.clone());
+//			}
+//		}
 		
 		Animation a;
-		build8=true;
 		for(int i=animationList.size()-1;i>-1;i--){
 			a=animationList.get(i);
 			if (Math.abs(ex - a.x) < a.getW()
 					&& Math.abs(ey - a.y) < a.getH()) {
 				editTarget=a;
+				cloner=a;
 				return;
 			}
 		}
 	}
+	 float alphaClone=1f;
+	 float alphaSpeed=0.02f;
 	public void drawElement(GL10 gl){
-		
-		if(editTarget!=null&&
-				editTarget.x>Player.gx1&&editTarget.x<Player.gx2
-				&&editTarget.y>Player.gy1&&editTarget.y<Player.gy2) {
-				for(Animation aa:build8group){
-//					aa.drawElement(gl);
-					
-					
+		Animation cloner=this.cloner;// avoid main thread let editTarget to be null
+		if(cloner!=null&&
+				cloner.x>Player.gx1&&cloner.x<Player.gx2
+				&&cloner.y>Player.gy1&&cloner.y<Player.gy2) {
+			alphaClone+=alphaSpeed;
+			if(alphaClone<0.4f||alphaClone>1.6f)alphaSpeed=-alphaSpeed;
+			
+			for(Animation aa:build8group){
+					gl.glColor4f(alphaClone, 2*alphaClone, alphaClone, alphaClone);
 					gl.glTranslatef(aa.x, aa.y, 0);
-					editTarget.baseDrawElement(gl);
+					cloner.baseDrawElement(gl);
 					gl.glTranslatef(-aa.x, -aa.y, 0);
+					gl.glColor4f(1, 1, 1, 1);
 				}
 		}
 	}

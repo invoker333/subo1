@@ -324,9 +324,6 @@ public class EnemySet extends Set {
 			c.setEnemySet(es);
 			c.enemyList=es.cList;
 		}
-		for (int i = 0; i < emplacementList.size(); i++) {
-			emplacementList.get(i).initbullet(es);
-		}
 	}
 
 	public Creature getSystemAttacker() {

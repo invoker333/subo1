@@ -104,13 +104,12 @@ public class Creature extends AnimationGrass {
 	}
 
 	void changeSpeed(int times) {
-		if (times < 0) {
-			setxSpeedMin(times * speedSizeMax);
-			setxSpeedMax(-times * speedSizeMax);
-		} else {
-			setxSpeedMin(-times * speedSizeMax);
-			setxSpeedMax(times * speedSizeMax);
-		}
+		if (times<0)
+			times = -times;
+		
+		setxSpeedMin(-times * speedSizeMax);
+		setxSpeedMax(times * speedSizeMax);
+		
 		aniStepCheck();
 	}
 

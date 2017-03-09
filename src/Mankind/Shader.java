@@ -55,7 +55,7 @@ public class Shader extends Draw{
 		this.y=y;
 	}
 	public void drawElement(GL10 gl){
-		gl.glColor4f(0.5f, 0.5f, 0.5f, 0.5f);
+		gl.glColor4f(0.3f, 0.3f, 0.3f, 0.3f);
 		move();
 		int id2=id;
 		for(int i=0;i<position.length;i++){
