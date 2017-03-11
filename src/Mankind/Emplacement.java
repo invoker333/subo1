@@ -56,7 +56,7 @@ public class Emplacement extends Creature {
 	
 	void initbullet(EnemySet es) {
 		this.es = es;
-		b = new TailBullet(es, 3.33f);
+		b = new TailBullet(es, gra, 3.33f);
 		b.loadTexture(TexId.GREEN);
 		// b.speed=20;
 	}

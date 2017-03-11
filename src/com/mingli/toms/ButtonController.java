@@ -137,6 +137,14 @@ public class ButtonController {
 //					v.setBackgroundResource(R.drawable.button_right1);
 //				}
 //				break;
+			case R.id.jumpSeekbar1:
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					Player.downData[3] = true;
+				} else 
+					if (event.getAction() == MotionEvent.ACTION_UP) {
+					Player.downData[3] = false;
+				}
+				break;
 			case R.id.attack:
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
 					Player.downData[2] = true;
@@ -144,13 +152,6 @@ public class ButtonController {
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
 					Player.downData[2] = false;
 					v.setBackgroundResource(R.drawable.button_attack);
-				}
-				break;
-			case R.id.jumpSeekbar1:
-				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					Player.downData[3] = true;
-				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					Player.downData[3] = false;
 				}
 				break;
 			case R.id.pause:
@@ -225,10 +226,12 @@ public class ButtonController {
 			switch (seekBar.getId()) {
 			case R.id.jumpSeekbar1:
 				Player.downData[3] = false;
+				seekBar.setProgress(75);
 				break;
 			case R.id.directionSeekBar:
 				Player.downData[0]=false;
 				Player.downData[1]=false;
+				player.StopDoubleClick();
 				seekBar.setProgress(50);
 				break;
 			}
@@ -237,6 +240,10 @@ public class ButtonController {
 		@Override
 		public void onStartTrackingTouch(SeekBar seekBar) {
 			if(seekBar.getId()==R.id.jumpSeekbar1)Player.downData[3] = true;
+			
+			else if(seekBar.getId()==R.id.directionSeekBar){
+				player.refreshDownIndex();
+			} 
 		}
 
 		@Override
@@ -251,10 +258,10 @@ public class ButtonController {
 				break;
 			case R.id.directionSeekBar:
 				if (progress < 50) {
-					player.setLeftData(true);
+					player.setLeftData(true, progress);
 					Player.downData[1] = false;
 				}else if (progress > 50) {
-					player.setRightData(true);
+					player.setRightData(true, progress);
 					Player.downData[0] = false;
 				}
 				break;

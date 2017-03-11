@@ -16,8 +16,8 @@ public class Missile extends TailBullet{
 	
 	protected  LightSpot ls;
 
-	public Missile(EnemySet es) {
-		super(es);
+	public Missile(EnemySet es,GrassSet gra) {
+		super(es,gra);
 		attack=4*World.baseAttack;
 		// TODO Auto-generated constructor stub
 		ls = new Boom();
@@ -56,34 +56,11 @@ public class Missile extends TailBullet{
 
 	private GrassSet gra;
 	public BoomBullet(EnemySet es,GrassSet gra) {
-		super( es);
+		super( es,gra);
 		// TODO Auto-generated constructor stub
 		this.gra = gra;
 	}
-	boolean grassCheck(){
-		if(!isFire())return false;
-		
-		 float grid = gra.getGrid();
-		
-		 int xx=(int) (x/grid);
-		 int yy=(int) (y/grid);
-		 if(xx>=0&&xx<gra.map.length
-				 &&yy>=0&&yy<gra.map[0].length){
-			 int id = gra.map[xx][yy];
-			 if(id!=gra.getZero()
-					 &&gra.getgList().get(id).notBroken){
-				 
-				 gotTarget(null);
-				 return true;
-			 }
-		 }
-		return false;
-		
-	}
-	void targetCheck( ){
-		if(grassCheck()){}
-		else super.targetCheck();
-	}
+	
 	public void gravity(){
 		final float g=1;
 		ySpeed-=g;

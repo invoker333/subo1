@@ -10,8 +10,8 @@ import Mankind.EnemySet;
 
 public class HookGun extends Gun {
 
-	public HookGun(EnemySet es,  Creature c, int bCount) {
-		super(es,  c, bCount);
+	public HookGun(EnemySet es, GrassSet gra, Creature c, int bCount) {
+		super(es,  gra, c, bCount);
 		
 		cd=5*super.cd;
 		// TODO Auto-generated constructor stub
@@ -20,7 +20,7 @@ public class HookGun extends Gun {
 		bList = new ArrayList<Bullet>();
 		Hook h;
 		for (int i = 0; i < bCount; i++) {
-			bList.add(i,h= new Hook(enemySet,   player));// 子弹敌对势力
+			bList.add(i,h= new Hook(enemySet,  gra, player));// 子弹敌对势力
 			h.setRange(500);
 		}
 		bSpeed=((Hook)bList.get(0)).speed;// set first speed

@@ -26,6 +26,7 @@ public class Music {
 		Music.ex = ex;
 	}
 	public void setBGM(int resId){
+		if(!bgm)return;
 		if(mp!=null&&musicId==resId)return;
 		musicId=resId;
 		if(bgm){

@@ -17,8 +17,8 @@ public class Hook extends TailBullet {
 	protected Creature huckEnemy;
 	private  int range=256;
 	
-	public Hook(EnemySet es,  Creature player) {
-		super(es,   2);// 必须是2 //以上也行 浪费了
+	public Hook(EnemySet es,GrassSet gra,  Creature player) {
+		super(es,   gra, 2);// 必须是2 //以上也行 浪费了
 		// super(es, attack);
 		// TODO Auto-generated constructor stub
 		attack=(int) (0.2f*World.baseAttack);
@@ -68,19 +68,7 @@ public class Hook extends TailBullet {
 	void targetCheck() {// ����Ŀ��
 		if (back)
 			return;
-		if (!isFire())
-			return;
-		Creature enemy;
-		for (int i = 0; i < eList.size(); i++) {
-			enemy = eList.get(i);
-			if (enemy.isDead)
-				continue;
-
-			if (Math.abs(x - enemy.x) < (enemy.getwEdge() + getW())
-					&& Math.abs(y - enemy.y) < (enemy.gethEdge() + getH())) {
-				gotTarget(enemy);
-			}
-		}
+		super.targetCheck();
 	}
 
 	void shot() {

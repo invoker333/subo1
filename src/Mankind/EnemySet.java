@@ -45,6 +45,7 @@ public class EnemySet extends Set {
 	private Animation guideCircle;
 	private EnemySet friendSet;
 	private Creature systemAttacker;// to avoid attacker is null
+	public Creature enemyGrass;
 
 	public EnemySet(GrassSet gra) {
 		this.cList = gra.getEnemyList();
@@ -59,6 +60,9 @@ public class EnemySet extends Set {
 		backLife.loadTexture(TexId.BLACK);
 		initGuideCircle();
 	
+		
+		enemyGrass=new TestEnemy(gra, 0, 0);
+		
 	}
 
 	public void setPlayer(Creature creature) {
@@ -187,6 +191,8 @@ public class EnemySet extends Set {
 
 		bloodSet.drawElement(gl);
 		// gl.glColor4f(1,1, 1,1f);
+		
+		enemyGrass.drawScale(gl);
 	}
 
 	public void timerTask() {
@@ -258,13 +264,13 @@ public class EnemySet extends Set {
 		return attacked(getSystemAttacker(),another,attack);
 	}
 	public boolean attacked(Creature attacker,Creature enemy, int attack) {
-		if (!enemy.isDead) {
+		if (enemy!=null&&!enemy.isDead) {
 			enemy.attacked(attack);
 			bloodSet.tringerExplode(
 					(float) (enemy.x + enemy.getwEdge() * (2 * Math.random() - 1)),
 					(float) (enemy.y + enemy.getwEdge() * (2 * Math.random() - 1)),
 					1.5f * enemy.getxSpeed(), 1.5f * enemy.getySpeed(),
-					(int)(Math.random()*bloodSet.getCount()*Math.min(attack,enemy.getLifeMax())/enemy.getLifeMax()));
+					(int)(Math.random()/3*bloodSet.getCount()*Math.min(attack,enemy.getLifeMax())/enemy.getLifeMax()));
 			if (enemy.isDead) {// 被攻击致死
 			// World.recycleDraw(spi);
 				attacker.increaseScoreBy(enemy.getScore());

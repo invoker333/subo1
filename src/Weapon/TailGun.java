@@ -11,8 +11,8 @@ import Mankind.EnemySet;
 
 public class TailGun extends Gun{
 
-	public TailGun(EnemySet es,  Creature c, int bCount) {
-		super(es,  c, bCount);
+	public TailGun(EnemySet es, GrassSet gra, Creature c, int bCount) {
+		super(es,  gra, c, bCount);
 		// TODO Auto-generated constructor stub
 		cd=(int) (3.5*super.cd);
 		
@@ -22,7 +22,7 @@ public class TailGun extends Gun{
 		bSpeed*=2;
 		bList = new ArrayList<Bullet>();
 		for (int i = 0; i < bCount; i++) {
-			bList.add(i, new TailBullet(enemySet, 4));// 子弹敌对势力
+			bList.add(i, new TailBullet(enemySet, gra, 4));// 子弹敌对势力
 		}
 		loadTexture();
 		setSoundId(MusicId.juji);

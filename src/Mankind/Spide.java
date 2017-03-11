@@ -29,7 +29,7 @@ public class Spide extends Emplacement {
 
 	void initbullet(EnemySet es) {
 		this.es = es;
-		b = new Hook(es,  this){
+		b = new Hook(es,  gra, this){
 			protected void gotTarget(Creature enemy) {
 					if(catcher==null || catcher.isDead) {
 						catcher=enemy;

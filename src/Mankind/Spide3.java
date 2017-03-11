@@ -24,7 +24,7 @@ public class Spide3 extends Spide{
 	}
 	void initbullet(EnemySet es) {
 		this.es = es;
-		b = new Hook(es,  this){
+		b = new Hook(es,  gra, this){
 			protected void gotTarget(Creature enemy) {
 				for(int i=0;i<cc.length;i++){
 					if(cc[i]==null || cc[i].isDead) {

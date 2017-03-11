@@ -229,7 +229,9 @@ public class JointCreature extends Creature{
 	}
 
 	public void drawElement(GL10 gl) {
-	
+		blade.drawTail(gl);
+		
+		
 		if (fdirection == 0 && Math.abs(ySpeed) < 2)
 			changeState(0.01f, 0.25f, expression);
 		else
@@ -249,7 +251,7 @@ public class JointCreature extends Creature{
 		gravity();
 		move();
 		
-		blade.drawTail(gl);
+		
 	
 		
 	}

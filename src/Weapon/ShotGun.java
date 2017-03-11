@@ -12,8 +12,8 @@ import Mankind.EnemySet;
 public class ShotGun extends Gun{
 
 	private int count=5;
-	public ShotGun(EnemySet es, Creature c, int bCount) {
-		super(es,  c, bCount);
+	public ShotGun(EnemySet es, GrassSet gra,Creature c, int bCount) {
+		super(es, gra, c, bCount);
 //		count = bCount-1;
 		cd=2*super.cd;
 		bSpeed = 18;// 射速系数
@@ -65,7 +65,7 @@ public class ShotGun extends Gun{
 //		LightSpotSet lss=new BoomSet(10);
 		for (int i = 0; i < bCount; i++) {
 //			bList.add(i, new TailBullet(enemySet, 100));// 子弹敌对势力
-			bList.add(i, new ToBigBullet(enemySet));// 子弹敌对势力
+			bList.add(i, new ToBigBullet(enemySet, gra));// 子弹敌对势力
 		}
 		loadTexture();
 	}

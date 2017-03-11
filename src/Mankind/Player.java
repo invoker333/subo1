@@ -71,7 +71,7 @@ public class Player extends JointCreature {
 //        		getxSpeedMax();
         initGuideTail(gra);     
         reSetDownDate();
-        
+      
     }
 	private void initVtDestory() {
 		// TODO Auto-generated method stub
@@ -117,8 +117,10 @@ public class Player extends JointCreature {
 	}
 	public void setEnemySet(EnemySet enemySet){
     	super.setEnemySet(enemySet);
-    	 ab=new AutoBubble(enemySet,  this);
-    	 extendsDate();
+    	 ab=new AutoBubble(enemySet,  gra, this);
+    	 extendsDate();// avoid gun has not enemySet
+    
+//    	 testAutoBullet();
     }
     public void startTouch(float ex1,float ey1){
     	this.ex1 = ex1;
@@ -600,21 +602,25 @@ public class Player extends JointCreature {
         treadCheck();
     }
     
-	public  void setLeftData(boolean b) {
+	public  void setLeftData(boolean b,int progress) {
 		// TODO Auto-generated method stub
 		downData[0] = b;
-		doubleClickCheck();
+		doubleClickCheck(progress);
 	}
-	private void doubleClickCheck() {
+	int agoProgress;
+	private void doubleClickCheck(int progress) {
 		// TODO Auto-generated method stub
-		if(downIndex<36)doubleClicked=true;
 //		else doubleClicked=false;
-		downIndex=0;
+		if(agoProgress!=50&&
+				Math.abs(progress-agoProgress)>2)
+			doubleClicked=true;
+			
+		agoProgress=progress;
 	}
-	public  void setRightData(boolean b) {
+	public  void setRightData(boolean b,int progress) {
 		// TODO Auto-generated method stub
-		downData[1] = true;
-		doubleClickCheck();
+		downData[1] = b;
+		doubleClickCheck(progress);
 	}
     int downIndex;
     
@@ -1052,16 +1058,18 @@ public class Player extends JointCreature {
 			return;
 		}
 		else{
-			if(textureId== TexId.S)
-				gun=new ShotGun(getEnemySet(),  this, 10);
+			if(textureId== TexId.L)
+				gun=new AutoBulletGun(getEnemySet(),  gra, this, 10);
+			else  if(textureId== TexId.S)
+				gun=new ShotGun(getEnemySet(),  gra, this, 10);
 			else if(textureId== TexId.M)// 
-				gun=new TailGun(getEnemySet(),  this, 10);
+				gun=new TailGun(getEnemySet(),  gra, this, 10);
 			else if(textureId== TexId.B)
-				gun=new BoomGun(getEnemySet(),  this, gra, 5);
+				gun=new BoomGun(getEnemySet(),  gra, this, 5);
 			else if(textureId== TexId.D)
-				gun=new HookGun(getEnemySet(),  this, 10);
+				gun=new HookGun(getEnemySet(),  gra, this, 10);
 			else if(textureId== TexId.O)
-				gun=new Gun(getEnemySet(),  this, 10);
+				gun=new Gun(getEnemySet(),  gra, this, 10);
 		}
 		
 		gun.gunLength=sizeRate*baseGunLength;
@@ -1114,6 +1122,15 @@ public class Player extends JointCreature {
 		// TODO Auto-generated method stub
 		flyTime+=time;
 		pifeng.setPosition(x, y);
+	}
+	public void refreshDownIndex() {
+		if(downIndex<20)doubleClicked=true;
+		downIndex=0;
+	}
+	public void StopDoubleClick() {
+		// TODO Auto-generated method stub
+		doubleClicked=false;
+		agoProgress=50;
 	}
 
 

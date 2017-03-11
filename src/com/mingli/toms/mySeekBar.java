@@ -55,11 +55,11 @@ public class mySeekBar extends SeekBar {
                 i=getMax() - (int) (getMax() * event.getY() / getHeight());
                 //设置进度
                 setProgress(i);
-                Log.i("Progress",getProgress()+"");
+//                Log.i("Progress",getProgress()+"");
                 //每次拖动SeekBar都会调用
                 onSizeChanged(getWidth(), getHeight(), 0, 0);
-                Log.i("getWidth()",getWidth()+"");
-                Log.i("getHeight()",getHeight()+"");
+//                Log.i("getWidth()",getWidth()+"");
+//                Log.i("getHeight()",getHeight()+"");
                 break; 
 
             case MotionEvent.ACTION_CANCEL:

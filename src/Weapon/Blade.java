@@ -36,12 +36,18 @@ public class Blade extends Joint {
 	private float attack=255;
 	private final float checkWidth=64;
 
-	public Blade(Creature p, EnemySet es) {
+	public Blade(Creature p, EnemySet es){
+		this(p,es,24f);
+	}
+	public Blade(Creature p, EnemySet es,float h) {
 		this.es = es;
 		this.player = p;
 
 		setSpeed((angend - angstart) / (3f / p.getAniStep2()[1]));
+		this.h=h;
 		loadTexture(TexId.SWORD);
+		
+		
 		loadSound();
 		// holdy = HandCentre;// meishayong
 
@@ -54,12 +60,15 @@ public class Blade extends Joint {
 	 public void syncTextureSize() {
 		distanceToHeart = 32f;
 		length2 = distanceToHeart + length;
-		final float h = 24f;
 		w1 = distanceToHeart * distanceToHeart;
 		w2 = (float) Math.pow(length2 + checkWidth, 2);// big shangixng let check width 2 times bigger is  every one's body width
 		fbSpi.clear();
-		fbSpi.put(new float[] { distanceToHeart, -h, getDepth(), length2, -h, getDepth(), length2, h,
-				getDepth(), distanceToHeart, h, getDepth(), distanceToHeart, -h, getDepth() });
+		fbSpi.put(new float[] {
+				distanceToHeart, -h, getDepth(), 
+				length2, -h, getDepth(),
+				length2, h,getDepth(), 
+				distanceToHeart, h, getDepth(),
+				distanceToHeart, -h, getDepth() });
 		fbSpi.flip();
 	}
 

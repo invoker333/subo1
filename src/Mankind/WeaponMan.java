@@ -27,6 +27,9 @@ public class WeaponMan extends Player{
 		realBlade.angstart=60;
 		realBlade.tail.setTextureId(TexId.CUP);
 		realBlade.setTextureId(TexId.JINGUBANG);
+		
+		realBlade.h=12;
+		realBlade.loadTexture();
 	}
 	protected void tooRight() {
 		super.tooRight();

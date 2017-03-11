@@ -10,11 +10,9 @@ import Mankind.EnemySet;
 
 public class BoomGun extends Gun {
 
-	private GrassSet gra;
 
-	public BoomGun(EnemySet es,Creature c,GrassSet gra, int bCount) {
-		super(es,  c, bCount);
-		this.gra = gra;
+	public BoomGun(EnemySet es,GrassSet gra, Creature c,int bCount) {
+		super(es,gra,  c, bCount);
 		setBullet(bCount);
 		// TODO Auto-generated constructor stub
 		cd = 4 * super.cd;

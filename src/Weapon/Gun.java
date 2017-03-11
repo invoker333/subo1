@@ -32,11 +32,13 @@ public class Gun extends Set {// 子弹
 	protected double cos;
 	protected double sin;
 	public int cd=7;
+	protected GrassSet gra;
 
 	// ParticleSet ps;
 	// protected Context context;
-	public Gun(EnemySet es,Creature c, int bCount) {
+	public Gun(EnemySet es,GrassSet gra,Creature c, int bCount) {
 		this.enemySet = es;
+		this.gra = gra;
 		this.sList = es.cList;// 着弹对象
 		this.player = c;
 		setBullet(bCount);
@@ -52,7 +54,7 @@ public class Gun extends Set {// 子弹
 		Bullet b;
 		final int ww=64;
 		for (int i = 0; i < bCount; i++) {
-			bList.add(i,b= new Bullet(enemySet));// 子弹敌对势力
+			bList.add(i,b= new Bullet(enemySet,gra));// 子弹敌对势力
 //			bList.add(i, new Huck(enemySet,  1000,player));// 子弹敌对势力
 			b.w=ww;
 			b.h=ww;

@@ -19,17 +19,20 @@ public class AutoBullet extends ToBigBullet {
 	private Creature enemy;
 //	private int enemyId;
 	public AutoBullet(EnemySet es, GrassSet gra,Creature player,float speed) {
-		this(es, player);
+		this(es, gra, player);
 		this.speed=speed;
 	}
 	
-	public AutoBullet(EnemySet es, Creature player) {
-		super(es);
+	public AutoBullet(EnemySet es, GrassSet gra,Creature player) {
+		super(es, gra);
 		// TODO Auto-generated constructor stub
 		loadTexture(TexId.RED);
 		loadSound();
 		this.player=player;
-		
+	}
+	boolean grassCheck(){
+		return false;
+//		return super.grassCheck();
 	}
 	public void tringer(float x, float y,Creature enemy) {
 		this.enemy = enemy;

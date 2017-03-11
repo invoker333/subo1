@@ -14,8 +14,8 @@ import Mankind.EnemySet;
 public class TailBullet extends Bullet{
 	Tail tail;
 	int attackMax;
-	public TailBullet(EnemySet es, float time) {
-		super(es);
+	public TailBullet(EnemySet es, GrassSet gra,float time) {
+		super(es,gra);
 		tail=new Tail(6, TexId.CANDLETAIL);
 		setSize(4, 4);
 		setTextureId(TexId.BULLET);
@@ -27,12 +27,11 @@ public class TailBullet extends Bullet{
 		super.setSize(a, b);
 		if(tail!=null)tail.width=(int) (w);
 	}
-	public TailBullet(EnemySet es) {
-		this(es, 4);
+	public TailBullet(EnemySet es,GrassSet gra) {
+		this(es, gra,4);
 	}
 	
 	protected void gotTarget(Creature enemy) {
-		
 		if(enemy.getLife()>=attack){
 			super.gotTarget(enemy);
 		}// bullet will be reset 
@@ -60,8 +59,8 @@ public class TailBullet extends Bullet{
 class ToBigBullet extends Bullet{
 	float scaleTime=1,backTime=1;
 	private float wReal;
-	public ToBigBullet(EnemySet es) {
-		super(es);
+	public ToBigBullet(EnemySet es,GrassSet gra) {
+		super(es,gra);
 		setTextureId((TexId.BULLET));
 		// TODO Auto-generated constructor stub
 		attack=(int) (1f*World.baseAttack);

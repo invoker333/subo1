@@ -153,11 +153,11 @@ class Blood extends AnimationGravity {
 
 class BloodSized extends AnimationGravity {
 	int index;
-	private float agoW=16;
+	private float agoW=8;
 	private float dSize;
 	BloodSized() {
-		setW(16);
-		setH(16);
+		setW(agoW);
+		setH(agoW);
 		g=0.5f;
 	}
 	// private float alphaSpeed=0.003f;

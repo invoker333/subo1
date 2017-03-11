@@ -9,6 +9,7 @@ import com.mingli.toms.World;
 import element2.TexId;
 import Element.AnimationGrass;
 import Element.AnimationMove;
+import Enviroments.Grass;
 import Enviroments.GrassSet;
 import Mankind.Creature;
 import Mankind.EnemySet;
@@ -25,9 +26,14 @@ public class Bullet extends AnimationMove{
 	// protected boolean fire;//������ ������˺�
 	int frameMax = 30;
 	public EnemySet es;
-	public Bullet(EnemySet es) {
+	private GrassSet gra;
+	private Creature enemyGrass;
+	public Bullet(EnemySet es,GrassSet gra) {
 		this.es = es;
+		this.gra = gra;
 		this.eList = es.cList;
+		
+		enemyGrass=es.enemyGrass;
 		setSize(12, 12);
 		setTextureId(TexId.HIKARI);
 	}
@@ -66,6 +72,9 @@ public class Bullet extends AnimationMove{
 
 	void targetCheck() {// ����Ŀ��
 		if(!fire)return;
+		
+		if(grassCheck())return;
+		
 		Creature enemy;
 		for (int i = 0; i < eList.size(); i++) {
 			enemy = eList.get(i);
@@ -77,9 +86,28 @@ public class Bullet extends AnimationMove{
 				}
 		}
 	}
+	boolean grassCheck(){
+		if(!isFire())return false;
+		
+		 float grid = gra.getGrid();
+		
+		 int xx=(int) (x/grid);
+		 int yy=(int) (y/grid);
+		 if(xx>=0&&xx<gra.map.length
+				 &&yy>=0&&yy<gra.map[0].length){
+			 int id = gra.map[xx][yy];
+			 if(id!=gra.getZero()
+					 &&gra.getgList().get(id).notBroken){
+				 Grass grass= gra.getgList().get(id);
+				enemyGrass.setPosition(grass.x,grass.y);
+				 gotTarget(enemyGrass);
+				 return true;
+			 }
+		 }
+		return false;
+	}
 
 	protected void gotTarget(Creature enemy) {
-		
 		if (es.attacked(enemy, attack))
 			push(enemy, 0.75f);
 		else

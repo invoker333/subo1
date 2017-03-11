@@ -7,8 +7,8 @@ import Mankind.Creature;
 import Mankind.EnemySet;
 
 public class AutoBubble extends AutoBullet {
-	public AutoBubble(EnemySet es, Creature s) {
-		super(es,  s);
+	public AutoBubble(EnemySet es, GrassSet gra,Creature s) {
+		super(es,  gra, s);
 		// TODO Auto-generated constructor stub
 		frameMax =180;
 		speedBackup[0] = speed;
