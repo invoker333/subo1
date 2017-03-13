@@ -19,8 +19,9 @@ public class ShotGun extends Gun{
 		bSpeed = 18;// 射速系数
 		setSoundId(MusicId.shotGun);
 	}
-	public void gunCheck(float ex, float ey){
+	public boolean gunCheck(float ex, float ey){
 		gunCheck(ex,ey,count);
+		return false;
 	}
 	public void gunCheck(float ex, float ey,int count){
 		super.gunCheck(ex, ey);

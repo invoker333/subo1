@@ -55,7 +55,7 @@ public class GameMenu {
 		
 		// 获取自定义布局文件activity_popupwindow_left.xml的视图
 		else if (popupWindow == null) {
-			View popupWindow_view = acti.getLayoutInflater().inflate(
+			popupWindow_view = acti.getLayoutInflater().inflate(
 					R.layout.gamemenu, null);
 			// 创建PopupWindow实例,200,LayoutParams.MATCH_PARENT分别是宽度和高度
 			popupWindow = new PopupWindow(popupWindow_view,
@@ -174,6 +174,7 @@ public class GameMenu {
 		
 	};
 //	private Animation a;
+	private View popupWindow_view;
 
 	boolean isHided() {
 		if (popupWindow != null && popupWindow.isShowing()) {
@@ -238,6 +239,7 @@ public class GameMenu {
 			// this.e = e;
 			if (e.getAction() == MotionEvent.ACTION_DOWN
 					|| e.getAction() == MotionEvent.ACTION_POINTER_DOWN)
+				if(v.getId()!=R.id.getLifeFree)acti.ad.hideInterstitial();
 				switch (v.getId()) {
 				case R.id.tomenu:
 					menuActivity.quitGame();
@@ -329,5 +331,11 @@ public class GameMenu {
 		getLifeAbou.setVisibility(View.INVISIBLE);
 		
 		showStar();
+	}
+	void removeView(){
+		acti.removeView(popupWindow_view);
+	}
+	void addView(){
+		acti.addView(popupWindow_view);
 	}
 }

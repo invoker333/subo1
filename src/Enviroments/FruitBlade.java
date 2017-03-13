@@ -2,6 +2,8 @@ package Enviroments;
 
 import java.util.ArrayList;
 
+import com.mingli.toms.MenuActivity;
+
 import element2.TexId;
 import Mankind.Player;
 
@@ -17,7 +19,10 @@ public class FruitBlade extends RotateFruit{
 	public boolean loadAble(Player player){
 		
 		for(Fruit f:FruitSet.pickedList)
-			if(f.getTextureId()==getTextureId())return false;// can't get more blade cause it is useless
+			if(f.getTextureId()==getTextureId()){
+				MenuActivity.showDialog("", "限购一个", getIcon());
+				return false;// can't get more blade cause it is useless
+			}
 		
 		super.loadAble(player);
 		return true;

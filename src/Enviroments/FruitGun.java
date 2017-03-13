@@ -29,6 +29,14 @@ public class FruitGun extends RotateFruit{
 	private void nameCheck(int textureId) {
 		// TODO Auto-generated method stub
 		switch(textureId){
+		case R.drawable.autobulletgun:
+			name="自动泡泡枪";
+			setGoodsCost(20,0);
+			break;
+		case R.drawable.shufudan:
+			name="束缚枪";
+			setGoodsCost(20,0);
+			break;
 		case R.drawable.s:
 			name="霰弹枪";
 			setGoodsCost(20,0);

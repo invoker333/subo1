@@ -10,16 +10,15 @@ import Mankind.Player;
 
 public class sizeFruit extends Fruit{
 	public sizeFruit(){
+		this(' ',0,0);
+	}
+	public sizeFruit(char bi,float x, float y) {
+		super(bi,x,y);
 		name="变形瓜";
 		setGoodsCost(0, 5);
 		loadTexture(TexId.H);
 		maxScaleLengthX=1.5f*getW();
 		setScaleZuni(0.5f);
-	}
-	public sizeFruit(char bi,float x, float y) {
-		this();
-		setPosition(x,y);
-		mapSign=bi;
 	}
 	
 	public void drawElement(GL10 gl){

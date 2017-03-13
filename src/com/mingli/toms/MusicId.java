@@ -28,14 +28,18 @@ public class MusicId {
 	public static int shotGun;
 	public static int missile;
 	public static int juji;
+	public static int lightNing;
+	public static int bubble;
 
 	public static void loadSoundId(Music music) {
 		// TODO Auto-generated method stub
+		bubble=music.loadSound(R.raw.bubble);
+		lightNing=music.loadSound(R.raw.lightning);
 		baller=music.loadSound(R.raw.baller);
 		gun=music.loadSound(R.raw.gunlight);
 		sword=music.loadSound(R.raw.sword);
 		brake01=music.loadSound(R.raw.brake01);
-		land=music.loadSound(R.raw.jump);
+		land=music.loadSound(R.raw.jump2);
 		gameover=music.loadSound(R.raw.gameover);
 		wood2=music.loadSound(R.raw.wood2);
 		firecolumn=music.loadSound(R.raw.firecolumn);

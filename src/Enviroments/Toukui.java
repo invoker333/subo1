@@ -75,26 +75,26 @@ class FruitFly extends ShakeFruit{
 //		super.effectCheck(p,pickedList);
 	}
 }
-class FruitAuto extends ShakeFruit{
-
-	private int time;
-	public FruitAuto(char bi,float x, float y, int time) {
-		super(bi,x, y);
-		// TODO Auto-generated constructor stub
-		this.time = time;
-		name="束缚泡泡";
-		setGoodsCost(5,10);
-	}
-	void init(){
-		loadTexture(TexId.RED);
-	}
-	public void use(Player player,ArrayList<Fruit> pickedList){
-		player.autoBulletTime+=time;
-	}
-	public void effectCheck(Player p, ArrayList<Fruit> pickedList){
-//		super.effectCheck(p,pickedList);
-	}
-}
+//class FruitAuto extends ShakeFruit{
+//
+//	private int time;
+//	public FruitAuto(char bi,float x, float y, int time) {
+//		super(bi,x, y);
+//		// TODO Auto-generated constructor stub
+//		this.time = time;
+//		name="束缚泡泡";
+//		setGoodsCost(5,10);
+//	}
+//	void init(){
+//		loadTexture(TexId.RED);
+//	}
+//	public void use(Player player,ArrayList<Fruit> pickedList){
+//		player.autoBulletTime+=time;
+//	}
+//	public void effectCheck(Player p, ArrayList<Fruit> pickedList){
+////		super.effectCheck(p,pickedList);
+//	}
+//}
 
 
  class Wudi extends ShakeFruit{

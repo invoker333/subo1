@@ -27,7 +27,7 @@ public class AutoBullet extends ToBigBullet {
 		super(es, gra);
 		// TODO Auto-generated constructor stub
 		loadTexture(TexId.RED);
-		loadSound();
+		loadSound(MusicId.bubble);
 		this.player=player;
 	}
 	boolean grassCheck(){
@@ -41,7 +41,7 @@ public class AutoBullet extends ToBigBullet {
 		setPosition(x, y);
 		speedCheck(enemy.x,enemy.y);
 		// bList.add(this);
-		
+		playSound();
 	}
 	public void tringerCheck(float ex, float ey) {
 		float xt = Render.px + ex;
@@ -78,6 +78,7 @@ public class AutoBullet extends ToBigBullet {
 //		speed+=0.2;
 //		if(enemyId==-1||enemyId>=eList.size())return;
 //		Creature enemy = eList.get(enemyId);
+		
 		
 		if (isFire()) {
 			speedCheck(enemy.x,enemy.y);

@@ -128,10 +128,12 @@ public class TexId{
 	public static int GOALCIRCLE;
 	public static int GUIDERECT;
 	public static int FRUITFLY;
-	public static int L;
+	public static int ZIDONGDAN;
+	public static int SHUFUDAN;
 	public  void loadTextureId(GL10 gl) {
 //		if(1<2)return;
-		L=loadTexture(gl,R.drawable.guntitle);
+		SHUFUDAN=loadTexture(gl,R.drawable.shufudan);
+		ZIDONGDAN=loadTexture(gl,R.drawable.autobulletgun);
 		PIFENG=loadTexture(gl,R.drawable.pifeng);
 		FRUITFLY=loadTexture(gl,R.drawable.fruitfly);
 		STONEGRASS=loadTexture(gl,R.drawable.stonegrass);

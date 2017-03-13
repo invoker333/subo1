@@ -37,6 +37,7 @@ public class Draw	implements SoundDraw {
 		// TODO Auto-generated method stub
 	}public void loadSound(int id) {
 		// TODO Auto-generated method stub
+		soundId=id;
 	}
 	@Override
 	public void playSound() {

@@ -6,12 +6,14 @@ import javax.microedition.khronos.opengles.GL10;
 
 import element2.FireworkSet;
 import element2.Tail;
+import element2.TexId;
 import Element.Animation;
 import Element.BubbleSet;
 import Element.Curtain;
 import Element.LightSpotSet;
 import Mankind.Player;
 import Weapon.AutoBullet;
+import android.provider.ContactsContract.DeletedContacts;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -35,8 +37,11 @@ public class TouchMove implements OnTouchListener {
 	private Animation editTarget;
 //	private boolean moved;
 	private Animation[] build8group;
-	private float grid=64;
+	private final float grid=64;
 	private Animation cloner;
+	private World world;
+	private Animation deleter;
+	private boolean deleteMode;
 
 	public TouchMove( LightSpotSet lightSpotSet, Player player){
 //		this.bts = bts;
@@ -92,9 +97,12 @@ public class TouchMove implements OnTouchListener {
 	}*/
 	
 	public TouchMove(Tail touchTail, Player player2,
-			ArrayList<Animation> animationList) {
+			World world) {
 		this(touchTail,player2);
-		this.animationList = animationList;
+		this.world = world;
+		deleter=new Animation();
+		deleter.loadTexture(TexId.GUIDERECT);
+		this.animationList = world.animationList;
 	}
 	public boolean onTouch(View v, MotionEvent e) {
 		if(lightSpotSet!=null)lightSpotSet.tringer(e.getX(), MenuActivity.screenHeight - e.getY());
@@ -113,7 +121,7 @@ public class TouchMove implements OnTouchListener {
 //				player.setGuideSpeed(xGuideSpeed,yGuideSpeed);
 			}
 			
-			if(World.editMode)searchEditTarget(Render.px+ex, Render.py+ey);			
+			if(World.editMode)startEditTarget(Render.px+ex, Render.py+ey);			
 			break;
 		case MotionEvent.ACTION_UP:
 //			touchTailIndex=0;
@@ -204,23 +212,25 @@ public class TouchMove implements OnTouchListener {
 	private boolean moveEditTarget() {
 		cloner=null;
 		if(editTarget!=null){
-			
+			 
 			float xx = Render.px+ex2;
 			float yy = Render.py+ey2;
-			
 			editTarget.setStartXY(xx, yy);
+			
+			if(Math.abs(xx-deleter.x)<deleter.w
+					&&Math.abs(yy-deleter.y)<deleter.h){
+				deleteMode=true;
+				animationList.remove(editTarget);
+//				world.removeDraw(editTarget);
+				editTarget.setPosition(0, 400);
+			}else deleteMode=false;
+			
 			return true;
 		}
 		return false;
 	}
-	private void searchEditTarget(float ex, float ey) {
-//		if(cloner!=null)
-//		for(Animation aa:build8group){
-//			if (Math.abs(ex - aa.x) < aa.getW()
-//					&& Math.abs(ey - aa.y) < aa.getH()) {
-//				animationList.add(aa.clone());
-//			}
-//		}
+	private void startEditTarget(float ex, float ey) {
+		
 		
 		Animation a;
 		for(int i=animationList.size()-1;i>-1;i--){
@@ -229,13 +239,36 @@ public class TouchMove implements OnTouchListener {
 					&& Math.abs(ey - a.y) < a.getH()) {
 				editTarget=a;
 				cloner=a;
-				return;
+				return;//avoid clone
+			}
+		}
+		
+		if(cloner!=null) {
+			for(Animation aa:build8group){
+				if (Math.abs(ex - aa.x) < grid/2
+					&& Math.abs(ey - aa.y) < grid/2) {
+					Animation newAnimation = cloner.clone();
+					newAnimation.setStartXY(aa.x, aa.y);
+					animationList.add(newAnimation);
+					world.addDrawAnimation(newAnimation);
+					
+					aa.setPosition(0, 100);//to let look clearly
+					
+					break;
+				}
 			}
 		}
 	}
-	 float alphaClone=1f;
+	float alphaClone=1f;
 	 float alphaSpeed=0.02f;
 	public void drawElement(GL10 gl){
+		if(editTarget!=null){
+			deleter.setPosition(Render.px+Render.width/2, Render.py+Render.height-deleter.h);
+			if(deleteMode)gl.glColor4f(1	, 0, 0, 1);
+			
+			deleter.drawTranElement(gl);
+		}
+		
 		Animation cloner=this.cloner;// avoid main thread let editTarget to be null
 		if(cloner!=null&&
 				cloner.x>Player.gx1&&cloner.x<Player.gx2
@@ -252,55 +285,5 @@ public class TouchMove implements OnTouchListener {
 				}
 		}
 	}
-	private void calcuPlayerSpeed111(float x, float y) {
-		final float grid=player.getGra().getGrid();
-		x=Render.px+x;
-		y=Render.py+y;
-		
-//		if(x<player.x)
-//			x=x-x%grid+-player.getwEdge()+1;//1 point let it stand zhenghao bu diao xiaqu
-//		else
-//			x=x-x%grid+grid+player.getwEdge()-1;
-//		// jump to edge
-//		y=y-y%grid+player.gethEdge();
-		final int jumpH=64;
-		
-		float dx=x  -player.x;
-		float dy=y   -player.y;
-		float jumpY;
-		
-		double time;
-		
-		//		if(dx>0)time=dx/player.getSpeedMax();
-//		else time=dx/player.getSpeedMin();
-		if(dy>0){
-			jumpY=dy+jumpH;
-			yGuideSpeed=Math.sqrt(2f*player.getG()*jumpY);
-//			Log.i("player.getySpeedMax()"+player.getySpeedMax());
-			time=Math.sqrt(2*jumpY/player.getG())+Math.sqrt(2*jumpH/player.getG());			// jump time
-			xGuideSpeed=dx/time;
-		}
-		else if(dy<=0){
-//			if(player.dropCheck(ex,ey))return;
-			final double ys=Math.sqrt(2*player.getG()*jumpH);
-			yGuideSpeed=ys;
-			///////////////////////
-			jumpY=-dy+jumpH;
-			time=Math.sqrt(2*jumpH/player.getG())+Math.sqrt(2*jumpY/player.getG());
-			xGuideSpeed=dx/time;
-		}
-		
-		if(xGuideSpeed>player.getxSpeedMax()){
-			xGuideSpeed=player.getxSpeedMax();
-		}
-		else if(xGuideSpeed<player.getxSpeedMin()){
-			xGuideSpeed=player.getxSpeedMin();
-		}
-		if(yGuideSpeed>player.getySpeedMax()){
-			yGuideSpeed=player.getySpeedMax();
-		}
-	}
-	private double yGuideSpeed;
-	private double xGuideSpeed;
-	float ex3, ey3, dy;
+
 }

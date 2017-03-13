@@ -163,12 +163,12 @@ public class StartMenu{
 
 		
 		String str="";
-		String moneyStr="0101";
-		String editStr="000111";
-		String rpgStr="111000";
-		String youtietu = "111111";
-		String wutietu = "000000";
-		int maxLength=10;// max length in the up number
+		String moneyStr="010110100011";
+		String editStr="00001111";
+		String rpgStr="11110000";
+		String youtietu = "11111100";
+		String wutietu = "00000011";
+		int maxLength=15;// max length in the up number
 		
 		@Override
 		public void onCheckedChanged(CompoundButton v, boolean isChecked) {

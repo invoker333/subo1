@@ -2,6 +2,7 @@ package Weapon;
 
 import java.util.ArrayList;
 
+import com.mingli.toms.MusicId;
 import com.mingli.toms.World;
 
 import Enviroments.GrassSet;
@@ -25,5 +26,6 @@ public class HookGun extends Gun {
 		}
 		bSpeed=((Hook)bList.get(0)).speed;// set first speed
 		loadTexture();
+		setSoundId(MusicId.zhizhu);
 	}
 }

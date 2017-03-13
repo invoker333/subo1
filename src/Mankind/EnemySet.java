@@ -192,7 +192,7 @@ public class EnemySet extends Set {
 		bloodSet.drawElement(gl);
 		// gl.glColor4f(1,1, 1,1f);
 		
-		enemyGrass.drawScale(gl);
+		if(World.editMode)enemyGrass.drawScale(gl);
 	}
 
 	public void timerTask() {

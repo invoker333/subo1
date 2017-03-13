@@ -24,7 +24,7 @@ public class Titlectivity extends Activity  {
 				Titlectivity.this.finish();
 				overridePendingTransition(R.anim.fadein,R.anim.fadeout);
 			}
-		},100);
+		},0000);
 	}
 
 }

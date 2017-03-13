@@ -18,10 +18,7 @@ public class Shader extends Draw{
 		// TODO Auto-generated constructor stub
 		int frame=(int) (time*60f);
 		position=new float [frame][2];
-		for(int i=0;i<position.length;i++){
-			position[i][0]=master.x;
-			position[i][1]=master.y;
-		}
+		
 		tail=new Tail(frame);
 		tail.width=(int) (master.getW());
 		tail.startTouch(master.x, master.y);
@@ -81,5 +78,12 @@ public class Shader extends Draw{
 //		tail.drawElement(gl);
 		
 		gl.glColor4f(1, 1, 1, 1f);
+	}
+	public void backToMaster() {
+		// TODO Auto-generated method stub
+		for(int i=0;i<position.length;i++){
+			position[i][0]=master.x;
+			position[i][1]=master.y;
+		}
 	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import Element.AnimationMove;
 import Mankind.Flyer;
 import Mankind.Player;
 
@@ -26,7 +27,6 @@ public class FruitSet extends Set {
 
 	// private float checkW;
 	// private float checkH;
-	float topGrassData[];
 	protected GrassSet gs;
 	protected float COUNT;
 	public static ArrayList<Fruit> shopList;
@@ -40,7 +40,6 @@ public class FruitSet extends Set {
 		this.gs = gs;
 		COUNT = fruitList.size();
 
-		topGrassData = gs.getTop().data;
 		drawList.addAll(fruitList);
 		loadSound();
 		// checkW=player.getW()+fruitList.get(0).getW();//设置碰撞宽度
@@ -63,15 +62,15 @@ public class FruitSet extends Set {
 		if (shopList == null) {
 			shopList = new ArrayList<Fruit>();
 			shopList.add(chanceFruit=new ChanceFruit(bi,1, 1));// ..
-			shopList.add(new Tomato(bi,1, 1, 500));// ..
+			if(World.rpgMode)shopList.add(new Tomato(bi,1, 1, 500));// ..
 			shopList.add(new sizeFruit(bi,1, 1));
 			shopList.add(new Toukui(bi,0, 0, 9999));
 			shopList.add(new Gao(bi,1, 1, 9999));
 			shopList.add(new FruitFly(bi,1, 1, 9999));
-			shopList.add(new FruitAuto(bi,1, 1, 9999));
 			shopList.add(new Wudi(bi,1, 1));
+			shopList.add(new FruitGun(bi,1, 1, TexId.SHUFUDAN));
+			shopList.add(new FruitGun(bi,1, 1, TexId.ZIDONGDAN));
 			shopList.add(new FruitGun(bi,1, 1, TexId.S));
-			shopList.add(new FruitGun(bi,1, 1, TexId.L));
 			shopList.add(new FruitGun(bi,1, 1, TexId.B));
 			shopList.add(new FruitGun(bi,1, 1, TexId.D));
 			shopList.add(new FruitGun(bi,1, 1, TexId.M));
@@ -148,13 +147,11 @@ public class FruitSet extends Set {
 	}
 
 	void pick(Fruit fruit) {
-
+		AnimationMove goreAni = gs.goreAni;
 		if (Math.abs(fruit.x - player.x) < fruit.getW() + player.getwEdge()
 				&& Math.abs(fruit.y - player.y) < fruit.getH() + player.getH()
-				|| gs.isGore() && fruit.x + fruit.getW() > topGrassData[0]
-				&& fruit.x - fruit.getW() < topGrassData[2]
-				&& fruit.y + fruit.getH() > topGrassData[1]
-				&& fruit.y - fruit.getH() < topGrassData[3]) {
+				|| gs.isGore() && Math.abs(fruit.x-goreAni.x)<fruit.w+goreAni.w
+				&&Math.abs(fruit.y-goreAni.y)<fruit.h+goreAni.h) {
 			picked(fruit);
 		}
 
@@ -219,7 +216,6 @@ public class FruitSet extends Set {
 
 	protected void timerTask() {
 		Fruit fruit;
-		topGrassData = gs.getTop().data;// 没有这句就访问不了 权限问题？
 		for (int i = 0; i < fruitList.size(); i++) {
 			fruit = fruitList.get(i);
 			pick(fruit);
@@ -266,14 +262,15 @@ public class FruitSet extends Set {
 		
 		if (!item.loadAble(player))
 			return;// not load Able return
-		pickedList.add(item);
+		if(World.rpgMode)pickedList.add(item);
 
 	}
 
 	public static void cml() {
 		// TODO Auto-generated method stub
 		initShopList();
-		FruitSet.shopList.add(new Tomato((char) 0,0,0,99999));
+		if(World.rpgMode)shopList.add(new Tomato((char) 0,0,0,99999));
+		else shopList.add(new Wudi((char) 0,0,0,99999));
 	}
 
 }

@@ -46,7 +46,7 @@ public class Shop {
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
 			if(selectedView!=null)selectedView.setBackgroundResource(R.drawable.whitestroke);
-			view.setBackgroundResource(R.drawable.qingse);
+			view.setBackgroundResource(R.drawable.greenrect);
 			
 			selectedItem = FruitSet.shopList.get(position);
 			// itemadapter.notifyDataSetChanged();

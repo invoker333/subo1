@@ -13,6 +13,7 @@ import Enviroments.Grass;
 import Enviroments.GrassSet;
 import Enviroments.Toukui;
 import Weapon.AutoBubble;
+import Weapon.AutoBubbleGun;
 import Weapon.AutoBullet;
 import Weapon.AutoBulletGun;
 import Weapon.Gun;
@@ -35,7 +36,6 @@ public class Player extends JointCreature {
     private static final int _4 = 4;
 	private  final float baseGunLength = 64;
 	public    float GunAngle=4;
-    float hMax = getH();
     public  float px, py;
     private World world;
 
@@ -45,14 +45,10 @@ public class Player extends JointCreature {
     
     private boolean doubleClicked;
     public static boolean[] downData = new boolean[7];
-//    private ParticleSet ps;
     Creature controller;
-//    float speedMaxBack;
 	public Goal goal;
     private boolean gotGoal;
     
-    AutoBullet ab;
-	public int autoBulletTime;
 	private boolean tooLong;
 	
 	Tail footTail;
@@ -88,8 +84,8 @@ public class Player extends JointCreature {
         
 		pifeng=new Pifeng(this,5);
 		
-        footTail=new Tail(15,TexId.CANDLETAIL);
-        footTail.width=4;
+        footTail=new Tail(10,TexId.CANDLETAIL);
+        footTail.width=8;
         
 
 	}
@@ -117,7 +113,7 @@ public class Player extends JointCreature {
 	}
 	public void setEnemySet(EnemySet enemySet){
     	super.setEnemySet(enemySet);
-    	 ab=new AutoBubble(enemySet,  gra, this);
+//    	 ab=new AutoBubble(enemySet,  gra, this);
     	 extendsDate();// avoid gun has not enemySet
     
 //    	 testAutoBullet();
@@ -126,10 +122,14 @@ public class Player extends JointCreature {
     	this.ex1 = ex1;
     	this.ey1 = ey1;
     	
-    	if(autoBulletTime>0){
-    		ab.tringerCheck(ex1, ey1);
-    		autoBulletTime--;
-    	}
+    	if(gun!=null&&
+    			gun instanceof AutoBulletGun
+    			&&gun.gunCheck(ex1, ey1))return;
+    	
+//    	if(autoBulletTime>0){
+//    		ab.tringerCheck(ex1, ey1);
+//    		autoBulletTime--;
+//    	}
     	else {
     		if(flyTime<1)return;
     		
@@ -215,7 +215,7 @@ public class Player extends JointCreature {
         else if(dey >length)
         {
            downData[5]=true;
-           if (controller.isJumpAble()) controller.jump(-vtDestory);
+           if (controller.isJumpAble()) controller.jump(-vtDestory/getySpeedMax());
            if (isJumpAble()) jump(-vtDestory+1);
            touched=false;
            
@@ -306,7 +306,7 @@ public class Player extends JointCreature {
     	if(touched)drawGuideTail(gl);	
     	timerTask();
     	
-    	if(doubleClicked)shader.drawElement(gl);
+    	if(isDoubleClicked())shader.drawElement(gl);
      
    
        if(gun!=null)gun.drawElement(gl);
@@ -317,9 +317,9 @@ public class Player extends JointCreature {
     	   footTail.drawElement(gl);
 //    	   footTail.drawScale(gl);
        }
-       if(autoBulletTime>0)ab.drawElement(gl);
+//       if(autoBulletTime>0)ab.drawElement(gl);
        
-       final float alpw=0.2f;// alpha wudi
+       final float alpw=0.5f;// alpha wudi
        if(wudiTime>0){
     	   gl.glColor4f(alpw,alpw,alpw,alpw);
        		super.drawElement(gl);
@@ -448,6 +448,7 @@ public class Player extends JointCreature {
 
 
 	public void jump(float rate) {
+		if(doubleClicked)rate*=4f/3f;
 		super.jump(rate);
 		playSound(EXjump);
 //		Log.i("Player.jumpRate: "+rate);
@@ -489,7 +490,6 @@ public class Player extends JointCreature {
         
         if (isDead) {
 //        	///duoici
-//        	world.gameOver();
         }
         
 //        bloodSecondaryindex=0;
@@ -519,7 +519,23 @@ public class Player extends JointCreature {
 	}
     public void die() {
     	if(isDead)return;
-        jump();
+    	
+    	if(flyTime>0||toukuiTime>0||gaoTime>0){
+    		int ran=(int) (3*Math.random());
+    		switch(ran){
+    		case 0:flyTime=0;break;
+    		case 1:toukuiTime=0;this.getCap().setTextureId(TexId.CAP);break;
+    		case 2:gaoTime=0;break;
+    		}
+    		setLife(getLifeMax());
+    		wudiTime=wudiTimeBorn;
+    		
+    		return;// do not die as super
+    	}
+    		
+    	
+//       if(isJumpAble())
+    	   jump();
         playSound(death);
         setRgb(1, 0, 0);
         super.die();
@@ -613,7 +629,7 @@ public class Player extends JointCreature {
 //		else doubleClicked=false;
 		if(agoProgress!=50&&
 				Math.abs(progress-agoProgress)>2)
-			doubleClicked=true;
+			setDoubleClicked(true);
 			
 		agoProgress=progress;
 	}
@@ -628,15 +644,15 @@ public class Player extends JointCreature {
     	
         if (!downData[0] && !downData[1]) {
 			controller. stopMove();
-			doubleClicked=false;
+			setDoubleClicked(false);
 		}
         downIndex++;
 //    	Log.i("downIndex+clicked"+downIndex+doubleClicked);
     	
         if (downData[0]) {
             downData[1] = false;// ��ֹ�����ж�
-            if (doubleClicked)
-                controller.changeSpeed(-2);
+            if (isDoubleClicked())
+                controller.changeSpeed(-1.5f);
             else
             	controller. changeSpeed(-1);
             
@@ -646,8 +662,8 @@ public class Player extends JointCreature {
         }
         if (downData[1]) {
             downData[0] = false;// ��ֹ�����ж�
-            if (doubleClicked)
-            	controller. changeSpeed(2);        	
+            if (isDoubleClicked())
+            	controller. changeSpeed(1.5f);        	
             else
             	controller. changeSpeed(1);
             
@@ -964,17 +980,15 @@ public class Player extends JointCreature {
 
     private void goreEnemyCheck() {
         Creature e;
+        AnimationMove goreAni = gra.goreAni;
         for (int i = 0; i < enemyList.size(); i++) {
             e = enemyList.get(i);
-            if (e.x + e.getW() > getGra().getTop().data[0]
-                    && e.x - e.getW() < getGra().getTop().data[2]
-                    && e.y + e.getH() > getGra().getTop().data[1]
-                    && e.y - e.getH() < getGra().getTop().data[3]) {
-                e.jump((e.getySpeed()/2));
+            if (Math.abs(e.x-goreAni.x)<e.w+goreAni.w
+            		&&Math.abs(e.y-goreAni.y)<e.h+goreAni.h) {
                 // e.setVt(e.getVt() + ySpe/20f);
-                e.setxSpeed(e.getxSpeed() + getGra().getxSpe());
-                e.attacked((int) (10 * (getGra().getxSpe() + getGra().getySpe())));
-                // break;//��Сѹ��
+                e.setxSpeed(e.getxSpeed() + goreAni.getxSpeed());
+                e.setySpeed(e.getySpeed() + goreAni.getySpeed());
+                e.attacked((int) (10 * goreAni.getySpeed()));
             }
 
         }
@@ -1058,7 +1072,10 @@ public class Player extends JointCreature {
 			return;
 		}
 		else{
-			if(textureId== TexId.L)
+			if(textureId== TexId.SHUFUDAN) {
+				gun=new AutoBubbleGun(getEnemySet(),  gra, this, 10);
+			}
+			else if(textureId== TexId.ZIDONGDAN)
 				gun=new AutoBulletGun(getEnemySet(),  gra, this, 10);
 			else  if(textureId== TexId.S)
 				gun=new ShotGun(getEnemySet(),  gra, this, 10);
@@ -1123,14 +1140,21 @@ public class Player extends JointCreature {
 		flyTime+=time;
 		pifeng.setPosition(x, y);
 	}
-	public void refreshDownIndex() {
-		if(downIndex<20)doubleClicked=true;
+	public void doubleDownCheck() {
+		if(downIndex<20)setDoubleClicked(true);
 		downIndex=0;
 	}
 	public void StopDoubleClick() {
 		// TODO Auto-generated method stub
-		doubleClicked=false;
+		setDoubleClicked(false);
 		agoProgress=50;
+	}
+	public boolean isDoubleClicked() {
+		return doubleClicked;
+	}
+	public void setDoubleClicked(boolean doubleClicked) {
+		this.doubleClicked = doubleClicked;
+		shader.backToMaster();
 	}
 
 

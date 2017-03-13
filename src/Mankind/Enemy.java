@@ -37,7 +37,7 @@ public class Enemy extends Creature {
 	}
 	public void drawDeath(GL10 gl){
 		if (getAlpha() <= 0){
-			setPosition(0,0);
+//			setPosition(0,0);
 			return;// 死亡不画
 		}
 		super.drawDeath(gl);

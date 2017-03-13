@@ -23,7 +23,7 @@ public class AnimationMove extends Animation{
 			y=startY;
 		}
 		public void springCheck(AnimationMove wheel,int dsmax) {
-			springCheck( wheel,dsmax, 1f / 5f,2);
+			springCheck( wheel,dsmax, 1f / 5f,0.9f);
 		}
 
 		public void aCheck( AnimationMove wheel,float dsmax,float tanxingxishu,float zuni) {
@@ -41,8 +41,8 @@ public class AnimationMove extends Animation{
 		public void springCheck( AnimationMove wheel,float dsmax,float tanxingxishu,float zuni) {
 			springACheck(wheel, dsmax, tanxingxishu, zuni);
 			{
-				wheel.setxSpeed(wheel.getxSpeed() + aTanxing * aCos);
-				wheel.setySpeed(wheel.getySpeed() + aTanxing * aSin);
+				wheel.setxSpeed(wheel.getxSpeed()*zuni + aTanxing * aCos);
+				wheel.setySpeed(wheel.getySpeed()*zuni + aTanxing * aSin);
 			}
 		}
 		private void springACheck(AnimationMove wheel, float dsmax,

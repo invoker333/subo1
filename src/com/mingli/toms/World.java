@@ -262,6 +262,8 @@ public class World extends GLSurfaceView implements Runnable {
 		
 		lightningSet = new LightningSet(2);// ����
 		gra = new GrassSet(64f, map.charData, lightningSet,this);
+		animationList=gra.animationList;
+		
 		bg = new BackGround(mapIndex);
 		// bg = new BackGroundRoll(mapIndex);
 		// bg.setTextureId(TexId.ICE);
@@ -409,7 +411,7 @@ public class World extends GLSurfaceView implements Runnable {
 	public void onTouch() {
 		// Touch touch=new Touch(gun,ab,lightBallSet,player);
 		touch = new Touch(player);
-		this.setOnTouchListener(touchMove=new TouchMove(touchTail,player,gra.animationList));// move
+		this.setOnTouchListener(touchMove=new TouchMove(touchTail,player,this));// move
 		
 		OnTouchListener moveaction = null;
 		// this.setOnTouchListener(touch);// 触摸事件监听器
@@ -567,12 +569,16 @@ public class World extends GLSurfaceView implements Runnable {
 	}
 
 	public void drawElements(GL10 gl) {
-		for (int i = 0; i < drawList.size(); i++) {
-			drawList.get(i).drawElement(gl);
-		}
-		if(editMode&&touchMove!=null)touchMove.drawElement(gl);
+		try{
+			for (int i = 0; i < drawList.size(); i++) {
+				drawList.get(i).drawElement(gl);
+			}
+			if(editMode&&touchMove!=null)touchMove.drawElement(gl);
 //		if(paused)return;
-		timerTask();
+			timerTask();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	public void quitGame() {
@@ -797,9 +803,10 @@ public class World extends GLSurfaceView implements Runnable {
 	private Draw sucDraw;
 	public int timerMax=255;
 	private FireSet fireSet;
+	public ArrayList<Animation> animationList;
 	public static ArrayList<Animation> animationshopList;
 	
-	public static boolean editMode=true;
+	public static boolean editMode;
 	public static boolean rpgMode;
 
 	public void astarSearch(float x, float y) {
@@ -828,7 +835,7 @@ public class World extends GLSurfaceView implements Runnable {
 		Animation cloneA=(Animation) a.clone();
 		cloneA.setStartXY(Render.px+200, Render.py+200);
 		cloneA.setPosition(Render.px+200, Render.py+200);
-		gra.animationList.add(cloneA);
+		animationList.add(cloneA);
 		Log.i("clone A: x  "+cloneA.x+"y    "+cloneA.y);
 		drawList.add(cloneA);
 	}
@@ -858,8 +865,19 @@ public class World extends GLSurfaceView implements Runnable {
 
 	private void setGameMusic() {
 		// TODO Auto-generated method stub
-		music.pauseBGM();
-		music.setBGM(R.raw.bolailuo);
+//		music.pauseBGM();
+		music.setBGM(R.raw.paopaotang2);
 		music.setLooping(true);
+	}
+
+	public void addDrawAnimation(Animation newAnimation) {
+		// TODO Auto-generated method stub
+		drawList.add(newAnimation);
+		
+	}
+
+	public void removeDraw(Animation editTarget) {
+		// TODO Auto-generated method stub
+		drawList.remove(editTarget);
 	}
 }

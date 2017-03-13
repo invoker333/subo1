@@ -2,6 +2,10 @@ package Weapon;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import com.mingli.toms.Log;
+import com.mingli.toms.World;
+
+import element2.TexId;
 import Enviroments.GrassSet;
 import Mankind.Creature;
 import Mankind.EnemySet;
@@ -9,6 +13,7 @@ import Mankind.EnemySet;
 public class AutoBubble extends AutoBullet {
 	public AutoBubble(EnemySet es, GrassSet gra,Creature s) {
 		super(es,  gra, s);
+		setTextureId(TexId.BLUE);
 		// TODO Auto-generated constructor stub
 		frameMax =180;
 		speedBackup[0] = speed;
@@ -42,21 +47,23 @@ public class AutoBubble extends AutoBullet {
 	}
 
 	boolean firstBlood = true;
+	private Creature targetEnemy;
 
 	protected void gotTarget(Creature enemy) {
 		if (firstBlood) {
+			targetEnemy=enemy;
 			float dSize = enemy.getW() > enemy.getH() ? enemy.getW() - getW()
 					: enemy.getH() - getH();
 			fruSpeed = (float) Math.sqrt(2 * fruA * dSize);
 			firstBlood = false;
 		}
-		if(frame++>frameMax){
-			resetBullet();return;
-		}
-		speed = speed *0.9f;
+	
 		if(es.attacked(enemy, attack)){
 			resetBullet();
 		};
+		
+		speed = speed *0.9f;
+	
 //		enemy.setxSpeed(speed);
 //		enemy.setySpeed(speed);
 //		final tanxingxishu=0.1f;
@@ -70,12 +77,19 @@ public class AutoBubble extends AutoBullet {
 	private float dLength;
 
 	public void drawElement(GL10 gl) {
+		if(!firstBlood&&isFire()) {
+			if(frame++>frameMax||targetEnemy.isDead){
+				resetBullet();return;
+			}
+		}
+		
 		if (fruSpeed > 0) {
 			fruSpeed -= fruA;
 			dLength += fruSpeed;
 			fruTime = dLength / getW();
 			fruTimeBack = 1 / fruTime;
 		}
+//		if(fruTime==0)Log.i("BuubbleScaleTime=="+fruTime);
 		move();
 		gravity();
 		shot();

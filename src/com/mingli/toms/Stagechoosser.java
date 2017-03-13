@@ -1,13 +1,9 @@
 package com.mingli.toms;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.content.Context;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -25,8 +21,8 @@ public class Stagechoosser {
 	private MenuActivity acti;
 	private int itemCount = 4;
 	private View stageChooserView;
-
-	Stagechoosser(MenuActivity acti) {
+	public Stagechoosser(){}
+	public Stagechoosser(MenuActivity acti) {
 		this.acti = acti;
 		// this.click = click;
 		// this.check = check;

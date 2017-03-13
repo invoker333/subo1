@@ -407,6 +407,12 @@ setPosition(x, y);
 	public void sethEdge(float hEdge) {
 		this.hEdge = hEdge;
 	}
+	public void drawTranElement(GL10 gl) {
+		// TODO Auto-generated method stub
+		gl.glTranslatef(x, y, 0);
+		baseDrawElement(gl);
+		gl.glTranslatef(-x, -y, 0);
+	}
 
 
 

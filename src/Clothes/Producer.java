@@ -40,7 +40,7 @@ public class Producer {
 				long id) {
 			if (selectedView != null)
 				selectedView.setBackgroundResource(R.drawable.whitestroke);
-			view.setBackgroundResource(R.drawable.qingse);
+			view.setBackgroundResource(R.drawable.greenrect);
 
 			selectedItem = World.animationshopList.get(position);
 			// itemadapter.notifyDataSetChanged();

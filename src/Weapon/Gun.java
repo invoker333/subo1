@@ -45,9 +45,6 @@ public class Gun extends Set {// 子弹
 		// ps=new ParticleSet(gra, count);
 	}
 
-	public void loadSound() {
-		setSoundId(MusicId.gun);
-	}
 
 	protected void setBullet(int bCount) {
 		bList = new ArrayList<Bullet>();
@@ -69,6 +66,7 @@ public class Gun extends Set {// 子弹
 	}
 
 	public void gunCheck(float angle){
+		this.angle=angle;
 		
 		if (bulletIndex >= bList.size())
 			bulletIndex = 0;// 子弹重置计数器
@@ -78,20 +76,20 @@ public class Gun extends Set {// 子弹
 		if (firstBullet.isFire())
 			return;// 子弹停止的时候
 		
-		this.angle=angle;
+		
 
 		
 		playSound();
 		tringerCheck(firstBullet);
 	}
-	public void gunCheck(float ex, float ey) {
+	public boolean gunCheck(float ex, float ey) {
 		if (bulletIndex >= bList.size())
 			bulletIndex = 0;// 子弹重置计数器
 		
 		Bullet firstBullet = bList.get(bulletIndex++);
 //		Log.i("mBullet","frame"+mainBullet.frame+" fire "+mainBullet.fire);
 		if (firstBullet.isFire())
-			return;// 子弹停止的时候
+			return false;// 子弹停止的时候
 		
 		ex = Render.px + ex;
 		ey = Render.py + ey;
@@ -101,12 +99,13 @@ public class Gun extends Set {// 子弹
 		angle = Math.atan2(dy, dx);
 		
 		double s = 500;
-		if (s < et) return; // 只在范围内才发射
-		
+		if (s < et) return false; // 只在范围内才发射
 
 		
-		tringerCheck(firstBullet);
 		playSound();
+		
+		tringerCheck(firstBullet);
+		return true;
 	}
 
 	protected void tringerCheck(Bullet bullet) {

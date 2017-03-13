@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import com.mingli.toms.MusicId;
 import com.mingli.toms.World;
 
 import Element.Animation;
@@ -128,6 +129,7 @@ class Lightninig extends Animation{
 		gl.glColor4f(1, 1, 1, 1);
 	}
 	void tringer(float x,float y){
+		playSound(MusicId.lightNing);
 		angle = (int) (360*Math.random());
 		this.x=x;
 		this.y=y;
@@ -136,6 +138,7 @@ class Lightninig extends Animation{
 		alpha=speedMax;
 		alphaSpeed= speedMax;
 		for(Creature c:cList){
+			if(!c.isDead)
 			if(Math.abs(c.x-x)<getW()+c.getwEdge()&&
 					Math.abs(y-c.y)<c.gethEdge()+getH())
 				c.attacked(attack);

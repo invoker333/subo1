@@ -188,7 +188,7 @@ public class JointCreature extends Creature{
 					gunDraw.setAngle(180 - angle);
 				else if (d < -90)
 					gunDraw.setAngle(-180 - angle);
-				Log.d("180-angle" + (180 - d), "180+angle" + (180 + angle));
+//				Log.d("180-angle" + (180 - d), "180+angle" + (180 + angle));
 			}
 
 		}

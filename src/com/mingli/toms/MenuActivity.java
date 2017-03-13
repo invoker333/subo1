@@ -219,6 +219,9 @@ public class MenuActivity extends Activity {
 		private void gameover() {
 			// TODO Auto-generated method stub
 			save();
+			gameMenu.removeView();//没啥用
+//			ad.showInterstitial();
+//			gameMenu.addView();
 			gameMenu.gameover();
 		}
 
@@ -298,7 +301,7 @@ public class MenuActivity extends Activity {
 					animationShop.hideCheck();
 				}
 				
-				if (gameMenu.isHided()){
+				if (gameMenu!=null&&gameMenu.isHided()){
 					pauseGame();
 					gameMenu.showWindow(world);
 				}else resumeGame();
@@ -617,15 +620,15 @@ public class MenuActivity extends Activity {
 
 	public boolean getLifeFree() {
 		// TODO Auto-generated method stub
+		ad.showInterstitial();
 		if(isNetworkAvailable(this)){
-			ad.showInterstitial();
 			return true;
 		}else {
 			showDialog("网络错误", "请在联网状态下观看广告复活", R.drawable.coinicon);
 		}
 		if(World.rpgMode){
 			btnc.freshItem();
-//			MenuActivity.showDialog("", "复活蛋已发放", R.drawable.egg);
+			MenuActivity.showDialog("", "复活蛋已发放", R.drawable.egg);
 			FruitSet.pickedList.add(FruitSet.shopList.get(0));
 		}
 		return false;

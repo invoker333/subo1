@@ -12,7 +12,7 @@ import com.mingli.toms.World;
 
 public class Creature extends AnimationGrass {
 	protected   float DEATHSPEED = 0.032f;
-	private int jumpHeight = 256;//
+	private int jumpHeight = 192;//
 	private float g = 1;//
 	private float ySpeedMax;
 	private float amLand = 1f;
@@ -103,12 +103,12 @@ public class Creature extends AnimationGrass {
 		}
 	}
 
-	void changeSpeed(int times) {
-		if (times<0)
-			times = -times;
+	void changeSpeed(float f) {
+		if (f<0)
+			f = -f;
 		
-		setxSpeedMin(-times * speedSizeMax);
-		setxSpeedMax(times * speedSizeMax);
+		setxSpeedMin(-f * speedSizeMax);
+		setxSpeedMax(f * speedSizeMax);
 		
 		aniStepCheck();
 	}
@@ -125,7 +125,7 @@ public class Creature extends AnimationGrass {
 		
 		float h1 = getH();
 		setH(agoMax[1] * rate);
-		y = y + getH() - h1 + 0.2f;
+		y = y + getH() - h1 + 0.25f;
 		
 		
 
@@ -340,12 +340,7 @@ public class Creature extends AnimationGrass {
 	}
 
 	public void jump(float rate) {
-		if (rate > 1)
-			setySpeed(rate);
-		else if (rate > 0)// sqrt 为零 就是bug 一直出现的原因
-			setySpeed( (float) Math.sqrt(2 * jumpHeight * rate *g));
-		
-		
+		setySpeed( (float) Math.sqrt(2 * jumpHeight * rate *g));
 		changeToAirData();
 	}
 

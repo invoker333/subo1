@@ -9,6 +9,7 @@ import com.mingli.toms.World;
 import element2.TexId;
 import Element.AnimationGrass;
 import Element.AnimationMove;
+import Enviroments.BigGrass;
 import Enviroments.Grass;
 import Enviroments.GrassSet;
 import Mankind.Creature;
@@ -97,7 +98,8 @@ public class Bullet extends AnimationMove{
 				 &&yy>=0&&yy<gra.map[0].length){
 			 int id = gra.map[xx][yy];
 			 if(id!=gra.getZero()
-					 &&gra.getgList().get(id).notBroken){
+					 &&gra.getgList().get(id).notBroken
+					 &&!(gra.getgList().get(id) instanceof BigGrass)){
 				 Grass grass= gra.getgList().get(id);
 				enemyGrass.setPosition(grass.x,grass.y);
 				 gotTarget(enemyGrass);

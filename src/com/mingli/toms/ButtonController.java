@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SlidingDrawer;
@@ -143,6 +144,7 @@ public class ButtonController {
 				} else 
 					if (event.getAction() == MotionEvent.ACTION_UP) {
 					Player.downData[3] = false;
+//					((ProgressBar) acti.findViewById(R.id.jumpSeekbar1)).setProgress(75);
 				}
 				break;
 			case R.id.attack:
@@ -242,7 +244,7 @@ public class ButtonController {
 			if(seekBar.getId()==R.id.jumpSeekbar1)Player.downData[3] = true;
 			
 			else if(seekBar.getId()==R.id.directionSeekBar){
-				player.refreshDownIndex();
+				player.doubleDownCheck();
 			} 
 		}
 

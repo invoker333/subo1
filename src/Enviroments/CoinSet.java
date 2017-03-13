@@ -58,7 +58,6 @@ public class CoinSet extends FruitSet {
 	}
 	protected void timerTask(){
 		Fruit fruit;
-		topGrassData = gs.getTop().data;// 没有这句就访问不了 权限问题？
 		for (int i = 0; i < fruitList.size(); i++) {
 			fruit = fruitList.get(i);
 			pick(fruit);

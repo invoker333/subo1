@@ -7,6 +7,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import Element.Animation;
 import Element.AnimationGrass;
+import Element.AnimationMove;
 import Element.Draw;
 import Element.FireSet;
 import Mankind.Baller;
@@ -236,10 +237,10 @@ public class GrassSet extends Set{
 				case 77:fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.M));break;//M 
 				case 79:fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.O));break;//O normal bullet
 				case 83:fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.S));break;//S 
-				case 'L':fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.L));break;//L
-				case 84:fruitList.add(new Tomato(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid, 500));break;//T 加血道具
+				case 'L':fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.ZIDONGDAN));break;//L
+				case 84:if(World.rpgMode)fruitList.add(new Tomato(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid, 500));break;//T 加血道具
 				case 110:fruitList.add(new Toukui(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,9999));break;//n toukui
-				case 'x':fruitList.add(new FruitAuto(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,9999));break;//
+				case 'x':fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.SHUFUDAN));break;//
 				case 'V':fruitList.add(new Wudi(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;//
 				case 65:
 					player = new Player(bi, this, world,(x+0.5f)*grid,(mapHeight-y)*grid);
@@ -304,7 +305,6 @@ public class GrassSet extends Set{
 		enemyList.addAll(emplacementList);
 		
 		setGrassId(getgList().size());
-		gList.add(top);
 		
 		sort();//添加并调整绘画顺序
 		Collections.reverse(burrorList);//反续
@@ -323,6 +323,13 @@ public class GrassSet extends Set{
 		animationList.addAll(fruitList);
 		animationList.addAll(enemyList);
 		animationList.addAll(gList);
+		
+		topAni=new AnimationMove();
+		animationList.add(goreAni=new AnimationMove());
+		goreAni.w=32;
+		goreAni.h=32;
+		goreAni.loadTexture();
+		
 		
 		if(goal==null)goal=new Goal(' ', -50, 0);
 		animationList.add(goal);
@@ -441,7 +448,9 @@ public class GrassSet extends Set{
 	public void drawElement(GL10 gl) {
 		grassTail.drawElement(gl);
 		if(gore) {
-			topAction();
+//			topAction();
+			topAni.springCheck(goreAni, 0,3f / 5f,0.9f);
+			goreAni.drawElement(gl);
 		}
 		goal.drawElement(gl);
 		for(int i=0;i<drawList.size();i++){
@@ -471,45 +480,20 @@ public class GrassSet extends Set{
 		ps.drawElement(gl);
 
 	}
-	private void topAction() {
-		ySpe-=g;
-		xSpe-=a;
-		goreHeight+=ySpe;
-		top.data[1]+=ySpe;
-		top.data[3]+=ySpe;
-		top.data[0]+=xSpe;
-		top.data[2]+=xSpe;
-
-		if(goreHeight<=0){
-			goreHeight=0;ySpe=0;
-			gore=false;
-			sourceGrass.setTextureId(getTextureId());//
-//			top.setTextureId(TexId.BLANK);
-			clone(top,sourceGrass);
-		}
-		top.syncTextureSize();
-	}
 	public void run1(){
 		setLiving(true);
 		while(isRunning()){
-			topAction();
+//			topAction();
 			World.timeRush();
 		}
 		setLiving(false);
 	}
 
 
-	private Grass top=new Grass(new float[]{0,0,0,0});
-	Grass sourceGrass=new Grass(new float[]{0,0,0,0});
 	private boolean gore;//顶
-	private float goreHeight;
-//	private float ySpeMax;
-	float g,a;
-	private float xSpe;
-	private float ySpe;
-	private int topId;
 //	private float xMax;// x s max not grid index
 	private ArrayList<Emplacement> emplacementList;
+	private int topId;
 	public void loadSound() {
 		setSoundId(MusicId.gore);
 	}
@@ -518,31 +502,24 @@ public class GrassSet extends Set{
 	public void playSound() {
 		music.playSound(getSoundId(), 0);
 	}
-	public void up(int topId,float xSpe,float ySpe) {
+	public void up(int topId,float xSpeed,float ySpeed) {
 		this.topId = topId;
-		this.xSpe = xSpe;
+		Grass g=gList.get(topId);
+		
 		gore=true;			// gore start
-		a=xSpe/6f;
-		g=ySpe/6f;
 		playSound();
-		goreHeight=0;// height count =0
-
-		sourceGrass.setTextureId(getTextureId());//还原原id
-
-		sourceGrass= gList.get(topId);//  a new grass
-		setTextureId(sourceGrass.getTextureId());// source's texid store in system
-
-		clone(top,sourceGrass);//line1   top= new source grass		
-
-		sourceGrass.setTextureId(TexId.BLANK);//line2  source grass hide on bush
-
+		
+		topAni.setPosition(g.x, g.y);
+		goreAni.setPosition(g.x, g.y);
+		
+		goreAni.setTextureId(g.getTextureId());
+		
+		goreAni.setxSpeed(xSpeed);
+		goreAni.setySpeed(ySpeed);
+//		goreAni.setxSpeed(5);
+//		goreAni.setySpeed(5);
 	}
 
-	private void clone(Grass top, Grass grass) {
-		top.data=grass.data.clone();
-		top.setTextureId(grass.getTextureId());
-		top.setRgb(grass.getRed(), grass.getGreen(), grass.getBlue());
-	}
 	public int getGrassId() {
 		return grassId;
 	}
@@ -607,43 +584,6 @@ public class GrassSet extends Set{
 	public int getZero() {
 		return zero;
 	}
-
-//	public float getSx() {
-//		return sx;
-//	}
-//
-//	public void setSx(float sx) {
-//		this.sx = sx;
-//	}
-//	private void setStartPosition(char bi,float sx, float sy) {
-//		this.sx = sx;
-//		this.sy = sy;
-//	}
-//	public float getSy() {
-//		return sy;
-//	}
-//
-//	public void setSy(float sy) {
-//		this.sy = sy;
-//	}
-	public Grass getTop() {
-		return top;
-	}
-	public void setTop(Grass top) {
-		this.top = top;
-	}
-	public float getGoreHeight() {
-		return goreHeight;
-	}
-	public void setGoreHeight(float goreHeight) {
-		this.goreHeight = goreHeight;
-	}
-//	public float getySpeMax() {
-//		return ySpeMax;
-//	}
-//	public void setySpeMax(float speedMax) {
-//		this.ySpeMax = speedMax;
-//	}
 	public Goal getGoal() {
 		return goal;
 	}
@@ -668,18 +608,6 @@ public class GrassSet extends Set{
 	}
 	public void setViewGrid(float viewGrid) {
 		this.viewGrid = viewGrid;
-	}
-	public float getySpe() {
-		return ySpe;
-	}
-	public void setySpe(float ySpe) {
-		this.ySpe = ySpe;
-	}
-	public float getxSpe() {
-		return xSpe;
-	}
-	public void setxSpe(float xSpe) {
-		this.xSpe = xSpe;
 	}
 	public float getRate(int landId) {
 		int textureId=gList.get(landId).getTextureId();
@@ -707,6 +635,8 @@ public class GrassSet extends Set{
 	}
 	ParticleSet ps;
 	public Player player;
+	private AnimationMove topAni;// master
+	public AnimationMove goreAni;// springer
 	
 	public void particleCheck(int tringerId, int i, Creature player) {
 		// TODO Auto-generated method stub

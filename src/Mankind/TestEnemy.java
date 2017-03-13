@@ -8,6 +8,7 @@ public class TestEnemy extends Creature{
 
 	public TestEnemy(GrassSet gra, float x, float y) {
 		super(' ',gra, x, y);
+		setG(0);
 		loadTexture();
 		setLifeMax(getLifeMax() * 10);// avoid blood play
 		// TODO Auto-generated constructor stub

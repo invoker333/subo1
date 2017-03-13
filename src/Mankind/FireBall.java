@@ -26,6 +26,11 @@ public class FireBall extends Enemy{
 	public void drawElement(GL10 gl){
 		super.drawElement(gl);
 		fireSet.drawElement(gl);
+		if(y<fireSet.h){
+//			y=0;
+			jump();
+			playSound();
+		}
 	}
 	protected void afterInit(){
 		setG(0.3f);
@@ -40,6 +45,7 @@ public class FireBall extends Enemy{
 		sizeCheck();
 		setAnimationFinished(true);// �ܹ�����
 		setTexture();
+		setW(-1);setH(-1);
 	}
 	  public void attackAnotherOne(EnemySet es){
 		 Creature another;
@@ -61,11 +67,6 @@ public class FireBall extends Enemy{
 	}
 	protected void gravityCheck(){
 //		if(false)super.gravityCheck();
-		if(y<fireSet.h){
-//			y=0;
-			playSound();
-			jump();
-		}
 	}
 	protected void moveCheck(){
 		angleSpeed=ySpeed;
