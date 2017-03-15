@@ -15,7 +15,7 @@ import element2.TexId;
 
 public class AutoBullet extends ToBigBullet {
 	private Creature player;
-	float speed = 10;
+	float speed = 15;
 	private Creature enemy;
 //	private int enemyId;
 	public AutoBullet(EnemySet es, GrassSet gra,Creature player,float speed) {

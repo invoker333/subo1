@@ -19,7 +19,8 @@ public class AutoBubble extends AutoBullet {
 		speedBackup[0] = speed;
 		speedBackup[1] = getW();
 		speedBackup[2] = getH();
-		attack=1;
+		speed=10;
+		attack=World.baseAttack/20;
 	}
 
 	float speedBackup[] = new float[3];
@@ -58,8 +59,8 @@ public class AutoBubble extends AutoBullet {
 			firstBlood = false;
 		}
 	
-		if(es.attacked(enemy, attack)){
-			resetBullet();
+		if(frame%20==0&&es.attacked(enemy, attack)){
+			resetBullet(); return;
 		};
 		
 		speed = speed *0.9f;

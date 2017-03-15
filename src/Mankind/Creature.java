@@ -125,7 +125,7 @@ public class Creature extends AnimationGrass {
 		
 		float h1 = getH();
 		setH(agoMax[1] * rate);
-		y = y + getH() - h1 + 0.25f;
+		y = y + getH() - h1 + g;
 		
 		
 

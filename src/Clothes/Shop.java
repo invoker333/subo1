@@ -148,7 +148,7 @@ public class Shop {
 					}
 				} else {
 					if (acti.coinCount - selectedItem.cost < 0)
-						MenuActivity.showDialog("", "金币不够",R.drawable.coin);
+						MenuActivity.showDialog("", "金币不够",R.drawable.coinicon);
 					else if (acti.chance - selectedItem.chancecost < 0)
 						MenuActivity.showDialog("", "生命能量",R.drawable.egg);
 				}

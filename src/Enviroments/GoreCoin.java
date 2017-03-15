@@ -1,5 +1,7 @@
 package Enviroments;
 
+import java.util.ArrayList;
+
 import javax.microedition.khronos.opengles.GL10;
 
 import Mankind.Creature;
@@ -7,36 +9,29 @@ import Mankind.Player;
 
 public class GoreCoin extends Coin{
 
-	private float dy;
-	private float dx;
-	static int v0=(int) Math.sqrt(2*64);
+	private float ySpeed;
+	private float g;
 	GoreCoin(float x, float y) {
 		super(x, y);
-		
+		visible=false;
 		// TODO Auto-generated constructor stub
 	}
-	public void setAnimationFinished(boolean animationFinished){
-		super.setAnimationFinished(animationFinished);
+	public void use(Player player, ArrayList<Fruit> pickedList) {
+		// TODO Auto-generated method stub
+//		super.use(player, pickedList);
+		g=1;
+		angleSpeed=10;
+//		ySpeed=(float) Math.sqrt(2*g*128);
+		ySpeed=Math.abs(player.getySpeed()/player.getGra().getSpeedBack()*.8f);
+		visible=true;
 	}
-	public boolean loadAble(Player player){
-		
-		playSound();
-		player.increaseScoreBy(score);
-		xSpeed=(float) (Math.random()-0.5);
-		ySpeed=player.getySpeed()*0.2f+v0;
-		g=player.getG();
-		return false;
-	}
-	float xSpeed,ySpeed,g;
 	public void drawElement(GL10 gl){
-		gl.glTranslatef(dx+=xSpeed, dy+=(ySpeed-=g), 0);
-		super.drawElement(gl);
-		gl.glTranslatef(-dx, -dy, 0);
-		if(ySpeed<-0){
-			xSpeed=0;
-			ySpeed=0;
-			g=0;
-			setAnimationFinished(false);
+		if(!visible)return;
+		{
+			if(ySpeed<0)visible=false;
+			y+=ySpeed;
+			ySpeed-=g;
 		}
+		super.drawElement(gl);
 	}
 }

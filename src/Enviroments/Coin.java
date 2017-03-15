@@ -1,6 +1,8 @@
 package Enviroments;
 
 
+import java.util.ArrayList;
+
 import Mankind.Player;
 
 import com.mingli.toms.Log;
@@ -30,6 +32,12 @@ public class Coin extends SixFruit {
 	}
 	void init() {
 		loadTexture(TexId.COIN);
+	}
+	public void use(Player player, ArrayList<Fruit> pickedList) {
+		// TODO Auto-generated method stub
+		super.use(player, pickedList);
+		visible=false;
+//		Log.i("Coin has ben used");
 	}
 	public boolean loadAble(Player player){
 		player.increaseScoreBy(score);

@@ -106,7 +106,7 @@ class FruitFly extends ShakeFruit{
 		// TODO Auto-generated constructor stub
 		this.time = time;
 		name="无敌果";
-		setGoodsCost(20,20);
+		setGoodsCost(100,100);
 	}
 	public Wudi(char bi,float x, float y) {
 		this(bi,x,y,10*60);

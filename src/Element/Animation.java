@@ -90,6 +90,7 @@ setPosition(x, y);
 	}
 	public void setStartXY(float x,float y){
 		startX=x;startY=y;
+		this.x=x;this.y=y;
 	}
 	
 	public void loadTexture(int textureId){

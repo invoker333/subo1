@@ -28,6 +28,7 @@ public class CoinSet extends FruitSet {
 
 	protected void picked(Fruit coin) {
 		world.increaseCoin(((Coin) coin).getCoinCount());
+		coin.use(player, pickedList);
 		fruitList.remove(coin);//2016.10
 		effectList.add(coin);
 		coin.playSound();
@@ -47,12 +48,17 @@ public class CoinSet extends FruitSet {
 	public void drawElement(GL10 gl) {
 		for (int i = 0; i < fruitList.size(); i++) {
 			Fruit coin = fruitList.get(i);
-			if (coin.visible)
-				if (coin.x > Player.gx1 && coin.x < Player.gx2
-						&& coin.y > Player.gy1 && coin.y < Player.gy2) {
-
-					coin.drawElement(gl);
-				}
+			if (coin.x > Player.gx1 && coin.x < Player.gx2
+					&& coin.y > Player.gy1 && coin.y < Player.gy2) {
+				coin.drawElement(gl);
+			}
+		}
+		for (int i = 0; i < effectList.size(); i++) {
+			Fruit coin = effectList.get(i);
+			if (coin.x > Player.gx1 && coin.x < Player.gx2
+					&& coin.y > Player.gy1 && coin.y < Player.gy2) {
+				coin.drawElement(gl);
+			}
 		}
 		timerTask();
 	}
@@ -61,6 +67,10 @@ public class CoinSet extends FruitSet {
 		for (int i = 0; i < fruitList.size(); i++) {
 			fruit = fruitList.get(i);
 			pick(fruit);
+		}
+		for (int i = 0; i < effectList.size(); i++) {
+			fruit = effectList.get(i);
+			if(!fruit.visible)effectList.remove(i);
 		}
 	}
 

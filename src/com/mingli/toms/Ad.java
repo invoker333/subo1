@@ -25,28 +25,35 @@ public class Ad {
 
 	public Ad(Activity acti) {
 		this.acti = acti;
-		this.adl =new AdListener(null);
+		this.adl = new AdListener(null);
 	}
+
 	public void removeView(View view) {
 		// TODO Auto-generated method stub
 		if (view != null && view.getParent() != null) {
 			((ViewGroup) view.getParent()).removeView(view);
-//			((ViewGroup) view.getParent()).removeViewAt(index);
-//			((ViewGroup) view.getParent()).removeAllViews();
+			// ((ViewGroup) view.getParent()).removeViewAt(index);
+			// ((ViewGroup) view.getParent()).removeAllViews();
 		}
-//		addView(view);
+		// addView(view);
 	}
+
 	public void showBanner(ViewGroup container) {
 		if (null == getBannerview()) {
-//			println("---- bannerAd start to show ----");
+			// println("---- bannerAd start to show ----");
 			setBannerview(new BDBannerAd(acti, SDK_APP_KEY, SDK_BANNER_AD_ID));
 			getBannerview().setAdListener(adl);
 			// ViewGroup container = (ViewGroup) findViewById(R.id.container);
 			getBannerview().setAdSize(BDBannerAd.SIZE_FLEXIBLE);
 		} else {
-//			println("---- bannerAd is showing, should hide first");
+			// println("---- bannerAd is showing, should hide first");
 		}
-		if(container!=null)container.addView(getBannerview());
+		try {
+			if (container != null)
+				container.addView(getBannerview());
+		} catch (Exception e) {
+
+		}
 	}
 
 	void hideBanner(ViewGroup container) {
@@ -62,31 +69,43 @@ public class Ad {
 	}
 
 	public void loadInterstitial() {
-//		println("---- interstitialAd is loading ----");
+		// println("---- interstitialAd is loading ----");
 		if (null == interstitialAd) {
 			interstitialAd = new BDInterstitialAd(acti, SDK_APP_KEY,
 					SDK_INTERSTITIAL_AD_ID);
 			interstitialAd.setAdListener(adl);
 		}
-		interstitialAd.loadAd();
+		try {
+			interstitialAd.loadAd();
+		} catch (Exception e) {
+
+		}
 	}
 
 	public void showInterstitial() {
-		if (null == interstitialAd || !interstitialAd.isLoaded()) {
-//			println("---- interstitialAd is not ready ----");
-		} else {
-//			println("---- interstitialAd start to show ----");
+		try {
+			if (null == interstitialAd || !interstitialAd.isLoaded()) {
+				// println("---- interstitialAd is not ready ----");
+			} else {
+				// println("---- interstitialAd start to show ----");
+			}
 			interstitialAd.showAd();
+		} catch (Exception e) {
 		}
 	}
 
 	void hideInterstitial() {
-		if (interstitialAd != null) {
-			interstitialAd.destroy();
-			interstitialAd = null;
-//			println("---- interstitialAd hided ----");
-		} else {
-//			println("---- interstitialAd not ready ----");
+		try {
+
+			if (interstitialAd != null) {
+				interstitialAd.destroy();
+				interstitialAd = null;
+				// println("---- interstitialAd hided ----");
+			} else {
+				// println("---- interstitialAd not ready ----");
+			}
+		} catch (Exception e) {
+
 		}
 
 	}
@@ -104,7 +123,7 @@ public class Ad {
 				appWallAd.doShowAppWall();
 				println("请选择感兴趣的内容");
 			} else {
-				println("应用墙没准备好");
+				println("请连接网络稍等");
 				loadAppWallAd();
 			}
 		}
@@ -136,7 +155,7 @@ public class Ad {
 
 	void println(String string) {
 		Toast.makeText(acti, string, Toast.LENGTH_SHORT).show();
-//		adl.println(string);
+		// adl.println(string);
 	}
 
 	public BDAppWallAd getAppWallAd() {
@@ -146,13 +165,18 @@ public class Ad {
 	public void setAppWallAd(BDAppWallAd appWallAd) {
 		this.appWallAd = appWallAd;
 	}
+
 	public BDBannerAd getBannerview() {
 		return bannerview;
 	}
+
 	public void setBannerview(BDBannerAd bannerview) {
 		this.bannerview = bannerview;
 	}
-	class AdListener implements  BDBannerAd.BannerAdListener, BDInterstitialAd.InterstitialAdListener, BDSplashAd.SplashAdListener {
+
+	class AdListener implements BDBannerAd.BannerAdListener,
+			BDInterstitialAd.InterstitialAdListener,
+			BDSplashAd.SplashAdListener {
 		private TextView tv;
 
 		public AdListener(TextView tv) {
@@ -161,37 +185,37 @@ public class Ad {
 
 		@Override
 		public void onAdvertisementDataDidLoadFailure() {
-			this.println( "    ad did load failure");
+			this.println("    ad did load failure");
 		}
 
 		@Override
 		public void onAdvertisementDataDidLoadSuccess() {
-			this.println( "    ad did load success");
+			this.println("    ad did load success");
 		}
 
 		@Override
 		public void onAdvertisementViewDidClick() {
-			this.println( "    ad view did click");
+			this.println("    ad view did click");
 		}
 
 		@Override
 		public void onAdvertisementViewDidShow() {
-			this.println( "    ad view did show");
+			this.println("    ad view did show");
 		}
 
 		@Override
 		public void onAdvertisementViewWillStartNewIntent() {
-			this.println( "    ad view will new intent");
+			this.println("    ad view will new intent");
 		}
 
 		@Override
 		public void onAdvertisementViewDidHide() {
-			this.println( "    ad view did hide");
+			this.println("    ad view did hide");
 		}
 
-		void println( String string) {
-//			Toast.makeText(context, string, Toast.LENGTH_SHORT).show();
-//			tv.append(string+"\n");
+		void println(String string) {
+			// Toast.makeText(context, string, Toast.LENGTH_SHORT).show();
+			// tv.append(string+"\n");
 		}
 	}
 }

@@ -10,8 +10,8 @@ public class Log{
 	public static void v(String str,String str1){
 		android.util.Log.v(str, str1);
 	}
-	public static void d(String str,String str1){
+	public static void d(String str1){
 		// TODO Auto-generated method stub
-		android.util.Log.d(str, str1);
+		android.util.Log.d("", str1);
 	}
 }

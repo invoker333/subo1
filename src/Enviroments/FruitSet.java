@@ -150,11 +150,15 @@ public class FruitSet extends Set {
 		AnimationMove goreAni = gs.goreAni;
 		if (Math.abs(fruit.x - player.x) < fruit.getW() + player.getwEdge()
 				&& Math.abs(fruit.y - player.y) < fruit.getH() + player.getH()
-				|| gs.isGore() && Math.abs(fruit.x-goreAni.x)<fruit.w+goreAni.w
-				&&Math.abs(fruit.y-goreAni.y)<fruit.h+goreAni.h) {
+				) {
 			picked(fruit);
 		}
 
+		if(gs.isGore() && Math.abs(fruit.x-goreAni.x)<fruit.w+goreAni.w
+		&&Math.abs(fruit.y-goreAni.y)<fruit.h+goreAni.h){
+			gs.setGore(false);
+			picked(fruit);
+		}
 	}
 
 	protected void picked(Fruit fruit) {

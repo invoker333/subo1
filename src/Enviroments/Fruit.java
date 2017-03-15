@@ -59,7 +59,6 @@ public class Fruit extends Animation{
 	}
 
 	public void effectCheck(Player p,ArrayList<Fruit>pickedList) {
-		setAnimationFinished(true);
 	}
 	public float getBlue() {
 		return blue;

@@ -92,7 +92,7 @@ public class TexId{
 	public static int HIKARI;
 	public static int HIKARI2;
 	public static int EXPRESSION;
-	public static int ICE;
+//	public static int ICE;
 	public static int RAIN;
 	public static int SNOW;
 	public static int WIND;
@@ -107,7 +107,7 @@ public class TexId{
 	public static int GUN;
 	public static int BLOOD;
 	public static int FIRE;
-	public static int FIRE2;
+//	public static int FIRE2;
 	public static int CANDLEPOR;
 	public static int SEA;
 	public static int PAOTA;
@@ -130,8 +130,10 @@ public class TexId{
 	public static int FRUITFLY;
 	public static int ZIDONGDAN;
 	public static int SHUFUDAN;
+	public static int GOLDENBANK;
 	public  void loadTextureId(GL10 gl) {
 //		if(1<2)return;
+		GOLDENBANK=loadTexture(gl,R.drawable.goldenbank);
 		SHUFUDAN=loadTexture(gl,R.drawable.shufudan);
 		ZIDONGDAN=loadTexture(gl,R.drawable.autobulletgun);
 		PIFENG=loadTexture(gl,R.drawable.pifeng);
@@ -152,10 +154,9 @@ public class TexId{
 		B=repeatLoadTexture(gl,R.drawable.daodan);
 		S=repeatLoadTexture(gl,R.drawable.s);
 		BULLET=loadTexture(gl,R.drawable.bullet);
-		GUIDEPOST=loadTexture(gl,R.drawable.guidepost);
+		GUIDEPOST=loadTexture(gl,R.drawable.guidepost2);
 		CANDLEPOR=loadTexture(gl,R.drawable.candlepor);
 		FIRE=loadTexture(gl,R.drawable.firetail);
-		FIRE2=loadTexture(gl,R.drawable.fire2);
 		PAOTA=loadTexture(gl,R.drawable.paotai);
 		GUN=loadTexture(gl,R.drawable.guntitle);
 		SEA=loadTexture(gl,R.drawable.sea);
@@ -171,7 +172,6 @@ public class TexId{
 		RAIN=loadTexture(gl,R.drawable.rain);
 		SNOW=loadTexture(gl,R.drawable.snow);
 		WIND=loadTexture(gl,R.drawable.wind);
-		ICE=loadTexture(gl,R.drawable.ice);
 		EXPRESSION=loadTexture(gl,R.drawable.espression);
 		HIKARI2=loadTexture(gl,R.drawable.light2);
 		HIKARI=loadTexture(gl,R.drawable.light);

@@ -219,7 +219,7 @@ public class GrassSet extends Set{
 					burrorList.add(bro);burrorList.add(bro2);
 					gList.add(bro);gList.add(bro2);break;//U 表示地洞 竹子
 				case 73:coinList.add(new GoreCoin( (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));
-					gList.add(new Grass(bi,grassData(x, y),TexId.BANK));break;//I 带金币的砖
+					gList.add(new BankGrass(bi,grassData(x, y),TexId.GOLDENBANK));break;//I 带金币的砖
 				case 90:
 					for(int j=0;j<5;j++) {coinList.add(new GoreCoin( (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));}
 					gList.add(new Grass(bi,grassData(x, y),TexId.ZHUAN));break;//Z 带金币的砖
@@ -331,7 +331,7 @@ public class GrassSet extends Set{
 		goreAni.loadTexture();
 		
 		
-		if(goal==null)goal=new Goal(' ', -50, 0);
+		if(goal==null)goal=new Goal(' ', -100, 0);
 		animationList.add(goal);
 		player.goal=goal;
 	}
@@ -353,7 +353,7 @@ public class GrassSet extends Set{
 		if(bendDownData[index]==0)			bendDownData[index]=(mapHeight-indexY+1)*grid;
 	}
 	private void newBendData() {
-		final int h=2;
+		final int h=1;
 		bendDownData=new float[mapWidth];
 //		bendDownData[0]=0;
 		float grid=h*this.grid;
@@ -505,6 +505,8 @@ public class GrassSet extends Set{
 	public void up(int topId,float xSpeed,float ySpeed) {
 		this.topId = topId;
 		Grass g=gList.get(topId);
+		
+		g.gored();
 		
 		gore=true;			// gore start
 		playSound();

@@ -96,4 +96,8 @@ public class Grass extends Animation{
 		// TODO Auto-generated method stub
 		return false;
 	}
+	public void gored() {
+		// TODO Auto-generated method stub
+		
+	}
 }

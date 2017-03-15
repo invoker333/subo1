@@ -16,7 +16,7 @@ public class SixFruit extends Fruit{
 		
 		// TODO Auto-generated constructor stub
 	}
-	private int angleSpeed=3;
+	protected int angleSpeed=3;
 	private int angle;
 	public void drawElement(GL10 gl){
 		gl.glEnable(GL10.GL_CULL_FACE);//背面裁剪

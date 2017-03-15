@@ -65,6 +65,13 @@ public class AutoBulletGun extends Gun{
 	}
 	protected void tringerCheck(Bullet bullet){
 //		if(false)super.tringerCheck(bullet);
+		
+		cos = Math.cos(getAngle());
+		sin = Math.sin(getAngle());
+
+		x = (float) (gunLength * cos + player.x);
+		y = (float) (gunLength * sin + player.y);
+		
 		int enemyId=-1;
 		 double minDistance=10000*10000;// zheng wu qiong
 		for(int i=0;i<es.cList.size();i++){
@@ -89,11 +96,7 @@ public class AutoBulletGun extends Gun{
 					for(Bullet b:bList)
 					if(!b.isFire())
 					{
-						cos = Math.cos(getAngle());
-						sin = Math.sin(getAngle());
-
-						x = (float) (gunLength * cos + player.x);
-						y = (float) (gunLength * sin + player.y);
+						
 					((AutoBullet)b).tringer(x, y, c);
 						break;// only once
 					}

@@ -8,10 +8,10 @@ import Enviroments.BackGround;
 import Menu.Square;
 
 public class Curtain extends BackGround {
-	private float alpha;
-	private float blue;
-	private float green;
-	private float red;
+	private float alpha=1;
+	private float blue=1;
+	private float green=1;
+	private float red=1;
 	
 	float dAlpha=0.05f;
 	
@@ -27,7 +27,7 @@ public class Curtain extends BackGround {
 			incAlpha(dAlpha);
 		gl.glColor4f(red, green, blue, alpha);
 //		gl.glRotatef((1f-alpha)*360, 0, 0, 1);
-		super.drawElement(gl);
+		drawTranElement(gl);
 		gl.glColor4f(1, 1, 1, 1);
 	}
 	public void open(){//xiemu
@@ -42,9 +42,12 @@ public class Curtain extends BackGround {
 	}
 	public void incAlpha(float dAlpha){
 		this.alpha+= dAlpha;
-		this.red = 1-alpha;
-		this.green = 1-alpha;
-		this.blue = 1-alpha;
+//		this.red = 1-alpha;
+//		this.green = 1-alpha;
+//		this.blue = 1-alpha;
+		this.red = alpha;
+		this.green = alpha;
+		this.blue = alpha;
 
 	}
 }

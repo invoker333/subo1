@@ -27,7 +27,7 @@ public class Boom extends LightSpot{
 		setRed(getRed() + alphaSpeed);
 		setGreen(getGreen() + alphaSpeed);
 		setBlue(getBlue() + alphaSpeed);
-		 alpha+=alphaSpeed;
+		 alpha+=0.9*alphaSpeed;
 	}
 	float windRate=1/50f;
 	/*F=(1/2)C��SV^2 ����. ʽ�У�

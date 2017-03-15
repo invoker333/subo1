@@ -73,7 +73,7 @@ public class World extends GLSurfaceView implements Runnable {
 	public static float alpha = 1;
 	private ArrayList<Draw> drawList = new ArrayList<Draw>();
 	static ArrayList<Draw> recycleList = new ArrayList<Draw>();
-	public static int dStage = 3;// �ؿ��ֶ�
+	public static int dStage = 1;// �ؿ��ֶ�
 
 	private LightSpotSet lightSpotSet;
 	public Tail touchTail;
@@ -82,7 +82,7 @@ public class World extends GLSurfaceView implements Runnable {
 	private GuidePost guidePost;
 	private Curtain ct;
 	public int playerMoveIndex;
-	private int mapMoveIndex;
+	private int mapMoveIndex=100000;// to guide
 	TexId texId;
 
 	static  boolean RAMPAGE;
@@ -209,8 +209,8 @@ public class World extends GLSurfaceView implements Runnable {
 //		if(drawList.contains(bubbleSet))return;
 		
 		
-		if(ct==null)ct = new Curtain();
-		drawList.add(ct);
+//		if(ct==null)ct = new Curtain();
+//		drawList.add(ct);
 		
 		loadGame(i);
 		
@@ -242,7 +242,12 @@ public class World extends GLSurfaceView implements Runnable {
 						timeRush();
 
 					long t1=System.currentTimeMillis();
-					loadGame(mapIndex);
+					try{
+						loadGame(mapIndex);
+					}catch(NullPointerException e){
+						e.printStackTrace();
+						MenuActivity.showDialog("", "空指针异常", 0);
+					}
 					Log.i("loadGameTime"+(System.currentTimeMillis()-t1+"ms"));
 				}
 			}.start();
@@ -262,6 +267,7 @@ public class World extends GLSurfaceView implements Runnable {
 		
 		lightningSet = new LightningSet(2);// ����
 		gra = new GrassSet(64f, map.charData, lightningSet,this);
+		
 		animationList=gra.animationList;
 		
 		bg = new BackGround(mapIndex);
@@ -339,7 +345,7 @@ public class World extends GLSurfaceView implements Runnable {
 		music.initSoundPool();
 		drawList.clear();
 //		pauseDraw();
-		ct.close();
+		if(ct!=null)ct.close();
 		initializeGame(i);
 		
 		
@@ -406,12 +412,14 @@ public class World extends GLSurfaceView implements Runnable {
 	public int gameTime = 256;
 	private boolean isGameRunning;
 	private boolean paused;
-	private TouchMove touchMove;
+	TouchMove touchMove;
 
 	public void onTouch() {
 		// Touch touch=new Touch(gun,ab,lightBallSet,player);
 		touch = new Touch(player);
-		this.setOnTouchListener(touchMove=new TouchMove(touchTail,player,this));// move
+		touchMove=new TouchMove(touchTail,player,this);
+		
+		this.setOnTouchListener(touchMove);// move
 		
 		OnTouchListener moveaction = null;
 		// this.setOnTouchListener(touch);// 触摸事件监听器
@@ -513,9 +521,8 @@ public class World extends GLSurfaceView implements Runnable {
 		}
 		if (player != null && guidePost != null		) {
 			if(!isMapMoved(5 * 60) ) {
-				guidePost.tringer(Render.px + Render.width / 2, Render.py + Render.height * 2 / 3,
+				guidePost.tringer(Render.px + Render.width / 2, Render.py + Render.height *7/8,
 						gra.getGoal().x - guidePost.x, gra.getGoal().y - guidePost.y);
-				
 			
 				
 			} 
@@ -573,6 +580,7 @@ public class World extends GLSurfaceView implements Runnable {
 			for (int i = 0; i < drawList.size(); i++) {
 				drawList.get(i).drawElement(gl);
 			}
+			ct.setPosition(Render.px, Render.py);
 			if(editMode&&touchMove!=null)touchMove.drawElement(gl);
 //		if(paused)return;
 			timerTask();
@@ -833,8 +841,14 @@ public class World extends GLSurfaceView implements Runnable {
 		// TODO Auto-generated method stub
 //		Animation cloneA=(Animation) a.clone();
 		Animation cloneA=(Animation) a.clone();
-		cloneA.setStartXY(Render.px+200, Render.py+200);
-		cloneA.setPosition(Render.px+200, Render.py+200);
+			float xx=(float) (Math.random()*Render.width);
+			float yy=(float)(Math.random()*Render.height);
+			xx-=xx%gra.getGrid();
+			yy-=yy%gra.getGrid();
+		
+		
+		cloneA.setStartXY(Render.px+xx, Render.py+yy);
+		cloneA.setPosition(Render.px+xx, Render.py+yy);
 		animationList.add(cloneA);
 		Log.i("clone A: x  "+cloneA.x+"y    "+cloneA.y);
 		drawList.add(cloneA);

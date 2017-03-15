@@ -4,14 +4,6 @@
     android:layout_height="match_parent" >
 
     <LinearLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical" >
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/butset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -208,5 +200,16 @@
             android:textColor="#00ffff"
             android:textSize="16sp" />
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/charts"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical" >
+
+    </LinearLayout>
 
 </RelativeLayout>

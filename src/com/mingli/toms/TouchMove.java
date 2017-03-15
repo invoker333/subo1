@@ -174,7 +174,7 @@ public class TouchMove implements OnTouchListener {
 		// TODO Auto-generated method stub
 		if(!World.editMode||editTarget==null)return;
 		
-		build8CHeck(ux,uy);
+		build8CHeck();
 		
 		float xx=editTarget.x;
 		float yy=editTarget.y;
@@ -195,7 +195,7 @@ public class TouchMove implements OnTouchListener {
 		if(World.editMode)editTarget=null;
 	}
 
-	private void build8CHeck(float ex,float ey) {
+	private void build8CHeck() {
 		// TODO Auto-generated method stub
 		if(cloner!=null){
 			build8group[0].setPosition(cloner.x-grid,cloner.y+grid);
@@ -252,7 +252,11 @@ public class TouchMove implements OnTouchListener {
 					animationList.add(newAnimation);
 					world.addDrawAnimation(newAnimation);
 					
-					aa.setPosition(0, 100);//to let look clearly
+					aa.setPosition(0, (float) (100*Math.random()));//to let look clearly
+					
+					cloner=newAnimation;
+					// new cloner is root
+					build8CHeck();
 					
 					break;
 				}

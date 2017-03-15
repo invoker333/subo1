@@ -132,8 +132,6 @@ public class MenuActivity extends Activity {
 	}
 
 	void initGame() {
-		// startMenu.hideStartMenu();
-		// if()
 
 		 if (myHandler == null)
 		myHandler = new MyHandler();
@@ -153,9 +151,9 @@ public class MenuActivity extends Activity {
 		startMenu = new StartMenu(this);
 		startMenu.loadStartMenu();
 		
-		if (startTime > 2) {
+//		if (startTime > 2) {
 			showBanner((ViewGroup) findViewById(R.id.container));
-		}
+//		}
 	}
 
 	private void initSp() {
@@ -219,7 +217,7 @@ public class MenuActivity extends Activity {
 		private void gameover() {
 			// TODO Auto-generated method stub
 			save();
-			gameMenu.removeView();//没啥用
+//			gameMenu.removeView();//没啥用
 //			ad.showInterstitial();
 //			gameMenu.addView();
 			gameMenu.gameover();
@@ -251,6 +249,7 @@ public class MenuActivity extends Activity {
 //		removeAndAddView(world);
 		titleMode=false;
 		world.startGame(mapIndex);
+		Log.d("startGame");
 	}
 
 	void loadGameMenu() {
@@ -385,7 +384,11 @@ public class MenuActivity extends Activity {
 		else
 			talkView.setText(talk);
 
-		dl.show();
+		try{
+			dl.show();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	
 	}
 
@@ -482,7 +485,7 @@ public class MenuActivity extends Activity {
 			// world = null;
 			world.quitGame();
 		}
-		
+		Log.d("quitGame");
 	}
 
 	void loadTitleView(int i) {
@@ -508,7 +511,7 @@ public class MenuActivity extends Activity {
 		super.onPause();
 		pauseGame();
 		if(startMenu==null&&stageChooser==null)
-			gameMenu.showWindow(world);
+			if(gameMenu!=null)gameMenu.showWindow(world);
 	}
 	void pauseGame() {
 		// TODO Auto-generated method stub
@@ -620,8 +623,8 @@ public class MenuActivity extends Activity {
 
 	public boolean getLifeFree() {
 		// TODO Auto-generated method stub
-		ad.showInterstitial();
 		if(isNetworkAvailable(this)){
+			ad.showInterstitial();
 			return true;
 		}else {
 			showDialog("网络错误", "请在联网状态下观看广告复活", R.drawable.coinicon);

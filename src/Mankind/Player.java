@@ -367,10 +367,12 @@ public class Player extends JointCreature {
                 goreId = getLandId();
             }
             if (gaoTime>0&&downData[5]) {
-                gaoTime--;
-                destory(goreId, x1, getMy1());//���ƻ� Ҫ��Ȼש��᲻��ʧ
-                setySpeed((float) -Math.sqrt(Math.pow(ySpeed, 2) - E));//��������ʧ
-              
+                boolean destoryed=destory(goreId, x1, getMy1());//���ƻ� Ҫ��Ȼש��᲻��ʧ
+              if(destoryed) {
+            	  setySpeed((float) -Math.sqrt(Math.pow(ySpeed, 2) - E));//��������ʧ
+            	  gaoTime--;
+              }
+              else super.tooDown();
                 //p*v^2p*v^2=E��
             } else {
                 getgList().get(goreId).setRgb((float) Math.random(),
@@ -519,17 +521,16 @@ public class Player extends JointCreature {
 	}
     public void die() {
     	if(isDead)return;
-    	
+//    	Log.i("flyTime toukuiTime gaoTime"+flyTime+" "+toukuiTime+" "+gaoTime);
     	if(flyTime>0||toukuiTime>0||gaoTime>0){
-    		int ran=(int) (3*Math.random());
-    		switch(ran){
-    		case 0:flyTime=0;break;
-    		case 1:toukuiTime=0;this.getCap().setTextureId(TexId.CAP);break;
-    		case 2:gaoTime=0;break;
-    		}
+    		flyTime=0;
+    		toukuiTime=0;this.getCap().setTextureId(TexId.CAP);
+    		gaoTime=0;
+    		
+    		
     		setLife(getLifeMax());
     		wudiTime=wudiTimeBorn;
-    		
+    		Log.i("after"+flyTime+" "+toukuiTime+" "+gaoTime);
     		return;// do not die as super
     	}
     		
@@ -557,6 +558,9 @@ public class Player extends JointCreature {
     }
 	public void changeSize(float rate){
 		super.changeSize(rate);
+		
+		xSpeed*=0.8f;
+		
 		if(gun!=null)gun.gunLength=sizeRate*baseGunLength;
 	}
     private void setViewPot() {
@@ -679,8 +683,10 @@ public class Player extends JointCreature {
             	attack();
 //            }
         } 
-        if (downData[3] && isJumpAble())
-        	jump(jumpRate);
+        if (downData[3] && isJumpAble()) {
+			jump(jumpRate);
+			controller.jump(jumpRate);
+		}
         
         if(coolingId>0)coolingId--;
         if(GunAngle!=_4){
@@ -806,11 +812,17 @@ public class Player extends JointCreature {
 //				(float) Math.random(), (float) Math.random());
     }
 
-    void destory(int grassId, int x1, int my1) {
-//		int tringerCount=Math.abs((int)(getVt()/vmax));//���ܶ�����
+    boolean destory(int grassId, int x1, int my1) {
+    	Grass g=gra.getgList().get(grassId);
+    	if(g.getTextureId()!=TexId.TREE&&g.getTextureId()!=TexId.FOG&&
+    			g.getTextureId()!=TexId.SOIL&&g.getTextureId()!=TexId.SOILGRASS
+    			&&g.getTextureId()!=TexId.ZHUAN){
+    		return false;
+    	}
         gra.particleCheck(grassId, 5, this);
         getGra().toNull(grassId, x1, my1);
         playSound(destorySound);
+        return true;
     }
 
     float vtDestory;//�ƻ�����С�ٶ�
@@ -830,8 +842,9 @@ public class Player extends JointCreature {
         }
 
         if (toukuiTime > 0) destory(goreId, x1, getMy1());//���ƻ� Ҫ��Ȼש��᲻��ʧ
-        else {
-            getGra().up(goreId, xSpeed,ySpeed);
+         {
+//            getGra().up(goreId, xSpeed,ySpeed);
+        	 getGra().up(goreId, 0,ySpeed);
             goreEnemyCheck();
 //            goreCoinCheck();
         }

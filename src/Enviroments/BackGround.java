@@ -13,9 +13,10 @@ public class BackGround extends Square{
 	public BackGround(){
 		loadTexture();
 	}
+	
 	public BackGround(int mapId){
 		this();
-		int id=mapId/World.dStage;
+		int id=mapId%World.dStage;
 		switch(id){
 		case 0:setTextureId(TexId.BACKGROUND);break;		
 		case 1:setTextureId(TexId.HETANG);break;
