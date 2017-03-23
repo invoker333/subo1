@@ -15,10 +15,13 @@ public class BigGrass extends Grass{
 		super.drawScale(gl);
 	}
 	private float edge;
+	public BigGrass(char bi,float[] data, int texId,boolean canBeBreak,float edge) {
+		super(bi,data, texId,canBeBreak);
+		this.edge = edge;
+	}
 	public BigGrass(char bi,float[] data, int texId,float edge) {
 		super(bi,data, texId);
 		this.edge = edge;
-		
 	}
 	public void syncTextureSize(){
 //		fbSpi.clear();
@@ -67,6 +70,7 @@ class Fog extends BigGrass{
 		super(bi,data, texId, edge);
 		// TODO Auto-generated constructor stub
 		this.lns = lns;
+		canBeBreak=true;
 	}
 	public void setRgb(float red,float green,float blue){
 		super.setRgb(red, green, blue);

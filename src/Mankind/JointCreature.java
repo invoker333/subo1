@@ -4,13 +4,11 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import aid.Log;
 import Element.Animation;
 import Enviroments.GrassSet;
 import Weapon.Blade;
 import Weapon.GunDraw;
-
-import com.mingli.toms.Log;
-
 import element2.Joint;
 import element2.TexId;
 

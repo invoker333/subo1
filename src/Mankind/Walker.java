@@ -1,16 +1,16 @@
 package Mankind;
 
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 
 import element2.TexId;
-
 import Enviroments.GrassSet;
 
 public class Walker extends Enemy {
 
 	public Walker(char bi,GrassSet gra, float x, float y) {
 		super(bi,gra, x, y);
-		setSoundId(EnemySet.WALKER);
+		setSoundId(MusicId.walker);
 		// TODO Auto-generated constructor stub
 		setxSpeedMax(getxSpeedMax()/4);
 		setxSpeedMin(-getxSpeedMax());
@@ -21,7 +21,7 @@ public class Walker extends Enemy {
 		aniStepCheck();
 	}
 	protected void init(){
-//		setH(64);
+		setH(64);
 		super.init();
 		setTextureId(TexId.WALKER);
 	}

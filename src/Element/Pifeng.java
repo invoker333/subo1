@@ -21,12 +21,15 @@ public class Pifeng extends Draw{
 			temp.setPosition(master.x, master.y);
 		}
         clothTail=new Tail(count,TexId.PIFENG);
-        clothTail.width=32;
+        clothTail.width=42;
         dsmax = master.h*1.2f/nodes.length;
+	}
+	public void timerTask(int angle,float masterx,float mastery){
+		timerTask(masterx,mastery);
 	}
 	public void timerTask(){
 		
-		 float masterx = master.getDirection()==1?master.x-master.w:master.x+master.w/2;
+		 float masterx = master.getDirection()==1?master.x-master.w:master.x+master.w;
 		float mastery = master.y+master.h/2;
 		timerTask(masterx,mastery);
 	}
@@ -52,7 +55,6 @@ public class Pifeng extends Draw{
 			
 			head=tail;
 		}
-//		clothTail.tringer(head.x, head.y);
 		head.move();
 		head.gravity();
 	}

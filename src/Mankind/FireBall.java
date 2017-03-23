@@ -5,6 +5,7 @@ import javax.microedition.khronos.opengles.GL10;
 import Element.FireSet;
 import Enviroments.GrassSet;
 
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.World;
 
@@ -18,7 +19,7 @@ public class FireBall extends Enemy{
 		setJumpHeight((int) y);
 		// TODO Auto-generated constructor stub
 		changeLifeRate(0.1f);
-		setSoundId(EnemySet.FIREBALL);
+		setSoundId(MusicId.firecolumn);
 		attack=(int) (0.2f*World.baseAttack);
 		
 		fireSet=new FireSet(5,x,gra.getGrid());

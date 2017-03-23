@@ -26,8 +26,8 @@ import Mankind.Spide3;
 import Mankind.TestEnemy;
 import Mankind.Walker;
 import Mankind.WeaponMan;
+import aid.Log;
 
-import com.mingli.toms.Log;
 import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.World;
@@ -198,64 +198,65 @@ public class GrassSet extends Set{
 			bi= b[i];
 			if(bi!=9)bendDataCheck(x,y);
 			switch(bi){
-				case 48:gList.add(new Grass(bi,grassData(x, y),TexId.SOIL));break;//0 一个数字 还有一个符号
+				case 48:gList.add(new Grass(bi,grassData(x, y),TexId.SOIL,true));break;//0 一个数字 还有一个符号
 				case 102:gList.add(new Fog(bi,grassData(x, y),TexId.FOG,edge, lns));break;//f
-				case 103:gList.add(new Grass(bi,grassData(x, y),TexId.SOILGRASS));break;//g
+				case 103:gList.add(new Grass(bi,grassData(x, y),TexId.SOILGRASS,true));break;//g
 				case 108:gList.add(new Grass(bi,grassData(x, y),TexId.STONEGRASS));break;//l lucus 灌木丛
 				case 105:gList.add(new Grass(bi,grassData(x, y),TexId.BANK));break;//i iron 铁
-				case '↑':gList.add(new GrassPrick(bi,grassData(x, y),90));break;//p 刺shang
+				case 'q':gList.add(new GrassPrick(bi,grassData(x, y),90));break;//p 刺shang
 //				8593				8595				8592				8594 shang xcia zou you
 //				-111				-109				-112				-110 byte
-				case '↓':gList.add(new GrassPrick(bi,grassData(x, y),270));break;//p 刺xia
-				case '←':gList.add(new GrassPrick(bi,grassData(x, y),180));break;//p 刺zuo
-				case '→':gList.add(new GrassPrick(bi,grassData(x, y),0));break;//p 刺you
+				case 'r':gList.add(new GrassPrick(bi,grassData(x, y),270));break;//p 刺xia
+				case 'v':gList.add(new GrassPrick(bi,grassData(x, y),180));break;//p 刺zuo
+				case 'y':gList.add(new GrassPrick(bi,grassData(x, y),0));break;//p 刺you
 				case 115:gList.add(new Grass(bi,grassData(x, y),TexId.STONE));break;//s
-				case 116:gList.add(new BigGrass(bi,grassData(x, y),TexId.TREE,edge));break;//t
+				case 116:gList.add(new BigGrass(bi,grassData(x, y),TexId.TREE,true,edge));break;//t
 				case 119:gList.add(new Grass(bi,grassData(x, y),TexId.WOOD));break;//w
-				case 122:gList.add(new Grass(bi,grassData(x, y),TexId.ZHUAN));break;//z
+				case 122:gList.add(new Grass(bi,grassData(x, y),TexId.ZHUAN,true));break;//z
 				case 85:int ran=(int) (Math.random()*2);
 					Burrow bro=new Burrow(bi,grassData(x, y),TexId.BAMBOO,grid*3/32,0,ran);
 					Burrow bro2=new Burrow(' ', grassData(x+1, y),TexId.BAMBOO,grid*3/32,1,ran);
 					burrorList.add(bro);burrorList.add(bro2);
 					gList.add(bro);gList.add(bro2);break;//U 表示地洞 竹子
-				case 73:coinList.add(new GoreCoin( (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));
+				case 73:coinList.add(new GoreCoin(' ', (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));
 					gList.add(new BankGrass(bi,grassData(x, y),TexId.GOLDENBANK));break;//I 带金币的砖
 				case 90:
-					for(int j=0;j<5;j++) {coinList.add(new GoreCoin( (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));}
+					for(int j=0;j<5;j++) {coinList.add(new GoreCoin(' ', (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));}
 					gList.add(new Grass(bi,grassData(x, y),TexId.ZHUAN));break;//Z 带金币的砖
-				case 49: coinList.add(new Coin( (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;//1
+				case 49: coinList.add(new Coin('1', (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;//1
 				case 50: goal=new Goal(bi, x*grid,(mapHeight-y-1)*grid);break;//2
 				case 51: break;
 				case 52:break;
-				case 66:fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.B));break;//B boom
+				case 66:fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.MISSILE));break;//B boom
 				case 67:fruitList.add(new ChanceFruit(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;//C 加机会
-				case 68:fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.D));break;//D drag hook
+				case 68:fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.HOOKGUN));break;//D drag hook
 				case 71:fruitList.add(new Gao(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,9999));break;//G
 				case 72:fruitList.add(new sizeFruit(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;//H
 				case 75:fruitList.add(new FruitBlade( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;//k
 				case 'J':fruitList.add(new FruitFly( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid, 9999));break;// J jumppen qi guo
-				case 77:fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.M));break;//M 
-				case 79:fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.O));break;//O normal bullet
-				case 83:fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.S));break;//S 
+				case 77:fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.JUJI));break;//M 
+				case 79:fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.GUANGDANQIANG));break;//O normal bullet
+				case 83:fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.SHOTGUN));break;//S 
+				case 'P':fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.BOOMGUN));break;//S 
 				case 'L':fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.ZIDONGDAN));break;//L
 				case 84:if(World.rpgMode)fruitList.add(new Tomato(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid, 500));break;//T 加血道具
 				case 110:fruitList.add(new Toukui(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,9999));break;//n toukui
 				case 'x':fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.SHUFUDAN));break;//
 				case 'V':fruitList.add(new Wudi(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;//
-				case 65:
+				case 'A':
 					player = new Player(bi, this, world,(x+0.5f)*grid,(mapHeight-y)*grid);
+					// here has no break because these two char has same code and different code
+				case 'Y':
+					if(player==null)player=new WeaponMan(bi,this,world,(x+0.5f)*grid,(mapHeight-y)*grid);
 //					setStartPosition(bi,(x+0.5f)*grid,(mapHeight-y)*grid);
 					if(World.editMode){
 						Creature c=new JointCreature(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid);
 						c.name="初始位置";
 						c.setLifeMax(99999);
 						c.setLife(99999);
+						c.attack=1;
 						enemyList.add(c);
 					}
-					break;
-				case 'Y':
-//					enemyList.add(	);
-							player=new WeaponMan(bi,this,world,(x+0.5f)*grid,(mapHeight-y)*grid);
 					break;
 				case 69:
 //					emplacementList.add(new Emplacement(this,(x+0.5f)*grid,(mapHeight-y)*grid));
@@ -277,19 +278,18 @@ public class GrassSet extends Set{
 						Creature[] spideMans = new Creature[size];
 //						float dy=Spide.dsmax;
 						for(int j=0;j<spideMans.length;j++){
-								spideMans[j]=new Walker(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid);
+								spideMans[j]=new Walker(' ',this,(x+0.5f)*grid,(mapHeight-y)*grid);
 						};
 						for(Creature spideMan:spideMans){
 							enemyList.add(spideMan);
 						}
 						emplacementList.add(new Spide3(bi,this,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,spideMans));
-										
 					}
 					else 
 						emplacementList.add(new Spide(bi,this,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid));
 					break;
-				case 107:
-					enemyList.add(new TestEnemy(this,(x+0.25f)*grid,(mapHeight-y-0.25f)*grid));
+				case 'k':
+					enemyList.add(new TestEnemy(bi,this,(x+0.25f)*grid,(mapHeight-y-0.25f)*grid));
 					enemyList.add(new TestEnemy(this,(x+0.25f)*grid,(mapHeight-y-0.75f)*grid));
 					enemyList.add(new TestEnemy(this,(x+0.75f)*grid,(mapHeight-y-0.25f)*grid));
 					enemyList.add(new TestEnemy(this,(x+0.75f)*grid,(mapHeight-y-0.75f)*grid));
@@ -324,16 +324,19 @@ public class GrassSet extends Set{
 		animationList.addAll(enemyList);
 		animationList.addAll(gList);
 		
+		initGoreAnimation();
+		
+		if(goal==null)goal=new Goal('2', -100, 0);
+		animationList.add(goal);
+		player.
+		goal=goal;
+	}
+	private void initGoreAnimation() {
 		topAni=new AnimationMove();
-		animationList.add(goreAni=new AnimationMove());
+		goreAni=new AnimationMove();
 		goreAni.w=32;
 		goreAni.h=32;
 		goreAni.loadTexture();
-		
-		
-		if(goal==null)goal=new Goal(' ', -100, 0);
-		animationList.add(goal);
-		player.goal=goal;
 	}
 	public void toStartPosition(){
 		for(int i=0;i<animationList.size();i++){

@@ -3,8 +3,7 @@ package Mankind;
 import javax.microedition.khronos.opengles.GL;
 import javax.microedition.khronos.opengles.GL10;
 
-import com.mingli.toms.Log;
-
+import aid.Log;
 import element2.Tail;
 import Element.Draw;
 import Enviroments.GrassSet;

@@ -1,4 +1,4 @@
-package Clothes;
+package aid;
 
 import android.app.Service;
 import android.content.Intent;

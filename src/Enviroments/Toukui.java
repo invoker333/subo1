@@ -2,11 +2,11 @@ package Enviroments;
 
 import java.util.ArrayList;
 
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 
 import element2.Tail;
 import element2.TexId;
-
 import Mankind.Player;
 
 public class Toukui extends ShakeFruit{
@@ -18,6 +18,7 @@ public class Toukui extends ShakeFruit{
 		// TODO Auto-generated constructor stub
 		this.time = time;
 		name="头盔";
+		instruction="使用后您可以顶掉上方一些砖块，被攻击后失效";
 		setGoodsCost(5,0);
 	}
 	void init(){
@@ -41,6 +42,7 @@ class Gao extends ShakeFruit{
 		// TODO Auto-generated constructor stub
 		this.time = time;
 		name="十字镐";
+		instruction="手指下滑跳到一定高度下落，可以破坏下面一些砖块，被攻击后失效";
 		setGoodsCost(5,0);
 //		footTail=new Tail(15,x,y,8);
 	}
@@ -63,6 +65,7 @@ class FruitFly extends ShakeFruit{
 		// TODO Auto-generated constructor stub
 		this.time = time;
 		name="飞天鞋";
+		instruction="使用后点击任意位置可跳跃，跳跃速度极限为正常的两倍，被攻击后失效";
 		setGoodsCost(10,5);
 	}
 	void init(){
@@ -106,17 +109,19 @@ class FruitFly extends ShakeFruit{
 		// TODO Auto-generated constructor stub
 		this.time = time;
 		name="无敌果";
-		setGoodsCost(100,100);
+		instruction="使用后无敌"+time/60+"秒";
+		setGoodsCost(50,0);
 	}
 	public Wudi(char bi,float x, float y) {
 		this(bi,x,y,10*60);
 		// TODO Auto-generated constructor stub
 	}
 	void init(){
-		loadTexture(TexId.HIKARI2);
+		setSoundId(MusicId.light);
+		loadTexture(TexId.ZAN);
 	}
 	public void use(Player player,ArrayList<Fruit> pickedList){
-		if((player.wudiTime+=time)>time) player.wudiTime=time;
+		player.incWudiTime(time);
 		super.use(player, pickedList);
 	}
 

@@ -26,13 +26,18 @@ public class MusicId {
 	public static int gore;
 	public static int bomb;
 	public static int shotGun;
-	public static int missile;
+	public static int boomgun;
 	public static int juji;
 	public static int lightNing;
 	public static int bubble;
+	public static int missile;
+	public static int light;
+	public static int fresh;
 
 	public static void loadSoundId(Music music) {
 		// TODO Auto-generated method stub
+		fresh=music.loadSound(R.raw.fresh);
+		light=music.loadSound(R.raw.fog);
 		bubble=music.loadSound(R.raw.bubble);
 		lightNing=music.loadSound(R.raw.lightning);
 		baller=music.loadSound(R.raw.baller);
@@ -55,8 +60,9 @@ public class MusicId {
 		gore=music.loadSound(R.raw.gore);
 		bomb=music.loadSound(R.raw.bomb2);
 		shotGun=music.loadSound(R.raw.shotgun);
-		missile=music.loadSound(R.raw.missile);
+		boomgun=music.loadSound(R.raw.boomshot);
 		juji=music.loadSound(R.raw.juji3);
+		missile=music.loadSound(R.raw.missile);
 	}
 	
 }

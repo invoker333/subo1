@@ -1,9 +1,9 @@
 package Mankind;
 
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 
 import element2.TexId;
-
 import Enviroments.GrassSet;
 
 public class Creeper extends Enemy {
@@ -11,7 +11,7 @@ public class Creeper extends Enemy {
 
 	public Creeper(char bi,GrassSet gra, float x, float y) {
 		super(bi,gra, x, y);
-		setSoundId(EnemySet.CREEPER);
+		setSoundId(MusicId.creeper4);
 		changeLifeRate(2);
 	}
 	protected void init(){
@@ -32,7 +32,8 @@ public class Creeper extends Enemy {
 		Creature another;
 		for (int i = 0; i < es.cList.size(); i++) {
 			another = es.cList.get(i);
-			if (Math.abs(x - another.x) < another.getwEdge() + getwEdge()
+			if (!another.isDead&&
+					Math.abs(x - another.x) < another.getwEdge() + getwEdge()
 				&&Math.abs(another.y-another.gethEdge()-y) <=  getH()
 					) {
 				

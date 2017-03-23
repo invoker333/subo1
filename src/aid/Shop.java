@@ -1,61 +1,66 @@
-package Clothes;
+package aid;
 
 import java.util.ArrayList;
 
-import Clothes.Shop.ItemAdapter;
-import Element.Animation;
 import Enviroments.Fruit;
 import Enviroments.FruitSet;
+import android.app.Activity;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
-import com.mingli.toms.Log;
 import com.mingli.toms.MenuActivity;
 import com.mingli.toms.R;
+import com.mingli.toms.Render;
+import com.mingli.toms.StateWindow;
 import com.mingli.toms.World;
 
-public class Producer {
+/**
+ * Created by Administrator on 2016/7/10.
+ */
+
+public class Shop {
 	private PopupWindow popupWindow;
 	MenuActivity acti;
 	private ItemAdapter itemadapter;
 	int itemcount = 4;
-	Animation selectedItem;
+	Fruit selectedItem;
+	private View selectedView;
 	private OnItemClickListener gridListener = new OnItemClickListener() {
-		private View selectedView;
 
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			if (selectedView != null)
-				selectedView.setBackgroundResource(R.drawable.whitestroke);
+			if(selectedView!=null)selectedView.setBackgroundResource(R.drawable.whitestroke);
 			view.setBackgroundResource(R.drawable.greenrect);
-
-			selectedItem = World.animationshopList.get(position);
+			selectedItem = FruitSet.shopList.get(position);
+			instruction.setText(selectedItem.instruction);
 			// itemadapter.notifyDataSetChanged();
 			selectedView = view;
 		}
 	};
 	private World world;
-	// private ArrayList<Animation> fruList;
-	private Tips tips;
-	private ViewGroup animationShopadcontainer;
+	// private ArrayList<Fruit> fruList;
+	private FruitSet fs;
+	private ViewGroup shopadcontainer;
+	private TextView instruction;
 
-	public Producer(MenuActivity acti, World world, Tips tips) {
+	public Shop(MenuActivity acti, World world) {
 		this.acti = acti;
 		this.world = world;
-		this.tips = tips;
 	}
 
 	public void showWindow(View v) {
@@ -66,47 +71,66 @@ public class Producer {
 			// TODO Auto-generated method stub
 			// 获取自定义布局文件activity_popupwindow_left.xml的视图
 			View popupWindow_view = acti.getLayoutInflater().inflate(
-					R.layout.animationshop, null);
+					R.layout.shop, null);
 			// 创建PopupWindow实例,200,LayoutParams.MATCH_PARENT分别是宽度和高度
 			popupWindow = new PopupWindow(popupWindow_view,
 					WindowManager.LayoutParams.MATCH_PARENT,
 					WindowManager.LayoutParams.MATCH_PARENT, true);
 			GridView gridView = (GridView) popupWindow_view
-					.findViewById(R.id.animationShopGridView);
+					.findViewById(R.id.shopGridView);
 
 			initButton(popupWindow_view);
-			animationShopadcontainer = (ViewGroup) popupWindow_view
-					.findViewById(R.id.animationShopadcontainer);
+			shopadcontainer=(ViewGroup) popupWindow_view.findViewById(R.id.shopadcontainer);
 
 			gridView.setNumColumns(itemcount);// ////
 			int space = 30;
 			gridView.setHorizontalSpacing(space);
 			gridView.setVerticalSpacing(space);
 
-			itemadapter = new ItemAdapter(acti, World.animationshopList);
+			instruction=(TextView)popupWindow_view.findViewById(R.id.instruction);
+			
+			fs = world.getFruitSet();
+			// fs.setitemWindow(this);
+			itemadapter = new ItemAdapter(acti, fs.shopList);
 
 			gridView.setAdapter(itemadapter);
 			gridView.setOnItemClickListener(gridListener);
+			// gridView.setOnItemLongClickListener(longGridListener);
+
+			// if(itemadapter.fruList==null)itemadapter.fruList=
+			// 设置动画效果
 			popupWindow.setAnimationStyle(R.style.AnimationFade);
+
+			// 点击其他地方消失
+			// if(touchEvent!=null)
 
 			View.OnTouchListener otl = new View.OnTouchListener() {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					hideCheck();
-					return false;
+					acti.resumeGame();
+					return true;
 				}
 			};
 			popupWindow_view.setOnTouchListener(otl);
+			// 这里是位置显示方式,在屏幕的左侧
 		}
-		acti.showBanner(animationShopadcontainer);
+		acti.showBanner(shopadcontainer);
 		popupWindow.showAtLocation(v, Gravity.BOTTOM, 0, 0);
 		// popupWindow.showAsDropDown(v);
-		Log.i("AnimationShopPopTime", "" + (System.currentTimeMillis() - tim));
+		Log.i("itempopTime", "" + (System.currentTimeMillis() - tim));
 	}
 
 	private void initButton(View v) {
 		// TODO Auto-generated method stub
-		Button buyAnimation = (Button) v.findViewById(R.id.buyAnimationanduse);
+		Button buy = (Button) v.findViewById(R.id.buy);
+		Button buyanduse = (Button) v.findViewById(R.id.buyanduse);
+		
+		if(!World.rpgMode){
+			buyanduse.setText(buy.getText());
+			buy.setVisibility(View.GONE);
+		}
+		
 		OnClickListener click = new OnClickListener() {
 
 			@Override
@@ -114,33 +138,39 @@ public class Producer {
 				// TODO Auto-generated method stub
 
 				if (selectedItem == null) {
-					MenuActivity.showDialog("提示", "请选择一个东西来安放", R.drawable.cap);
+					MenuActivity.showDialog("店老板", "请选择要买的东西", R.drawable.cap);
 					return;
 				}
 				if (acti.coinCount - selectedItem.cost >= 0
 						&& acti.chance - selectedItem.chancecost >= 0) {
-					acti.coinCount -= selectedItem.cost;
-					acti.chance -= selectedItem.chancecost;
-					// ///
-					world.buildAnimation(selectedItem);
-
+					fs.buyItem(selectedItem);
+					if (v.getId() == R.id.buyanduse) {
+						fs.useItem(selectedItem);
+					}
+					
+					selectedItem = null;
+					if(selectedView!=null)selectedView.setBackgroundResource(R.drawable.whitestroke);
+					instruction.setText("请选择一个商品查看说明");
 				} else {
 					if (acti.coinCount - selectedItem.cost < 0)
-						tips.showAtTip(world, "金币不够", 0, 0);
+						MenuActivity.showDialog("", "金币不够！",R.drawable.coinicon);
 					else if (acti.chance - selectedItem.chancecost < 0)
-						tips.showAtTip(world, "生命数量不够！", 0, 0);
+						MenuActivity.showDialog("", "生命能量不够！",R.drawable.egg);
 				}
-				// selectedItem = null;
+//				selectedItem = null;
 				itemadapter.notifyDataSetChanged();
 			}
-
+			
 		};
-		buyAnimation.setOnClickListener(click);
+		buy.setOnClickListener(click);
+		buyanduse.setOnClickListener(click);
 	}
 
 	public void hideCheck() {
 		if (popupWindow != null && popupWindow.isShowing()) {
 			popupWindow.dismiss();
+			// popupWindow = null;
+			acti.ad.hideBanner(shopadcontainer);
 		}
 	}
 
@@ -155,25 +185,24 @@ public class Producer {
 	class ItemAdapter extends BaseAdapter {
 
 		private Context context;
-		ArrayList<Animation> animationList;
+		ArrayList<Fruit> shopList;
+//		private View selectedView;
 
-		// private View selectedView;
-
-		public ItemAdapter(Context context, ArrayList<Animation> arrayList) {
+		public ItemAdapter(Context context, ArrayList<Fruit> arrayList) {
 			this.context = context;
-			animationList = arrayList;
+			shopList = arrayList;
 
 		}
 
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return animationList.size();
+			return shopList.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
 			// TODO Auto-generated method stub
-			return animationList.get(position);
+			return shopList.get(position);
 		}
 
 		@Override
@@ -191,8 +220,7 @@ public class Producer {
 			TextView cost = null;
 			TextView chancecost = null;
 			if (convertView == null) {
-				v = acti.getLayoutInflater().inflate(R.layout.shopitem,
-						null);
+				v = acti.getLayoutInflater().inflate(R.layout.shopitem, null);
 
 				// convertView.setLayoutParams(new
 				// GridView.LayoutParams(ItemWindow.itemWidth,
@@ -201,11 +229,14 @@ public class Producer {
 			} else {
 				v = convertView;
 			}
-			// selectedView = v;
+//			selectedView = v;
 			icon = v.findViewById(R.id.goodsicon);
 			name = (TextView) v.findViewById(R.id.goodsname);
 			cost = (TextView) v.findViewById(R.id.goodscost);
 			chancecost = (TextView) v.findViewById(R.id.chancecost);
+			
+			View goodsLayout = v.findViewById(R.id.goodscostlayout);
+			View chanceLayout=v.findViewById(R.id.chancecostlayout);
 			// 设置大小
 
 			/*
@@ -215,14 +246,22 @@ public class Producer {
 			 * v.setLayoutParams(param);// nobug
 			 */
 
-			Animation f = animationList.get(position);
+			Fruit f = shopList.get(position);
 			icon.setBackgroundResource(f.getIcon());
 			name.setText(f.name);
-			cost.setText("" + f.cost);
-			if (f.chancecost > 0)
+			if(f.cost>0) {
+				cost.setText("" + f.cost);
+				goodsLayout.setVisibility(View.VISIBLE);
+			} else {
+				goodsLayout.setVisibility(View.GONE);
+			}
+		
+			if (f.chancecost > 0) {
+				chanceLayout.setVisibility(View.VISIBLE);
 				chancecost.setText("" + f.chancecost);
-			else
-				v.findViewById(R.id.chancecostlayout).setVisibility(View.GONE);
+			} else {
+				chanceLayout.setVisibility(View.GONE);
+			}
 
 			return v;
 

@@ -2,10 +2,10 @@ package Mankind;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.mingli.toms.Log;
+import com.mingli.toms.MusicId;
 
+import aid.Log;
 import element2.TexId;
-
 import Element.Animation;
 import Element.BoomSet;
 import Enviroments.GrassSet;
@@ -39,9 +39,8 @@ public class Emplacement extends Creature {
 		setxSpeedMax(0);
 		setxSpeedMin(-0);
 		changeLifeRate(3);
-		setSoundId(EnemySet.EMPLACEMENT);
-		// gunSoundId=EnemySet.GUN;
-		
+		setSoundId(MusicId.hedgehog);
+		setSoundIdAttack(MusicId.emplacementAttack);
 		
 		float rate =gra.getGrid()/ (w*2);
 		setwRate(rate);

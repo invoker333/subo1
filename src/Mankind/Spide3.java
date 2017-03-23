@@ -56,6 +56,11 @@ public class Spide3 extends Spide{
 		  }
 		  super.randomAction();
 	  }
+	  public void attacked(int a){
+		  super.attacked(a);
+		  for(int i=0;i<cc.length;i++)
+				cc[i]=null;
+	  }
 	  
 	   protected void tailCheck() {
 			Creature a = this;

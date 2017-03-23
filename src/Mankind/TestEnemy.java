@@ -2,16 +2,21 @@ package Mankind;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import com.mingli.toms.World;
+
 import Enviroments.GrassSet;
 
 public class TestEnemy extends Creature{
-
-	public TestEnemy(GrassSet gra, float x, float y) {
-		super(' ',gra, x, y);
+	public TestEnemy(char bi,GrassSet gra, float x, float y) {
+		super(bi,gra, x, y);
 		setG(0);
 		loadTexture();
-		setLifeMax(getLifeMax() * 10);// avoid blood play
+		attack=0;
+		setLifeMax(World.baseAttack * 20);// avoid blood play
 		// TODO Auto-generated constructor stub
+	}
+	public TestEnemy(GrassSet gra, float x, float y) {
+		this(' ',gra, x, y);
 	}
 	protected void init(){
 		w=gra.getGrid()/4f;

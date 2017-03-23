@@ -14,22 +14,41 @@
         android:layout_marginRight="50dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/white"
-        android:numColumns="3"
         android:padding="5dp" >
     </GridView>
 
     <LinearLayout
+        android:id="@+id/shopadcontainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/shopadcontainer"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/close" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-       	android:layout_margin="10dp" 
-       
-         android:id="@+id/linearLayout1">
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:orientation="vertical" >
 
         <Button
             android:id="@+id/buy"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:background="@drawable/bg_button"
@@ -46,17 +65,16 @@
             android:padding="10dp"
             android:text="买并使用"
             android:textColor="#ffffff" />
-
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/shopadcontainer"
+    <TextView
+        android:id="@+id/instruction"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical" >
-
-    </LinearLayout>
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/linearLayout1"
+        android:layout_toLeftOf="@+id/linearLayout1"
+        android:layout_toRightOf="@+id/view1"
+        android:background="@drawable/greenstroke"
+        android:padding="5dp" />
 
 </RelativeLayout>

@@ -183,9 +183,9 @@ public class Tail extends Square {
         float[] buffer=new float[drawRawCount];//每个店x，y两个数据
         for(int i=0;i<drawRawCount;i+=4){
             buffer[i]=i*xLength;
-            buffer[i+1]= (0+1)*yLength;
+            buffer[i+1]= (0+0)*yLength;
             buffer[i+2]= i*xLength;
-            buffer[i+3]= 0*yLength;
+            buffer[i+3]= (0+1)*yLength;
         }
 
         bbtex[0][0]=ByteBuffer.allocateDirect(texSize*drawXYCount);// x,y

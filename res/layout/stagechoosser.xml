@@ -18,11 +18,11 @@
 
     <View
         android:id="@+id/backStart"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/tomenu2" />
+        android:background="@drawable/close" />
 
     <TextView
         android:id="@+id/gameMenuTitle"

@@ -11,8 +11,8 @@ public class GoreCoin extends Coin{
 
 	private float ySpeed;
 	private float g;
-	GoreCoin(float x, float y) {
-		super(x, y);
+	GoreCoin(char bi,float x, float y) {
+		super(bi,x, y);
 		visible=false;
 		// TODO Auto-generated constructor stub
 	}

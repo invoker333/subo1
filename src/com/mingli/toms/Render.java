@@ -10,8 +10,8 @@ import javax.microedition.khronos.opengles.GL10;
 import javax.xml.transform.stream.StreamSource;
 
 import element2.TexId;
-
 import Mankind.Player;
+import aid.Log;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView.Renderer;
 

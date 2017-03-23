@@ -17,7 +17,7 @@ import android.content.res.AssetManager;
 public class Map {
 	byte[] data;
 	char[] charData;
-	static int max=17;//关卡总数
+	static int max=12;//关卡总数
 	
 
 	public Map(int mapIndex,Context context){
@@ -27,7 +27,7 @@ public class Map {
 		String mapFile = null;
 
 		
-		mapIndex=mapIndex%max;//关卡循环机制
+		mapIndex=mapIndex%(max+1);//关卡循环机制
 		mapFile="w"+mapIndex+".txt";//关卡文件位置
 
 		try {

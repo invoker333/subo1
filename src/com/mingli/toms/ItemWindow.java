@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Enviroments.Fruit;
 import Enviroments.FruitSet;
+import aid.Log;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;

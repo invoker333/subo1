@@ -6,10 +6,8 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.mingli.toms.Log;
-
+import aid.Log;
 import element2.TexId;
-
 import Mankind.Player;
 
 public class RotateFruit extends Fruit{

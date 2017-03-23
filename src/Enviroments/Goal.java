@@ -6,8 +6,8 @@ import javax.microedition.khronos.opengles.GL10;
 import Element.Animation;
 import Element.LightSpot;
 import Mankind.Player;
+import aid.Log;
 
-import com.mingli.toms.Log;
 import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.Render;
@@ -30,6 +30,7 @@ public class Goal extends RotateFruit{
 	}*/
 	LightSpot ls;
 	Animation a;
+	private boolean hasFirstBlood=true;
 	Goal(char bi,float x,float y){
 		super(bi,x, y);
 		x1=x-getW();
@@ -78,7 +79,7 @@ public class Goal extends RotateFruit{
 		gl.glRotatef(angle, 0, 1, 1f);
 		baseDrawElement(gl);
 		gl.glRotatef(-angle, 0, 1, 1f);
-		a.drawScale(gl);
+		if(hasFirstBlood)a.drawScale(gl);
 		gl.glTranslatef(-x, -y, 0);
 		gl.glDisable(GL10.GL_CULL_FACE);//背面裁剪
 		
@@ -101,11 +102,6 @@ public class Goal extends RotateFruit{
 			tringerExplode(5,x,y,1);
 	}*/
 
-	public boolean loadAble(Player player){
-		return false;
-//		player.succeed();
-//		if(mapIndex==Map.max)MenuActivity.showDialog("完结撒花", "亲爱的玩家！恭喜您到了旅程的终点。更多内容的新版本即将到来！敬请期待！（游戏会循环进行）");
-	}
 	public void loadSound() {
 		setSoundId(MusicId.finalcoin);
 	
@@ -113,6 +109,11 @@ public class Goal extends RotateFruit{
 
 	public void playSound() {
 		music.playSound(getSoundId(), 0);
+	}
+	public void picked() {
+		// TODO Auto-generated method stub
+		playSound();
+		hasFirstBlood=false;
 	}
 
 }

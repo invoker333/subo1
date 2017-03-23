@@ -2,6 +2,7 @@ package Mankind;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import com.mingli.toms.MusicId;
 import com.mingli.toms.World;
 
 import Enviroments.GrassSet;
@@ -12,7 +13,7 @@ public class Baller extends Enemy {
 	public Baller(char bi,GrassSet gra, float x, float y) {
 		super(bi,gra, x, y);
 		changeLifeRate(0.5f);
-		setSoundId(EnemySet.BALLER);
+		setSoundId(MusicId.baller);
 	}
 	protected void init() {
 
@@ -34,7 +35,8 @@ public class Baller extends Enemy {
 		Creature another;
 		for (int i = 0; i < es.cList.size(); i++) {
 			another = es.cList.get(i);
-			if (Math.abs(x - another.x) < another.getwEdge() + getwEdge()
+			if (!another.isDead&&
+					Math.abs(x - another.x) < another.getwEdge() + getwEdge()
 					&& another.y - another.gethEdge() < y
 					&& another.y + another.gethEdge() > y - gethEdge()) {
 				tooClose(another, es);

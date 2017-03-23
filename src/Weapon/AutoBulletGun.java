@@ -58,10 +58,10 @@ public class AutoBulletGun extends Gun{
 				x = (float) (gunLength * cos + player.x);
 				y = (float) (gunLength * sin + player.y);
 			((AutoBullet)firstBullet).tringer(x, y, c);
-				
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 	protected void tringerCheck(Bullet bullet){
 //		if(false)super.tringerCheck(bullet);

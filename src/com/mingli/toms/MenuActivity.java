@@ -4,11 +4,14 @@ import java.io.File;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import Clothes.Producer;
-import Clothes.Shop;
-import Clothes.Tips;
 import Enviroments.FruitSet;
 import Mankind.Player;
+import aid.Ad;
+import aid.Client;
+import aid.Log;
+import aid.Producer;
+import aid.Shop;
+import aid.Tips;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -42,7 +45,7 @@ public class MenuActivity extends Activity {
 	private static Context content;
 	private static Context myActivity;
 	protected static int FPS;//
-	Ad ad;
+	public Ad ad;
 	private int startTime;
 
 	private StateWindow stateWindow;
@@ -90,6 +93,7 @@ public class MenuActivity extends Activity {
 
 
 	public void finish() {
+		save();
 		if (world != null)
 			world.onDestroy();
 		 stateWindow=null;
@@ -97,6 +101,7 @@ public class MenuActivity extends Activity {
 		 gameMenu=null;
 		 myHandler=null;
 		 world=null;
+		if(client!=null) client.closeStream();
 		super.finish();
 	}
 
@@ -109,9 +114,11 @@ public class MenuActivity extends Activity {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
 				WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		// buxiumian
+		
 		myActivity = this;
 		
 		
+		initNetController();
 		
 		initWindowSize();
 
@@ -124,6 +131,15 @@ public class MenuActivity extends Activity {
 		initDialog();
 		initTips();
 		mapIndex = getMaxMapIndex();
+	}
+
+	private void initNetController() {
+		client = new Client();
+		new Thread(){
+			public void run(){
+				client.connect();
+			}
+		}.start();
 	}
 
 	private void initTips() {
@@ -144,9 +160,6 @@ public class MenuActivity extends Activity {
 	}
 
 	void initStartMenu() {
-		// TODO Auto-generated method stub
-//		if(stageChooser!=null)
-//			stageChooser.hide();
 		
 		startMenu = new StartMenu(this);
 		startMenu.loadStartMenu();
@@ -218,7 +231,7 @@ public class MenuActivity extends Activity {
 			// TODO Auto-generated method stub
 			save();
 //			gameMenu.removeView();//没啥用
-//			ad.showInterstitial();
+//			showInAd();
 //			gameMenu.addView();
 			gameMenu.gameover();
 		}
@@ -256,9 +269,9 @@ public class MenuActivity extends Activity {
 		 if(stateWindow == null)
 			 stateWindow = new StateWindow(this, world, tips);
 			 
-		// if (gameMenu == null)
+//		 if (gameMenu == null)
 		gameMenu = new GameMenu(this, world);
-		// if(shopView==null)
+//		 if(shopView==null)
 		shop = new Shop(this, world);
 		
 		if(World.editMode)
@@ -289,7 +302,7 @@ public class MenuActivity extends Activity {
 
 				stageChooser.hide();
 				// ////////////////
-				loadTitleView(0);
+				loadTitleView();
 				// super.onKeyDown(keyCode, event);
 			} else if (world != null) {
 				if (shop != null){
@@ -357,6 +370,8 @@ public class MenuActivity extends Activity {
 	private static String talk;
 
 	private static int resId;
+	private Client client;
+	String username;
 
 //	public static boolean titleMode;
 	
@@ -393,7 +408,7 @@ public class MenuActivity extends Activity {
 	}
 
 	private void showExitDialog() {
-		ad.showInterstitial();
+		showInAd();
 		new AlertDialog.Builder(this)
 				// 不能用getApplicationContext() 结果同上
 				// .setTitle(" ")
@@ -446,12 +461,21 @@ public class MenuActivity extends Activity {
 		coinCount = sp.getInt("coin", 500);
 		chance = sp.getInt("chance", 300);
 		score = sp.getInt("score", 0);
-		geqian=sp.getString("geqian", "您的个性签名");
+		
 		starString = sp.getString("starString", starString);
 		Log.i("starString"+starString);
 		itemString =sp .getString("itemString", itemString);
 		star = stringToInts(starString);
 		item=itemString.toCharArray();
+		username=sp.getString("username", UserName.randomName());
+		geqian=sp.getString("geqian", "我是一个伟大的火星猎人");
+		saveUserMessage();
+	}
+	void saveUserMessage(){
+		editor.putString("username",username);
+		editor.putString("geqian",geqian);
+		// Log.i("starString"+new String(starString));
+		editor.commit();
 	}
 
 	int getMaxMapIndex() {
@@ -486,12 +510,14 @@ public class MenuActivity extends Activity {
 			world.quitGame();
 		}
 		Log.d("quitGame");
+		
+		
 	}
 
-	void loadTitleView(int i) {
+	void loadTitleView() {
 		// TODO Auto-generated method stub
 		titleMode=true;
-		world.loadTitleView(0);
+		world.loadTitleView();
 	}
 
 	public void resumeGame() {
@@ -595,6 +621,7 @@ public class MenuActivity extends Activity {
 		shopadcontainer.removeAllViews();
 		removeView(ad.getBannerview());
 		ad.showBanner(shopadcontainer);
+		Log.i("show banner");
 	}
 
 	public void tietu(int i) {
@@ -624,7 +651,7 @@ public class MenuActivity extends Activity {
 	public boolean getLifeFree() {
 		// TODO Auto-generated method stub
 		if(isNetworkAvailable(this)){
-			ad.showInterstitial();
+			showInAd();
 			return true;
 		}else {
 			showDialog("网络错误", "请在联网状态下观看广告复活", R.drawable.coinicon);
@@ -636,6 +663,11 @@ public class MenuActivity extends Activity {
 		}
 		return false;
 	}
+	private void showInAd() {
+		// TODO Auto-generated method stub
+		ad.showInterstitial();
+	}
+
 	public static boolean isNetworkAvailable(Context context) {   
         ConnectivityManager cm = (ConnectivityManager) context   
                 .getSystemService(Context.CONNECTIVITY_SERVICE);   
@@ -660,11 +692,26 @@ public class MenuActivity extends Activity {
 		animationShop.showWindow(v);
 	}
 
-	public void saveGeqian(String c) {
+
+
+	public void adShow() {
 		// TODO Auto-generated method stub
-		editor.putString("geqian",c);
-		// Log.i("starString"+new String(starString));
-		editor.commit();
+		int count=1;
+		coinCount+=count;
+		chance+=count;
+//		showDialog("显示了广告", "金币+"+count+" 生命能量+"+count, R.drawable.coinicon);
+		myHandler.sendEmptyMessage(World.COIN);
+		myHandler.sendEmptyMessage(World.CHANCE);
+	}
+
+	public void adClicked() {
+		// TODO Auto-generated method stub
+		int count=10;
+		coinCount+=count;
+		chance+=count;
+//		showDialog("点击了广告", "金币+"+count+" 生命能量+"+count, R.drawable.egg);
+		myHandler.sendEmptyMessage(World.COIN);
+		myHandler.sendEmptyMessage(World.CHANCE);
 	}
 	
 }

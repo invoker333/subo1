@@ -60,7 +60,7 @@ public class Stagechoosser {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				hide();
-				acti.loadTitleView(0);
+				acti.loadTitleView();
 			}
 		});
 
@@ -89,7 +89,7 @@ public class Stagechoosser {
 
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return Map.max - 1;
+			return Map.max ;
 		}
 
 		@Override

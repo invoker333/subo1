@@ -5,13 +5,13 @@ import java.io.InputStream;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import aid.Log;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLUtils;
 import android.view.View;
 
-import com.mingli.toms.Log;
 import com.mingli.toms.R;
 import com.mingli.toms.World;
 
@@ -32,7 +32,7 @@ public class TexId{
 	public static int BULLET;
 	public static int BACK;
 	public static int BACKGROUND;
-	public static int BUBBLE;
+//	public static int BUBBLE;
 	public static int RED;
 	public static int UP;
 	public static int BUTTON_LEF;
@@ -63,7 +63,7 @@ public class TexId{
 	public static int SUNSET;
 	public static int ZHAOZHOUQIAO;
 	public static int TIANSHAN;
-	public static int HETANG;
+	public static int SEA;
 	public static int STONE;
 	public static int WOOD;
 	public static int TREE;
@@ -90,7 +90,7 @@ public class TexId{
 	public static int TOUKUI;
 	public static int GAO;
 	public static int HIKARI;
-	public static int HIKARI2;
+//	public static int HIKARI2;
 	public static int EXPRESSION;
 //	public static int ICE;
 	public static int RAIN;
@@ -109,18 +109,17 @@ public class TexId{
 	public static int FIRE;
 //	public static int FIRE2;
 	public static int CANDLEPOR;
-	public static int SEA;
 	public static int PAOTA;
 	public static int GUIDEPOST;
 	public static int GUIDECIRCLE;
-	public static int S;
-	public static int M;//musket hua tang qiang
-	public static int B;
-	public static int D;
+	public static int SHOTGUN;
+	public static int JUJI;//musket hua tang qiang
+	public static int MISSILE;
+	public static int HOOKGUN;
 	public static int CUP;
 	public static int LIGHTTAIL;
 	public static int K;//knife
-	public static int O;
+	public static int GUANGDANQIANG;
 	public static int WOODROOT;
 	public static int BOOM2;
 	
@@ -131,8 +130,11 @@ public class TexId{
 	public static int ZIDONGDAN;
 	public static int SHUFUDAN;
 	public static int GOLDENBANK;
+	public static int ZAN;
+	public static int BOOMGUN;
 	public  void loadTextureId(GL10 gl) {
 //		if(1<2)return;
+		BOOMGUN=loadTexture(gl,R.drawable.boomgun);
 		GOLDENBANK=loadTexture(gl,R.drawable.goldenbank);
 		SHUFUDAN=loadTexture(gl,R.drawable.shufudan);
 		ZIDONGDAN=loadTexture(gl,R.drawable.autobulletgun);
@@ -143,23 +145,22 @@ public class TexId{
 		GOALCIRCLE=loadTexture(gl,R.drawable.goalcircle);
 		BOOM2=loadTexture(gl,R.drawable.boom2);
 		WOODROOT=loadTexture(gl,R.drawable.woodroot);
-		O=repeatLoadTexture(gl,R.drawable.putongdan);
+		GUANGDANQIANG=repeatLoadTexture(gl,R.drawable.putongdan);
 		K=repeatLoadTexture(gl,R.drawable.jian);
 		GUIDECIRCLE=loadTexture(gl,R.drawable.guidecircle);
 		EGG=loadTexture(gl,R.drawable.egg);
 		LIGHTTAIL=loadTexture(gl,R.drawable.lighttail);
 		CUP=repeatLoadTexture(gl,R.drawable.cup);
-		D=repeatLoadTexture(gl,R.drawable.huck);
-		M=repeatLoadTexture(gl,R.drawable.jujidan);
-		B=repeatLoadTexture(gl,R.drawable.daodan);
-		S=repeatLoadTexture(gl,R.drawable.s);
+		HOOKGUN=repeatLoadTexture(gl,R.drawable.huck);
+		JUJI=repeatLoadTexture(gl,R.drawable.jujidan);
+		MISSILE=repeatLoadTexture(gl,R.drawable.daodan);
+		SHOTGUN=repeatLoadTexture(gl,R.drawable.s);
 		BULLET=loadTexture(gl,R.drawable.bullet);
 		GUIDEPOST=loadTexture(gl,R.drawable.guidepost2);
 		CANDLEPOR=loadTexture(gl,R.drawable.candlepor);
 		FIRE=loadTexture(gl,R.drawable.firetail);
 		PAOTA=loadTexture(gl,R.drawable.paotai);
 		GUN=loadTexture(gl,R.drawable.guntitle);
-		SEA=loadTexture(gl,R.drawable.sea);
 		BLOOD=loadTexture(gl,R.drawable.blood);
 		CANDLETAIL=loadTexture(gl,R.drawable.candle);
 		LIGHTSPOT=loadTexture(gl,R.drawable.lightspot);
@@ -173,7 +174,7 @@ public class TexId{
 		SNOW=loadTexture(gl,R.drawable.snow);
 		WIND=loadTexture(gl,R.drawable.wind);
 		EXPRESSION=loadTexture(gl,R.drawable.espression);
-		HIKARI2=loadTexture(gl,R.drawable.light2);
+		ZAN=loadTexture(gl,R.drawable.zan);
 		HIKARI=loadTexture(gl,R.drawable.light);
 		TOUKUI=loadTexture(gl,R.drawable.toukui);
 		GAO=loadTexture(gl,R.drawable.gao);
@@ -231,7 +232,7 @@ public class TexId{
 //		STARTMENU=loadTexture(gl, R.drawable.startmenu);
 		TOMATO=loadTexture(gl, R.drawable.tomato);
 		JINGUBANG=loadTexture(gl, R.drawable.jingubang);
-		BUBBLE=loadTexture(gl,R.drawable.bubble);
+//		BUBBLE=loadTexture(gl,R.drawable.bubble);
 		RED=loadTexture(gl,R.drawable.red);
 		BLUE=loadTexture(gl, R.drawable.blue);
 		GREEN=loadTexture(gl, R.drawable.green);
@@ -244,7 +245,7 @@ public class TexId{
 		SUNSET=repeatLoadTexture(gl, R.drawable.sunset);
 		ZHAOZHOUQIAO=repeatLoadTexture(gl, R.drawable.zhaozhouqiao);
 		TIANSHAN=repeatLoadTexture(gl, R.drawable.tianshan);
-		HETANG=repeatLoadTexture(gl, R.drawable.hetang);
+		SEA=repeatLoadTexture(gl, R.drawable.hetang);
 	}
 
 	private Context context;

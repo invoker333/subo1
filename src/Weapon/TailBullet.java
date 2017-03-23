@@ -63,7 +63,7 @@ class ToBigBullet extends Bullet{
 		super(es,gra);
 		setTextureId((TexId.BULLET));
 		// TODO Auto-generated constructor stub
-		attack=(int) (1f*World.baseAttack);
+		attack=(int) (0.5f*World.baseAttack);
 		setwReal(8);
 	}
 	public void drawElement(GL10 gl){

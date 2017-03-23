@@ -12,6 +12,7 @@ import android.util.Log;
 import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.Render;
+import com.mingli.toms.World;
 
 import element2.Set;
 import element2.TexId;
@@ -21,7 +22,7 @@ public class Gun extends Set {// 子弹
 	protected int bulletIndex;// 子弹计数器
 	public float gunLength = 64;// 枪长系数
 	float x, y;// 枪口位置
-	protected double bSpeed = 20;// 射速系数
+	protected double bSpeed = World.baseBSpeed;// 射速系数
 	protected ArrayList<Bullet> bList;
 	protected ArrayList<Creature> sList;
 	protected Creature player;

@@ -1,6 +1,6 @@
 package com.mingli.toms;
 
-import Clothes.Tips;
+import aid.Tips;
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
@@ -42,10 +42,10 @@ public class StateWindow {
 			TextView te = tips.getTextView();
 			switch(v.getId()){
 			case R.id.timer:te.setText("游戏时间:"+timer.getText()+"/"+world.timerMax+"\n一局游戏的计时器，得在时间为0前过关。");break;
-			case R.id.coin:te.setText("当前金币"+coin.getText()+"\n金币当然越多越好。能在商店买东西。");break;
+			case R.id.coin:te.setText("当前金币"+coin.getText()+"\n显示广告能获得金币，点击广告获得更多金币。");break;
 			case R.id.progressBar1:te.setText("当前体力："+life.getProgress()+"%\n请注意节制，小心身体被掏空……");break;
 			case R.id.score:te.setText("当前得分："+score.getText()+" \n 基本上干什么都会得分！");break;
-			case R.id.chance:te.setText("获得的生命能量："+chance.getText()+"\n游戏失败会丢失1生命能量，捕获（消灭）小动物会获得1生命能量。\n商店买东西");break;
+			case R.id.chance:te.setText("获得的生命能量："+chance.getText()+"\n显示广告能获得能量，点击广告得到更多。\n  游戏失败会丢失1生命能量，捕获（消灭）怪物会获得1生命能量。");break;
 			
 			}
 		}
@@ -96,20 +96,19 @@ public class StateWindow {
 			break;
 		case World.COIN:
 			// if(coin!=null)
-			acti.coinCount+=world.getIntMes(msg.what);
+			
 			coin.setText(""+acti.coinCount);
 			
-			 Log.i("coin"," world.getIntMes(msg.what)"+ world.getIntMes(msg.what));
+//			 Log.i("coin"," world.getIntMes(msg.what)"+ world.getIntMes(msg.what));
 			break;
 		case World.CHANCE:
 			// if(chance!=null)
-			acti.chance+=world.getIntMes(msg.what);
 			chance.setText(""+acti.chance);
 			// Log.i("chance",World.getStr(msg.what));
 			break;
 		case World.SCORE:
 			// if(score!=null)
-			acti.score+=world.getIntMes(msg.what);
+		
 			score.setText(""+acti.score);
 //			 Log.i("score"," world.getIntMes(msg.what)"+ world.getIntMes(msg.what));
 			// Log.i("score", World.getStr(msg.what));

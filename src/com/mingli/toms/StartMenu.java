@@ -2,6 +2,7 @@ package com.mingli.toms;
 
 import Enviroments.FruitSet;
 import Enviroments.Tomato;
+import aid.Log;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -37,6 +38,7 @@ public class StartMenu{
 
 	private View startView;
 	private TextView et;
+	private TextView username;
     StartMenu(MenuActivity acti){
         this.acti = acti;
 //        this.click = click;
@@ -61,7 +63,8 @@ public class StartMenu{
         Button start = (Button) startView.findViewById(R.id.startgame);
         Button more = (Button) startView.findViewById(R.id.more);
         fileChoose = (Button) startView.findViewById(R.id.fileChoose);
-        if(!World.editMode)fileChoose.setVisibility(View.INVISIBLE);
+//        if(!World.editMode)
+        	fileChoose.setVisibility(View.INVISIBLE);
         Button stage = (Button) startView.findViewById(R.id.stageChoose);
         
         rampage = (CheckBox) startView.findViewById(R.id.rampage);
@@ -72,7 +75,10 @@ public class StartMenu{
         
         CheckBox cb1 = (CheckBox) startView.findViewById(R.id.checkBox1);
         CheckBox cb2 = (CheckBox) startView.findViewById(R.id.checkBox2);
-
+        if(!Music.ex)cb1.setChecked(false);
+        if(!Music.bgm)cb2.setChecked(false);
+        
+        
         View gameModel=startView.findViewById(R.id.gameModel);
         gameModel.setVisibility(View.INVISIBLE);
         
@@ -93,10 +99,12 @@ public class StartMenu{
         cb1.setOnCheckedChangeListener(check);
         cb2.setOnCheckedChangeListener(check);
         
+        username=(TextView)startView.findViewById(R.id.nicheng);
         et = (EditText) startView.findViewById(R.id.geqian);
 //        et.setVisibility(View.INVISIBLE);
 //        et.setOnClickListener(click);
         et.setText(acti.geqian);
+        username.setText(acti.username);
         TextWatcher watcher= new TextWatcher() {
 			
         	String before;
@@ -117,7 +125,8 @@ public class StartMenu{
 			public void afterTextChanged(Editable c) {
 				Log.i("afterchanged "+c);
 				if(after!=null&&after!="")
-				acti.saveGeqian(after);
+				acti.geqian=after;
+				acti.saveUserMessage();
 			}
 		};
 		et.addTextChangedListener(watcher);
@@ -168,6 +177,7 @@ public class StartMenu{
 		String rpgStr="11110000";
 		String youtietu = "11111100";
 		String wutietu = "00000011";
+		String bigMode = "000111";
 		int maxLength=15;// max length in the up number
 		
 		@Override
@@ -224,6 +234,15 @@ public class StartMenu{
 					Toast.makeText(acti, "RPG模式关闭", Toast.LENGTH_SHORT).show();
 				}
 			}
+			else if(str.equals(bigMode)){
+				if(World.bigMode==false){
+					World.bigMode=true;
+					Toast.makeText(acti, "自由变形模式开启", Toast.LENGTH_SHORT).show();
+				}else {
+					World.bigMode=false;
+					Toast.makeText(acti, "自由变形模式关闭", Toast.LENGTH_SHORT).show();
+				}
+			}
 		
 			else {
 				return;// to avoid str to be  not empty
@@ -238,6 +257,7 @@ public class StartMenu{
 	public void hide() {
 		// TODO Auto-generated method stub
 		acti.removeView(startView);
+//		acti.ad.
 	}
 
 

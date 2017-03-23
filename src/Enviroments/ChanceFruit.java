@@ -2,7 +2,8 @@ package Enviroments;
 
 import java.util.ArrayList;
 
-import com.mingli.toms.Log;
+import aid.Log;
+
 import com.mingli.toms.MenuActivity;
 import com.mingli.toms.World;
 
@@ -15,6 +16,7 @@ public class ChanceFruit extends ShakeFruit{
 		super(bi,x, y);
 		name="复活蛋";
 		setGoodsCost(0, 10);
+		instruction="能够复活，增加时间，并且无敌一会儿";
 		// TODO Auto-generated constructor stub
 		loadTexture(TexId.EGG,0,0);
 	}
@@ -27,7 +29,7 @@ public class ChanceFruit extends ShakeFruit{
 		super.use(player, pickedList);
 	}
 	public boolean loadAble(Player player){
-		if(World.rpgMode)	
+		if(World.rpgMode)
 		for(Fruit f:FruitSet.pickedList)
 			if(f.getTextureId()==getTextureId()){
 				MenuActivity.showDialog("提示：", "限购一个", getIcon());

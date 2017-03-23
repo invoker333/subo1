@@ -8,6 +8,7 @@ import Element.LightSpotSet;
 import Mankind.Player;
 import Weapon.AutoBullet;
 import Weapon.Gun;
+import aid.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;

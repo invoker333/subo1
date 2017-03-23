@@ -7,8 +7,8 @@ import javax.microedition.khronos.opengles.GL10;
 import Element.AnimationMove;
 import Mankind.Flyer;
 import Mankind.Player;
+import aid.Log;
 
-import com.mingli.toms.Log;
 import com.mingli.toms.Music;
 import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
@@ -30,7 +30,7 @@ public class FruitSet extends Set {
 	protected GrassSet gs;
 	protected float COUNT;
 	public static ArrayList<Fruit> shopList;
-	public static ArrayList<Fruit> pickedList =new ArrayList<Fruit>();
+	public static ArrayList<Fruit> pickedList = new ArrayList<Fruit>();
 	private static ChanceFruit chanceFruit;
 
 	public FruitSet(Player player, ArrayList<Fruit> fruitList, GrassSet gs) {// 跳台起始x值，长度，起始
@@ -46,65 +46,121 @@ public class FruitSet extends Set {
 		// checkH=player.getH()+fruitList.get(0).getH();//设置碰撞宽度
 		// initItemList();
 		initShopList();
+		if (World.curMapIndex < 10)
+			checkShopList();
 	}
 
-	public static  void initShopList() {
+	private void checkShopList() {
 		// TODO Auto-generated method stub
-		
-		if(chanceFruit!=null){
-			final int cost = 10;
-//			chanceFruit.cost=cost;
-			chanceFruit.chancecost=cost;
+		boolean had = false;
+		for (int i = shopList.size() - 1; i > -1; i--) {
+			Fruit f = shopList.get(i);
+
+			if (f.getTextureId() == TexId.EGG || f.getTextureId() == TexId.ZAN)
+				continue;
+
+			had = false;
+			for (int j = 0; j < fruitList.size(); j++) {
+				Fruit ff = fruitList.get(j);
+				if (ff.getTextureId() == f.getTextureId()) {
+					had = true;
+					break;
+				}
+			}
+			if (!had)
+				shopList.remove(i);
 		}
-		
-		
-		char bi=0;
-		if (shopList == null) {
+	}
+
+	public static void initShopList() {
+		// TODO Auto-generated method stub
+
+		if (chanceFruit != null) {
+			final int cost = 10;
+			// chanceFruit.cost=cost;
+			chanceFruit.chancecost = cost;
+		}
+
+		char bi = 0;
+		// if (shopList == null)
+		{
 			shopList = new ArrayList<Fruit>();
-			shopList.add(chanceFruit=new ChanceFruit(bi,1, 1));// ..
-			if(World.rpgMode)shopList.add(new Tomato(bi,1, 1, 500));// ..
-			shopList.add(new sizeFruit(bi,1, 1));
-			shopList.add(new Toukui(bi,0, 0, 9999));
-			shopList.add(new Gao(bi,1, 1, 9999));
-			shopList.add(new FruitFly(bi,1, 1, 9999));
-			shopList.add(new Wudi(bi,1, 1));
-			shopList.add(new FruitGun(bi,1, 1, TexId.SHUFUDAN));
-			shopList.add(new FruitGun(bi,1, 1, TexId.ZIDONGDAN));
-			shopList.add(new FruitGun(bi,1, 1, TexId.S));
-			shopList.add(new FruitGun(bi,1, 1, TexId.B));
-			shopList.add(new FruitGun(bi,1, 1, TexId.D));
-			shopList.add(new FruitGun(bi,1, 1, TexId.M));
-			shopList.add(new FruitGun(bi,1, 1, TexId.O));
-			shopList.add(new FruitBlade(bi,1, 1));
+			shopList.add(chanceFruit = new ChanceFruit(bi, 1, 1));// ..
+			if (World.rpgMode)
+			shopList.add(new sizeFruit(bi, 1, 1));
+			shopList.add(new Toukui(bi, 0, 0, 9999));
+			shopList.add(new Gao(bi, 1, 1, 9999));
+			shopList.add(new Wudi(bi, 1, 1));
+			shopList.add(new FruitFly(bi, 1, 1, 9999));
+			shopList.add(new FruitGun(bi, 1, 1, TexId.BOOMGUN));
+			shopList.add(new FruitGun(bi, 1, 1, TexId.HOOKGUN));
+			if (World.rpgMode) {
+				shopList.add(new Tomato(bi, 1, 1, 500));// ..
+				shopList.add(new FruitGun(bi, 1, 1, TexId.ZIDONGDAN));
+				shopList.add(new FruitGun(bi, 1, 1, TexId.GUANGDANQIANG));
+				shopList.add(new FruitGun(bi, 1, 1, TexId.SHOTGUN));
+				shopList.add(new FruitGun(bi, 1, 1, TexId.MISSILE));
+				shopList.add(new FruitGun(bi, 1, 1, TexId.JUJI));
+				shopList.add(new FruitGun(bi, 1, 1, TexId.SHUFUDAN));
+				shopList.add(new FruitBlade(bi, 1, 1));
+			}
 		}
 	}
 
 	public static void initItemList(char[] item) {
-		Log.i("initItemString"+new String(item));
-		char bi=0;
-		if(pickedList==null){
-			pickedList=new ArrayList<Fruit>();
-//			pickedList.add(new Tomato(1, 1,1000000000));//..
-//			pickedList.add(new sizeFruit(1, 1));
+		Log.i("initItemString" + new String(item));
+		char bi = 0;
+		if (pickedList == null) {
+			pickedList = new ArrayList<Fruit>();
+			// pickedList.add(new Tomato(1, 1,1000000000));//..
+			// pickedList.add(new sizeFruit(1, 1));
 			pickedList.clear();
-			for(int i=0;i<item.length;i++){
-			switch(item[i]){
-			case 'H':pickedList.add(new sizeFruit());break;	
-			case 'T':pickedList.add(new Tomato(bi,0,0,500));break;		
-			case 'n':pickedList.add(new Toukui(bi,0, 0, 9999));break;	
-			case 'G':pickedList.add(new Gao(bi,0, 0, 9999));break;	
-			case 'S':pickedList.add(new FruitGun(bi,0,0,TexId.S));break;	
-			case 'O':pickedList.add(new FruitGun(bi,0,0,TexId.O));break;	
-			case 'M':pickedList.add(new FruitGun(bi,0,0,TexId.M));break;	
-			case 'D':pickedList.add(new FruitGun(bi,0,0,TexId.D));break;	
-			case 'B':pickedList.add(new FruitGun(bi,0,0,TexId.B));break;	
-			case 'K':pickedList.add(new FruitBlade(bi,0,0));break;	
+			for (int i = 0; i < item.length; i++) {
+				switch (item[i]) {
+				case 'H':
+					pickedList.add(new sizeFruit());
+					break;
+				case 'T':
+					pickedList.add(new Tomato(bi, 0, 0, 500));
+					break;
+				case 'n':
+					pickedList.add(new Toukui(bi, 0, 0, 9999));
+					break;
+				case 'G':
+					pickedList.add(new Gao(bi, 0, 0, 9999));
+					break;
+				case 'S':
+					pickedList.add(new FruitGun(bi, 0, 0, TexId.SHOTGUN));
+					break;
+				case 'O':
+					pickedList.add(new FruitGun(bi, 0, 0, TexId.GUANGDANQIANG));
+					break;
+				case 'M':
+					pickedList.add(new FruitGun(bi, 0, 0, TexId.JUJI));
+					break;
+				case 'D':
+					pickedList.add(new FruitGun(bi, 0, 0, TexId.HOOKGUN));
+					break;
+				case 'B':
+					pickedList.add(new FruitGun(bi, 0, 0, TexId.MISSILE));
+					break;
+				case 'P':
+					pickedList.add(new FruitGun(bi, 0, 0, TexId.BOOMGUN));
+					break;
+				case 'x':
+					pickedList.add(new FruitGun(bi, 0, 0, TexId.SHUFUDAN));
+					break;
+				case 'L':
+					pickedList.add(new FruitGun(bi, 0, 0, TexId.ZIDONGDAN));
+					break;
+				case 'K':
+					pickedList.add(new FruitBlade(bi, 0, 0));
+					break;
+				}
 			}
-		}		
-			
-	}
-		
-			
+
+		}
+
 	}
 
 	public static char[] getItemArray() {
@@ -141,6 +197,15 @@ public class FruitSet extends Set {
 			case R.drawable.jian:
 				item[i] = 'K';
 				break;
+			case R.drawable.boomgun:
+				item[i] = 'P';
+				break;
+			case R.drawable.shufudan:
+				item[i] = 'x';
+				break;
+			case R.drawable.autobulletgun:
+				item[i] = 'L';
+				break;
 			}
 		}
 		return item;
@@ -149,24 +214,23 @@ public class FruitSet extends Set {
 	void pick(Fruit fruit) {
 		AnimationMove goreAni = gs.goreAni;
 		if (Math.abs(fruit.x - player.x) < fruit.getW() + player.getwEdge()
-				&& Math.abs(fruit.y - player.y) < fruit.getH() + player.getH()
-				) {
+				&& Math.abs(fruit.y - player.y) < fruit.getH() + player.getH()) {
 			picked(fruit);
 		}
 
-		if(gs.isGore() && Math.abs(fruit.x-goreAni.x)<fruit.w+goreAni.w
-		&&Math.abs(fruit.y-goreAni.y)<fruit.h+goreAni.h){
+		if (gs.isGore() && Math.abs(fruit.x - goreAni.x) < fruit.w + goreAni.w
+				&& Math.abs(fruit.y - goreAni.y) < fruit.h + goreAni.h) {
 			gs.setGore(false);
 			picked(fruit);
 		}
 	}
 
 	protected void picked(Fruit fruit) {
-		
+
 		fruit.use(player, pickedList);// whatever fruit will be used at once
-		
+
 		if (fruit.loadAble(player)) {
-			if(World.rpgMode)
+			if (World.rpgMode)
 				pickedList.add(fruit);
 			gunLoseCheck(fruit);
 		}
@@ -177,14 +241,14 @@ public class FruitSet extends Set {
 
 	private void gunLoseCheck(Fruit fruit) {
 		// TODO Auto-generated method stub
-		if(fruit.kind.equals("fruitgun")){
-			for(int i=0;i<pickedList.size();i++){
-				if(pickedList.get(i).kind.equals("fruitgun")){
+		if (fruit.kind.equals("fruitgun")) {
+			for (int i = 0; i < pickedList.size(); i++) {
+				if (pickedList.get(i).kind.equals("fruitgun")) {
 					pickedList.remove(i);
 				}
 			}
 		}
-		
+
 	}
 
 	public void loadSound() {
@@ -263,18 +327,21 @@ public class FruitSet extends Set {
 		// TODO Auto-generated method stub
 		player.increaseCoinBy(-item.cost);
 		player.increaseChanceBy(-item.chancecost);
-		
+
 		if (!item.loadAble(player))
 			return;// not load Able return
-		if(World.rpgMode)pickedList.add(item);
+		if (World.rpgMode)
+			pickedList.add(item);
 
 	}
 
 	public static void cml() {
 		// TODO Auto-generated method stub
 		initShopList();
-		if(World.rpgMode)shopList.add(new Tomato((char) 0,0,0,99999));
-		else shopList.add(new Wudi((char) 0,0,0,99999));
+		if (World.rpgMode)
+			shopList.add(new Tomato((char) 0, 0, 0, 99999));
+		else
+			shopList.add(new Wudi((char) 0, 0, 0, 99999));
 	}
 
 }

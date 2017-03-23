@@ -22,6 +22,10 @@ public class Enemy extends Creature {
 		super.init();
 		loadSound();
 	}
+	public void changeSize(float rate){
+		super.changeSize(rate);
+		loadTexture();
+	}
 	public void drawElement(GL10 gl) {
 		// super.drawElement(gl);
 		move();

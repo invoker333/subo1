@@ -28,6 +28,7 @@ import Mankind.PlayerSet;
 import Mankind.Walker;
 import Weapon.AutoBubble;
 import Weapon.AutoBullet;
+import aid.Log;
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.os.Environment;
@@ -66,7 +67,7 @@ public class World extends GLSurfaceView implements Runnable {
 	private BoomSet boomSet;
 	public static Music music;
 
-	public Context context;
+	public MenuActivity acti;
 	public static float red;
 	public static float green;
 	public static float blue;
@@ -82,7 +83,7 @@ public class World extends GLSurfaceView implements Runnable {
 	private GuidePost guidePost;
 	private Curtain ct;
 	public int playerMoveIndex;
-	private int mapMoveIndex=100000;// to guide
+	private int mapMoveIndex;
 	TexId texId;
 
 	static  boolean RAMPAGE;
@@ -103,12 +104,13 @@ public class World extends GLSurfaceView implements Runnable {
 	public static final int NOGUNICON=14;
 	final  int[] mes = new int[14];
 	public static final int baseAttack = 100;
-	public static int baseLifeMax=baseAttack;
+	public static int baseLifeMax=baseAttack/10;
 	Handler handler;
 	private FruitSet fruitSet;
 	private Render render;
 	private BloodSet snowBloodSet;
 	public  File mapFile;
+	public static int curMapIndex;
 	
 	
 	 String getStr(int index) {
@@ -128,18 +130,20 @@ public class World extends GLSurfaceView implements Runnable {
 		{
 			File[] fs = f.listFiles();
 			int id=fs.length;
-			String string = "w"+(id+1)+".txt";
+			String string = "w"+(++id)+".txt";
 			f=new File(f,string);
+//			Log.i(f.getName());
 			while(f.exists())f=new File(f,"w"+(++id+".txt"));
+//			Log.i(f.getName());
 		}
 		
 		map.saveMap(gra.saveMap(), f);
-		Toast.makeText(context, "地图保存成功", Toast.LENGTH_SHORT).show();
+		Toast.makeText(acti, "地图保存成功", Toast.LENGTH_SHORT).show();
 	}
 
 	public World(Context context,Handler handler) {//
 		super(context);
-		this.context = context;
+		this.acti = (MenuActivity) context;
 		this.handler = handler;
 		music = new Music(context);
 
@@ -155,7 +159,8 @@ public class World extends GLSurfaceView implements Runnable {
 			public void run() {
 				while (!render.created)// time to load texture  Thread not asame
 					timeRush();
-				loadTitleView(0);
+//				loadTitleView(0);
+				loadTitleView();
 				long t1=System.currentTimeMillis();
 				Log.i("loadGameTime"+(System.currentTimeMillis()-t1+"ms"));
 			}
@@ -167,23 +172,25 @@ public class World extends GLSurfaceView implements Runnable {
 		// TODO Auto-generated method stub
 		
 		
-		char[] ch={'s','	','g','	','0','	','t','	','w','	','f','	','1','	','A','	','T','	','C','	','n','	','U','	','a','x','	','b','	','c','	','d','	','e','	','i','	','H','	','z','	','2','	','↑','	','↓','	','←','	','→','	','B','	','D','	','K','	','M','	','O','	','S','	','j','	','E','	','F','V','l',13};
-		GrassSet gs=new GrassSet(gra.getGrid(), ch, lightningSet, this);
+//		char[] ch={'s','g','0','t','w','f','1','A','T','C','n','U','a','x','b','c','d','e','i','I','H','Z','z','2','↑','↓','←','→','B','D','K','M','O','S','j','J','E','F','V','l','L',13};
+		
+		Map map=new Map(-10,acti);
+		GrassSet gs=new GrassSet(gra.getGrid(), map.charData, lightningSet, this);
 		
 		
 		
-//		animationshopList=new ArrayList<Animation>();
-		animationshopList=gs.animationList;
+		animationshopList=new ArrayList<Animation>();
+//		animationshopList=gs.animationList;
 		
 		
-		for(int i=0;i<animationshopList.size();i++){
-			Animation ani=animationshopList.get(i);
-			ani.name=""+ani.mapSign;//////////
-			if(ani.mapSign==0){
-				animationshopList.remove(ani);// remove whitch has no icon
-				MenuActivity.showDialog("remove whitch has no icon", "", 0);
+		for(int i=0;i<gs.animationList.size();i++){
+			Animation ani=gs.animationList.get(i);
+			// did not add empty
+			if(ani.mapSign!=' '){
+				animationshopList.add(ani);// 
 			}
 		}
+//		MenuActivity.showDialog("remove whitch has no icon", "", 0);
 		
 		Log.i("ani.getClass().getName()"+animationshopList.get(0).getClass().getName());
 		Log.i("对象 instanceof 类"+(animationshopList.get(0) instanceof Emplacement));
@@ -191,7 +198,8 @@ public class World extends GLSurfaceView implements Runnable {
 		
 		for(int i=0;i<animationshopList.size();i++){
 			Animation ani=animationshopList.get(i);
-		
+			Log.i(ani.getClass().getName());
+			ani.name=""+ani.mapSign;//////////
 		
 //			if(ani.mapSign=='j'||ani.mapSign=='E'){
 			if(ani instanceof Emplacement){
@@ -203,7 +211,8 @@ public class World extends GLSurfaceView implements Runnable {
 		}
 	}
 
-	void loadTitleView(int i) {
+	void loadTitleView() {
+		int mapId=-1;
 		if(!render.created)return;
 		// TODO Auto-generated method stub
 //		if(drawList.contains(bubbleSet))return;
@@ -212,7 +221,7 @@ public class World extends GLSurfaceView implements Runnable {
 //		if(ct==null)ct = new Curtain();
 //		drawList.add(ct);
 		
-		loadGame(i);
+		loadGame(mapId);
 		
 		if(fireSet==null)
 		   fireSet = new FireSet(5,400,0);
@@ -231,6 +240,7 @@ public class World extends GLSurfaceView implements Runnable {
 	
 	}
 	public void startGame( final int mapIndex){
+		this.curMapIndex=mapIndex;
 //		if(render.created)
 //			loadGame(mapIndex);
 //		else 
@@ -260,10 +270,10 @@ public class World extends GLSurfaceView implements Runnable {
 	
 		 
 		if(mapFile!=null){
-			map = new Map(mapFile, context);
+			map = new Map(mapFile, acti);
 			mapFile=null;
 		}
-		else map = new Map(mapIndex, context);
+		else map = new Map(mapIndex, acti);
 		
 		lightningSet = new LightningSet(2);// ����
 		gra = new GrassSet(64f, map.charData, lightningSet,this);
@@ -297,8 +307,8 @@ public class World extends GLSurfaceView implements Runnable {
 		enemySet.setFriendSet(enemySet);
 		enemySet.setEnemySet(playerSet);
 		
-		playerSet.cList.clear();
-		playerSet.cList.add(player);
+//		playerSet.cList.clear();
+//		playerSet.cList.add(player);
 		
 		
 		cs = new CoinSet(player, gra.getCoinList(), gra, this);
@@ -396,8 +406,11 @@ public class World extends GLSurfaceView implements Runnable {
 		setGameMusic();
 		
 		if(true){
-			if(i!=0)
-			MenuActivity.showDialog(null, "欢迎来到第"+i+"关", R.drawable.cup);
+			if(i>0){
+				MenuActivity.showDialog(null, "欢迎来到第"+i+"关", R.drawable.cup);
+				tringerGuidePost();
+			}
+			if(i==1)MenuActivity.showDialog(null, "欢迎来到第火星猎人的世界", R.drawable.cup);
 //			MenuActivity.showDialog(null, "你还是挺有实力的嘛", R.drawable.wood);
 //			MenuActivity.showDialog(null, "加油", R.drawable.wood);
 		}
@@ -451,6 +464,7 @@ public class World extends GLSurfaceView implements Runnable {
 	void timerTask() {
 		// if(tail!=null)tail.tringer(player.x,player.y);// 指示位置
 		if(paused)return;//////////test
+		if (player != null)	player.setViewPot();
 		if(MenuActivity.titleMode
 //				||editMode
 				)return;
@@ -460,6 +474,8 @@ public class World extends GLSurfaceView implements Runnable {
 		
 		
 		if (player != null) {
+			
+			
 			showSecondaryLifeColumn(player);
 			if (!player.isDead && !player.isGotGoal() && index % 60 == 0) {// 正常游戏计时
 																			// 没有达到目的地
@@ -471,7 +487,7 @@ public class World extends GLSurfaceView implements Runnable {
 //					player.setGotGoal(true);// maybe the boy has gotgoal 
 					Log.i("gametime"+gameTime+"getgoal"+player.isGotGoal());
 					player.isDead=true;
-					player.setGotGoal(true);
+//					player.setGotGoal(true);
 					gameOver();
 					// break;
 				}
@@ -521,10 +537,7 @@ public class World extends GLSurfaceView implements Runnable {
 		}
 		if (player != null && guidePost != null		) {
 			if(!isMapMoved(5 * 60) ) {
-				guidePost.tringer(Render.px + Render.width / 2, Render.py + Render.height *7/8,
-						gra.getGoal().x - guidePost.x, gra.getGoal().y - guidePost.y);
-			
-				
+				tringerGuidePost();
 			} 
 			
 		}
@@ -541,6 +554,12 @@ public class World extends GLSurfaceView implements Runnable {
 		// long dTime=System.currentTimeMillis()-drawTime;
 		// Log.i("dTime"+dTime,"dTime"+dTime);
 		// if(dTime>0)timeRush(flash-dTime);
+	}
+
+	private void tringerGuidePost() {
+		// TODO Auto-generated method stub
+		guidePost.tringer(Render.px + Render.width / 2, Render.py + Render.height *7/8,
+				gra.getGoal().x - guidePost.x, gra.getGoal().y - guidePost.y);
 	}
 
 	private boolean isPlayerMoved(int index) {
@@ -737,7 +756,8 @@ public class World extends GLSurfaceView implements Runnable {
 		handler.sendEmptyMessage(LOADED);
 	}
 	public void increaseScore(int score) {
-		mes[SCORE] = score;
+//		mes[SCORE] = score;
+		acti.score+=score;
 		handler.sendEmptyMessage(SCORE);
 		// if(this.score>999) {
 		// sb.showChance(chance+=1);
@@ -746,13 +766,9 @@ public class World extends GLSurfaceView implements Runnable {
 	}
 
 	public void increaseCoin(int coinCount) {
-		mes[COIN] = coinCount;
+//		mes[COIN] = coinCount;
+		acti.coinCount+=coinCount;
 		handler.sendEmptyMessage(COIN);
-//		 Log.i("coin"+coinCount," world.getIntMes(msg.what)"+ COIN+" "+mes[COIN]);
-		// if(this.coinCount>99) {
-		// sb.showChance(chance+=1);
-		// this.coinCount=0;
-		// }
 	}
 
 	public void increaseTime(int itime) {
@@ -762,6 +778,7 @@ public class World extends GLSurfaceView implements Runnable {
 
 	public void increaseChance(int ichance) {
 		mes[CHANCE] = ichance;
+		acti.chance+=ichance;
 		handler.sendEmptyMessage(CHANCE);
 	}
 
@@ -812,10 +829,12 @@ public class World extends GLSurfaceView implements Runnable {
 	public int timerMax=255;
 	private FireSet fireSet;
 	public ArrayList<Animation> animationList;
-	public static ArrayList<Animation> animationshopList;
+	public  ArrayList<Animation> animationshopList;
 	
 	public static boolean editMode;
 	public static boolean rpgMode;
+	public static double baseBSpeed=20;
+	public static boolean bigMode;
 
 	public void astarSearch(float x, float y) {
 		if (astar == null)
@@ -841,8 +860,8 @@ public class World extends GLSurfaceView implements Runnable {
 		// TODO Auto-generated method stub
 //		Animation cloneA=(Animation) a.clone();
 		Animation cloneA=(Animation) a.clone();
-			float xx=(float) (Math.random()*Render.width);
-			float yy=(float)(Math.random()*Render.height);
+			float xx=(float) ((0.2+Math.random()-0.4)*Render.width);
+			float yy=(float)(((0.2+Math.random()-0.4))*Render.height);
 			xx-=xx%gra.getGrid();
 			yy-=yy%gra.getGrid();
 		
@@ -871,15 +890,15 @@ public class World extends GLSurfaceView implements Runnable {
 		// TODO Auto-generated method stub
 		setGameMusic();
 		
-		 int gameTimeMax=timerMax;
-		if((gameTime+=gameTimeMax/3)>gameTimeMax)
+		 int gameTimeMax=timerMax/3;
+		if((gameTime+=gameTimeMax)>gameTimeMax)
 			gameTime=gameTimeMax;
 		
 	}
 
 	private void setGameMusic() {
 		// TODO Auto-generated method stub
-//		music.pauseBGM();
+		if(!Music.bgm)music.pauseBGM();
 		music.setBGM(R.raw.paopaotang2);
 		music.setLooping(true);
 	}

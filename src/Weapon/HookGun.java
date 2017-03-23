@@ -2,7 +2,10 @@ package Weapon;
 
 import java.util.ArrayList;
 
+import javax.microedition.khronos.opengles.GL10;
+
 import com.mingli.toms.MusicId;
+import com.mingli.toms.Render;
 import com.mingli.toms.World;
 
 import Enviroments.GrassSet;
@@ -13,7 +16,6 @@ public class HookGun extends Gun {
 
 	public HookGun(EnemySet es, GrassSet gra, Creature c, int bCount) {
 		super(es,  gra, c, bCount);
-		
 		cd=5*super.cd;
 		// TODO Auto-generated constructor stub
 	}
@@ -27,5 +29,23 @@ public class HookGun extends Gun {
 		bSpeed=((Hook)bList.get(0)).speed;// set first speed
 		loadTexture();
 		setSoundId(MusicId.zhizhu);
+	}
+	public boolean gunCheck(float ex, float ey) {
+		float grid = gra.getGrid()/2;
+		float ex1 = Render.px + ex;
+		float ey1 = Render.py + ey;
+		for(Bullet b:bList){
+			Hook h=(Hook) b;
+			if(Math.abs(h.hookGrass.x-ex1)<grid&&
+					Math.abs(h.hookGrass.y-ey1)<grid){
+				h.hookGrass.isDead=true;
+				h.hookGrass.setPosition(0,111);
+				return true;
+			}
+		}
+	
+		
+		
+		return super.gunCheck(ex, ey);
 	}
 }

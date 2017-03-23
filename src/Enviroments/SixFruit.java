@@ -6,9 +6,8 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import aid.Log;
 import Mankind.Player;
-
-import com.mingli.toms.Log;
 
 public class SixFruit extends Fruit{
 	public SixFruit(char bi,float x, float y) {

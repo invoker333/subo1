@@ -8,8 +8,8 @@ import Element.Animation;
 import Element.BloodSet;
 import Enviroments.GrassSet;
 import Menu.State;
+import aid.Log;
 
-import com.mingli.toms.Log;
 import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.World;
@@ -20,15 +20,15 @@ import element2.TexId;
 public class EnemySet extends Set {
 	private static final int _256 = 256;
 	// no zero because it's began value is 0
-	public static final int BALLER = 1001;
-	public static final int WALKER = 1002;
-	public static final int EMPLACEMENT = 1003;
-	public static final int CREEPER = 1004;
-	public static final int FLYER = 1005;
-	public static final int HEDGEHOG = 1006;
-	public static final int FIREBALL = 1007;
-	public static final int SPIDE = 1008;
-	public   int METAL;
+//	public static final int BALLER = 1001;
+//	public static final int WALKER = 1002;
+//	public static final int EMPLACEMENT = 1003;
+//	public static final int CREEPER = 1004;
+//	public static final int FLYER = 1005;
+//	public static final int HEDGEHOG = 1006;
+//	public static final int FIREBALL = 1007;
+//	public static final int SPIDE = 1008;
+//	public   int METAL;
 	
 	public ArrayList<Creature> cList=new ArrayList<Creature>();
 	// 炮台和人是分开的
@@ -89,52 +89,52 @@ public class EnemySet extends Set {
 			cList.get(i).pause();
 	}
 
-	public void loadSound() {
-//		setSoundId(music.loadSound(R.raw.fresh));
-//		METAL=music.loadSound(R.raw.kill);
-//		int soundId;
-		int FIREBALL1 = MusicId.firecolumn;
-		int BALLER1 = MusicId.baller;
-		int WALKER1 = MusicId.walker;
-		int EMPLACEMENT1 = MusicId.emplacementAttack;
-		int FLYER1 = MusicId.flyer;
-		int HEDGEHOG1 = MusicId.hedgehog;
-		int CREEPER1 = MusicId.creeper4;
-		int SPIDE1 = MusicId.zhizhu;
-
-		for (Creature e : cList) {
-			switch (e.getSoundId()) {
-			case FIREBALL:
-				e.setSoundId(FIREBALL1);
-				break;
-			case BALLER:
-				e.setSoundId(BALLER1);
-				break;
-			case WALKER:
-				e.setSoundId(WALKER1);
-				break;
-			case EMPLACEMENT:
-				e.setSoundId(HEDGEHOG1);
-				((Emplacement)e).setSoundIdAttack(EMPLACEMENT1);
-				break;
-			case FLYER:
-				e.setSoundId(FLYER1);
-				((Flyer)e).walkerSoundId=WALKER1;
-				break;
-			case HEDGEHOG:
-				e.setSoundId(HEDGEHOG1);
-				((Hedgehog)e).creeperSoundId=CREEPER1;
-				break;
-			case CREEPER:
-				e.setSoundId(CREEPER1);
-				break;
-			case SPIDE:
-				e.setSoundId(SPIDE1);
-				break;
-			}
-		}
-
-	}
+//	public void loadSound() {
+////		setSoundId(music.loadSound(R.raw.fresh));
+////		METAL=music.loadSound(R.raw.kill);
+////		int soundId;
+//		int FIREBALL1 = MusicId.firecolumn;
+//		int BALLER1 = MusicId.baller;
+//		int WALKER1 = MusicId.walker;
+//		int EMPLACEMENT1 = MusicId.emplacementAttack;
+//		int FLYER1 = MusicId.flyer;
+//		int HEDGEHOG1 = MusicId.hedgehog;
+//		int CREEPER1 = MusicId.creeper4;
+//		int SPIDE1 = MusicId.zhizhu;
+//
+//		for (Creature e : cList) {
+//			switch (e.getSoundId()) {
+//			case FIREBALL:
+//				e.setSoundId(FIREBALL1);
+//				break;
+//			case BALLER:
+//				e.setSoundId(BALLER1);
+//				break;
+//			case WALKER:
+//				e.setSoundId(WALKER1);
+//				break;
+//			case EMPLACEMENT:
+//				e.setSoundId(HEDGEHOG1);
+//				((Emplacement)e).setSoundIdAttack(EMPLACEMENT1);
+//				break;
+//			case FLYER:
+//				e.setSoundId(FLYER1);
+//				((Flyer)e).walkerSoundId=WALKER1;
+//				break;
+//			case HEDGEHOG:
+//				e.setSoundId(HEDGEHOG1);
+//				((Hedgehog)e).creeperSoundId=CREEPER1;
+//				break;
+//			case CREEPER:
+//				e.setSoundId(CREEPER1);
+//				break;
+//			case SPIDE:
+//				e.setSoundId(SPIDE1);
+//				break;
+//			}
+//		}
+//
+//	}
 
 
 	private void randomAction(Creature c) {
@@ -177,16 +177,11 @@ public class EnemySet extends Set {
 					
 				}
 			} else
-//				if (c.x > Player.hx1 && c.x < Player.hx2 && c.y > Player.hy1					&& c.y < Player.hy2) 
+				if (c.x > Player.hx1 && c.x < Player.hx2 && c.y > Player.hy1&& c.y < Player.hy2) 
 			{
 				c.move();
 				c.gravity();
 			}
-			// int j=i+1;
-			// if(j>=eList.size()-1)j=0;
-			// Creature whe=eList.get(j);
-			// c.wheelCheck(whe);
-			// whe.wheelCheck(c);
 		}
 
 		bloodSet.drawElement(gl);

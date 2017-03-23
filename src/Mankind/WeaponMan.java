@@ -23,12 +23,12 @@ public class WeaponMan extends Player{
 		haveBlade();
 		noGun();
 		downData[0]=true;
-		realBlade.tail=new SceneTail(20,TexId.REDCREEPER);
-		realBlade.angstart=60;
+		realBlade.tail=new Tail(20,TexId.REDCREEPER);
 		realBlade.tail.setTextureId(TexId.CUP);
 		realBlade.setTextureId(TexId.JINGUBANG);
-		
-		realBlade.h=12;
+//		realBlade.angstart=60;
+		realBlade.angstart=75;
+		realBlade.h=4;
 		realBlade.loadTexture();
 	}
 	protected void tooRight() {
@@ -43,6 +43,7 @@ public class WeaponMan extends Player{
 		downData[0]=false;
 		downData[1]=true;
 	}
+	public void die(){}
 	
 //	public void quitgame(){
 //		for(int i=0;i<downData.length;i++){

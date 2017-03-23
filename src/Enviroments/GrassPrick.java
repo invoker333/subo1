@@ -2,13 +2,12 @@ package Enviroments;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import aid.Log;
 import android.R.anim;
 
-import com.mingli.toms.Log;
 import com.mingli.toms.World;
 
 import element2.TexId;
-
 import Element.AnimationGrass;
 import Mankind.EnemySet;
 

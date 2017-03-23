@@ -1,10 +1,10 @@
 package Mankind;
 
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.World;
 
 import element2.TexId;
-
 import Enviroments.GrassSet;
 
 public class Hedgehog extends Enemy {
@@ -12,7 +12,7 @@ public class Hedgehog extends Enemy {
 	int creeperSoundId=0;
 	public Hedgehog(char bi,GrassSet gra, float x, float y) {
 		super(bi,gra, x, y);
-		setSoundId(EnemySet.HEDGEHOG);
+		setSoundId(MusicId.hedgehog);
 		changeLifeRate(2);
 		attack=(int) (0.2f*World.baseAttack);
 	}

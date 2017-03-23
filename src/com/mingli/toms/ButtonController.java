@@ -1,9 +1,9 @@
 package com.mingli.toms;
 
-import Clothes.Circle;
-import Clothes.CircleSurface;
-import Clothes.Shop;
 import Mankind.Player;
+import aid.Circle;
+import aid.CircleSurface;
+import aid.Shop;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Message;
@@ -56,8 +56,7 @@ public class ButtonController {
 			ride = buttonView.findViewById(R.id.ride);
 			View shopButton = buttonView.findViewById(R.id.shopbutton);
 			View buildButton = buttonView.findViewById(R.id.buildButton);
-			// View itembutton=acti.findViewById(R.id.itembutton);
-			mySeekBar jumpSeekBar = (mySeekBar) buttonView
+			jumpSeekBar = (mySeekBar) buttonView
 					.findViewById(R.id.jumpSeekbar1);
 			attack = (View) buttonView.findViewById(R.id.attack);
 			circle = (Circle) buttonView.findViewById(R.id.circle1);
@@ -111,7 +110,9 @@ public class ButtonController {
 	 * showGameMenu(); }
 	 */
 
+	private boolean playerJumpAble;
 	class ClickGame implements OnTouchListener {
+
 		@Override
 		// touch.onTouch(v, event);
 		public boolean onTouch(View v, MotionEvent event) {
@@ -140,6 +141,7 @@ public class ButtonController {
 //				break;
 			case R.id.jumpSeekbar1:
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					if(player.isJumpAble())playerJumpAble=true;
 					Player.downData[3] = true;
 				} else 
 					if (event.getAction() == MotionEvent.ACTION_UP) {
@@ -253,10 +255,13 @@ public class ButtonController {
 				boolean fromUser) {
 			switch (seekBar.getId()) {
 			case R.id.jumpSeekbar1:
-
 				Player.downData[3] = true;
 				float rate = (progress + 25) / 100f;
 				Player.jumpRate = rate < 1 ? rate : 1;
+				if(playerJumpAble){
+					jumpSeekBar.setSecondaryProgress(progress);
+					playerJumpAble=false;
+				}
 				break;
 			case R.id.directionSeekBar:
 				if (progress < 50) {
@@ -277,6 +282,7 @@ public class ButtonController {
 	private Circle circle;
 	private View attack;
 	private View ride;
+	private mySeekBar jumpSeekBar;
 
 	public void hide() {
 		// TODO Auto-generated method stub

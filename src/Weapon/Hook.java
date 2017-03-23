@@ -3,6 +3,8 @@ package Weapon;
 import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.opengles.GL11;
 
+import aid.Log;
+
 import com.mingli.toms.World;
 
 import element2.TexId;
@@ -16,6 +18,9 @@ public class Hook extends TailBullet {
 	private Creature player;
 	protected Creature huckEnemy;
 	private  int range=256;
+	private boolean getGrass;
+	Creature hookGrass;
+	private int hookLength;
 	
 	public Hook(EnemySet es,GrassSet gra,  Creature player) {
 		super(es,   gra, 2);// 必须是2 //以上也行 浪费了
@@ -23,7 +28,7 @@ public class Hook extends TailBullet {
 		// TODO Auto-generated constructor stub
 		attack=(int) (0.2f*World.baseAttack);
 		this.player = player;
-		
+		hookGrass=new Creature(gra);
 		setSize(12,12);
 		
 		setTextureId(TexId.GAO);
@@ -33,6 +38,19 @@ public class Hook extends TailBullet {
 	}
 
 	public void drawElement(GL10 gl) {
+		if(hookGrass.isDead) {
+			getGrass=false;
+		} else {
+			if(getGrass){
+				hookGrass.stringCheck(player, hookLength, 0.7f, 0.95f);
+				
+				tail.startTouch(player.x, player.y);
+				tail.tringer(hookGrass.x,hookGrass. y);
+				tail.drawElement(gl);
+				return;
+			}
+		}
+		
 		shot();
 
 		move();
@@ -49,6 +67,16 @@ public class Hook extends TailBullet {
 	}
 
 	protected void gotTarget(Creature enemy) {
+		if(enemy.equals(enemyGrass)){
+			hookGrass.setPosition(enemyGrass.x, enemyGrass.y);
+			getGrass=true;
+			hookLength=range*frame/frameMax;
+//			Log.i("hookLength"+hookLength);
+			hookGrass.isDead=false;
+			resetBullet();
+			return;
+		}
+		
 		enemy.playSound();
 //		enemy.setxSpeed(0);enemy.setySpeed(0);//防止乱跑 duociyiju
 		huckEnemy = enemy;
@@ -110,7 +138,7 @@ public class Hook extends TailBullet {
 	}
 
 	public void tringer(float x, float y, double sx, double sy) {
-		if (back)
+		if (back||getGrass)
 			return;
 		super.tringer(x, y, sx, sy);
 	}

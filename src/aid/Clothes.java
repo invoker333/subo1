@@ -1,4 +1,4 @@
-package Clothes;
+package aid;
 
 import Element.Animation;
 import Mankind.Player;

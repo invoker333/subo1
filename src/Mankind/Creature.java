@@ -96,11 +96,13 @@ public class Creature extends AnimationGrass {
 			ySpeed += jumpSpeed;
 	}
 
-	void turnDown() {
+	boolean turnDown() {
 		if (jumpAble && gList.get(landId). turnDown(this)) {
 			y -= 1;
 			land();
+			return true;
 		}
+		return false;
 	}
 
 	void changeSpeed(float f) {

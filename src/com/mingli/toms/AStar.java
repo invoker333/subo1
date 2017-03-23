@@ -4,6 +4,8 @@ package com.mingli.toms;
 import java.util.ArrayList;
 import java.util.List;
 
+import aid.Log;
+
 
 public class AStar {
 	int map[][];

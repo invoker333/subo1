@@ -28,7 +28,7 @@ public class Bullet extends AnimationMove{
 	int frameMax = 30;
 	public EnemySet es;
 	private GrassSet gra;
-	private Creature enemyGrass;
+	protected Creature enemyGrass;
 	public Bullet(EnemySet es,GrassSet gra) {
 		this.es = es;
 		this.gra = gra;
@@ -72,7 +72,7 @@ public class Bullet extends AnimationMove{
 	}
 
 	void targetCheck() {// ����Ŀ��
-		if(!fire)return;
+//		if(!fire)return;
 		
 		if(grassCheck())return;
 		

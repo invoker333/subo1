@@ -33,17 +33,28 @@ public class PlayerSet extends EnemySet{
 		// TODO Auto-generated constructor stub
 		this.cList=new ArrayList<Creature>();
 		this.emplacementList=new ArrayList<Emplacement>();
+		Creeper cp;
 		//////////////////////////new list
-		addCreature(greenWalker=new Walker(bi,gra,player.x,player.y));
-		greenWalker.setTextureId(TexId.GREENWALKER);
+//		addCreature(greenWalker=new Walker(bi,gra,player.x,player.y));
+//		greenWalker.setTextureId(TexId.GREENWALKER);
 //		addCreature(new Baller(gra,player.x,player.y));
 //		addCreature(new Flyer(gra,player.x,player.y));
 //		addCreature(new JointCreature(gra,player.x,player.y));
 //		addCreature(new JointCreature(gra,player.x,player.y));
-//		addCreature(new Creeper(gra,player.x,player.y));
-		addEmplacement(new EpAuto(bi,gra, 500, 500));
-//		addCreature(new Shader(gra, 0.5f, player));
+		addCreature(cp=new Creeper(bi, gra,player.x,player.y));
+		cp.changeSize(1.5f);
 		
+		FireBall fb;
+		addCreature(fb=new FireBall(bi, gra,player.x,player.y));
+		fb.changeSize(0.5f);
+		
+//		addEmplacement(new EpAuto(bi,gra, 500, 500));
+		
+//		JointCreature bfg;
+//		addCreature(bfg=new JointCreature(gra));
+//		bfg.changeSize(4);
+//		bfg.loadTexture();
+//		
 		
 		   final float w=16;
 //		   addCreature(  wheel=new ParticleBallRandom(gra));

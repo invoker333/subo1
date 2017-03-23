@@ -15,7 +15,8 @@ public class ShotGun extends Gun{
 	public ShotGun(EnemySet es, GrassSet gra,Creature c, int bCount) {
 		super(es, gra, c, bCount);
 //		count = bCount-1;
-		cd=2*super.cd;
+		cd=3*super.cd;
+	
 		bSpeed = 18;// 射速系数
 		setSoundId(MusicId.shotGun);
 	}

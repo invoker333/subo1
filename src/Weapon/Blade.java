@@ -7,9 +7,9 @@ import javax.microedition.khronos.opengles.GL10;
 
 import Mankind.Creature;
 import Mankind.EnemySet;
+import aid.Log;
 import android.net.Uri;
 
-import com.mingli.toms.Log;
 import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 
@@ -120,7 +120,7 @@ public class Blade extends Joint {
 			dx=getDirection()==-1?-dx:dx;
 			dy = spi.y - player.y;//if you want to know why  ) please look draw picture let check more right
 			s2 = Math.pow(dx, 2) + Math.pow(dy, 2);
-			s2=s2/(player.getyScaleRate()); //mormal it is equals i do not know why these two xiangcheng now but i think i know but i am a little mengbi
+			s2=s2/(player.getyScaleRate()*player.getyScaleRate()); //mormal it is equals i do not know why these two xiangcheng now but i think i know but i am a little mengbi
 			
 			if (
 //					w1 < s2 && 

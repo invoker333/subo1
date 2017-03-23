@@ -5,8 +5,8 @@ import Element.BoomSet;
 import Enviroments.GrassSet;
 import Mankind.Creature;
 import Mankind.EnemySet;
+import aid.Log;
 
-import com.mingli.toms.Log;
 import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.Render;

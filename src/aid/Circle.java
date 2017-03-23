@@ -1,4 +1,4 @@
-package Clothes;
+package aid;
 
 
 import Mankind.Player;
@@ -9,7 +9,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.mingli.toms.Log;
 import com.mingli.toms.R;
 public class Circle extends View {  
     private Paint paint;  

@@ -6,7 +6,6 @@ import com.mingli.toms.R;
 import com.mingli.toms.World;
 
 import element2.TexId;
-
 import Element.Animation;
 import Mankind.Player;
 
@@ -19,6 +18,7 @@ public class Fruit extends Animation{
 	
 	
 	String kind="fruit";
+	public String instruction="这个物品的作用作用有待您去发现";
 	
 	public Fruit(char bi,float x,float y){
 		this();

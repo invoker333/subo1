@@ -2,6 +2,7 @@ package Mankind;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 
 import element2.TexId;
@@ -9,13 +10,12 @@ import Enviroments.GrassSet;
 
 public class Flyer extends Enemy {
 	float yStart;
-	int walkerSoundId;
 //	private float lifeToChange;
 	public Flyer(char bi,GrassSet gra, float x, float y) {
 		super(bi,gra, x, y);
 		changeLifeRate(0.5f);
 //		lifeToChange=getLifeMax()-2;
-		setSoundId(EnemySet.FLYER);
+		setSoundId(MusicId.flyer);
 		yStart=y+1;
 	}
 	public void drawElement(GL10 gl){
@@ -61,7 +61,7 @@ public class Flyer extends Enemy {
 		
 		angle=getDirection()==1?-90:90;
 		hwChange();// change h to w w to h
-		setSoundId(walkerSoundId);
+		setSoundId(MusicId.walker);
 		sizeCheck2();
 		syncTextureSize();
 		setTextureId(TexId.GREENWALKER);
@@ -78,7 +78,8 @@ public class Flyer extends Enemy {
 		Creature another;
 		for (int i = 0; i < es.cList.size(); i++) {
 			another = es.cList.get(i);
-			if (Math.abs(x - another.x) < another.getwEdge() + getwEdge()
+			if (!another.isDead&&
+					Math.abs(x - another.x) < another.getwEdge() + getwEdge()
 					&& another.y - another.gethEdge() < y
 					&& another.y + another.gethEdge() > y - gethEdge()) {
 				tooClose(another, es);

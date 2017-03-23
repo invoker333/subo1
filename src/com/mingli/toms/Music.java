@@ -2,6 +2,7 @@ package com.mingli.toms;
 
 import java.io.IOException;
 
+import aid.Log;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -16,7 +17,7 @@ public class Music {
 	public static boolean ex = true;
 	public static boolean bgm = true;
 	int musicId;
-	public int soundPoolTime = 4;
+	public int soundPoolTime = 10;
 
 	public Music(Context context) {
 		this.context = context;

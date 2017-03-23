@@ -1,73 +1,1 @@
-s	s	s	s	s	s	s	s	s	s	s	f	s	f	f	2	f	s	s	s
-s																			s
-s																			s
-s										f	f	f							s
-s																			s
-s	s	s															s	s	s
-s		s	s													s	s		s
-s			s	s											s	s			s
-s				s	s									s	s				s
-s					s	s							s	s					s
-s						s	s					s	s						s
-s																			s
-s															t				s
-s							c							t	t	t			s
-s						f		f						t	t	t			s
-s					f	f	f	f	f						w				s
-s															w				s
-s														g	w				s
-s													g	0	w	b			s
-s												g	0	0	0	0			s
-s	s	s	s	s	s						s	s	s	s	s	s	s	s	s
-s												t							s
-s			1			f	f				t	t	t						s
-s	t		1		c							w							s
-s	w	t										w							s
-s	g											w	a	c					s
-s	0								f	f	f	w	f	f	f				s
-s	s											f	s	s	s			s	s
-s			f	f	f														s
-s												f	f	f					s
-s	s																	s	s
-s		s															s		s
-s			s													s			s
-s			1	s											s				s
-s			1																s
-s	e																T	e	s
-s	s	s	s	s	s	s	s	s			s	s	s	s	s	s	s	s	s
-s								1											s
-s							c	1			c								s
-s																			s
-s			s	s	s	s	s	s	s	s	s	s	s	s	s	s	s	s	s
-s	1																		s
-s	1																		s
-s	s	s	s	s	s	s	s	s	s	s	s	s	s	s	s	s			s
-s																			s
-s																			s
-s	s	s	s	s	s	s	1					1	s	s	s	s	s	s	s
-s						s	1					1	s						s
-s						s	s					s	s						s
-s													s						s
-s	a												s						s
-s	t					s	s	s	s	s	s	s	s						s
-t	t	t																	s
-t	w	t																	s
-s	w								T										s
-s	w			s					s	s	s								s
-s	w		s		s			b											s
-w	w					s					s	1							s
-s			H				s				s	s							s
-s	s	s	s	s	s						s	s	s						s
-s					s	s						s	s	s					s
-s						I	s						s	s	s				s
-s							s	s						s	s	s			s
-s	H							s	s										s
-s	c								Z	s									s
-s	s					t				s	s							s	s
-s		s			t	t	t				s	s					s		s
-s			s		t	t	t					s	s			s			s
-s				s		w									s				s
-s						w						A			1	1	1	1	s
-s	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	s
-s	0	s	0	s	0	s	0	s	0	s	0	s	0	s	0	s	0	s	0
-s	s	s	s	s	s	s	s	s	s	s	s	s	s	s	s	s	s	s	s
+s	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	is	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	f	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	is	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	f	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	is	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	a	 	a	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	n	 	 	 	 	 	 	 	 	 	 	 	 	is	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	I	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	z	z	z	z	z	z	z	z	 	 	 	z	z	z	I	 	 	 	 	 	 	 	 	 	 	 	 	 	 	I	 	 	 	 	 	 	 	 	 	 	 	z	z	z	 	 	 	 	z	I	I	z	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	i	i	 	 	 	 	 	 	 	 	i	 	 	 	 	 	 	 	 	 	 	 	 	is	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	i	E	i	 	 	 	 	 	 	 	 	1	 	 	 	 	 	 	 	 	 	 	 	 	is	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	l	i	i	i	 	 	 	 	 	 	 	 	I	 	 	 	 	 	 	 	 	 	 	 	 	is	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	i	E	i	i	i	 	 	 	 	 	 	 	 	I	 	 	 	 	 	 	 	 	 	 	 	 	is	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	I	 	 	 	z	I	z	I	z	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	U	 	 	 	 	 	 	 	 	 	 	U	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	z	I	z	 	 	 	 	 	 	 	 	 	 	 	 	 	 	Z	 	 	 	 	 	z	z	 	 	 	 	I	 	 	I	 	 	I	 	 	 	 	 	z	 	 	 	 	 	 	 	 	 	 	z	z	 	 	 	 	 	 	z	 	 	z	 	 	 	 	 	 	 	 	 	 	z	z	 	 	z	 	 	 	 	 	 	 	 	 	 	 	 	z	z	I	z	 	 	 	 	 	 	 	 	 	 	 	 	i	i	s	s	i	i	 	 	 	 	 	 	 	 	1	 	 	 	 	 	 	 	 	 	 	 	 	is	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 			 	 	 	 	 	 	 	 	U	 	 	 	 	 	 	 	U	 	 	 	 	 	 	 	 	 	 	U	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	z	z	 	 	z	z	 	 	 	 	 	 	 	 	z	z	z	 	 	z	z	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	i	E	i	s	i	i	i	 	 	 	 	 	 	 	 	1	 	 	 	 	 	 	2	 	 	 	 	 	is	 	 	 	 	 	A	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	U		 	 	 	 	 	 	 	 	U	 	 	 	 	 	 	 	U	 	 	 	 	 	 	 	 	 	 	U	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	a	 	z	z	z	 	 	z	z	z	 	 	 	 	 	 	z	z	z	z	 	 	z	z	z	 	 	 	 	 	U	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	U	 	 	i	i	i	i	s	i	i	i	 	 	 	 	 	 	 	 	i	 	 	 	 	 	 	 	 	 	 	 	 	is	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	a	 	 	 	 	 	U		 	 	 	 	 	 	 	 	U	 	 	 	 	 	a	 	U	 	 	 	 	 	a	 	a	 	 	U	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	a	 	a	 	 	 	 	 	 	 	 	c	 	 	 	 	 	 	 	a	 	a	 	 	 	 	 	 	 	a	 	a	 	 	 	a	 	 	 	z	z	z	z	 	 	z	z	z	z	 	 	 	 	z	z	z	z	z	 	 	z	z	z	z	 	 	 	 	U	 	 	 	 	 	 	a	 	a	 	 	 	 	 	 	U	 	i	E	i	i	i	s	i	i	i	 	 	 	 	 	 	 	 	i	 	 	 	 	 	 	 	 	 	 	 	 	ig	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	U	 	g	g	g	g	g	g	g	g	U	 	g	g	g	g	g	g	U	 	g	g	g	g	g	g	g	g	g	0	0	g	g	g	g	g	g	g	g	g	g	 	 	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	 	 	 	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	 	 	g	g	g	g	g	g	g	g	U	 	g	g	g	g	g	g	g	g	g	g	g	g	g	g	U	 	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g	g0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	U	 	0	0	0	0	0	0	0	0	U	 	0	0	0	0	0	0	U	 	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	 	 	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	 	 	 	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	 	 	0	0	0	0	0	0	0	0	U	 	0	0	0	0	0	0	0	0	0	0	0	0	0	0	U	 	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0

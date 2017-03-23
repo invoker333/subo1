@@ -2,7 +2,8 @@ package Weapon;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.mingli.toms.Log;
+import aid.Log;
+
 import com.mingli.toms.World;
 
 import element2.TexId;
@@ -19,7 +20,7 @@ public class AutoBubble extends AutoBullet {
 		speedBackup[0] = speed;
 		speedBackup[1] = getW();
 		speedBackup[2] = getH();
-		speed=10;
+		speed=7;
 		attack=World.baseAttack/20;
 	}
 
@@ -59,9 +60,11 @@ public class AutoBubble extends AutoBullet {
 			firstBlood = false;
 		}
 	
-		if(frame%20==0&&es.attacked(enemy, attack)){
+//		if(frame%60==0)es.attacked(enemy, attack);
+		if(enemy.isDead){
 			resetBullet(); return;
-		};
+		}
+		
 		
 		speed = speed *0.9f;
 	
