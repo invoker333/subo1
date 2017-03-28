@@ -1,13 +1,19 @@
 package com.mingli.toms;
 
+import java.util.ArrayList;
+
 import Enviroments.FruitSet;
 import Enviroments.Tomato;
 import aid.Log;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.database.DataSetObserver;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
@@ -15,10 +21,15 @@ import android.view.Window;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Adapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.RadioButton;
@@ -37,13 +48,65 @@ public class StartMenu{
 	private CheckBox rampage;
 
 	private View startView;
-	private TextView et;
 	private TextView username;
+	class PaimingAdapter extends BaseAdapter {
+
+		ArrayList<Info4> userInfoList;
+		public PaimingAdapter(ArrayList<Info4> userInfoList) {
+			this.userInfoList = userInfoList;
+		}
+		@Override
+		public int getCount() {
+			// TODO Auto-generated method stub
+			return userInfoList.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			// TODO Auto-generated method stub
+			return userInfoList.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			// TODO Auto-generated method stub
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			// TODO Auto-generated method stub
+			TextView userName=null;
+			TextView userScore=null;
+			TextView userPaiming=null;
+			View v=null;
+			if(convertView==null){
+				 v=acti.getLayoutInflater().inflate(R.layout.paimin, null);
+			}else v=convertView;
+			
+			userName=(TextView) v.findViewById(R.id.paiming_name);
+			userScore=(TextView) v.findViewById(R.id.paiming_score);
+			userPaiming=(TextView) v.findViewById(R.id.mingci);
+			Info4 info4 = userInfoList.get(position);
+			if(info4.userId==acti.userId)v.setBackgroundResource(R.drawable.greenrect);
+			userPaiming.setText(""+info4.paiming);
+			userScore.setText(""+info4.userScore);
+			userName.setText(info4.userName);
+			
+			return v;
+		}
+	};
     StartMenu(MenuActivity acti){
         this.acti = acti;
 //        this.click = click;
 //        this.check = check;
     }
+	public void handleCheck(Message msg) {
+		// TODO Auto-generated method stub
+		switch(msg.what){
+		case World.NOTIFY_PAIMING_CAHNGED:paimingAdapter.notifyDataSetChanged();
+		}
+	}
     public void loadStartMenu() {
        
         startView = acti.getLayoutInflater().inflate(
@@ -53,6 +116,7 @@ public class StartMenu{
       
 //        acti.setContentView(R.layout.startmenu);
         acti.addView(startView);
+        initPaiming(startView);
         
 //        Log.i("DecView"+pareView, "风格的萨广泛的萨广泛的撒");
         
@@ -64,14 +128,14 @@ public class StartMenu{
         Button more = (Button) startView.findViewById(R.id.more);
         fileChoose = (Button) startView.findViewById(R.id.fileChoose);
 //        if(!World.editMode)
-        	fileChoose.setVisibility(View.INVISIBLE);
+//        	fileChoose.setVisibility(View.INVISIBLE);
         Button stage = (Button) startView.findViewById(R.id.stageChoose);
         
         rampage = (CheckBox) startView.findViewById(R.id.rampage);
         noweapon = (RadioButton) startView.findViewById(R.id.nowepon);
         alwaysgun = (RadioButton) startView.findViewById(R.id.alwaysgun);
         user = startView.findViewById(R.id.user);
-        user.setVisibility(View.INVISIBLE);
+        user.setOnClickListener(click);
         
         CheckBox cb1 = (CheckBox) startView.findViewById(R.id.checkBox1);
         CheckBox cb2 = (CheckBox) startView.findViewById(R.id.checkBox2);
@@ -100,38 +164,16 @@ public class StartMenu{
         cb2.setOnCheckedChangeListener(check);
         
         username=(TextView)startView.findViewById(R.id.nicheng);
-        et = (EditText) startView.findViewById(R.id.geqian);
-//        et.setVisibility(View.INVISIBLE);
-//        et.setOnClickListener(click);
-        et.setText(acti.geqian);
-        username.setText(acti.username);
-        TextWatcher watcher= new TextWatcher() {
-			
-        	String before;
-        	String after;
-//			@Override
-			public void onTextChanged(CharSequence c, int arg1, int arg2, int arg3) {
-				// TODO Auto-generated method stub
-				after=""+ c;
-				
-			}
-			@Override
-			public void beforeTextChanged(CharSequence c, int arg1, int arg2,
-					int arg3) {
-				before=""+c;
-				Log.i("beforechanged "+c);
-			}
-			@Override
-			public void afterTextChanged(Editable c) {
-				Log.i("afterchanged "+c);
-				if(after!=null&&after!="")
-				acti.geqian=after;
-				acti.saveUserMessage();
-			}
-		};
-		et.addTextChangedListener(watcher);
+        username.setText(acti.userName);
     }
-    OnClickListener click = new OnClickListener() {
+  
+    private void initPaiming(View v) {
+		// TODO Auto-generated method stub
+		ListView biao=(ListView) v.findViewById(R.id.paimingbiao);
+		biao.setAdapter(paimingAdapter=new PaimingAdapter(acti.userInfoList));
+    }
+
+	OnClickListener click = new OnClickListener() {
     	int t=0;
 		public void onClick(View v) {
 			switch (v.getId()) {
@@ -139,9 +181,7 @@ public class StartMenu{
 				acti.startGame();
 				break;
 			case R.id.fileChoose:
-				Intent intent = new Intent();
-				intent.setClass(acti, fileRW.FileActivity.class);
-				acti.startActivityForResult(intent, 0);
+				acti.intentToFileChooser();
 				break;
 			case R.id.stageChoose:
 				acti.initStageChooser();
@@ -159,12 +199,52 @@ public class StartMenu{
 			case R.id.alwaysgun:
 				World.ALWAYSGUN=alwaysgun.isChecked();
 				break;
-			case R.id.geqian:
+			case R.id.user:
+				newEditDialog();
 				break;
 
 			}
 			
 			
+		}
+		private void newEditDialog() {
+			// TODO Auto-generated method stub
+			final Dialog dl = new Dialog(acti, R.style.myDialog);
+			dl.setTitle("修改昵称");
+			View v =acti. getLayoutInflater().inflate(R.layout.userinfo, null);
+			dl.setContentView(v);
+//			dl.getWindow().setGravity(Gravity.LEFT | Gravity.TOP);
+
+			final TextView editT=(TextView) v.findViewById(R.id.usernameedit);
+			final TextView idText=(TextView) v.findViewById(R.id.userIdText);
+			if(acti.userId>10)idText.setText("id:"+acti.userId);
+			editT.setText(acti.userName);
+			OnClickListener edit = new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					
+					switch(v.getId()){
+					case R.id.editok:
+						acti.userName=editT.getText().toString();
+						acti.saveUserMessage();
+						dl.cancel();
+						break;
+					case R.id.editcancel:dl.cancel();break;
+					case R.id.randomNameButton:
+						editT.setText(UserName.randomName());
+						break;
+					}
+				}
+			};
+			Button ok=(Button) v.findViewById(R.id.editok);
+			Button cancel=(Button) v.findViewById(R.id.editcancel);
+			Button randomName=(Button) v.findViewById(R.id.randomNameButton);
+			randomName.setOnClickListener(edit);
+			ok.setOnClickListener(edit);
+			cancel.setOnClickListener(edit);
+			
+			dl.show();
 		}
 	};
 
@@ -254,10 +334,15 @@ public class StartMenu{
 //	private EditText et;
 	private Button fileChoose;
 	private View user;
+	private PaimingAdapter paimingAdapter;
 	public void hide() {
 		// TODO Auto-generated method stub
 		acti.removeView(startView);
 //		acti.ad.
+	}
+	public void setUserName(String username) {
+		// TODO Auto-generated method stub
+		    this.username.setText(username);
 	}
 
 

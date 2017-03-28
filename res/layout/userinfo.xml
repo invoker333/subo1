@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/white"
+    android:padding="20dp" >
+
+    <ImageView
+        android:id="@+id/usericonEdit"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/cap" />
+
+    <EditText
+        android:id="@+id/usernameedit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button2"
+        android:layout_alignTop="@+id/usericonEdit"
+        android:layout_toLeftOf="@+id/button1"
+        android:layout_toRightOf="@+id/usericonEdit"
+        android:ems="10"
+        android:text="小软蛋"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#00ffff"
+        android:textSize="24sp" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/editcancel"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/usericonEdit"
+        android:layout_marginRight="87dp"
+        android:background="@drawable/bg_button"
+        android:text="取消" />
+
+    <Button
+        android:id="@+id/editok"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/editcancel"
+        android:layout_alignBottom="@+id/editcancel"
+        android:layout_alignLeft="@+id/usernameedit"
+        android:background="@drawable/bg_button"
+        android:text="确定" />
+
+    <Button
+        android:id="@+id/randomNameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/usericonEdit"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/bg_button"
+        android:text="随机"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/userIdText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/usernameedit"
+        android:layout_alignRight="@+id/usernameedit"
+        android:layout_below="@+id/usernameedit"
+        android:text="id:未知" />
+
+</RelativeLayout>

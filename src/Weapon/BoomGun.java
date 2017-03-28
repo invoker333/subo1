@@ -14,7 +14,7 @@ public class BoomGun extends MissileGun{
 	public BoomGun(EnemySet es, GrassSet gra, Creature c, int bCount) {
 		super(es, gra, c, bCount);
 		// TODO Auto-generated constructor stub
-		bSpeed=1.4f*World.baseBSpeed;
+		bSpeed=1.f*World.baseBSpeed;
 	}
 	protected void setBullet(int bCount) {
 		if(gra==null)return;

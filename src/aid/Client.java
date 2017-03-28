@@ -9,21 +9,29 @@ import java.net.UnknownHostException;
 
 import Mankind.Player;
 
+import com.mingli.toms.MenuActivity;
 import com.mingli.toms.World;
 
 public class Client implements Runnable{
+	
 	Socket s;
 	static DataInputStream dis;
 	static DataOutputStream dos;
 	boolean connected;
 	Thread recThread;
-	
+	private MenuActivity acti;
+	public Client(MenuActivity acti){
+		this.acti = acti;
+		
+	}
 	public void connect(){
 		while(!connected){
 			try {
 //				s=new Socket("127.0.0.1",8888);
-				s=new Socket("192.168.137.1",8888);
+//				s=new Socket("192.168.137.1",8888);
+//				s=new Socket("192.168.46.28",8888);
 //				s=new Socket("192.168.47.134",8888);
+				s=new Socket("192.168.47.176",8888);
 				if(s!=null){
 					Log.i("已连接","");
 					connected=true;
@@ -43,6 +51,8 @@ public class Client implements Runnable{
 			Log.i("尝试连接网络");
 		}
 	}
+
+	int threadCount=0;
 	public void run(){
 		String s;
 		while(connected){
@@ -60,9 +70,23 @@ public class Client implements Runnable{
 			}
 			//ClientWindow.timeRush();//��ʱ����
 		}
-		
+		Log.i("断开连接");
 	}
 	private void handleReceiveMessage(String s) {
+		
+		if(s.startsWith(ConsWhenConnecting.THIS_IS_NEW_USER_ID)) {
+			if(MenuActivity.userId<10)acti.saveUserId(s.substring(ConsWhenConnecting.THIS_IS_NEW_USER_ID.length()));
+			else Log.i("该用户已经有id了");
+		}
+		else 	if(s.startsWith(ConsWhenConnecting.THIS_IS_PAIMING)) {
+			acti.savePaiming(s.substring(ConsWhenConnecting.THIS_IS_PAIMING.length()));
+			acti.initPaimingInfo();
+		}	
+//		else 	if(s.startsWith(ConsWhenConnecting.serverRequestForUserId)) {
+//			send(ConsWhenConnecting.THIS_IS_NEW_USER_ID+acti.userId);
+//		}
+		
+		
 		String substring = s.substring(0, 2);
 //		Log.i("subString"+substring);
 		if (substring.equals("da")) {
@@ -82,12 +106,13 @@ public class Client implements Runnable{
 		}
 		 else if (substring.equals("d8")) {
 				Player.downData[3]=true;
-				Player.jumpRate=2;
+				Player.jumpProgress=100;
 			} else if (substring.equals("u8")) {
 				Player.downData[3]=false;
 			}
 	}
-	static void  send(String str){
+	public static void  send(String str){
+//		if(MenuActivity.userId<10)str=ConsWhenConnecting.REQUEST_NEW_USER_ID;
 		try {
 			if(dos!=null)dos.writeUTF(str);
 		} catch (IOException e) {

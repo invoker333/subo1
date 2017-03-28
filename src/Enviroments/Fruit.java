@@ -2,6 +2,7 @@ package Enviroments;
 
 import java.util.ArrayList;
 
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.World;
 
@@ -39,6 +40,7 @@ public class Fruit extends Animation{
 	}
 	void init() {
 		loadTexture();
+		loadSound(MusicId.magic);
 	}
 	public boolean loadAble(Player player){
 		player.increaseScoreBy(score);

@@ -149,9 +149,11 @@ public class Player extends JointCreature {
     
     public void endTouch(float ex1,float ey1){
     	if(touched)// else it will be set speed but not touch
-    		if(!tooLong)
-//    			if(fallen)
+    		if(!tooLong) {
+				//    			if(fallen)
     			setSpeed(xGuideSpeed, yGuideSpeed);
+    			playSound(MusicId.land);
+			}
 		touched=false;
 		this.ex1 = ex1;
 		this.ey1 = ey1;
@@ -429,29 +431,9 @@ public class Player extends JointCreature {
             y -= 1;
             land();
             return true;
-//           gra.downHoleCheck((int) (x/gra.getGrid()),(int) ((y-gethEdge())/gra.getGrid()));
-//           gra.downHoleCheck(getMx1(),getMy1()+1);
         }
         return false;
     }
-//    protected void downCheck(int mx,int my){
-//    	super.downCheck(mx,my);
-//    }
-//    public boolean dropCheck(float ex,float ey){
-//    	ex/=gra.getGrid();
-//    	ey/=gra.getGrid();
-//    	Grass gr=gra.getFromXY((int) ex,(int) ey);
-//    	
-//    	if(gr.getTextureId()==TexId.BAMBOO)
-//    		gr.setTextureId(TexId.BAMBOOHEART);
-//    	
-//    	if(gr.isCrossAble()){
-//    		land();
-//    		return true;
-//    	}
-//		return false;
-//    	
-//    }
 
     public void stopJump() {
         super.stopJump();
@@ -460,9 +442,13 @@ public class Player extends JointCreature {
 
 
 	public void jump(float rate) {
+
+		
+		world.sendMessage(World.JUMP);
 		if(doubleClicked)rate*=4f/3f;
 		super.jump(rate);
-		playSound(EXjump);
+		playSound(MusicId.land);
+		
 //		Log.i("Player.jumpRate: "+rate);
 //		Log.i("Player.jumpHeight: "+getJumpHeight());
 //		Log.i("Player.ySpeed "+ySpeed);
@@ -571,7 +557,11 @@ public class Player extends JointCreature {
 		
 		xSpeed*=0.8f;
 		
-		if(gun!=null)gun.gunLength=sizeRate*baseGunLength;
+		if(gun!=null)
+			setGunLength();
+		}
+	private void setGunLength() {
+		gun.setGunLength(sizeRate*baseGunLength);
 	}
     public void setViewPot() {
     	if(!World.editMode){
@@ -624,7 +614,6 @@ public class Player extends JointCreature {
 
 //    boolean tread;// ��
 	
-    public static float jumpRate=1;
 	public static float hx1;
 	public static float hy1;
 	public static float hx2;
@@ -698,6 +687,12 @@ public class Player extends JointCreature {
 //            }
         } 
         if (downData[3] && isJumpAble()) {
+        	
+    		curJumpProgress = jumpProgress;
+    		float jumpRate = (jumpProgress + 25) / 100f;
+    		if (jumpRate > 1)
+				jumpRate = 1;
+        	
 			jump(jumpRate);
 			controller.jump(jumpRate);
 		}
@@ -740,7 +735,7 @@ public class Player extends JointCreature {
 //        treadAttack=0;
         if(treadListCheck( friendSet))return;
       
-        world.haveTreadIcon(World.NOTREADICON);
+        world.sendMessage(World.NOTREADICON);
      
         
 //        if(downData[6])        
@@ -769,7 +764,6 @@ public class Player extends JointCreature {
 
             	 
             	 culxSpeed(c);
-                 
                 // c carry me so set c's speed as base speed instead of my speed
              
              
@@ -778,7 +772,7 @@ public class Player extends JointCreature {
                 treader=c;
                 fallen=true;
                  
-              world.haveTreadIcon(World.TREADICON);
+              world.sendMessage(World.TREADICON);
                  
                 return true;
              } 
@@ -789,18 +783,11 @@ public class Player extends JointCreature {
       
 	}
 	private void culxSpeed(Creature c) {
-//		float rMin=getxSpeedMin()+c.getxSpeed();
-//		float rMax=getxSpeedMax()+c.getxSpeed();
 		float rs=xSpeed-c.getxSpeed();    //relativeSpeed;
 		
 		float am=c.getAm();
 		
 		if(fdirection==0){
-//			if(rs>am)
-//				xSpeed-=am;
-//			else if(rs<-am)
-//				xSpeed+=am;
-//			else 
 				xSpeed=c.getxSpeed(); 
 		}else {
 			if(fdirection==1){
@@ -814,21 +801,6 @@ public class Player extends JointCreature {
 			}
 		}
 	}
-	protected void tooRight() {
-        super.tooRight();
-        
-        
-//		gList.get(getCollisionId()).setRgb((float) Math.random(),
-//				(float) Math.random(), (float) Math.random());
-    }
-
-    protected void tooLeft() {
-        super.tooLeft();
-        
-        
-//		gList.get(getCollisionId()).setRgb((float) Math.random(),
-//				(float) Math.random(), (float) Math.random());
-    }
 
     boolean destory(int grassId, int x1, int my1) {
     	Grass g=gra.getgList().get(grassId);
@@ -996,7 +968,6 @@ public class Player extends JointCreature {
 	public int secondaryLife=getLifeMax();
 	public Gun gun;
 
-	private int EXjump;
 	
 
 	public  static int gunFruitId=-1;
@@ -1006,6 +977,8 @@ public class Player extends JointCreature {
     public static int flyTime;
 	
 	public boolean touched;
+	public static float curJumpProgress;
+	public static int jumpProgress=100;
 
     private void goreEnemyCheck() {
         Creature e;
@@ -1026,7 +999,6 @@ public class Player extends JointCreature {
     public void loadSound() {
         brake = MusicId.brake01;
         setSoundId(MusicId.walker);
-        EXjump=MusicId.land;
         death = MusicId.gameover;
         destorySound = MusicId.wood2;
     }
@@ -1119,7 +1091,8 @@ public class Player extends JointCreature {
 				gun=new Gun(getEnemySet(),  gra, this, 10);
 		}
 		
-		gun.gunLength=sizeRate*baseGunLength;
+		setGunLength();
+		
 		haveGun();
 		gunFruitId=textureId;
 	}
@@ -1140,19 +1113,19 @@ public class Player extends JointCreature {
 	}
 	public void haveBlade() {
 		super.haveBlade();
-		world.haveBladeIcon(World.BLADEICON);
+		world.sendMessage(World.BLADEICON);
 	}
 	 public void noBlade() {
 		super.noBlade();
-		world.haveBladeIcon(World.NOBLADEICON);
+		world.sendMessage(World.NOBLADEICON);
 	}
 		void haveGun(){
 			super.haveGun();
-			world.haveGunIcon(World.GUNICON);
+			world.sendMessage(World.GUNICON);
 		}
 		void noGun(){
 			super.noGun();
-			world.haveGunIcon(World.NOGUNICON);
+			world.sendMessage(World.NOGUNICON);
 		}
 	 
 	public boolean haveBlade(int textureId) {

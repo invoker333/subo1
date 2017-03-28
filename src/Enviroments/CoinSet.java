@@ -28,10 +28,10 @@ public class CoinSet extends FruitSet {
 
 	protected void picked(Fruit coin) {
 		world.increaseCoin(((Coin) coin).getCoinCount());
+		coin.loadAble(player);
 		coin.use(player, pickedList);
 		fruitList.remove(coin);//2016.10
 		effectList.add(coin);
-		coin.playSound();
 	}
 	public void loadSound() {
 		setSoundId(MusicId.coin);

@@ -61,9 +61,7 @@ public class TexId{
 	public static int GOAL;
 	public static int HUANGSHAN;
 	public static int SUNSET;
-	public static int ZHAOZHOUQIAO;
 	public static int TIANSHAN;
-	public static int SEA;
 	public static int STONE;
 	public static int WOOD;
 	public static int TREE;
@@ -121,7 +119,6 @@ public class TexId{
 	public static int K;//knife
 	public static int GUANGDANQIANG;
 	public static int WOODROOT;
-	public static int BOOM2;
 	
 	public static int textureCount=130-28;//纹理数量 行号之差
 	public static int GOALCIRCLE;
@@ -132,8 +129,12 @@ public class TexId{
 	public static int GOLDENBANK;
 	public static int ZAN;
 	public static int BOOMGUN;
+	public static int QIGAN;
+	public static int WIPE;
 	public  void loadTextureId(GL10 gl) {
 //		if(1<2)return;
+		WIPE=loadTexture(gl,R.drawable.wipe);
+		QIGAN=loadTexture(gl,R.drawable.qigan);
 		BOOMGUN=loadTexture(gl,R.drawable.boomgun);
 		GOLDENBANK=loadTexture(gl,R.drawable.goldenbank);
 		SHUFUDAN=loadTexture(gl,R.drawable.shufudan);
@@ -143,7 +144,6 @@ public class TexId{
 		STONEGRASS=loadTexture(gl,R.drawable.stonegrass);
 		GUIDERECT=loadTexture(gl,R.drawable.guiderect);
 		GOALCIRCLE=loadTexture(gl,R.drawable.goalcircle);
-		BOOM2=loadTexture(gl,R.drawable.boom2);
 		WOODROOT=loadTexture(gl,R.drawable.woodroot);
 		GUANGDANQIANG=repeatLoadTexture(gl,R.drawable.putongdan);
 		K=repeatLoadTexture(gl,R.drawable.jian);
@@ -224,15 +224,9 @@ public class TexId{
 		TREE=loadTexture(gl, R.drawable.tree);
 		SOIL=loadTexture(gl, R.drawable.soil);
 		SOILGRASS=loadTexture(gl, R.drawable.soilgrass);
-//		NUMBERSMALL=loadTexture(gl, R.drawable.numbersmall);
 		FOG=loadTexture(gl, R.drawable.fog);
-//		MENUDIFALOG=loadTexture(gl, R.drawable.menudialog);
-//		ASK=loadTexture(gl, R.drawable.ask);
-//		ANSWER=loadTexture(gl, R.drawable.answer);
-//		STARTMENU=loadTexture(gl, R.drawable.startmenu);
 		TOMATO=loadTexture(gl, R.drawable.tomato);
 		JINGUBANG=loadTexture(gl, R.drawable.jingubang);
-//		BUBBLE=loadTexture(gl,R.drawable.bubble);
 		RED=loadTexture(gl,R.drawable.red);
 		BLUE=loadTexture(gl, R.drawable.blue);
 		GREEN=loadTexture(gl, R.drawable.green);
@@ -243,9 +237,7 @@ public class TexId{
 		ZHIJINDONG=repeatLoadTexture(gl, R.drawable.zhijindong);
 		HUANGSHAN=repeatLoadTexture(gl, R.drawable.huangshan2);
 		SUNSET=repeatLoadTexture(gl, R.drawable.sunset);
-		ZHAOZHOUQIAO=repeatLoadTexture(gl, R.drawable.zhaozhouqiao);
 		TIANSHAN=repeatLoadTexture(gl, R.drawable.tianshan);
-		SEA=repeatLoadTexture(gl, R.drawable.hetang);
 	}
 
 	private Context context;

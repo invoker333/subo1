@@ -25,10 +25,8 @@ public class Tomato extends ShakeFruit{
 		maxback=bloodMax;
 		
 	}
-	public void loadSound(){
-		loadSound(R.raw.fog);
-	}
 	void init(){
+		loadSound(R.raw.fog);
 //		setFrameCount(2,1);
 //		if(bloodMax<1000)
 			loadTexture(TexId.TOMATO);

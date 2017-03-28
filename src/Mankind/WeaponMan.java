@@ -25,7 +25,7 @@ public class WeaponMan extends Player{
 		downData[0]=true;
 		realBlade.tail=new Tail(20,TexId.REDCREEPER);
 		realBlade.tail.setTextureId(TexId.CUP);
-		realBlade.setTextureId(TexId.JINGUBANG);
+		realBlade.setTextureId(TexId.QIGAN);
 //		realBlade.angstart=60;
 		realBlade.angstart=75;
 		realBlade.h=4;

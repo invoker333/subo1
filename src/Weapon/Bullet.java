@@ -101,7 +101,7 @@ public class Bullet extends AnimationMove{
 					 &&gra.getgList().get(id).notBroken
 					 &&!(gra.getgList().get(id) instanceof BigGrass)){
 				 Grass grass= gra.getgList().get(id);
-				enemyGrass.setPosition(grass.x,grass.y);
+				enemyGrass.setPosition(x,y);
 				 gotTarget(enemyGrass);
 				 return true;
 			 }

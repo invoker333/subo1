@@ -9,7 +9,6 @@ import Enviroments.GrassSet;
 
 public class Hedgehog extends Enemy {
 
-	int creeperSoundId=0;
 	public Hedgehog(char bi,GrassSet gra, float x, float y) {
 		super(bi,gra, x, y);
 		setSoundId(MusicId.hedgehog);
@@ -21,23 +20,18 @@ public class Hedgehog extends Enemy {
 		isDead=false;
 		angle=0;
 		rotateSpeed=0;
-		
+		sethRate(0.85f);
+		changeSize(0.6f);
 		setxSpeedMax(3);
 		setxSpeedMin(-3);
-		setW(64);
-		setH(38);
-		sethRate(0.85f);
-		float x1=x;
-		float y1=y;
-		syncTextureSize();
 
 		setTextureId(TexId.REDCREEPER);
-		setSoundId(creeperSoundId);
+		setSoundId(MusicId.creeper4);
 	}
 	protected void init(){
 
-		setW(96);
-		setH(60);
+//		setW(42);
+		setH(38);
 		sethRate(0.55f);
 		setTextureId(TexId.HEDGEHOG);
 		super.init();

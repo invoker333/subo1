@@ -1,6 +1,5 @@
 package com.mingli.toms;
 
-import Enviroments.FruitSet;
 import Mankind.Player;
 import aid.Log;
 import android.view.Gravity;
@@ -78,7 +77,7 @@ public class GameMenu {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					touchEvent.touchAction(v, event);
-					isHided();
+					returnCurStateAndHide();
 					return false;
 				}
 			};
@@ -176,7 +175,7 @@ public class GameMenu {
 	};
 //	private Animation a;
 
-	boolean isHided() {
+	boolean returnCurStateAndHide() {
 		if (popupWindow != null && popupWindow.isShowing()) {
 			popupWindow.dismiss();
 			return false;
@@ -218,6 +217,7 @@ public class GameMenu {
 			
 			(view.findViewById(R.id.backtostagechoosser)).setOnTouchListener(otl);
 			(view.findViewById(R.id.getLifeFree)).setOnTouchListener(otl);
+			(view.findViewById(R.id.choseFileGameMenu)).setOnTouchListener(otl);
 			
 			if(!World.editMode){
 				save.setVisibility(View.INVISIBLE);
@@ -254,6 +254,11 @@ public class GameMenu {
 					menuActivity.quitGame();
 					menuActivity.initStageChooser();
 					break;
+				case R.id.choseFileGameMenu:
+//					menuActivity.quitGame();
+					menuActivity.intentToFileChooser();
+					return;
+//					break;
 				case R.id.getLifeFree:
 					// viewList.get(1).setBackgroundResource(R.drawable.back);
 					
@@ -267,7 +272,8 @@ public class GameMenu {
 					world.saveMap();
 					break;
 				case R.id.buyLife:
-					acti.showShop(world);
+//					acti.showShop(world);
+					acti.showBuyLifeShop(world);
 					break;
 				case R.id.retry:
 					// viewList.get(2).setBackgroundResource(R.drawable.retry);
@@ -294,7 +300,7 @@ public class GameMenu {
 					}
 					break;
 				}
-			boolean h = isHided();
+			boolean h = returnCurStateAndHide();
 			if(!h)acti.resumeGame();
 		}
 	}
@@ -305,7 +311,7 @@ public class GameMenu {
 		showWindow(world);
 		resume.setVisibility(View.VISIBLE);
 		getLifeAbou.setVisibility(View.INVISIBLE);
-		gameTitle.setText("第"+acti.mapIndex+"关");
+		gameTitle.setText(world.mapName);
 		lp.height=0;
 	}
 	

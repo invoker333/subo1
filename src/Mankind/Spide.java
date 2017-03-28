@@ -24,7 +24,7 @@ public class Spide extends Emplacement {
 		setTextureId(TexId.THUNDER);
 		setSoundId(MusicId.zhizhu);
 
-		tail = new Tail(2);
+		tail = new Tail(2,TexId.WIPE);
 		tail.width = 8;
 		this.attack = 0;
 		setG(0);

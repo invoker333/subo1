@@ -42,21 +42,25 @@ public class Shop {
 	private OnItemClickListener gridListener = new OnItemClickListener() {
 
 		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
+		public void onItemClick(AdapterView<?> parent, View v, int position,
 				long id) {
-			if(selectedView!=null)selectedView.setBackgroundResource(R.drawable.whitestroke);
-			view.setBackgroundResource(R.drawable.greenrect);
-			selectedItem = FruitSet.shopList.get(position);
-			instruction.setText(selectedItem.instruction);
-			// itemadapter.notifyDataSetChanged();
-			selectedView = view;
+			selected(v, position);
 		}
 	};
+	private void selected(View v, int position) {
+		if(selectedView!=null)selectedView.setBackgroundResource(R.drawable.whitestroke);
+		v.setBackgroundResource(R.drawable.greenrect);
+		selectedItem = FruitSet.shopList.get(position);
+		instruction.setText(selectedItem.instruction);
+		// itemadapter.notifyDataSetChanged();
+		selectedView = v;
+	}
 	private World world;
 	// private ArrayList<Fruit> fruList;
 	private FruitSet fs;
 	private ViewGroup shopadcontainer;
 	private TextView instruction;
+	private GridView gridView;
 
 	public Shop(MenuActivity acti, World world) {
 		this.acti = acti;
@@ -76,7 +80,7 @@ public class Shop {
 			popupWindow = new PopupWindow(popupWindow_view,
 					WindowManager.LayoutParams.MATCH_PARENT,
 					WindowManager.LayoutParams.MATCH_PARENT, true);
-			GridView gridView = (GridView) popupWindow_view
+			gridView = (GridView) popupWindow_view
 					.findViewById(R.id.shopGridView);
 
 			initButton(popupWindow_view);
@@ -86,6 +90,8 @@ public class Shop {
 			int space = 30;
 			gridView.setHorizontalSpacing(space);
 			gridView.setVerticalSpacing(space);
+			
+		
 
 			instruction=(TextView)popupWindow_view.findViewById(R.id.instruction);
 			
@@ -146,6 +152,7 @@ public class Shop {
 					fs.buyItem(selectedItem);
 					if (v.getId() == R.id.buyanduse) {
 						fs.useItem(selectedItem);
+						
 					}
 					
 					selectedItem = null;
@@ -182,6 +189,7 @@ public class Shop {
 		this.itemadapter = itemadapter;
 	}
 
+	private int buyLifePosition=-1;
 	class ItemAdapter extends BaseAdapter {
 
 		private Context context;
@@ -214,6 +222,8 @@ public class Shop {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
+		
+			
 			View v = null;
 			View icon = null;
 			TextView name = null;
@@ -263,9 +273,20 @@ public class Shop {
 				chanceLayout.setVisibility(View.GONE);
 			}
 
+			if(position==buyLifePosition){
+				selected(v,position);
+				buyLifePosition=-1;
+			}
+				
+			
 			return v;
 
 		}
 
+	}
+
+	public void toBuyLife() {
+		// TODO Auto-generated method stub
+		buyLifePosition=0;
 	}
 }

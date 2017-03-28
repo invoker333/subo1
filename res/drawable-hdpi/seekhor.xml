@@ -5,7 +5,24 @@
         android:id="@android:id/background"
         android:drawable="@drawable/purple"/>
     <item android:id="@android:id/secondaryProgress">
-            <clip android:drawable="@drawable/greenrect" />
+            <clip>
+
+            <shape>
+
+                <!-- 描述：描边 -->
+
+            
+
+                <corners android:radius="5dip" />
+
+                <gradient
+                    android:angle="270"
+                    android:centerColor="#ff00ff00"
+                    android:centerY="0.5"
+                    android:endColor="#ff00ffff"
+                    android:startColor="#ffffff00" />
+            </shape>
+        </clip>
     </item>
     <item android:id="@android:id/progress">
         

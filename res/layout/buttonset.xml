@@ -3,7 +3,10 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    
+    <aid.MyMoveView
+        android:id="@+id/maskview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/pause"
@@ -153,8 +156,5 @@
         android:layout_above="@+id/circle1"
         android:layout_alignRight="@+id/circle1"
         android:background="@drawable/button_attack" />
-<View
-        android:id="@+id/maskview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
 </RelativeLayout>

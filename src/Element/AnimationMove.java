@@ -7,9 +7,9 @@ import Mankind.Creature;
 public class AnimationMove extends Animation{
 		protected float xSpeed;
 		protected float ySpeed;
-		private float aTanxing;
-		private float aSin;
-		private float aCos;
+		protected float aTanxing;
+		protected float aSin;
+		protected float aCos;
 		@Override
 		public void drawElement(GL10 gl) {
 			move();
@@ -90,19 +90,10 @@ public class AnimationMove extends Animation{
 			}
 		}
 		public void stringCheck( AnimationMove wheel,float dsmax,float tanxingxishu,float zuni) {
-			stringACheck(wheel, dsmax, tanxingxishu, zuni);
+			if(stringACheck(wheel, dsmax, tanxingxishu, zuni));
 			{
-				wheel.setxSpeed(wheel.getxSpeed() *zuni+ aTanxing * aCos);
-				wheel.setySpeed(wheel.getySpeed()*zuni + aTanxing * aSin);
-				
-//				if(wheel.xSpeed>zuni)wheel.xSpeed-=zuni;
-//				else if(wheel.xSpeed<-zuni)wheel.xSpeed+=zuni;
-//				else wheel.xSpeed=0;
-//				
-//				if(wheel.ySpeed>zuni)wheel.ySpeed-=zuni;
-//				else if(wheel.ySpeed<-zuni)wheel.ySpeed+=zuni;
-//				else wheel.ySpeed=0;//20170204
-				
+				wheel.setxSpeed((wheel.getxSpeed() + aTanxing * aCos)*zuni);
+				wheel.setySpeed((wheel.getySpeed() + aTanxing * aSin)*zuni);
 			}
 		}
 		public void stringCheck2( AnimationMove wheel,float dsmax,float tanxingxishu,float zuni) {
@@ -110,18 +101,19 @@ public class AnimationMove extends Animation{
 			wheel.stringCheck(this, dsmax, tanxingxishu, zuni);
 		}
 		
-		private void stringACheck(AnimationMove wheel, float dsmax,
+		protected boolean stringACheck(AnimationMove wheel, float dsmax,
 				float tanxingxishu, float zuni) {
 			// TODO Auto-generated method stub
 			aCheck(wheel, dsmax, tanxingxishu, zuni);
 			if(aTanxing>zuni){
-				aTanxing=0;return;
+				aTanxing=0;return false;
 //				aTanxing-=zuni;
 			}
 			else if(aTanxing<-zuni){
 //				aTanxing+=zuni;
 			}
 			else aTanxing=0;
+			return true;
 		}
 		private void pushACheck(AnimationMove wheel, float dsmax,
 				float tanxingxishu, float zuni) {

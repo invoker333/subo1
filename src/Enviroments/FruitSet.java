@@ -41,7 +41,6 @@ public class FruitSet extends Set {
 		COUNT = fruitList.size();
 
 		drawList.addAll(fruitList);
-		loadSound();
 		// checkW=player.getW()+fruitList.get(0).getW();//设置碰撞宽度
 		// checkH=player.getH()+fruitList.get(0).getH();//设置碰撞宽度
 		// initItemList();
@@ -86,7 +85,6 @@ public class FruitSet extends Set {
 		{
 			shopList = new ArrayList<Fruit>();
 			shopList.add(chanceFruit = new ChanceFruit(bi, 1, 1));// ..
-			if (World.rpgMode)
 			shopList.add(new sizeFruit(bi, 1, 1));
 			shopList.add(new Toukui(bi, 0, 0, 9999));
 			shopList.add(new Gao(bi, 1, 1, 9999));
@@ -94,6 +92,7 @@ public class FruitSet extends Set {
 			shopList.add(new FruitFly(bi, 1, 1, 9999));
 			shopList.add(new FruitGun(bi, 1, 1, TexId.BOOMGUN));
 			shopList.add(new FruitGun(bi, 1, 1, TexId.HOOKGUN));
+			shopList.add(new FruitBlade(bi, 1, 1));
 			if (World.rpgMode) {
 				shopList.add(new Tomato(bi, 1, 1, 500));// ..
 				shopList.add(new FruitGun(bi, 1, 1, TexId.ZIDONGDAN));
@@ -102,7 +101,6 @@ public class FruitSet extends Set {
 				shopList.add(new FruitGun(bi, 1, 1, TexId.MISSILE));
 				shopList.add(new FruitGun(bi, 1, 1, TexId.JUJI));
 				shopList.add(new FruitGun(bi, 1, 1, TexId.SHUFUDAN));
-				shopList.add(new FruitBlade(bi, 1, 1));
 			}
 		}
 	}
@@ -251,17 +249,7 @@ public class FruitSet extends Set {
 
 	}
 
-	public void loadSound() {
-		setSoundId(MusicId.magic);
-		for (int i = 0; i < fruitList.size(); i++) {
-			Fruit fruit = fruitList.get(i);
-			fruit.setSoundId(getSoundId());
-		}
-	}
 
-	public void playSound() {
-		music.playSound(getSoundId(), 0);
-	}
 
 	public void loadTexture() {
 	}

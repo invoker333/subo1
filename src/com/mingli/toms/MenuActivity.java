@@ -1,6 +1,7 @@
 package com.mingli.toms;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -8,6 +9,7 @@ import Enviroments.FruitSet;
 import Mankind.Player;
 import aid.Ad;
 import aid.Client;
+import aid.ConsWhenConnecting;
 import aid.Log;
 import aid.Producer;
 import aid.Shop;
@@ -66,7 +68,7 @@ public class MenuActivity extends Activity {
 	public static int screenWidth, screenHeight;
 
 
-	int score;
+	public int score;
 	public int chance;
 	public int coinCount;
 
@@ -76,6 +78,7 @@ public class MenuActivity extends Activity {
 	int in[];
 	String starString = "00000000000000000";
 	public int[] star;
+	public static int userId=-1;
 
 	private String itemString = "HT";// a sizeFruit and a Tomato will give to ever player 
 	char[] item;
@@ -86,14 +89,12 @@ public class MenuActivity extends Activity {
 
 	private Producer animationShop;
 
-	String geqian;
 
 	static boolean titleMode=true;
 
 
 
 	public void finish() {
-		save();
 		if (world != null)
 			world.onDestroy();
 		 stateWindow=null;
@@ -101,6 +102,7 @@ public class MenuActivity extends Activity {
 		 gameMenu=null;
 		 myHandler=null;
 		 world=null;
+		 saveUserMessage();
 		if(client!=null) client.closeStream();
 		super.finish();
 	}
@@ -118,7 +120,6 @@ public class MenuActivity extends Activity {
 		myActivity = this;
 		
 		
-		initNetController();
 		
 		initWindowSize();
 
@@ -130,13 +131,19 @@ public class MenuActivity extends Activity {
 		getMessage();
 		initDialog();
 		initTips();
+		
+		initNetController();// must after getMessage();
+		
 		mapIndex = getMaxMapIndex();
 	}
 
 	private void initNetController() {
-		client = new Client();
+		if(client==null)client = new Client(MenuActivity.this);
 		new Thread(){
 			public void run(){
+				while(userName==null||userName==""||userId<0){
+					World.timeRush(1000);
+				}
 				client.connect();
 			}
 		}.start();
@@ -164,9 +171,19 @@ public class MenuActivity extends Activity {
 		startMenu = new StartMenu(this);
 		startMenu.loadStartMenu();
 		
+		if(client!=null)client.send(ConsWhenConnecting.REQUEST_PIMING_INFO+userId);
+		getUserId();
+		initPaimingInfo();
+		
 //		if (startTime > 2) {
 			showBanner((ViewGroup) findViewById(R.id.container));
 //		}
+	}
+
+	private void getUserId() {
+		// TODO Auto-generated method stub
+		if(MenuActivity.userId<10)
+			client.send(ConsWhenConnecting.REQUEST_NEW_USER_ID+userName+" "+score);
 	}
 
 	private void initSp() {
@@ -203,6 +220,9 @@ public class MenuActivity extends Activity {
 			if (stateWindow != null)
 				stateWindow.handleCheck(msg);
 			 if(btnc!=null)btnc.handleCheck(msg);
+			 
+			 if(startMenu!=null)startMenu.handleCheck(msg);
+			 
 			switch (msg.what) {
 			case World.LOADED:
 //				if(startMenu==null)// if it is loading game title or loading game
@@ -229,7 +249,7 @@ public class MenuActivity extends Activity {
 
 		private void gameover() {
 			// TODO Auto-generated method stub
-			save();
+		
 //			gameMenu.removeView();//没啥用
 //			showInAd();
 //			gameMenu.addView();
@@ -243,23 +263,19 @@ public class MenuActivity extends Activity {
 			if (getMaxMapIndex() == mapIndex)// only the last stage save
 				if(mapIndex<Map.max)editor.putInt("mapIndex", mapIndex + 1);
 			editor.commit();
-			save();
 		}
 	}
 
 	void startGame() {
-		// setContentView(world);
 		if (startMenu != null){
-			
 			startMenu.hide();
 			startMenu=null;
 		}
 		if (stageChooser != null){
-			
 			stageChooser.hide();
 			stageChooser=null;
 		}
-//		removeAndAddView(world);
+		
 		titleMode=false;
 		world.startGame(mapIndex);
 		Log.d("startGame");
@@ -270,6 +286,9 @@ public class MenuActivity extends Activity {
 			 stateWindow = new StateWindow(this, world, tips);
 			 
 //		 if (gameMenu == null)
+		 
+		 if(gameMenu!=null)gameMenu.returnCurStateAndHide();
+		 
 		gameMenu = new GameMenu(this, world);
 //		 if(shopView==null)
 		shop = new Shop(this, world);
@@ -277,7 +296,7 @@ public class MenuActivity extends Activity {
 		if(World.editMode)
 			animationShop = new Producer(this, world, tips);
 		
-		// if (btnc == null)
+		 if (btnc != null)btnc.hide();
 		btnc = new ButtonController(MenuActivity.this, world, gameMenu);// 添加按键
 		btnc.adController();
 
@@ -313,7 +332,7 @@ public class MenuActivity extends Activity {
 					animationShop.hideCheck();
 				}
 				
-				if (gameMenu!=null&&gameMenu.isHided()){
+				if (gameMenu!=null&&gameMenu.returnCurStateAndHide()){
 					pauseGame();
 					gameMenu.showWindow(world);
 				}else resumeGame();
@@ -371,7 +390,38 @@ public class MenuActivity extends Activity {
 
 	private static int resId;
 	private Client client;
-	String username;
+	public String userName;
+	public ArrayList<Info4> userInfoList=new ArrayList<Info4>();
+	private String paimingString;
+	public void initPaimingInfo(){
+		paimingString=sp.getString("paimingString", "1 "+userName+" "+score);
+		
+		String[] sa = paimingString.split(" ");
+		userInfoList.clear();
+		try{
+			for(int i=0;i<sa.length;i+=4){
+				userInfoList.add(new Info4(Integer.parseInt(sa[i]),sa[i+1],Integer.parseInt(sa[i+2]),Integer.parseInt(sa[i+3])));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		myHandler.sendEmptyMessage(World.NOTIFY_PAIMING_CAHNGED);
+	}
+	
+	
+//	Info3 inf;
+//	for(int i=0;i<10;i++){
+//		userInfoList.add(inf=new Info3(i+1,UserName.randomName(),(int)(score*Math.random()+0.5)));
+//	}
+//	userInfoList.set(5, new Info3(6,username,score));
+	
+	public void savePaiming(String paimingString) {
+		this.paimingString = paimingString;
+		// TODO Auto-generated method stub
+		
+		editor.putString("paimingString", paimingString);
+		editor.commit();
+	}
 
 //	public static boolean titleMode;
 	
@@ -440,7 +490,9 @@ public class MenuActivity extends Activity {
 	public void save() {
 		editor.putInt("coin", coinCount);
 		editor.putInt("chance", chance);
+		
 		editor.putInt("score", score);
+		client.send(ConsWhenConnecting.REQUEST_UPDATE_SCORE+userId+" "+score);
 
 		starString = "";
 		for (int i = 0; i < star.length; i++) {
@@ -467,13 +519,12 @@ public class MenuActivity extends Activity {
 		itemString =sp .getString("itemString", itemString);
 		star = stringToInts(starString);
 		item=itemString.toCharArray();
-		username=sp.getString("username", UserName.randomName());
-		geqian=sp.getString("geqian", "我是一个伟大的火星猎人");
-		saveUserMessage();
+		userName=sp.getString("username", UserName.randomName());
+		userId=sp.getInt("userId", 5);
 	}
 	void saveUserMessage(){
-		editor.putString("username",username);
-		editor.putString("geqian",geqian);
+		startMenu.setUserName(userName);
+		editor.putString("username",userName);
 		// Log.i("starString"+new String(starString));
 		editor.commit();
 	}
@@ -509,8 +560,8 @@ public class MenuActivity extends Activity {
 			// world = null;
 			world.quitGame();
 		}
-		Log.d("quitGame");
-		
+		Log.d("quitGame+gameSaved");
+		save();
 		
 	}
 
@@ -522,7 +573,7 @@ public class MenuActivity extends Activity {
 
 	public void resumeGame() {
 		// TODO Auto-generated method stub
-		if(gameMenu!=null)	gameMenu.isHided();
+		if(gameMenu!=null)	gameMenu.returnCurStateAndHide();
 		if (world != null)
 			world.resume();
 //		gameMenu.
@@ -713,5 +764,26 @@ public class MenuActivity extends Activity {
 		myHandler.sendEmptyMessage(World.COIN);
 		myHandler.sendEmptyMessage(World.CHANCE);
 	}
-	
+
+	public void saveUserId(String s) {
+		// TODO Auto-generated method stub
+		userId=Integer.parseInt(s);
+		editor.putInt("userId", userId);
+	}
+
+	public void showBuyLifeShop(View v) {
+		// TODO Auto-generated method stub
+		showShop(v);
+		shop.toBuyLife();
+	}
+
+
+
+	public void intentToFileChooser() {
+		// TODO Auto-generated method stub
+		Intent intent = new Intent();
+		intent.setClass(this, fileRW.FileActivity.class);
+		this.startActivityForResult(intent, 0);
+	}
+//	void 
 }

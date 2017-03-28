@@ -3,6 +3,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/more"
+        android:layout_alignLeft="@+id/container"
+        android:layout_marginTop="64dp" >
+
+        <LinearLayout
+            android:id="@+id/LinearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignLeft="@+id/paimingbiao"
+            android:background="@drawable/bg_selected"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="排名"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="姓名"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="得分"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/paimingbiao"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/LinearLayout1"
+            android:padding="5dp" >
+        </ListView>
+    </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/butset"
         android:layout_width="wrap_content"
@@ -35,15 +84,6 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <ExpandableListView
-        android:id="@+id/charts"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/butset" >
-
-    </ExpandableListView>
-
     <SlidingDrawer
         android:id="@+id/slidingDrawer1"
         android:layout_width="wrap_content"
@@ -58,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#00000000"
-              android:shadowColor="#ffaa00"
+            android:shadowColor="#ffaa00"
             android:shadowDx="5"
             android:shadowDy="5"
             android:shadowRadius="5"
@@ -93,15 +133,15 @@
 
     <Button
         android:id="@+id/fileChoose"
-        android:layout_width="128dp"
-        android:layout_height="64dp"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_above="@+id/slidingDrawer1"
         android:layout_alignParentLeft="true"
         android:background="@drawable/bg_selected"
         android:padding="8dp"
         android:text="选择文件"
         android:textColor="#ffffff"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <RelativeLayout
@@ -109,7 +149,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/gameModel"
-        android:layout_alignParentLeft="true" >
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/white"
+        android:padding="5dp" >
 
         <ImageView
             android:id="@+id/touxiang"
@@ -119,41 +161,31 @@
             android:layout_alignParentTop="true"
             android:src="@drawable/cap" />
 
-        <EditText
-            android:id="@+id/geqian"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/touxiang"
-            android:layout_below="@+id/nicheng"
-            android:layout_toRightOf="@+id/touxiang"
-            android:hint="您的个性签名"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="14dp" >
-
-            <requestFocus />
-        </EditText>
-
         <TextView
             android:id="@+id/nicheng"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/geqian"
-            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/touxiang"
+            android:layout_weight="1"
+            android:shadowColor="#000000"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="5"
             android:text="火星猎人"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#00ffff"
-            android:textSize="16sp" />
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
     </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/charts"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/butset"
         android:orientation="vertical" >
-
     </LinearLayout>
 
     <GridLayout
@@ -204,8 +236,8 @@
         android:id="@+id/more"
         android:layout_width="128dp"
         android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_above="@+id/container"
         android:background="#ffdd00"
         android:padding="8dp"
         android:text="应用推荐"

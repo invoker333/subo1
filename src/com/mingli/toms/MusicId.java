@@ -44,7 +44,7 @@ public class MusicId {
 		gun=music.loadSound(R.raw.gunlight);
 		sword=music.loadSound(R.raw.sword);
 		brake01=music.loadSound(R.raw.brake01);
-		land=music.loadSound(R.raw.jump2);
+		land=music.loadSound(R.raw.jumpsoft);
 		gameover=music.loadSound(R.raw.gameover);
 		wood2=music.loadSound(R.raw.wood2);
 		firecolumn=music.loadSound(R.raw.firecolumn);

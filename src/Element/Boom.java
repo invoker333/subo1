@@ -21,13 +21,14 @@ public class Boom extends LightSpot{
 			// TODO Auto-generated method stub
 			setW(32);
 			setH(32);
-			loadTexture(TexId.BOOM2);
+			loadTexture(TexId.BOOM);
 		}
 	void colorInc(){
 		setRed(getRed() + alphaSpeed);
 		setGreen(getGreen() + alphaSpeed);
 		setBlue(getBlue() + alphaSpeed);
-		 alpha+=0.9*alphaSpeed;
+//		 alpha+=0.9*alphaSpeed;
+		 alpha+=1*alphaSpeed;
 	}
 	float windRate=1/50f;
 	/*F=(1/2)C��SV^2 ����. ʽ�У�

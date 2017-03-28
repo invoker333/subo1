@@ -13,17 +13,13 @@ import Element.Curtain;
 import Element.LightSpotSet;
 import Mankind.Player;
 import Weapon.AutoBullet;
+import aid.Log;
 import android.provider.ContactsContract.DeletedContacts;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
 public class TouchMove implements OnTouchListener {
-	int ad, au, ad1, au1;
-	float ex, ey, ex1, ey1;
-	float ux, uy, ux1, uy1;
-	private float ex2;
-	private float ey2;
 	private LightSpotSet lightSpotSet;
 	private Player player;
 	private Tail tail;
@@ -42,6 +38,7 @@ public class TouchMove implements OnTouchListener {
 	private World world;
 	private Animation deleter;
 	private boolean deleteMode;
+	private boolean moveCloneMode;
 
 	public TouchMove( LightSpotSet lightSpotSet, Player player){
 //		this.bts = bts;
@@ -106,6 +103,12 @@ public class TouchMove implements OnTouchListener {
 	}
 	public boolean onTouch(View v, MotionEvent e) {
 		if(lightSpotSet!=null)lightSpotSet.tringer(e.getX(), MenuActivity.screenHeight - e.getY());
+		float ex2;
+		float ey2;
+		float ex = 0;
+		float ey;
+		float ux;
+		float uy;
 		switch (e.getAction()) {
 		case MotionEvent.ACTION_DOWN:
 			ex = e.getX();
@@ -143,6 +146,7 @@ public class TouchMove implements OnTouchListener {
 			stopEditTarget(ux,uy);	
 			break;
 		case MotionEvent.ACTION_MOVE:
+			Log.i("TouchMove.move");
 //			moved=true;
 			ex2 = e.getX();
 			ey2 = MenuActivity.screenHeight - e.getY();
@@ -162,7 +166,7 @@ public class TouchMove implements OnTouchListener {
 			
 			
 			if(player!=null){
-				if(!(World.editMode&&moveEditTarget())){					
+				if(!World.editMode || !moveEditTarget(ex2,ey2)){					
 					player.moveAction(ex2, ey2);
 				}
 			}
@@ -172,6 +176,7 @@ public class TouchMove implements OnTouchListener {
 	}
 	private void stopEditTarget(float ux, float uy) {
 		// TODO Auto-generated method stub
+		moveCloneMode=false;
 		if(!World.editMode||editTarget==null)return;
 		
 		build8CHeck();
@@ -191,6 +196,11 @@ public class TouchMove implements OnTouchListener {
 		if(yy<0)yy-=grid;
 		editTarget.setStartXY(xx, yy);
 		
+		if(deleteMode){
+			animationList.remove(editTarget);
+//			world.removeDraw(editTarget);
+			editTarget.setPosition(0, 400);
+	}
 		
 		if(World.editMode)editTarget=null;
 	}
@@ -209,25 +219,79 @@ public class TouchMove implements OnTouchListener {
 			return;
 		}
 	}
-	private boolean moveEditTarget() {
+	private boolean moveEditTarget(float ex2, float ey2) {
+		
+		float xx = Render.px+ex2;
+		float yy = Render.py+ey2;
+		
+		
+		
+		if(moveCloneMode){
+			
+			Log.i("MoveCloneMode=true");
+			float grid=player.getGra().getGrid();
+			float dg=grid/2;
+			
+			float tx=xx-xx%grid+dg;
+			float ty=yy-yy%grid+dg;
+//			Log.i("xx+tx"+xx+" "+tx);
+			
+			boolean noDul=true;// here has no animation
+	
+			for(int i=0;i<animationList.size();i++){
+				Animation a=animationList.get(i);
+				if(Math.abs(tx-a.x)<grid&&
+						Math.abs(ty-a.y)<grid) {
+					noDul=false;
+					Log.i("noDul=false;");
+					break;
+				}
+			}
+			if(noDul){
+				Log.i("noDul=true;  newAnimation(cloner);");
+				newAnimation(tx,ty);
+			}
+			moveViewCheck(ex2,ey2);
+			return true;
+		}
+		
+		
 		cloner=null;
 		if(editTarget!=null){
-			 
-			float xx = Render.px+ex2;
-			float yy = Render.py+ey2;
 			editTarget.setStartXY(xx, yy);
 			
 			if(Math.abs(xx-deleter.x)<deleter.w
 					&&Math.abs(yy-deleter.y)<deleter.h){
 				deleteMode=true;
-				animationList.remove(editTarget);
-//				world.removeDraw(editTarget);
-				editTarget.setPosition(0, 400);
 			}else deleteMode=false;
-			
+			moveViewCheck(ex2,ey2);
 			return true;
 		}
 		return false;
+	}
+	private void moveViewCheck(float ex2, float ey2) {
+		// TODO Auto-generated method stub
+		final float length=100;
+		final float devi=10;
+		if(ex2<length){
+			float dx=length-ex2;player.px-=dx/devi;
+		}else{
+			float px2=(Render.width-length);
+			if(ex2>px2){
+				float dx=ex2-px2;
+				player.px+=dx/devi;
+			}
+		}
+		
+		if(ey2<length){
+			float dy=length-ey2;player.py-=dy/devi;
+		}else {
+			float py2=(Render.height-length);
+			if(ey2>py2){
+				float dy=ey2-py2;
+				player.py+=dy/devi;
+			}
+		}
 	}
 	private void startEditTarget(float ex, float ey) {
 		
@@ -247,14 +311,9 @@ public class TouchMove implements OnTouchListener {
 			for(Animation aa:build8group){
 				if (Math.abs(ex - aa.x) < grid/2
 					&& Math.abs(ey - aa.y) < grid/2) {
-					Animation newAnimation = cloner.clone();
-					newAnimation.setStartXY(aa.x, aa.y);
-					animationList.add(newAnimation);
-					world.addDrawAnimation(newAnimation);
-					
+					cloner=newAnimation(aa.x,aa.y);
 					aa.setPosition(0, (float) (100*Math.random()));//to let look clearly
-					
-					cloner=newAnimation;
+					moveCloneMode=true;
 					// new cloner is root
 					build8CHeck();
 					
@@ -262,6 +321,14 @@ public class TouchMove implements OnTouchListener {
 				}
 			}
 		}
+	}
+	private Animation newAnimation(float x,float y) {
+		// TODO Auto-generated method stub
+		Animation newAnimation = cloner.clone();
+		newAnimation.setStartXY(x, y);
+		animationList.add(newAnimation);
+		world.addDrawAnimation(newAnimation);
+		return newAnimation;
 	}
 	float alphaClone=1f;
 	 float alphaSpeed=0.02f;

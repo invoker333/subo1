@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import Mankind.Player;
 import aid.Log;
 
+import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 
 import element2.TexId;
@@ -32,11 +33,13 @@ public class Coin extends SixFruit {
 	}
 	void init() {
 		loadTexture(TexId.COIN);
+		loadSound(MusicId.coin);
 	}
 	public void use(Player player, ArrayList<Fruit> pickedList) {
 		// TODO Auto-generated method stub
 		super.use(player, pickedList);
 		visible=false;
+		player.increaseScoreBy(score);//
 //		Log.i("Coin has ben used");
 	}
 	public boolean loadAble(Player player){

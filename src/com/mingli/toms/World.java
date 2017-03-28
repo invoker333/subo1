@@ -102,6 +102,8 @@ public class World extends GLSurfaceView implements Runnable {
 	public static final int NOBLADEICON = 12;
 	public static final int NOTREADICON=13;
 	public static final int NOGUNICON=14;
+	public static final int JUMP = 15;
+	public static final int NOTIFY_PAIMING_CAHNGED = 16;
 	final  int[] mes = new int[14];
 	public static final int baseAttack = 100;
 	public static int baseLifeMax=baseAttack/10;
@@ -110,6 +112,7 @@ public class World extends GLSurfaceView implements Runnable {
 	private Render render;
 	private BloodSet snowBloodSet;
 	public  File mapFile;
+	String mapName;
 	public static int curMapIndex;
 	
 	
@@ -271,9 +274,13 @@ public class World extends GLSurfaceView implements Runnable {
 		 
 		if(mapFile!=null){
 			map = new Map(mapFile, acti);
+			mapName=mapFile.getName();
 			mapFile=null;
 		}
-		else map = new Map(mapIndex, acti);
+		else{
+			map = new Map(mapIndex, acti);
+			mapName="第"+acti.mapIndex+"关";
+		}
 		
 		lightningSet = new LightningSet(2);// ����
 		gra = new GrassSet(64f, map.charData, lightningSet,this);
@@ -285,11 +292,6 @@ public class World extends GLSurfaceView implements Runnable {
 		// bg.setTextureId(TexId.ICE);
 		if (bg.getTextureId() == TexId.TIANSHAN)
 			snowSet = new SnowSet(20, gra);
-		if (bg.getTextureId() == TexId.SEA){
-			bubbleSet = new BubbleSet(10);
-			bubbleSet.tringerScreen();
-		}
-		
 		ps = new ParticleSet(gra, 10);
 
 		enemySet = new EnemySet(gra);
@@ -347,7 +349,7 @@ public class World extends GLSurfaceView implements Runnable {
 		
 		 if(editMode)initAnimationShopList();
 		 
-		 sendGameInitedMessage();
+		 sendMessage(LOADED);
 	}
 
 
@@ -362,11 +364,9 @@ public class World extends GLSurfaceView implements Runnable {
 		recycleList.clear();
 
 		drawList.add(bg);
-		 if(bg!=null&&(bg.getTextureId()==TexId.HUANGSHAN)||bg.getTextureId()==TexId.SEA)
+		 if(bg!=null&&(bg.getTextureId()==TexId.HUANGSHAN))
 		drawList.add(lightSpotSet);
 		 
-		 if (bg.getTextureId() == TexId.SEA)
-				drawList.add(bubbleSet);
 		drawList.add(cs);
 		drawList.add(fruitSet);
 		drawList.add(gra);
@@ -421,7 +421,6 @@ public class World extends GLSurfaceView implements Runnable {
 //		// touch.onTouch(this,e);
 //	}
 
-	Touch touch;
 	public int gameTime = 256;
 	private boolean isGameRunning;
 	private boolean paused;
@@ -429,10 +428,10 @@ public class World extends GLSurfaceView implements Runnable {
 
 	public void onTouch() {
 		// Touch touch=new Touch(gun,ab,lightBallSet,player);
-		touch = new Touch(player);
 		touchMove=new TouchMove(touchTail,player,this);
+		// use @MyMoveView
 		
-		this.setOnTouchListener(touchMove);// move
+//		this.setOnTouchListener(touchMove);// move
 		
 		OnTouchListener moveaction = null;
 		// this.setOnTouchListener(touch);// 触摸事件监听器
@@ -752,8 +751,8 @@ public class World extends GLSurfaceView implements Runnable {
 	public ArrayList<Draw> getDrawList() {
 		return drawList;
 	}
-	private void sendGameInitedMessage() {
-		handler.sendEmptyMessage(LOADED);
+	public void sendMessage(int message) {
+		handler.sendEmptyMessage(message);
 	}
 	public void increaseScore(int score) {
 //		mes[SCORE] = score;
@@ -873,18 +872,18 @@ public class World extends GLSurfaceView implements Runnable {
 		drawList.add(cloneA);
 	}
 
-	public void haveBladeIcon(int B) {
-		// TODO Auto-generated method stub
-		handler.sendEmptyMessage(B);
-	}
-	public void haveGunIcon(int B) {
-		// TODO Auto-generated method stub
-		handler.sendEmptyMessage(B);
-	}
-	public void haveTreadIcon(int B) {
-		// TODO Auto-generated method stub
-		handler.sendEmptyMessage(B);
-	}
+//	public void haveBladeIcon(int B) {
+//		// TODO Auto-generated method stub
+//		handler.sendEmptyMessage(B);
+//	}
+//	public void haveGunIcon(int B) {
+//		// TODO Auto-generated method stub
+//		handler.sendEmptyMessage(B);
+//	}
+//	public void haveTreadIcon(int B) {
+//		// TODO Auto-generated method stub
+//		handler.sendEmptyMessage(B);
+//	}
 
 	public void relife() {
 		// TODO Auto-generated method stub
@@ -892,7 +891,7 @@ public class World extends GLSurfaceView implements Runnable {
 		
 		 int gameTimeMax=timerMax/3;
 		if((gameTime+=gameTimeMax)>gameTimeMax)
-			gameTime=gameTimeMax;
+			gameTime=timerMax;
 		
 	}
 

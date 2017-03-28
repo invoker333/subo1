@@ -12,6 +12,8 @@ public class Walker extends Enemy {
 		super(bi,gra, x, y);
 		setSoundId(MusicId.walker);
 		// TODO Auto-generated constructor stub
+		setH(getH()*19f/16);
+		changeSize(0.7f);
 		setxSpeedMax(getxSpeedMax()/4);
 		setxSpeedMin(-getxSpeedMax());
 	}
@@ -21,7 +23,6 @@ public class Walker extends Enemy {
 		aniStepCheck();
 	}
 	protected void init(){
-		setH(64);
 		super.init();
 		setTextureId(TexId.WALKER);
 	}

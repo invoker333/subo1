@@ -62,7 +62,6 @@ public class GrassSet extends Set{
 	int index=0;
 	private int zero=-2;
 	private Goal goal;
-//	private Goal goal=new Goal('2', 0,1111);
 	public float[] bendDownData;
 	public float[] bendUpData;
 	private Tail grassTail;
@@ -254,7 +253,7 @@ public class GrassSet extends Set{
 						c.name="初始位置";
 						c.setLifeMax(99999);
 						c.setLife(99999);
-						c.attack=1;
+						c.attack=0;
 						enemyList.add(c);
 					}
 					break;
@@ -326,7 +325,9 @@ public class GrassSet extends Set{
 		
 		initGoreAnimation();
 		
-		if(goal==null)goal=new Goal('2', -100, 0);
+		if(goal==null)goal=new Goal(' ', -1000, 0){
+			 public void drawElement(GL10 gl){}
+		};
 		animationList.add(goal);
 		player.
 		goal=goal;
@@ -406,7 +407,7 @@ public class GrassSet extends Set{
 				grass.setTextureId(TexId.BAMBOOHEART);
 			
 			
-		if(x1+1<mapHeight){
+		if(x1+1<mapWidth){
 			if((id=map[x1+1][y1])!=zero)
 				if(gList.get(id).isIsburrow())
 					if(gList.get(id).getxState()==0)x1++;
@@ -458,8 +459,8 @@ public class GrassSet extends Set{
 		goal.drawElement(gl);
 		for(int i=0;i<drawList.size();i++){
 			Grass g=drawList.get(i);
-			if(g.data[0]>=Player.gx1&&g.data[2]<=Player.gx2
-					&&g.data[1]>=Player.gy1&&g.data[3]<=Player.gy2)
+			if(g.x>=Player.gx1&&g.x<=Player.gx2
+					&&g.y>=Player.gy1&&g.y<=Player.gy2)
 			{
 				if(g.notBroken)
 				g.drawElement(gl);
@@ -468,8 +469,8 @@ public class GrassSet extends Set{
 		gl.glColor4f(0.015f, 0.1f, 0.1f, 0.8f);
 		for(int i=0;i<drawList.size();i++){
 			Grass g=drawList.get(i);
-			if(g.data[0]>=Player.gx1&&g.data[2]<=Player.gx2
-					&&g.data[1]>=Player.gy1&&g.data[3]<=Player.gy2)
+			if(g.x>=Player.gx1&&g.x<=Player.gx2
+					&&g.y>=Player.gy1&&g.y<=Player.gy2)
 			{
 				if(!g.notBroken)
 				g.drawElement(gl);

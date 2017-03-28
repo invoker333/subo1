@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.microedition.khronos.opengles.GL10;
 
 import Element.AnimationGrass;
+import Element.AnimationMove;
 import Enviroments.GrassSet;
 
 import com.mingli.toms.Render;

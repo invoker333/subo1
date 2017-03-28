@@ -181,6 +181,12 @@ public class Gun extends Set {// 子弹
 //		Log.d("angleGun", ""+angle);
 	}
 
+
+	public void setGunLength(float gunLength) {
+		// TODO Auto-generated method stub
+		this.gunLength=gunLength;
+	}
+
 	
 
 

@@ -1,16 +1,15 @@
 package Weapon;
 
 import javax.microedition.khronos.opengles.GL10;
-import javax.microedition.khronos.opengles.GL11;
 
-import aid.Log;
+import Enviroments.GrassSet;
+import Mankind.Creature;
+import Mankind.EnemySet;
+import Mankind.Player;
 
 import com.mingli.toms.World;
 
 import element2.TexId;
-import Enviroments.GrassSet;
-import Mankind.Creature;
-import Mankind.EnemySet;
 
 public class Hook extends TailBullet {
 	boolean back;
@@ -32,7 +31,8 @@ public class Hook extends TailBullet {
 		setSize(12,12);
 		
 		setTextureId(TexId.GAO);
-		tail.setTextureId(TexId.LIGHTNING);
+		tail.setTextureId(TexId.WIPE);
+		tail.w=4;
 		
 		frameMax=range/speed;
 	}
@@ -42,7 +42,7 @@ public class Hook extends TailBullet {
 			getGrass=false;
 		} else {
 			if(getGrass){
-				hookGrass.stringCheck(player, hookLength, 0.7f, 0.95f);
+				hookGrass.stringCheck(player, hookLength, 0.3f, 0.95f);
 				
 				tail.startTouch(player.x, player.y);
 				tail.tringer(hookGrass.x,hookGrass. y);
@@ -70,7 +70,13 @@ public class Hook extends TailBullet {
 		if(enemy.equals(enemyGrass)){
 			hookGrass.setPosition(enemyGrass.x, enemyGrass.y);
 			getGrass=true;
-			hookLength=range*frame/frameMax;
+			
+			hookLength=(int) Math.sqrt(Math.pow(enemyGrass.x-player.x,2)+Math.pow(enemyGrass.y-player.y,2));
+			final float springLength=30;
+			hookLength-=springLength;
+			// a little distance from grass's centre to player.center
+
+			
 //			Log.i("hookLength"+hookLength);
 			hookGrass.isDead=false;
 			resetBullet();
@@ -138,9 +144,10 @@ public class Hook extends TailBullet {
 	}
 
 	public void tringer(float x, float y, double sx, double sy) {
-		if (back||getGrass)
+		if (back)
 			return;
 		super.tringer(x, y, sx, sy);
+		getGrass=false;
 	}
 
 	public int getRange() {

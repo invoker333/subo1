@@ -71,7 +71,7 @@ public class Flyer extends Enemy {
 	}
 	private void hwChange() {
 		float h1 = h;
-		h=w*0.8f;
+		h=w*0.65f;
 		w=h1*(gethRate()+10f/60f);
 	}
 	public void attackAnotherOne(EnemySet es){// walker's code

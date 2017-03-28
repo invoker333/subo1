@@ -69,7 +69,7 @@
         <item name="android:maxHeight">48.0dip</item>  
         <item name="android:indeterminateOnly">false</item>  
         <item name="android:indeterminateDrawable">@android:drawable/progress_indeterminate_horizontal</item>  
-        <item name="android:progressDrawable">@drawable/seekhor</item>  
+        <item name="android:progressDrawable">@layout/jumpseekdrawable</item>  
         <item name="android:minHeight">10.0dip</item>  
         <item name="android:thumbOffset">16.0dip</item>  
     </style>  

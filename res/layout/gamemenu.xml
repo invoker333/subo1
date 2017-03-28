@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#aaaaaaaa"
+    android:background="#77000000"
     android:orientation="vertical"
     android:padding="10dp" >
 
@@ -348,15 +348,42 @@
         android:id="@+id/backtostagechoosser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/tomenu"
-        android:layout_marginTop="48dp"
+        android:layout_alignLeft="@+id/tomenu"
+        android:layout_centerVertical="true"
         android:orientation="vertical" >
 
         <View
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@drawable/tomenu"
+            android:textColor="#ff0000" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/biankaungorange"
+            android:gravity="center"
+            android:shadowColor="#ffaa00"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="5"
+            android:text="关卡选择"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/choseFileGameMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/icon"
             android:textColor="#ff0000" />
 
         <TextView
@@ -369,7 +396,7 @@
             android:shadowDx="5"
             android:shadowDy="5"
             android:shadowRadius="5"
-            android:text="关卡选择"
+            android:text="下载关卡"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#ffffff" />
     </LinearLayout>

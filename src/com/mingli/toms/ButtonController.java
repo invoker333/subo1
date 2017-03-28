@@ -3,10 +3,12 @@ package com.mingli.toms;
 import Mankind.Player;
 import aid.Circle;
 import aid.CircleSurface;
+import aid.MyMoveView;
 import aid.Shop;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Message;
+import android.text.method.Touch;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -25,7 +27,6 @@ public class ButtonController {
 	private GameMenu gameMenu;
 	// private View.OnTouchListener ontl;
 
-	Touch touch;
 	private ItemWindow itemWindow;
 	private CircleSurface circleSurface;
 	private Player player;
@@ -35,7 +36,6 @@ public class ButtonController {
 		this.world = world;
 		this.gameMenu = gameMenu;
 		player=world.player;
-		touch = world.touch;
 	}
 	void freshItem(){
 		if(itemWindow!=null)itemWindow.freshItem();
@@ -69,8 +69,14 @@ public class ButtonController {
 					.findViewById(R.id.circlesurface1);
 			circleSurface.player = world.player;
 			// circle.setOnTouchListener(ontl);
-			directionSeekBar.setOnSeekBarChangeListener(seekListener);
-			jumpSeekBar.setOnSeekBarChangeListener(seekListener);
+			if(world.editMode){
+				directionSeekBar.setOnSeekBarChangeListener(editSeekListener);
+				jumpSeekBar.setOnSeekBarChangeListener(editSeekListener);
+			}else {
+				directionSeekBar.setOnSeekBarChangeListener(seekListener);
+				jumpSeekBar.setOnSeekBarChangeListener(seekListener);
+			}
+			
 			ontl = new ClickGame();
 			jumpSeekBar.setOnTouchListener(ontl);
 //			left.setOnTouchListener(ontl);
@@ -84,9 +90,8 @@ public class ButtonController {
 			menu.setOnTouchListener(ontl);
 
 			// world.setOnTouchListener(ontl);
-
-			View blank = buttonView.findViewById(R.id.maskview);
-			blank.setOnTouchListener(ontl);
+			MyMoveView v=(MyMoveView) buttonView.findViewById(R.id.maskview);
+			v.tm=world.touchMove;
 		}
 		acti.getWindow().addContentView(
 				buttonView,
@@ -110,7 +115,6 @@ public class ButtonController {
 	 * showGameMenu(); }
 	 */
 
-	private boolean playerJumpAble;
 	class ClickGame implements OnTouchListener {
 
 		@Override
@@ -141,7 +145,6 @@ public class ButtonController {
 //				break;
 			case R.id.jumpSeekbar1:
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					if(player.isJumpAble())playerJumpAble=true;
 					Player.downData[3] = true;
 				} else 
 					if (event.getAction() == MotionEvent.ACTION_UP) {
@@ -197,10 +200,6 @@ public class ButtonController {
 					if(World.editMode)acti.showAnimationShop(v);
 				}
 				break;
-			case R.id.maskview:// 防止触碰其他按键 导致x,y 不正常
-				if (touch != null)
-					touch.onTouch(v, event);
-				break;
 			/*
 			 * case R.id.circle1: if (event.getAction() ==
 			 * MotionEvent.ACTION_DOWN) { Player.GunAngle=(float)
@@ -220,7 +219,27 @@ public class ButtonController {
 		//
 		// }
 	};
+	private SeekBar.OnSeekBarChangeListener editSeekListener = new SeekBar.OnSeekBarChangeListener() {
+		@Override
+		public void onStopTrackingTouch(SeekBar seekBar) {
+		}
+		@Override
+		public void onStartTrackingTouch(SeekBar seekBar) {
+		}
+		
+		@Override
+		public void onProgressChanged(SeekBar seekBar, int progress,
+				boolean fromUser) {
+			switch (seekBar.getId()) {
+			case R.id.jumpSeekbar1:
+				player.py=progress/100f*(player.getGra().getMapHeight()*player.getGra().getGrid()-Render.height);
+				break;
+			case R.id.directionSeekBar:
+				player.px=progress/100f*(player.getGra().getMapWidth()*player.getGra().getGrid()-Render.width);
+			}
 
+		}
+	};
 	private SeekBar.OnSeekBarChangeListener seekListener = new SeekBar.OnSeekBarChangeListener() {
 
 		@Override
@@ -256,12 +275,8 @@ public class ButtonController {
 			switch (seekBar.getId()) {
 			case R.id.jumpSeekbar1:
 				Player.downData[3] = true;
-				float rate = (progress + 25) / 100f;
-				Player.jumpRate = rate < 1 ? rate : 1;
-				if(playerJumpAble){
-					jumpSeekBar.setSecondaryProgress(progress);
-					playerJumpAble=false;
-				}
+				Player.jumpProgress=progress;
+				
 				break;
 			case R.id.directionSeekBar:
 				if (progress < 50) {
@@ -299,6 +314,7 @@ public class ButtonController {
 		case World.NOGUNICON:circle.setVisibility(View.INVISIBLE);break;
 		case World.TREADICON:ride.setVisibility(View.VISIBLE);break;
 		case World.NOTREADICON:ride.setVisibility(View.INVISIBLE);break;
+		case World.JUMP:jumpSeekBar.setSecondaryProgress((int) (Player.curJumpProgress));
 		}
 	}
 }
