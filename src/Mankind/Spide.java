@@ -17,7 +17,7 @@ public class Spide extends Emplacement {
 	Tail tail;
 	Creature catcher;
 	int hirtIndexBorn = 300;
-	int hirtIndex;
+	int hirtIndex=hirtIndexBorn;
 
 	public Spide(char bi, GrassSet gra, float x, float y) {
 		super(bi, gra, x, y);
@@ -25,7 +25,7 @@ public class Spide extends Emplacement {
 		setSoundId(MusicId.zhizhu);
 
 		tail = new Tail(2,TexId.WIPE);
-		tail.width = 8;
+		tail.w = 2;
 		this.attack = 0;
 		setG(0);
 		
@@ -36,6 +36,8 @@ public class Spide extends Emplacement {
 		this.es = es;
 		b = new Hook(es, gra, this) {
 			protected void gotTarget(Creature enemy) {
+				if(enemy.equals(b.enemyGrass)){return;}
+				
 				if (catcher == null || catcher.isDead) {
 					catcher = enemy;
 				}
@@ -84,10 +86,12 @@ public class Spide extends Emplacement {
 	protected void moveCheck() {
 		tailCheck();
 		xSpeed = 0;
+		x=startX;
 	}
 
 	protected void gravityCheck() {
 		ySpeed = 0;
+		y=startY;
 	}
 
 	protected void tailCheck() {

@@ -49,6 +49,8 @@ public class StartMenu{
 
 	private View startView;
 	private TextView username;
+	private Button onlineStageChoose;
+	private Button fileChoose;
 	class PaimingAdapter extends BaseAdapter {
 
 		ArrayList<Info4> userInfoList;
@@ -89,6 +91,7 @@ public class StartMenu{
 			userPaiming=(TextView) v.findViewById(R.id.mingci);
 			Info4 info4 = userInfoList.get(position);
 			if(info4.userId==acti.userId)v.setBackgroundResource(R.drawable.greenrect);
+			else v.setBackgroundResource(0);
 			userPaiming.setText(""+info4.paiming);
 			userScore.setText(""+info4.userScore);
 			userName.setText(info4.userName);
@@ -127,8 +130,7 @@ public class StartMenu{
         Button start = (Button) startView.findViewById(R.id.startgame);
         Button more = (Button) startView.findViewById(R.id.more);
         fileChoose = (Button) startView.findViewById(R.id.fileChoose);
-//        if(!World.editMode)
-//        	fileChoose.setVisibility(View.INVISIBLE);
+       	onlineStageChoose = (Button) startView.findViewById(R.id.onlineFileChooser);
         Button stage = (Button) startView.findViewById(R.id.stageChoose);
         
         rampage = (CheckBox) startView.findViewById(R.id.rampage);
@@ -149,6 +151,7 @@ public class StartMenu{
         start.setOnClickListener(click);
         more.setOnClickListener(click);
         fileChoose.setOnClickListener(click);
+        onlineStageChoose.setOnClickListener(click);
         stage.setOnClickListener(click);
         
 //        mario.setOnClickListener(click);
@@ -178,10 +181,13 @@ public class StartMenu{
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.startgame:
-				acti.startGame();
+				acti.startGame();// clear the map dile and string
 				break;
 			case R.id.fileChoose:
 				acti.intentToFileChooser();
+				break;
+			case R.id.onlineFileChooser:
+				acti.sendOnlineStageRequest();
 				break;
 			case R.id.stageChoose:
 				acti.initStageChooser();
@@ -332,7 +338,7 @@ public class StartMenu{
 
 	};
 //	private EditText et;
-	private Button fileChoose;
+	private Button fileChoose1;
 	private View user;
 	private PaimingAdapter paimingAdapter;
 	public void hide() {

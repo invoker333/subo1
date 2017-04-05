@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import onlineStageActivity.OnlineFileActivity;
 import Enviroments.FruitSet;
 import Mankind.Player;
 import aid.Ad;
@@ -93,17 +94,24 @@ public class MenuActivity extends Activity {
 	static boolean titleMode=true;
 
 
-
+	protected void onDestroy() {
+//		System.exit(0);
+		finish();//you zhe ju zhi jie bu chongxin create
+		super.onDestroy();
+	}
 	public void finish() {
-		if (world != null)
-			world.onDestroy();
-		 stateWindow=null;
-		 btnc=null;
-		 gameMenu=null;
-		 myHandler=null;
-		 world=null;
-		 saveUserMessage();
-		if(client!=null) client.closeStream();
+			if (world != null) {
+				world.onDestroy();
+				world = null;
+			}	
+			titleMode=true;
+			saveUserMessage();
+			 stateWindow=null;
+			 btnc=null;
+			 gameMenu=null;
+			 myHandler=null;
+			
+			if(client!=null) client.closeStream();
 		super.finish();
 	}
 
@@ -175,9 +183,9 @@ public class MenuActivity extends Activity {
 		getUserId();
 		initPaimingInfo();
 		
-//		if (startTime > 2) {
+		if (startTime > 2) {
 			showBanner((ViewGroup) findViewById(R.id.container));
-//		}
+		}
 	}
 
 	private void getUserId() {
@@ -193,7 +201,7 @@ public class MenuActivity extends Activity {
 		Render.tietu = sp.getBoolean("tietu",true);
 		
 		editor = sp.edit();
-		editor.putInt("started", startTime + 1);
+		editor.putInt("startTime", startTime + 1);
 		editor.commit();
 	}
 
@@ -241,8 +249,11 @@ public class MenuActivity extends Activity {
 			case World.SUCCEED:
 				succeed();
 				break;
-			case DIALOG:
+			case World.DIALOG:
 				showDialogView();
+				break;
+			case World.REQUEST_TO_STARTGAME:
+				startGame();
 				break;
 			}
 		}
@@ -260,9 +271,12 @@ public class MenuActivity extends Activity {
 			// TODO Auto-generated method stub
 
 			gameMenu.succeed();
+			if(world.isOutMapResource())return;
 			if (getMaxMapIndex() == mapIndex)// only the last stage save
-				if(mapIndex<Map.max)editor.putInt("mapIndex", mapIndex + 1);
-			editor.commit();
+				if(mapIndex<Map.max){
+					editor.putInt("mapIndex", mapIndex + 1);
+					editor.commit();
+				}
 		}
 	}
 
@@ -303,13 +317,6 @@ public class MenuActivity extends Activity {
 		// if (itemWindow == null)
 	}
 
-	protected void onDestroy() {
-		if (world != null) {
-			world.onDestroy();
-			world = null;
-		}
-		super.onDestroy();
-	}
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -382,7 +389,6 @@ public class MenuActivity extends Activity {
 			}
 		});
 	}
-	private static final int DIALOG = 1110;
 
 	private static String speaker;
 
@@ -393,14 +399,17 @@ public class MenuActivity extends Activity {
 	public String userName;
 	public ArrayList<Info4> userInfoList=new ArrayList<Info4>();
 	private String paimingString;
+	String selectedToSaveOnlineFileName;
 	public void initPaimingInfo(){
-		paimingString=sp.getString("paimingString", "1 "+userName+" "+score);
+		paimingString=sp.getString("paimingString", "00000"+userName+" "+score+"1");
 		
 		String[] sa = paimingString.split(" ");
 		userInfoList.clear();
 		try{
-			for(int i=0;i<sa.length;i+=4){
-				userInfoList.add(new Info4(Integer.parseInt(sa[i]),sa[i+1],Integer.parseInt(sa[i+2]),Integer.parseInt(sa[i+3])));
+			for(int i=0;i<sa.length;i+=3){
+//				userInfoList.add(new Info4(Integer.parseInt(sa[i]),sa[i+1],Integer.parseInt(sa[i+2]),Integer.parseInt(sa[i+3])));
+				userInfoList.add(new Info4(0,sa[i],Integer.parseInt(sa[i+1]),Integer.parseInt(sa[i+2])));
+				// default id is 0
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -430,7 +439,7 @@ public class MenuActivity extends Activity {
 		MenuActivity.talk = talk;
 		MenuActivity.resId = resId;
 		
-		myHandler.sendEmptyMessage(DIALOG);
+		myHandler.sendEmptyMessage(World.DIALOG);
 	}
 	
 	public static void showDialogView() {	
@@ -462,22 +471,17 @@ public class MenuActivity extends Activity {
 		new AlertDialog.Builder(this)
 				// 不能用getApplicationContext() 结果同上
 				// .setTitle(" ")
-				.setMessage("是继续游戏你还是关闭游戏呢？")
-				.setPositiveButton("关闭游戏",
+				.setMessage("确定退出游戏吗？")
+				.setPositiveButton("退出游戏",
 						new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface di, int i) {
 								if (world != null) {
-									// Intent mainMenu=new
-									// Intent(MenuActivity.this,MenuActivity.class);
-									// startActivity(mainMenu);
-									// loadStartMenu();
 									world.onDestroy();
 //									world = null;
 									overridePendingTransition(R.anim.fadein,
 											R.anim.fadeout);
-//								} else {
-									
 									finish();
+									System.exit(0);
 								}
 							}
 						}).setNegativeButton("继续游戏", null).show();
@@ -524,6 +528,7 @@ public class MenuActivity extends Activity {
 	}
 	void saveUserMessage(){
 		startMenu.setUserName(userName);
+		client.send(ConsWhenConnecting.REQUEST_UPDATE_NAME+userId+" "+userName);
 		editor.putString("username",userName);
 		// Log.i("starString"+new String(starString));
 		editor.commit();
@@ -548,6 +553,7 @@ public class MenuActivity extends Activity {
 
 	public void startWithIndex(int index) {
 		mapIndex = index;
+		world.mapFile=null;world.mapString=null;
 		startGame();
 	}
 
@@ -689,15 +695,18 @@ public class MenuActivity extends Activity {
 		switch (resultCode) { //resultCode为回传的标记，我在B中回传的是RESULT_OK
 		   case RESULT_OK:
 		    String mapfile=data.getStringExtra("mapfile");//str即为回传的值
-		    world.mapFile=new File(mapfile);
-		    Log.i("mapfile"+mapfile);
-		    
-		    startGame();
-//		    break;/
-//		default:
-//		    break;
+		    	if(mapfile!=null&&mapfile!=""){
+		    		 world.mapFile=new File(mapfile);
+		 		    Log.i("mapfile"+mapfile);
+		 		    startGame();
+		    	}
+		    String onlineFileSelected=data.getStringExtra(OnlineFileActivity.ONLINE_STAGE_ITEM_SELECTED);
+		    if(onlineFileSelected!=null&&onlineFileSelected!=""){
+		    	client.send(ConsWhenConnecting.REQUEST_THIS_ONE_ONLINE_STAGE+onlineFileSelected);
+		    	selectedToSaveOnlineFileName=onlineFileSelected;
 		    }
-		}
+		 }
+	}
 
 	public boolean getLifeFree() {
 		// TODO Auto-generated method stub
@@ -786,4 +795,29 @@ public class MenuActivity extends Activity {
 		this.startActivityForResult(intent, 0);
 	}
 //	void 
+
+	public void sendOnlineStageRequest(){
+		client.send(ConsWhenConnecting.REQUEST_ONLINE_STAGE);
+		showDialog("提示", "已发送请求", R.drawable.fog);
+	}
+	public void showOnlineStage(String gotonString) {
+		Intent intent = new Intent();
+		intent.putExtra(OnlineFileActivity.ONLINE_STAGE_STRING_FROM_NET, gotonString);
+		
+		intent.setClass(this, onlineStageActivity.OnlineFileActivity.class);
+		this.startActivityForResult(intent, 0);
+	}
+
+	public void getTheOnlineStage(String ss) {
+		// TODO Auto-generated method stub
+		world.saveMap(selectedToSaveOnlineFileName,ss);
+		startGame(ss);
+	}
+
+	private void startGame(String ss) {
+		// TODO Auto-generated method stub
+		world.mapString=ss;
+		Log.i(ss);
+		myHandler.sendEmptyMessage(World.REQUEST_TO_STARTGAME);
+	}
 }

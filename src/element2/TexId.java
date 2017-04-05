@@ -25,6 +25,7 @@ public class TexId{
 	private int textureId;
 	public static int[] resIcon;
 	
+	public static  int BAMBOOPIPLE ;
 	public static int PIFENG;
 	public static int STONEGRASS;
 	public static int PRICKX;
@@ -34,11 +35,8 @@ public class TexId{
 	public static int BACKGROUND;
 //	public static int BUBBLE;
 	public static int RED;
-	public static int UP;
 	public static int BUTTON_LEF;
 	public static int BUTTON_RIGHT;
-	public static int SOUND;
-	public static int MUSIC;
 	public static int CLOCK;
 	public static int COIN;
 	public static int WALKER;
@@ -131,8 +129,11 @@ public class TexId{
 	public static int BOOMGUN;
 	public static int QIGAN;
 	public static int WIPE;
+	public static int GOLDENFOOT;
 	public  void loadTextureId(GL10 gl) {
 //		if(1<2)return;
+		GOLDENFOOT=loadTexture(gl,R.drawable.goldenfoot);
+		BAMBOOPIPLE=loadTexture(gl,R.drawable.bamboopiple);
 		WIPE=loadTexture(gl,R.drawable.wipe);
 		QIGAN=loadTexture(gl,R.drawable.qigan);
 		BOOMGUN=loadTexture(gl,R.drawable.boomgun);
@@ -191,9 +192,6 @@ public class TexId{
 
 		BUTTON_LEF=loadTexture(gl,R.drawable.button_left);
 		BUTTON_RIGHT=loadTexture(gl,R.drawable.button_right);
-		SOUND=loadTexture(gl,R.drawable.button_sound);
-		MUSIC=loadTexture(gl,R.drawable.button_music);
-		UP=loadTexture(gl,R.drawable.button_up);
 		CLOCK=loadTexture(gl,R.drawable.clock);
 		WALKER=loadTexture(gl,R.drawable.walker);
 		GREENWALKER=loadTexture(gl,R.drawable.greenwalker);

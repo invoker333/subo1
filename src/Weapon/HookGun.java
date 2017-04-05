@@ -16,7 +16,7 @@ public class HookGun extends Gun {
 
 	public HookGun(EnemySet es, GrassSet gra, Creature c, int bCount) {
 		super(es,  gra, c, bCount);
-		cd=5*super.cd;
+		cd=3*super.cd;
 		// TODO Auto-generated constructor stub
 	}
 	protected void setBullet(int bCount) {
@@ -43,9 +43,7 @@ public class HookGun extends Gun {
 				return true;
 			}
 		}
-	
-		
-		
-		return super.gunCheck(ex, ey);
+		return false;
+//		return super.gunCheck(ex, ey);// no shot but only relax
 	}
 }

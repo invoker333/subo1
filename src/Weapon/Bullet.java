@@ -28,7 +28,7 @@ public class Bullet extends AnimationMove{
 	int frameMax = 30;
 	public EnemySet es;
 	private GrassSet gra;
-	protected Creature enemyGrass;
+	public Creature enemyGrass;
 	public Bullet(EnemySet es,GrassSet gra) {
 		this.es = es;
 		this.gra = gra;
@@ -50,8 +50,8 @@ public class Bullet extends AnimationMove{
 	}
 
 	public void drawElement(GL10 gl) {
-		shot();
 		super.drawElement(gl);
+		shot();
 	}
 
 	void shot() {

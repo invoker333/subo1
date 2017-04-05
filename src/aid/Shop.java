@@ -114,7 +114,7 @@ public class Shop {
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					hideCheck();
-					acti.resumeGame();
+				
 					return true;
 				}
 			};
@@ -158,6 +158,8 @@ public class Shop {
 					selectedItem = null;
 					if(selectedView!=null)selectedView.setBackgroundResource(R.drawable.whitestroke);
 					instruction.setText("请选择一个商品查看说明");
+					hideCheck();
+//					popupWindow.dismiss();
 				} else {
 					if (acti.coinCount - selectedItem.cost < 0)
 						MenuActivity.showDialog("", "金币不够！",R.drawable.coinicon);
@@ -177,6 +179,7 @@ public class Shop {
 		if (popupWindow != null && popupWindow.isShowing()) {
 			popupWindow.dismiss();
 			// popupWindow = null;
+			acti.resumeGame();
 			acti.ad.hideBanner(shopadcontainer);
 		}
 	}

@@ -29,9 +29,12 @@ public class Client implements Runnable{
 			try {
 //				s=new Socket("127.0.0.1",8888);
 //				s=new Socket("192.168.137.1",8888);
+//				s=new Socket("192.168.25.123",8888);
+//				s=new Socket("23.105.206.67",8888);
 //				s=new Socket("192.168.46.28",8888);
 //				s=new Socket("192.168.47.134",8888);
-				s=new Socket("192.168.47.176",8888);
+				s=new Socket("192.168.47.251",8888);
+//				s=new Socket("192.168.47.176",8888);
 				if(s!=null){
 					Log.i("已连接","");
 					connected=true;
@@ -56,6 +59,7 @@ public class Client implements Runnable{
 	public void run(){
 		String s;
 		while(connected){
+			Log.i("已连接");
 			try {
 				if((s=dis.readUTF())!=null){
 					Log.i("",s+"\n");				
@@ -82,9 +86,14 @@ public class Client implements Runnable{
 			acti.savePaiming(s.substring(ConsWhenConnecting.THIS_IS_PAIMING.length()));
 			acti.initPaimingInfo();
 		}	
-//		else 	if(s.startsWith(ConsWhenConnecting.serverRequestForUserId)) {
-//			send(ConsWhenConnecting.THIS_IS_NEW_USER_ID+acti.userId);
-//		}
+		else 	if(s.startsWith(ConsWhenConnecting.THIS_IS_ONLINE_STAGE)) {
+			String ss=s.substring(ConsWhenConnecting.THIS_IS_ONLINE_STAGE.length());
+			acti.showOnlineStage(ss);
+		}	
+		else 	if(s.startsWith(ConsWhenConnecting.THIS_IS_THE_SELECTED_ONLINE_STAGE)) {
+			String ss=s.substring(ConsWhenConnecting.THIS_IS_THE_SELECTED_ONLINE_STAGE.length());
+			acti.getTheOnlineStage(ss);
+		}	
 		
 		
 		String substring = s.substring(0, 2);

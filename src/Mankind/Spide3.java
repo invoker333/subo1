@@ -15,8 +15,8 @@ public class Spide3 extends Spide{
 
 	public Spide3(char bi,GrassSet gra, float x, float y,Creature[] cc) {
 		super(bi,gra, x, y);
-		tail = new Tail(cc.length + 1);
-		tail.width=8;
+		tail = new Tail(cc.length + 1,TexId.WIPE);
+		tail.w=2;
 		this.cc = cc;
 		for(Creature c:cc)
 			c.stopMove();
@@ -26,6 +26,7 @@ public class Spide3 extends Spide{
 		this.es = es;
 		b = new Hook(es,  gra, this){
 			protected void gotTarget(Creature enemy) {
+//				if(enemy.equals(b.enemyGrass)){return;}
 				for(int i=0;i<cc.length;i++){
 					if(cc[i]==null || cc[i].isDead) {
 						cc[i]=enemy;

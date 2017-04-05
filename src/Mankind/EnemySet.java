@@ -61,7 +61,7 @@ public class EnemySet extends Set {
 		initGuideCircle();
 	
 		
-		enemyGrass=new TestEnemy(gra, 0, 0);
+		enemyGrass=new EnemyGrass(gra, 0, 0);
 		
 	}
 

@@ -19,7 +19,7 @@ public class Shader extends Draw{
 		position=new float [frame][2];
 		
 		tail=new Tail(frame);
-		tail.width=(int) (master.getW());
+		tail.w=(int) (master.getW());
 		tail.startTouch(master.x, master.y);
 	}
 	float [][]position;

@@ -22,10 +22,7 @@ public class ChanceFruit extends ShakeFruit{
 	}
 	public void use(Player player,ArrayList<Fruit> pickedList){
 		final int max=80;
-		if(cost<max&&chancecost<max){
-			cost+=cost;
-			chancecost+=chancecost;
-		}
+		doubleCost(max);
 		super.use(player, pickedList);
 	}
 	public boolean loadAble(Player player){
@@ -42,8 +39,8 @@ public class ChanceFruit extends ShakeFruit{
 		 return true;
 	}
 	public void effectCheck(Player p,ArrayList<Fruit>pickedList) {
-		p.increaseChanceBy(1);
-		p.reLife();
+		if(p.isDead)p.reLife();
+		else p.increaseChanceBy(1);
 		
 		pickedList.remove(this);
 		super.effectCheck(p, pickedList);

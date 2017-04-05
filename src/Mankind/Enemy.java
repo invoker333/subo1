@@ -19,6 +19,7 @@ public class Enemy extends Creature {
 
 	protected void init() {
 		setFrameCount(4, 2);
+		setJumpHeight(16);
 		super.init();
 		loadSound();
 	}

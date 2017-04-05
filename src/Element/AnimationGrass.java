@@ -65,7 +65,8 @@ public class AnimationGrass extends AnimationMove {
 		mapyCheck();
 		
 		bendDownCheck();
-//		bendUpCheck();
+		//  shun xu bu neng huan  xia mian yao yong shang mian can shu
+		bendUpCheck();
 	}
 
 	public void move() { // 在没有撞墙的情况下，一直处于移动状态（静止即移速为零）
@@ -177,6 +178,8 @@ public class AnimationGrass extends AnimationMove {
 	}
 
 	float climbBuffer = 5;
+	private float yEdgeNew;
+	private float yEdgeAgo;
 
 	private boolean rightCheck(int i) {
 		xdata = gList.get(i).data;// 第i组数据
@@ -198,40 +201,31 @@ public class AnimationGrass extends AnimationMove {
 		autoClimb();
 		scaleTringer(2*getW()-maxScaleLengthX);
 
-		float backSpeed = 1;
 		setxPro(xdata[2] + wEdge);
 		if (getxSpeed() < -backSpeed)
 			setxSpeed(gra.getSpeedBack() * Math.abs(getxSpeed()));// 没有这句就特别卡
 		else
 			setxSpeed(0);
-//			setxSpeed(1 * backSpeed);
+//			setxSpeed(-1);
+		// 会引起一直跳
+//			setxSpeed(-1 * backSpeed);
 	}
 
 	protected void autoClimb() {
-//		final int g = 1;
-//		final int jumpSpeed = (int) Math.sqrt(2 * g * 64);
-//		float a = 2;// 玲姐速度之
-//
-//		int my3 = my1 + 1;
-//		if (my3 < gra.getMapHeight() && gra.map[mx1][my3] == gra.getZero())// 上方为空
-//
-//			if (Math.abs(xSpeed) > a)// 大于零戒指
-//
-//				if (fallen)
-//					ySpeed += jumpSpeed;
 	}
+	private float backSpeed=5;
 
 	protected void tooRight() {
 		autoClimb();
 		scaleTringer(2*getW()-maxScaleLengthX);
 		
-		float backSpeed = 1;
 		setxPro(xdata[0] - wEdge);// 牵扯到向下取整
 		if (getxSpeed() > backSpeed)
 			setxSpeed(gra.getSpeedBack() * -Math.abs(getxSpeed()));
 		else
+//			setxSpeed(1);
 			setxSpeed(0);
-//			setxSpeed(-1 * backSpeed);
+//			setxSpeed(1 * backSpeed);
 
 	}
 
@@ -244,21 +238,6 @@ public class AnimationGrass extends AnimationMove {
 		}
 	}
 
-	protected boolean upCheck1111(int i) {
-		ydata = gList.get(i).data;// 第i组数据
-		yEdgeNew = yPro + gethEdge();// 头顶
-		if (edge2 > ydata[0] && edge < ydata[2])// 相交
-			if (yEdgeNew > ydata[1] && yEdgeNew < ydata[3])// 接触踏板 到陷入踏板深度
-			{
-
-				if (gList.get(i).tooHigh(this)) {
-					setTopId(i);
-					tooHigh();// 速度不等于零正常检测
-					return true;
-				}
-			}
-		return false;
-	}
 	protected boolean upCheck(int i) {
 		ydata = gList.get(i).data;// 第i组数据
 		yEdgeAgo=y+gethEdge();
@@ -323,78 +302,50 @@ public class AnimationGrass extends AnimationMove {
 	
 
 	protected boolean fallen;// 接触墙面（包括地面）
-	private float yEdgeAgo;
-	float yEdgeNew;// x y踏板+腰部的高度
+	
 	protected void bendUpCheck() {
 		float bData[] = gra.bendUpData;
-		yEdgeAgo = y + gethEdge();// head
-		yEdgeNew = yPro + gethEdge();// head
 		
 		int xSmall = (int) (x / gra.getGrid());// grid x y
 		if (xSmall < 0 || xSmall >= bData.length - 1)
 			return;
-		
 		float y1 = bData[xSmall];
 		float y2 = bData[xSmall + 1];
 		float dy = y2 - y1;
+		float x=this.x-1;if(x<0)x=0;
 		float dx = x % gra.getGrid();
-
-		float yBend;
-		yBend = y1 + dy * dx / gra.getGrid();// d
-
-		if (yEdgeNew < yBend
-		 && yEdgeAgo >= yBend
-		) {
-			stand(dy, yBend - gethEdge());
+		
+//			stand(dy, );
 //			setySpeed((gra.getSpeedBack() * -getySpeed()));
-		}
 
 	}
 	protected void bendDownCheck() {
 		float bData[] = gra.bendDownData;
-		yEdgeAgo = y - gethEdge();// 
-		yEdgeNew = yPro - gethEdge();// 脚底
 		int xSmall = (int) (x / gra.getGrid());// grid x y
 		if (xSmall < 0 || xSmall >= bData.length - 1)
 			return;
-		
 		float y1 = bData[xSmall];
 		float y2 = bData[xSmall + 1];
 		float dy = y2 - y1;
-		float dx = x % gra.getGrid();
-
-		float yBend;
-		yBend = y1 + dy * dx / gra.getGrid();// d
-
-		if (
-//				yEdgeNew < yBend&&// wu cha tai da
-//				yEdgeAgo >= yBend
-				
-				yEdgeNew < yBend
-//				&&yEdgeNew>ySpeed+yBend-Math.abs((xSpeed*dy/dx))
-		) {
-//			Log.i("踩中树根确认：yEdgeNew < yBend&& yEdgeAgo >= yBend ");
-			stand(dy, yBend + gethEdge());
-			fallen = true;
+		{// 坡度可能改变
+			double length = Math.sqrt(dy * dy + Math.pow(gra.getGrid(), 2));
+			sin = (float) (dy / length);
+			cos = (float) (gra.getGrid() / length);
 		}
-
+		
+		float x=this.x-1;if(x<0)x=0;
+		float dx = x % gra.getGrid();
+//		if(){
+//			stand());
+//			fallen = true;
+//		}
+		
 	}
 
-	private void stand(float dy, float yPro) 
+	private void stand(float yPro) 
 		{// 人的腰部<=踏板+腰部高度
 			setyPro(yPro);
-
-			// playSound();
-			// if (xSmall != xTemp)
-			{// 坡度可能改变
-				double length = Math.sqrt(dy * dy + Math.pow(gra.getGrid(), 2));
-				sin = (float) (dy / length);
-				cos = (float) (gra.getGrid() / length);
-			}
-
-			
 			fallInBend();
-//			return;// 陷进去则不执行下一句
 		
 	}
 

@@ -11,7 +11,6 @@ import Element.Animation;
 import Mankind.Player;
 
 public class Fruit extends Animation{
-	int score=1;
 	private float alpha=1;
 	private float blue=1.2f;
 	private float green=1.2f;
@@ -38,12 +37,18 @@ public class Fruit extends Animation{
 		setAnimationFinished(false);
 		init();
 	}
+	void doubleCost(int max){
+		if(cost<max&&chancecost<max){
+			cost+=cost;
+			chancecost+=chancecost;
+		}
+	}
 	void init() {
 		loadTexture();
 		loadSound(MusicId.magic);
 	}
 	public boolean loadAble(Player player){
-		player.increaseScoreBy(score);
+		player.increaseScoreBy(getScore());
 		playSound();
 //		use(player, null);
 		return false;

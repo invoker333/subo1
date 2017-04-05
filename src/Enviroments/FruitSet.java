@@ -31,7 +31,7 @@ public class FruitSet extends Set {
 	protected float COUNT;
 	public static ArrayList<Fruit> shopList;
 	public static ArrayList<Fruit> pickedList = new ArrayList<Fruit>();
-	private static ChanceFruit chanceFruit;
+	private  ChanceFruit chanceFruit;
 
 	public FruitSet(Player player, ArrayList<Fruit> fruitList, GrassSet gs) {// 跳台起始x值，长度，起始
 		// y值
@@ -74,17 +74,11 @@ public class FruitSet extends Set {
 	public static void initShopList() {
 		// TODO Auto-generated method stub
 
-		if (chanceFruit != null) {
-			final int cost = 10;
-			// chanceFruit.cost=cost;
-			chanceFruit.chancecost = cost;
-		}
-
 		char bi = 0;
 		// if (shopList == null)
 		{
 			shopList = new ArrayList<Fruit>();
-			shopList.add(chanceFruit = new ChanceFruit(bi, 1, 1));// ..
+			shopList.add( new ChanceFruit(bi, 1, 1));// ..
 			shopList.add(new sizeFruit(bi, 1, 1));
 			shopList.add(new Toukui(bi, 0, 0, 9999));
 			shopList.add(new Gao(bi, 1, 1, 9999));

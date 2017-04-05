@@ -45,7 +45,7 @@ public class SceneTail extends Tail {
 	        tail[tringerIndex][2]= (float) (x);
 	        tail[tringerIndex][3]= (float) (y);
 	        tail[tringerIndex][4]= (float) (x);
-	        tail[tringerIndex][5]= (float) (y-width);
+	        tail[tringerIndex][5]= (float) (y-w);
 	        if(++pointCount>tail.length){
 	            pointCount=tail.length;//chu点增加
 	            if(++drawStartIndex>=tail.length)drawStartIndex=0;

@@ -38,10 +38,9 @@ public class BubbleSet extends Set {
 			boom.tringer(x, y);
 		}
 	}
-	public void tringerScreen() {
-		for(int i=0;i<bubList.size();i++){
-			
-//			if(tringerIndex>=bubList.size())tringerIndex=0;
+	public void tringerScreen(int count) {
+		for(int i=0;i<count;i++){
+			if(tringerIndex>=bubList.size())tringerIndex=0;
 			Bubble boom = bubList.get(i++);
 			boom.tringer(Render.px+(float)Math.random()*Render.width, Render.py+(float)Math.random()*Render.height);
 		}

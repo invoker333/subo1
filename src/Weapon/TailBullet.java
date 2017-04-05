@@ -25,7 +25,7 @@ public class TailBullet extends Bullet{
 	void setSize(float a,float b)
 	{
 		super.setSize(a, b);
-		if(tail!=null)tail.width=(int) (w);
+		if(tail!=null)tail.w=(int) (w);
 	}
 	public TailBullet(EnemySet es,GrassSet gra) {
 		this(es, gra,4);

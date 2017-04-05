@@ -36,7 +36,6 @@ public class FireBall extends Enemy{
 	protected void init(){
 		setTextureId(TexId.FIREBALL);
 		loadSound();
-		setwRate(-1);sethRate(-1);
 		setW(32);setH(32);
 		sizeCheck();
 		setAnimationFinished(true);// �ܹ�����

@@ -314,7 +314,8 @@ public class ButtonController {
 		case World.NOGUNICON:circle.setVisibility(View.INVISIBLE);break;
 		case World.TREADICON:ride.setVisibility(View.VISIBLE);break;
 		case World.NOTREADICON:ride.setVisibility(View.INVISIBLE);break;
-		case World.JUMP:jumpSeekBar.setSecondaryProgress((int) (Player.curJumpProgress));
+		case World.JUMP:
+//			jumpSeekBar.setSecondaryProgress((int) (Player.curJumpProgress));
 		}
 	}
 }

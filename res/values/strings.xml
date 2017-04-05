@@ -6,9 +6,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="icon_width">40</string>
-      <string name="circle_width">128dp</string>
+    <string name="circle_width">128dp</string>
     <string name="title_activity_stagechoosser">关卡选择</string>
     <string name="_item">物品</string>
     <string name="_shop">商店</string>
+    <string name="title_activity_file">在线关卡</string>
 
 </resources>

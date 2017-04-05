@@ -13,7 +13,7 @@ import com.mingli.toms.R;
 public class Circle extends View {  
     private Paint paint;  
     //固定摇杆背景圆形的X,Y坐标以及半径  
-    static final int LENGTH=128;  
+    static  int LENGTH=128;  
     private int RockerCircleX = LENGTH;  
     private int RockerCircleY = LENGTH;  
    
@@ -25,28 +25,30 @@ public class Circle extends View {
     private int RockerCircleR = LENGTH-SmallRockerCircleR;
 	private double rad;
 	public Player player;  
-    private void cons() {
+    private void cons(Context context) {
         this.setKeepScreenOn(true);  
         paint = new Paint();  
         paint.setAntiAlias(true);  
         setFocusable(true);  
         setFocusableInTouchMode(true);  
-//        this.setOnTouchListener(this);
+        
+//        LENGTH=(int) DP.dip2px(context, 128);
+//        SmallRockerCircleR=(int) DP.dip2px(context, 50);
 	}
    /* protected void onDraw(Canvas c){
     	draw(c);
     }*/
     public Circle(Context context,AttributeSet a) {  
     	super(context, a);
-    	cons();
+    	cons(context);
     }
     public Circle(Context context,AttributeSet a,int b) {  
     	super(context, a,b);
-    	cons();
+    	cons(context);
     }
     public Circle(Context context) {  
         super(context);  
-        cons();
+        cons(context);
     }  
   
     /*** 

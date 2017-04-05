@@ -28,7 +28,7 @@ public class LightSpot extends Animation{
 		// TODO Auto-generated method stub
 		setW(8);
 		setH(8);
-		loadTexture(TexId.LIGHTSPOT);
+		loadTexture(TexId.FIREWORK);
 	}
 	public void setRgb(float red,float green,float blue,float alpha){
 		this.red = red;

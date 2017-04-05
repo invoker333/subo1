@@ -66,9 +66,9 @@ class FruitFly extends ShakeFruit{
 		super(bi,x, y);
 		// TODO Auto-generated constructor stub
 		this.time = time;
-		name="飞天鞋";
-		instruction="使用后点击任意位置可跳跃，跳跃速度极限为正常的两倍，被攻击后失效";
-		setGoodsCost(10,5);
+		name="飞行套装";
+		instruction="使用后穿上帅气的披风，并且点击任意位置可跳跃，被攻击后失效";
+		setGoodsCost(10,0);
 	}
 	void init(){
 		loadTexture(TexId.FRUITFLY);
@@ -124,7 +124,9 @@ class FruitFly extends ShakeFruit{
 		loadTexture(TexId.ZAN);
 	}
 	public void use(Player player,ArrayList<Fruit> pickedList){
+		final int max=200;
 		player.incWudiTime(time);
+		doubleCost(max);
 		super.use(player, pickedList);
 	}
 

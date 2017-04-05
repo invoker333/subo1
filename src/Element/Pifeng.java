@@ -21,7 +21,7 @@ public class Pifeng extends Draw{
 			temp.setPosition(master.x, master.y);
 		}
         clothTail=new Tail(count,TexId.PIFENG);
-        clothTail.width=42;
+        clothTail.w=42;
         dsmax = master.h*1.2f/nodes.length;
 	}
 	public void timerTask(int angle,float masterx,float mastery){

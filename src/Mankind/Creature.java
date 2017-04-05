@@ -34,7 +34,6 @@ public class Creature extends AnimationGrass {
 
 	private int lifeMax = World.baseLifeMax;
 	private int life = lifeMax;
-	protected int score = 2;
 	
 	public int attack = World.baseAttack;// ������
 	float speedSizeMax = xSpeedMax;// ����ߴ�ȷ�����ٶȼ���
@@ -79,14 +78,21 @@ public class Creature extends AnimationGrass {
 	
 
 	protected void autoClimb() {
-
+		
 		// final float a =1*afLand;//玲姐速度之
 		// if(Math.abs(xSpeed)<a)return;//大于零戒指
 
-		int my3 = getMy1() + 1;
-		if (my3 < gra.getMapHeight() && gra.map[getMx1()][my3] != gra.getZero())
+		if(direction*xSpeed<0)return;// direction different
+		
+		float rx=x+direction*(w+gra.getGrid()/2);// wu cha
+		int xindex=(int) (rx/gra.getGrid());
+		
+		int yIndex=(int) ((y-gethEdge())/gra.getGrid());
+		
+		if (yIndex < gra.getMapHeight()-1 && gra.map[xindex][yIndex+1] != gra.getZero())
 			return;// 上方为空
 
+//		float y=this.y-1;if(y<0)y=0;
 		float dy = gra.getGrid() - (y - gethEdge()) % gra.getGrid();
 		if(dy>jumpHeight)dy=jumpHeight;// can
 		
@@ -149,17 +155,6 @@ public class Creature extends AnimationGrass {
 		
 	}
 
-	/*
-	 * public void syncTextureSize(){ super.syncTextureSize();
-	 * fbSpi_1=fbSpi;//����������� Ҳ��Ĭ������
-	 * bbSpi1=ByteBuffer.allocateDirect(5*spiSize);//Ϊ���涥�����꿪�ٻ���
-	 * bbSpi1.order(ByteOrder.nativeOrder());
-	 * fbSpi1=bbSpi1.asFloatBuffer();//��������
-	 * 
-	 * fbSpi1.clear(); fbSpi1.put(new float[]{//����xy���� // x,y,0,
-	 * -getW(),getH(),0, getW(),getH(),0, getW(),-getH(),0, -getW(),-getH(),0,
-	 * -getW(),getH(),0, }); fbSpi1.flip();//����������ת����д��״̬ }
-	 */
 
 	public void stopJump() {
 		setySpeed(0);
@@ -391,14 +386,9 @@ public class Creature extends AnimationGrass {
 		}
 	}
 
-	public int getScore() {
-
-		return score;
-	}
 
 	public void resetSpirit() {
 		setLife(1000);
-		setScore(1);
 		x = Render.px + Render.width / 2;
 		y = Render.py + Render.height;
 		stopJump();
@@ -424,10 +414,6 @@ public class Creature extends AnimationGrass {
 
 	public void setLife(int life) {
 		this.life = life;
-	}
-
-	protected void setScore(int score) {
-		this.score = score;
 	}
 
 	public int getLifeMax() {

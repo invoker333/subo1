@@ -9,6 +9,7 @@ import Mankind.Player;
 
 import com.mingli.toms.World;
 
+import element2.Tail;
 import element2.TexId;
 
 public class Hook extends TailBullet {
@@ -31,8 +32,8 @@ public class Hook extends TailBullet {
 		setSize(12,12);
 		
 		setTextureId(TexId.GAO);
-		tail.setTextureId(TexId.WIPE);
-		tail.w=4;
+		tail=new Tail(2,TexId.WIPE);
+		tail.w=2;
 		
 		frameMax=range/speed;
 	}
@@ -72,7 +73,8 @@ public class Hook extends TailBullet {
 			getGrass=true;
 			
 			hookLength=(int) Math.sqrt(Math.pow(enemyGrass.x-player.x,2)+Math.pow(enemyGrass.y-player.y,2));
-			final float springLength=30;
+			final float springLength=40;
+			if(hookLength>64)
 			hookLength-=springLength;
 			// a little distance from grass's centre to player.center
 

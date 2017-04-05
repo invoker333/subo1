@@ -14,7 +14,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/music"
         android:orientation="vertical" >
-
     </LinearLayout>
 
     <LinearLayout
@@ -30,7 +29,7 @@
 
         <TextView
             android:id="@+id/stageText"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/biankaungorange"
             android:gravity="center"
@@ -39,7 +38,6 @@
             android:shadowDy="5"
             android:shadowRadius="5"
             android:text="主菜单"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#ffffff" />
     </LinearLayout>
 
@@ -334,21 +332,11 @@
             android:text="免费复活" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/savemap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/relativeLayout1"
-        android:background="@drawable/bg_pressed"
-        android:text=" 保存地图 "
-        android:textColor="#ffffff" />
-
     <LinearLayout
         android:id="@+id/backtostagechoosser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tomenu"
+        android:layout_alignLeft="@+id/choseFileGameMenu"
         android:layout_centerVertical="true"
         android:orientation="vertical" >
 
@@ -368,37 +356,48 @@
             android:shadowDy="5"
             android:shadowRadius="5"
             android:text="关卡选择"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#ffffff" />
     </LinearLayout>
 
-    <LinearLayout
+    <Button
         android:id="@+id/choseFileGameMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:orientation="vertical" >
+        android:layout_alignLeft="@+id/choseNetstageGameMenu"
+        android:layout_below="@+id/backtostagechoosser"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_selected"
+        android:shadowColor="#ffaa00"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="5"
+        android:text="本地文件"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#ffffff" />
 
-        <View
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/icon"
-            android:textColor="#ff0000" />
+    <Button
+        android:id="@+id/choseNetstageGameMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/choseFileGameMenu"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_default"
+        android:shadowColor="#ffaa00"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="5"
+        android:text="在线关卡"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#ffffff" />
 
-        <TextView
-            android:id="@+id/TextView01"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@drawable/biankaungorange"
-            android:gravity="center"
-            android:shadowColor="#ffaa00"
-            android:shadowDx="5"
-            android:shadowDy="5"
-            android:shadowRadius="5"
-            android:text="下载关卡"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#ffffff" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/savemap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/getLifeabout"
+        android:layout_alignRight="@+id/getLifeabout"
+        android:background="@drawable/bg_button"
+        android:text=" 保存地图 "
+        android:textColor="#ffffff" />
 
 </RelativeLayout>

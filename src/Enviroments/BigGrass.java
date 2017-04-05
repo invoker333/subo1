@@ -167,7 +167,7 @@ class Burrow extends Grass{
 //				data[0],data[1]-edge,getDepth(),
 			}
 		);
-		float w=getW()/2;
+		float w=getW()*(3f/5);
 		if(getxState()==0){
 			data[2]-=w;
 		}

@@ -34,7 +34,8 @@ import element2.ParticleBallRandom;
 import element2.Tail;
 import element2.TexId;
 public class Player extends JointCreature {
-    private static final int _4 = 4;
+    private static final float DOUBLE_JUMP_RATE = 4f/3f;
+	private static final int _4 = 4;
 	private  final float baseGunLength = 64;
 	public    float GunAngle=4;
     public  float px, py;
@@ -86,7 +87,7 @@ public class Player extends JointCreature {
 		pifeng=new Pifeng(this,5);
 		
         footTail=new Tail(10,TexId.CANDLETAIL);
-        footTail.width=8;
+        footTail.w=64;
         
 
 	}
@@ -110,7 +111,7 @@ public class Player extends JointCreature {
     public void changeGao(int time) {
 		// TODO Auto-generated method stub
     	  Player.gaoTime += time;
-    	  footTail.startTouch(x, y);
+    	  foot.setTextureId(TexId.GOLDENFOOT);
 	}
 	public void setEnemySet(EnemySet enemySet){
     	super.setEnemySet(enemySet);
@@ -124,7 +125,9 @@ public class Player extends JointCreature {
     	this.ey1 = ey1;
     	
     	if(gun!=null&&
-    			(gun instanceof AutoBulletGun||gun instanceof HookGun)
+    			(gun instanceof AutoBulletGun
+    					||gun instanceof HookGun
+    					)
     			){
     			if(coolingId==0){
     					gun.gunCheck(ex1, ey1);
@@ -165,11 +168,11 @@ public class Player extends JointCreature {
     	setGuideSpeed(xGuideSpeed, yGuideSpeed);
     	
     	
-    	float rangeTime=2;
+    	final	float  rangeTime=1;
     	
     	if(!isJumpAble()||
     			Math.abs(xGuideSpeed)>rangeTime*this.getxSpeedMax()
-    			||Math.abs(yGuideSpeed)>rangeTime*this.getySpeedMax()){
+    			||Math.abs(yGuideSpeed)>DOUBLE_JUMP_RATE*rangeTime*this.getySpeedMax()){
     		gl.glColor4f(1, 0, 0, 0.5f);
     		tooLong=true;
     	}
@@ -222,6 +225,9 @@ public class Player extends JointCreature {
            if( turnDown()){}
            else {
         	   downData[5]=true;
+        	   
+        	   footTail.startTouch(x, y);
+        	   
                if (controller.isJumpAble()) controller.jump(-vtDestory/getySpeedMax());
                if (isJumpAble()) jump(-vtDestory+1);
            }
@@ -250,7 +256,7 @@ public class Player extends JointCreature {
 //			x=x-x%grid+grid+this.getwEdge()-1;
 //		// jump to edge
 //		y=y-y%grid+this.gethEdge();
-		final int jumpH=64;
+		final int jumpH=16;
 		
 		float dx=x  -this.x;
 		float dy=y   -this.y;
@@ -324,7 +330,7 @@ public class Player extends JointCreature {
        if(gun!=null)gun.drawElement(gl);
       
        
-       if(gaoTime>0){
+       if(downData[5]&&gaoTime>0){
     	   footTail.tringer(x, y-getH());
     	   footTail.drawElement(gl);
 //    	   footTail.drawScale(gl);
@@ -352,7 +358,7 @@ public class Player extends JointCreature {
 	private void initGuideTail(GrassSet gra) {
 		// TODO Auto-generated method stub
     	guideTail=new Tail(60);
-    	guideTail.width=8;
+    	guideTail.w=8;
     	guideCre=new JointCreature(gra);
 //    	guideCre.w=w;
 //    	guideCre.h=h;
@@ -445,7 +451,7 @@ public class Player extends JointCreature {
 
 		
 		world.sendMessage(World.JUMP);
-		if(doubleClicked)rate*=4f/3f;
+		if(doubleClicked)rate*=DOUBLE_JUMP_RATE;
 		super.jump(rate);
 		playSound(MusicId.land);
 		
@@ -520,19 +526,22 @@ public class Player extends JointCreature {
     	
     	playSound(MusicId.fresh);
 //    	Log.i("flyTime toukuiTime gaoTime"+flyTime+" "+toukuiTime+" "+gaoTime);
-    	if(flyTime>0||toukuiTime>0||gaoTime>0){
-    		flyTime=0;
-    		toukuiTime=0;this.getCap().setTextureId(TexId.CAP);
-    		gaoTime=0;
-    		
-    		
-    		setLife(getLifeMax());
-    		wudiTime=wudiTimeBorn;
-    		Log.i("after"+flyTime+" "+toukuiTime+" "+gaoTime);
-    		return;// do not die as super
-    	}
-    		
     	
+    	if(!World.rpgMode){
+    		noGun();
+    		
+    	  	if(flyTime>0||toukuiTime>0||gaoTime>0){
+        		flyTime=0;
+        		toukuiTime=0;this.getCap().setTextureId(TexId.CAP);
+        		gaoTime=0;foot.setTextureId(TexId.FOOT);
+        		
+        		
+        		setLife(getLifeMax());
+        		wudiTime=wudiTimeBorn;
+        		Log.i("after"+flyTime+" "+toukuiTime+" "+gaoTime);
+        		return;// do not die as super
+        	}
+    	}
 //       if(isJumpAble())
     	   jump();
         playSound(death);
@@ -610,7 +619,6 @@ public class Player extends JointCreature {
     }
 
     public float growSpeed;
-	private int treadAttack;
 
 //    boolean tread;// ��
 	
@@ -689,7 +697,7 @@ public class Player extends JointCreature {
         if (downData[3] && isJumpAble()) {
         	
     		curJumpProgress = jumpProgress;
-    		float jumpRate = (jumpProgress + 25) / 100f;
+    		float jumpRate = jumpProgress  / 50f;
     		if (jumpRate > 1)
 				jumpRate = 1;
         	
@@ -728,17 +736,10 @@ public class Player extends JointCreature {
     	  if(treader!=controller) 
           	  controller=this;//can't controll people who has been not  treaded
     	
-    	if(downData[5])treadAttack=attack;
-    	else	treadAttack=0;
-    	
         if(treadListCheck( enemySet))return;//caizhong le fan hui
-//        treadAttack=0;
         if(treadListCheck( friendSet))return;
       
         world.sendMessage(World.NOTREADICON);
-     
-        
-//        if(downData[6])        
     }
 
     private boolean treadListCheck(EnemySet es) {
@@ -768,7 +769,14 @@ public class Player extends JointCreature {
              
              
                 
-                if(treader!=c)enemySet.treaded(this, c, treadAttack);// not tread one much time
+                if(treader!=c){
+                	if(downData[5])
+					 {
+						enemySet.treaded(this, c, attack);// not tread one much time
+						ySpeed=c.getySpeed()+3;
+					}else enemySet.treaded(this, c, 0);
+                }
+               
                 treader=c;
                 fallen=true;
                  
@@ -985,6 +993,7 @@ public class Player extends JointCreature {
         AnimationMove goreAni = gra.goreAni;
         for (int i = 0; i < enemyList.size(); i++) {
             e = enemyList.get(i);
+            if(!e.isDead)
             if (Math.abs(e.x-goreAni.x)<e.w+goreAni.w
             		&&Math.abs(e.y-goreAni.y)<e.h+goreAni.h) {
                 // e.setVt(e.getVt() + ySpe/20f);
@@ -1008,7 +1017,7 @@ public class Player extends JointCreature {
     }
 
     public void increaseScoreBy(int score) {
-    	this.score+=score;
+    	this.setScore(this.getScore() + score);
         world.increaseScore(score);
     }
 
@@ -1068,8 +1077,7 @@ public class Player extends JointCreature {
 		
 		if(World.rpgMode&&haveGun(textureId)){
 			noGun();
-			gunFruitId=-1;
-			gun=null;
+			
 			return;
 		}
 		else{
@@ -1125,6 +1133,8 @@ public class Player extends JointCreature {
 		}
 		void noGun(){
 			super.noGun();
+			gunFruitId=-1;
+			gun=null;
 			world.sendMessage(World.NOGUNICON);
 		}
 	 

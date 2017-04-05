@@ -11,7 +11,7 @@
         android:layout_height="64dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/xiake" />
+        android:src="@drawable/cap" />
 
     <TextView
         android:id="@+id/speakername"

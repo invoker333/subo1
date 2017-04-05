@@ -44,9 +44,9 @@ public class PlayerSet extends EnemySet{
 //		addCreature(cp=new Creeper(bi, gra,player.x,player.y));
 //		cp.changeSize(1.5f);
 		
-		FireBall fb;
-		addCreature(fb=new FireBall(bi, gra,player.x,player.y));
-		fb.changeSize(1.5f);
+//		FireBall fb;
+//		addCreature(fb=new FireBall(bi, gra,player.x,player.y));
+//		fb.changeSize(1.5f);
 		
 //		addEmplacement(new EpAuto(bi,gra, 500, 500));
 		

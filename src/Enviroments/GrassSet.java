@@ -92,20 +92,6 @@ public class GrassSet extends Set{
 			}
 		}
 	}
-	//	float[] grassData(int x,int y,int xTime){
-//		float a,b;
-//		float []data;
-//		y=mapHeight-1-y;//0对应15 计数器比索引多一
-//		data=new float[]{
-//				a=x*grid,
-//				b=y*grid,
-//				a+grid*(xTime+1),
-//				b+grid,
-//		};
-//		map[x][y]=index++;//
-//		map[x+xTime][y]=index;//
-//		return data;
-//	}
 	float[] grassData(int x,int y){
 		float a,b;
 		float []data;
@@ -195,7 +181,7 @@ public class GrassSet extends Set{
 		newBendData();
 		for(int i=0;i<b.length;i++){
 			bi= b[i];
-			if(bi!=9)bendDataCheck(x,y);
+//			if(bi!=9)bendDataCheck(x,y);
 			switch(bi){
 				case 48:gList.add(new Grass(bi,grassData(x, y),TexId.SOIL,true));break;//0 一个数字 还有一个符号
 				case 102:gList.add(new Fog(bi,grassData(x, y),TexId.FOG,edge, lns));break;//f
@@ -310,7 +296,7 @@ public class GrassSet extends Set{
 		
 		drawList.addAll(burrorList);
 		
-		newBendTail();
+	
 		
 		loadTexture();
 		
@@ -347,54 +333,33 @@ public class GrassSet extends Set{
 	}
 
 	private void newBendTail() {
-		grassTail=new SceneTail(mapWidth,TexId.WOODROOT);
-		grassTail.width=(int) (1*grid);
+		grassTail=new SceneTail(mapWidth,TexId.BAMBOOPIPLE);
+//		grassTail.width=(int) (1*grid);
+		
+		int width=(int) (bendUpData[0]-bendDownData[0]);
+		int dW=width*1/4;
+		grassTail.w=width*3/2;
+		
 		for(int i=0;i<mapWidth;i++)
-			grassTail.tringer(i*grid,bendUpData[i]);
+			grassTail.tringer(i*grid,bendUpData[i]+dW);
 	}
 
-	private void bendDataCheck(int index,int indexY) {
-		if(bendDownData[index]==0)			bendDownData[index]=(mapHeight-indexY+1)*grid;
-	}
 	private void newBendData() {
-		final int h=1;
 		bendDownData=new float[mapWidth];
-//		bendDownData[0]=0;
-		float grid=h*this.grid;
-		for(int i=1;i<mapWidth;i++)
-//			bData[i]= bData[i-1]+(float) ((Math.random()-0.5)*grid);
-			bendDownData[i]=grid+this.grid*(float) Math.sin(i/3f);
 		bendUpData=new float[mapWidth];
-		bendUpData[0]=0;
-		 grid=h*this.grid;
-		for(int i=1;i<mapWidth;i++)
-//			bData[i]= bData[i-1]+(float) ((Math.random()-0.5)*grid);
+		
+		float grid=5*this.grid;
+		for(int i=0;i<mapWidth;i++)
 			bendUpData[i]=grid+this.grid*(float) Math.sin(i/3f);
+		
+		 grid=1*this.grid;
+		for(int i=0;i<mapWidth;i++)
+			bendDownData[i]=grid+this.grid*(float) Math.sin(i/3f);
+		
+		newBendTail();
 	}
 
-//	private void culBamboo1111111() {
-//		// TODO Auto-generated method stub
-//		Grass upg;
-//		int id;
-//		for(int i=0;i<mapWidth;i++){
-//			upg=null;
-//			for(int j=getMapHeight()-1;j>0;j--){
-//				if((id=map[i][j])!=zero){
-//					Grass cur=gList.get(id);
-//					
-//					if(upg!=null&&upg.isIsburrow()){
-//						if(cur.getxState()==0){
-//							cur.data[2]-=grid/2;
-//						}
-//						else if(cur.getxState()==1){
-//							cur.data[0]+=grid/2;
-//						}
-//					}
-//					upg=cur;
-//				}else upg=null;
-//			}
-//		}
-//	}
+
 	public void downHoleCheck(float x,float y){
 		int x1=(int) (x/grid);
 		int y1=(int) (y/grid);
@@ -452,7 +417,6 @@ public class GrassSet extends Set{
 	public void drawElement(GL10 gl) {
 		grassTail.drawElement(gl);
 		if(gore) {
-//			topAction();
 			topAni.springCheck(goreAni, 0,3f / 5f,0.9f);
 			goreAni.drawElement(gl);
 		}

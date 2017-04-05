@@ -271,7 +271,7 @@ public class TouchMove implements OnTouchListener {
 	}
 	private void moveViewCheck(float ex2, float ey2) {
 		// TODO Auto-generated method stub
-		final float length=100;
+		final float length=128;
 		final float devi=10;
 		if(ex2<length){
 			float dx=length-ex2;player.px-=dx/devi;

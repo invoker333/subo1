@@ -12,6 +12,7 @@ public class Baller extends Enemy {
 
 	public Baller(char bi,GrassSet gra, float x, float y) {
 		super(bi,gra, x, y);
+		setScore(5);
 		changeLifeRate(0.5f);
 		setSoundId(MusicId.baller);
 	}

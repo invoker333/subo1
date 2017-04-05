@@ -17,6 +17,7 @@ public class Coin extends SixFruit {
 	Coin(char bi,float x, float y) {
 		super(bi,x, y);
 		name="金币";
+		setScore(5);
 //		Log.i("coinx"+x,""+y);
 	}
 	public int getCoinCount() {
@@ -39,11 +40,9 @@ public class Coin extends SixFruit {
 		// TODO Auto-generated method stub
 		super.use(player, pickedList);
 		visible=false;
-		player.increaseScoreBy(score);//
-//		Log.i("Coin has ben used");
 	}
 	public boolean loadAble(Player player){
-		player.increaseScoreBy(score);
+		player.increaseScoreBy(getScore());
 		playSound();
 		return false;
 	}

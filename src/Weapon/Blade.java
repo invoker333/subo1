@@ -53,7 +53,7 @@ public class Blade extends Joint {
 
 		tail = new Tail(5, TexId.WIND);
 		// tail.width=length/2;
-		angstart = 130;
+		angstart = 120;
 		angend = -20;
 	}
 
@@ -98,7 +98,7 @@ public class Blade extends Joint {
 		float yy = player.y + (sin * (yp + length));// +r
 
 		float width = player.getxScaleRate() * this.length / 2f;
-		tail.width = (int) width;// change size AutoMa..cly
+		tail.w = (int) width;// change size AutoMa..cly
 		tail.tringer(xx, yy, -cos, sin);
 	}
 

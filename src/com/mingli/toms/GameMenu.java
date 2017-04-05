@@ -218,6 +218,7 @@ public class GameMenu {
 			(view.findViewById(R.id.backtostagechoosser)).setOnTouchListener(otl);
 			(view.findViewById(R.id.getLifeFree)).setOnTouchListener(otl);
 			(view.findViewById(R.id.choseFileGameMenu)).setOnTouchListener(otl);
+			(view.findViewById(R.id.choseNetstageGameMenu)).setOnTouchListener(otl);
 			
 			if(!World.editMode){
 				save.setVisibility(View.INVISIBLE);
@@ -258,7 +259,10 @@ public class GameMenu {
 //					menuActivity.quitGame();
 					menuActivity.intentToFileChooser();
 					return;
-//					break;
+				case R.id.choseNetstageGameMenu:
+//					menuActivity.quitGame();
+					menuActivity.sendOnlineStageRequest();
+					return;
 				case R.id.getLifeFree:
 					// viewList.get(1).setBackgroundResource(R.drawable.back);
 					
@@ -334,7 +338,8 @@ public class GameMenu {
 		showWindow(world);
 		gameTitle.setText("成功过关！");
 		resume.setVisibility(View.INVISIBLE);
-		next.setVisibility(View.VISIBLE);
+		if(!world.isOutMapResource())
+			next.setVisibility(View.VISIBLE);
 		getLifeAbou.setVisibility(View.INVISIBLE);
 		
 		showStar();

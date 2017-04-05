@@ -16,7 +16,6 @@ public class Tail extends Square {
     float tail[][];
     protected int tringerIndex;
     protected int startIndex;
-    public int width=50;
     int pointCount=1;//一点生两点
     protected int drawStartIndex;
     float agoX,agoY;
@@ -37,7 +36,7 @@ public class Tail extends Square {
 
     public Tail(int i, float x, float y, int i1) {
         this(i,x,y);
-        width=i1;
+        w=i1;
     }
 
     public void startTouch(float x, float y){
@@ -68,8 +67,8 @@ public class Tail extends Square {
 //        	 xWidth=1;
 //             yWidth=1;
 //        }else{
-        	xWidth=(float) (width*cos);
-        	yWidth=(float) (width*sin);
+        	xWidth=(float) (w*cos);
+        	yWidth=(float) (w*sin);
 //        }
         
         
@@ -107,8 +106,8 @@ public class Tail extends Square {
         	 xWidth=1;
              yWidth=1;
         }else{
-        	xWidth=width*dy/s;
-        	yWidth=width*dx/s;
+        	xWidth=w*dy/s;
+        	yWidth=w*dx/s;
         }
         
         

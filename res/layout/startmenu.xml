@@ -84,52 +84,7 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-    <SlidingDrawer
-        android:id="@+id/slidingDrawer1"
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/butset"
-        android:content="@+id/content"
-        android:handle="@+id/handle1" >
-
-        <Button
-            android:id="@+id/handle1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:shadowColor="#ffaa00"
-            android:shadowDx="5"
-            android:shadowDy="5"
-            android:shadowRadius="5"
-            android:text="设置"
-            android:textColor="#555555" />
-
-        <LinearLayout
-            android:id="@+id/content"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:orientation="vertical" >
-
-            <CheckBox
-                android:id="@+id/checkBox2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:cursorVisible="false"
-                android:selectAllOnFocus="false"
-                android:text="游戏音效"
-                android:textColor="#555555" />
-
-            <CheckBox
-                android:id="@+id/checkBox1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="背景音乐"
-                android:textColor="#444444" />
-        </LinearLayout>
-    </SlidingDrawer>
+    
 
     <Button
         android:id="@+id/fileChoose"
@@ -137,9 +92,10 @@
         android:layout_height="50dp"
         android:layout_above="@+id/slidingDrawer1"
         android:layout_alignParentLeft="true"
+        android:layout_margin="10dp"
         android:background="@drawable/bg_selected"
         android:padding="8dp"
-        android:text="选择文件"
+        android:text="本地文件"
         android:textColor="#ffffff"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -244,5 +200,65 @@
         android:textColor="#ffffff"
         android:textSize="24sp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/onlineFileChooser"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/slidingDrawer1"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_button"
+        android:padding="8dp"
+        android:text="在线关卡"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <SlidingDrawer
+        android:id="@+id/slidingDrawer1"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/butset"
+        android:content="@+id/content"
+        android:handle="@+id/handle1" >
+
+        <Button
+            android:id="@+id/handle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/qingse"
+            android:shadowColor="#ffaa00"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="5"
+            android:text="设置"
+            android:textColor="#555555" />
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical" >
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:cursorVisible="false"
+                android:selectAllOnFocus="false"
+                android:text="游戏音效"
+                android:textColor="#555555" />
+
+            <CheckBox
+                android:id="@+id/checkBox1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="背景音乐"
+                android:textColor="#444444" />
+        </LinearLayout>
+    </SlidingDrawer>
 
 </RelativeLayout>
