@@ -131,7 +131,13 @@ public class StartMenu{
         Button more = (Button) startView.findViewById(R.id.more);
         fileChoose = (Button) startView.findViewById(R.id.fileChoose);
        	onlineStageChoose = (Button) startView.findViewById(R.id.onlineFileChooser);
-        Button stage = (Button) startView.findViewById(R.id.stageChoose);
+      
+       	if(!World.openMode){
+       		fileChoose.setVisibility(View.INVISIBLE);
+       		onlineStageChoose.setVisibility(View.INVISIBLE);
+       	}
+       	
+       	Button stage = (Button) startView.findViewById(R.id.stageChoose);
         
         rampage = (CheckBox) startView.findViewById(R.id.rampage);
         noweapon = (RadioButton) startView.findViewById(R.id.nowepon);
@@ -261,9 +267,8 @@ public class StartMenu{
 		String moneyStr="010110100011";
 		String editStr="00001111";
 		String rpgStr="11110000";
-		String youtietu = "11111100";
-		String wutietu = "00000011";
 		String bigMode = "000111";
+		String openStr = "01010101";
 		int maxLength=15;// max length in the up number
 		
 		@Override
@@ -285,15 +290,8 @@ public class StartMenu{
 		}
 			
 			Log.i("str:"+str+""+"targetStr"+moneyStr+str.equals(moneyStr));
-		if(str.equals(youtietu)){
-			acti.tietu(1);
-			Toast.makeText(acti, "有贴图", Toast.LENGTH_SHORT).show();
-		} else if(str.equals(wutietu)) {
-			acti.tietu(0);
-			Toast.makeText(acti, "无贴图", Toast.LENGTH_SHORT).show();
-		}
 		
-		else	if(str.equals(moneyStr)){
+			if(str.equals(moneyStr)){
 				user.setVisibility(View.VISIBLE);
 //				et.setHint("豪礼相送！");
 				acti.chance+=10000;
@@ -309,6 +307,16 @@ public class StartMenu{
 				}else {
 					World.editMode=false;
 					Toast.makeText(acti, "编辑模式关", Toast.LENGTH_SHORT).show();
+				}
+			}else if(str.equals(openStr)){
+				if(World.openMode==false){
+					World.openMode=true;
+					onlineAndFileMode(View.VISIBLE	);
+					Toast.makeText(acti, "开发者模式开启", Toast.LENGTH_SHORT).show();
+				}else {
+					World.openMode=false;
+					onlineAndFileMode(View.INVISIBLE	);
+					Toast.makeText(acti, "开发者模式关", Toast.LENGTH_SHORT).show();
 				}
 			}else if(str.equals(rpgStr)){
 				if(World.rpgMode==false){
@@ -335,8 +343,12 @@ public class StartMenu{
 			}str="";
 			
 		}
-
 	};
+	public void onlineAndFileMode(int visible) {
+		
+		fileChoose.setVisibility(visible);
+		onlineStageChoose.setVisibility(visible);
+	}
 //	private EditText et;
 	private Button fileChoose1;
 	private View user;

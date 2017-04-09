@@ -70,7 +70,7 @@ public class AutoBullet extends ToBigBullet {
 		xSpeed = speed * dx / s;
 		ySpeed = speed * dy / s;
 	}
-	void resetBullet(){
+	public void resetBullet(){
 		speed=10;
 		super.resetBullet();
 	}

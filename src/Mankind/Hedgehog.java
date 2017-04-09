@@ -19,9 +19,11 @@ public class Hedgehog extends Enemy {
 		setLife(getLifeMax());
 		isDead=false;
 		angle=0;
+		treadable=false;
 		rotateSpeed=0;
 		sethRate(0.85f);
 		changeSize(0.6f);
+		y++;
 		setxSpeedMax(3);
 		setxSpeedMin(-3);
 
@@ -47,6 +49,17 @@ public class Hedgehog extends Enemy {
 //		 if(life1>=lifeToChange&&getLife()<lifeToChange)
 			if(isDead&&getTextureId()==TexId.HEDGEHOG) toCrepper();
 	}
+	 public void attackAnotherOne(EnemySet es){
+			Creature another;
+			for (int i = 0; i < es.cList.size(); i++) {
+				another = es.cList.get(i);
+				if (Math.abs(x - another.x) < another.getW() + getW()
+					&&Math.abs(y - another.y) < another.getH() + getH()) {
+					tooClose(another,es);
+					
+				}
+			}
+		}
 	protected void tooClose(Creature another,EnemySet es){
 		super.tooClose(another, es);
 		

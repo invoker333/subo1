@@ -291,5 +291,6 @@ public class Shop {
 	public void toBuyLife() {
 		// TODO Auto-generated method stub
 		buyLifePosition=0;
+		gridView.setSelection(0);
 	}
 }

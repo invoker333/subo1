@@ -2,14 +2,21 @@ package Mankind;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import Weapon.BoomBullet;
+import Weapon.Missile;
+
 import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 
 import element2.TexId;
+import Element.Boom;
 import Enviroments.GrassSet;
 
 public class Flyer extends Enemy {
+	private static final int cdMAX = 180;
 	float yStart;
+	private BoomBullet b;
+	private int cd;
 //	private float lifeToChange;
 	public Flyer(char bi,GrassSet gra, float x, float y) {
 		super(bi,gra, x, y);
@@ -18,8 +25,23 @@ public class Flyer extends Enemy {
 		setSoundId(MusicId.flyer);
 		yStart=y+1;
 	}
+	public void setEnemySet(EnemySet es){
+		super.setEnemySet(es);
+		initbullet(es);
+	}
+	
+	void initbullet(EnemySet es) {
+		this.enemySet = es;
+//		b = new TailBullet(es, gra, 3.33f);
+//		b = new Missile(es, gra);
+//		b.loadTexture(TexId.GREEN);
+		b=new BoomBullet(enemySet, gra);
+		b.loadTexture(TexId.EGG);
+		// b.speed=20;
+	}
 	public void drawElement(GL10 gl){
 		super.drawElement(gl);
+		b.drawElement(gl);
 	}
 	protected void init() {
 		setH(55);
@@ -106,12 +128,16 @@ public class Flyer extends Enemy {
 		else if(another.getxSpeed()<getxSpeedMin())another.setxSpeed(getxSpeedMin());
 		
 	}
+	
 	public void randomAction() {// 周期
 		if(getTextureId()==TexId.FLYER) {
 				setAngle(getAngle() + -1*getDirection());
 				if(getAngle()>15)rotateSpeed=-1;
 				else if(getAngle()<-15)rotateSpeed=1;
 				
+				if(!b.isFire()&&cd++>cdMAX){b.tringer(x, y, xSpeed, ySpeed);
+				cd=0;
+				}
 				
 			if(y<yStart   ){
 				jump();

@@ -33,8 +33,11 @@ import android.text.Editable;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -105,7 +108,9 @@ public class MenuActivity extends Activity {
 				world = null;
 			}	
 			titleMode=true;
-			saveUserMessage();
+//			saveUserMessage();
+			editor.putBoolean("openMode", World.openMode);
+			editor.commit();
 			 stateWindow=null;
 			 btnc=null;
 			 gameMenu=null;
@@ -198,7 +203,6 @@ public class MenuActivity extends Activity {
 		// TODO Auto-generated method stub
 		sp = getSharedPreferences("gameStore", MODE_PRIVATE);
 		startTime = sp.getInt("startTime", 1);
-		Render.tietu = sp.getBoolean("tietu",true);
 		
 		editor = sp.edit();
 		editor.putInt("startTime", startTime + 1);
@@ -278,6 +282,7 @@ public class MenuActivity extends Activity {
 					editor.commit();
 				}
 		}
+		
 	}
 
 	void startGame() {
@@ -291,7 +296,12 @@ public class MenuActivity extends Activity {
 		}
 		
 		titleMode=false;
+		
 		world.startGame(mapIndex);
+		if(mapIndex==Map.max+1){
+			World.openMode=true;
+		}
+		
 		Log.d("startGame");
 	}
 
@@ -315,6 +325,7 @@ public class MenuActivity extends Activity {
 		btnc.adController();
 
 		// if (itemWindow == null)
+		if(mapIndex==1)showGuideDialog();
 	}
 
 
@@ -441,9 +452,21 @@ public class MenuActivity extends Activity {
 		
 		myHandler.sendEmptyMessage(World.DIALOG);
 	}
+	public void showGuideDialog(){
+		final Dialog d=new Dialog(this,R.style.toumingDialog);
+		View v = getLayoutInflater().inflate(R.layout.osguidelayout, null);
+		v.setOnTouchListener(new OnTouchListener() {
+			public boolean onTouch(View v, MotionEvent event) {
+				d.cancel();
+				return false;
+			}
+		});
+		ViewGroup.LayoutParams layoutParams = new  ViewGroup.LayoutParams(screenWidth, screenHeight);
+		d.setContentView(v,layoutParams);
+		d.show();
+	}
 	
 	public static void showDialogView() {	
-		
 		TextView nameView = (TextView) dl.findViewById(R.id.speakername);
 		TextView talkView = (TextView) dl.findViewById(R.id.dialogue);
 		ImageView img=(ImageView) dl.findViewById(R.id.speaker);
@@ -518,6 +541,8 @@ public class MenuActivity extends Activity {
 		chance = sp.getInt("chance", 300);
 		score = sp.getInt("score", 0);
 		
+		World.openMode=sp.getBoolean("openMode", false);
+		
 		starString = sp.getString("starString", starString);
 		Log.i("starString"+starString);
 		itemString =sp .getString("itemString", itemString);
@@ -546,8 +571,9 @@ public class MenuActivity extends Activity {
 
 	public void nextStage() {
 		quitGame();
-		if (getMaxMapIndex() > mapIndex)
+		if (getMaxMapIndex() >= mapIndex)
 			mapIndex++;
+		// =to more 1 than max stageIndex to got last stage
 		startGame();
 	}
 
@@ -681,14 +707,6 @@ public class MenuActivity extends Activity {
 		Log.i("show banner");
 	}
 
-	public void tietu(int i) {
-		// TODO Auto-generated method stub
-		if(i==0)
-		editor.putBoolean("tietu", false);
-		else
-		editor.putBoolean("tietu", true);
-		editor.commit();
-	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.i("onActivityResult");

@@ -21,7 +21,7 @@ import android.content.res.AssetManager;
 public class Map {
 	byte[] data;
 	char[] charData;
-	static int max=16;//关卡总数
+	public static int max=17;//关卡总数
 	
 
 	public Map(int mapIndex,Context context){

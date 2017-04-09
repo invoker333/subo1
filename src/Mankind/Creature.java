@@ -30,7 +30,7 @@ public class Creature extends AnimationGrass {
 	private boolean jumpAble = true;
 	private int landId;// �����̤���id��
 	int fdirection;// ���ķ���
-	protected int direction;
+	protected int direction=1;
 
 	private int lifeMax = World.baseLifeMax;
 	private int life = lifeMax;
@@ -251,6 +251,7 @@ public class Creature extends AnimationGrass {
 	protected EnemySet enemySet;
 	protected EnemySet friendSet;
 	public int rightDirection=-1;
+	public boolean treadable=true;
 
 
 
@@ -533,10 +534,9 @@ public class Creature extends AnimationGrass {
 		this.agoMax = agoMax;
 	}
 
-	public void treaded(Creature player, int attack2) {// ����
+	public void treaded(Creature player) {// ����
 //	 playSound();
 		scaleTringer(maxScaleLengthX);
-		attacked(attack2);
 	}
 
 	public float getAmLand() {

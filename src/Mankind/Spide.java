@@ -28,16 +28,19 @@ public class Spide extends Emplacement {
 		tail.w = 2;
 		this.attack = 0;
 		setG(0);
+		treadable=false;
 		
 		setSoundIdAttack(MusicId.zhizhu);
 	}
 
 	void initbullet(EnemySet es) {
-		this.es = es;
+		this.enemySet = es;
+		bSpeed=25;
 		b = new Hook(es, gra, this) {
 			protected void gotTarget(Creature enemy) {
-				if(enemy.equals(b.enemyGrass)){return;}
-				
+				if(enemy.equals(b.enemyGrass)){
+					b.resetBullet();return;
+				}
 				if (catcher == null || catcher.isDead) {
 					catcher = enemy;
 				}

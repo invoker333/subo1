@@ -17,8 +17,7 @@ import Weapon.TailBullet;
 public class Emplacement extends Creature {
 	 Bullet b;
 //	Animation guideCircle;
-	private double bSpeed = 25;
-	protected EnemySet es;
+	protected double bSpeed = 5;
 	private int range = 500;
 	double range2 = range * range;
 	private int angleSpeed;
@@ -54,9 +53,10 @@ public class Emplacement extends Creature {
 	}
 	
 	void initbullet(EnemySet es) {
-		this.es = es;
-		b = new TailBullet(es, gra, 3.33f);
-		b.loadTexture(TexId.GREEN);
+		this.enemySet = es;
+//		b = new TailBullet(es, gra, 3.33f);
+		b = new Missile(es, gra);
+		b.loadTexture();
 		// b.speed=20;
 	}
 	
@@ -65,7 +65,7 @@ public class Emplacement extends Creature {
 		if(cd++<60)return;
 		
 		
-		if (es == null)
+		if (enemySet == null)
 			return;
 		
 		
@@ -80,8 +80,8 @@ public class Emplacement extends Creature {
 			minDistance = Math.pow(targetPeople.x - x, 2)+ Math.pow(targetPeople.y - y, 2);
 		if (minDistance > range2||minDistance==-1){
 			targetPeople=null;
-			for (int i = 0; i < es.cList.size(); i++) {
-				Creature gp = es.cList.get(i);
+			for (int i = 0; i < enemySet.cList.size(); i++) {
+				Creature gp = enemySet.cList.get(i);
 				if(!targetCanbeCatched(gp))continue;
 				double d1 = Math.pow(gp.x - x, 2) + Math.pow(gp.y - y, 2);
 				if (d1 > range2)
@@ -96,7 +96,7 @@ public class Emplacement extends Creature {
 				}
 			}
 			if (enemyId != -1)
-				targetPeople = es.cList.get(enemyId);
+				targetPeople = enemySet.cList.get(enemyId);
 			else return;
 		}
 		

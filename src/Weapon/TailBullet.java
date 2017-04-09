@@ -84,7 +84,7 @@ class ToBigBullet extends Bullet{
 		gl.glScalef(backTime, backTime, 0);
 		gl.glTranslatef(-x, -y, 0);
 	}
-	void resetBullet(){
+	public void resetBullet(){
 		super.resetBullet();
 		setW(wReal);
 		scaleTime=backTime=1;

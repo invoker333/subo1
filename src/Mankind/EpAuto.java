@@ -17,7 +17,7 @@ public class EpAuto extends Emplacement{
 		// TODO Auto-generated constructor stub
 	}
 	void initbullet(EnemySet es) {
-		this.es = es;
+		this.enemySet = es;
 		 b=new AutoBullet(es, gra, this,30);
 		b.loadTexture(TexId.GREEN);
 		// b.speed=20;

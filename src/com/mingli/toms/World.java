@@ -18,30 +18,22 @@ import Enviroments.BackGround;
 import Enviroments.CoinSet;
 import Enviroments.FruitSet;
 import Enviroments.GrassSet;
-import Mankind.Baller;
 import Mankind.Creature;
-import Mankind.Creeper;
 import Mankind.Emplacement;
 import Mankind.EnemySet;
 import Mankind.Player;
 import Mankind.PlayerSet;
-import Mankind.Walker;
-import Weapon.AutoBubble;
-import Weapon.AutoBullet;
 import aid.Log;
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.view.MotionEvent;
-import android.view.animation.Animation.AnimationListener;
 import android.widget.Toast;
 import element2.FireworkSet;
 import element2.HikariSet;
 import element2.LightningSet;
 import element2.ParticleSet;
-import element2.SceneTail;
 import element2.SnowSet;
 import element2.Tail;
 import element2.TexId;
@@ -138,10 +130,10 @@ public class World extends GLSurfaceView implements Runnable {
 		{
 			File[] fs = f.listFiles();
 			int id=fs.length;
-			String string = "w"+(++id)+".txt";
+			String string = "world"+(++id)+".txt";
 			f=new File(f,string);
 //			Log.i(f.getName());
-			while(f.exists())f=new File(f,"w"+(++id+".txt"));
+			while(f.exists())f=new File(f,"world"+(++id+".txt"));
 //			Log.i(f.getName());
 		}
 		
@@ -210,10 +202,10 @@ public class World extends GLSurfaceView implements Runnable {
 			ani.name=""+ani.mapSign;//////////
 		
 //			if(ani.mapSign=='j'||ani.mapSign=='E'){
-			if(ani instanceof Emplacement){
+			if(ani instanceof Creature){
 				Log.i("ani.mapSign："+ani.mapSign);
-				((Emplacement) ani).setEnemySet(enemySet);
-				MenuActivity.showDialog("has added enemySet!", "", 0);
+				((Creature) ani).setEnemySet(enemySet);
+//				MenuActivity.showDialog("has added enemySet!", "", 0);
 			}
 			
 		}
@@ -249,7 +241,7 @@ public class World extends GLSurfaceView implements Runnable {
 	
 	}
 	public void startGame( final int mapIndex){
-		this.curMapIndex=mapIndex;
+		World.curMapIndex=mapIndex;
 //		if(render.created)
 //			loadGame(mapIndex);
 //		else 
@@ -420,7 +412,11 @@ public class World extends GLSurfaceView implements Runnable {
 				tringerGuidePost();
 //				MenuActivity.showDialog(null, "欢迎来到"+mapName, R.drawable.cup);
 			}
-			if(i==1)MenuActivity.showDialog(null, "欢迎来到火星猎人的世界", R.drawable.cup);
+			if(i==2)MenuActivity.showDialog("厉害了我的哥", "欢迎来到火星猎人的世界第"+i+"关", R.drawable.zan);
+			else if(i==Map.max+1){
+				MenuActivity.showDialog("厉害了我的哥", "经历了各种有趣的难关，终于到达这里，旅程也算告一段落，但是精彩并没有结束！还有各种有意思的地方没有去。更多精彩尽在“在线关卡”，各种新奇关卡，等你来闯关！", R.drawable.zan);
+				mapName="这并不是终点";
+			}
 		}
 	}
 
@@ -441,7 +437,6 @@ public class World extends GLSurfaceView implements Runnable {
 		
 //		this.setOnTouchListener(touchMove);// move
 		
-		OnTouchListener moveaction = null;
 		// this.setOnTouchListener(touch);// 触摸事件监听器
 
 		// this.setOnTouchListener(new Touch(bts,ab,tail,player));
@@ -844,8 +839,10 @@ public class World extends GLSurfaceView implements Runnable {
 	
 	public static boolean editMode;
 	public static boolean rpgMode;
-	public static double baseBSpeed=20;
+//	public static double baseBSpeed=20;
+	public static double baseBSpeed=15;//20
 	public static boolean bigMode;
+	public static boolean openMode;
 
 	public void astarSearch(float x, float y) {
 		if (astar == null)

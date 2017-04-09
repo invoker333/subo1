@@ -37,7 +37,6 @@ public class Render implements Renderer{
 
 	public  boolean created;
 	static float rate;
-	public static boolean tietu;
 
 //	public static float hw;
 
@@ -75,7 +74,7 @@ public class Render implements Renderer{
 //		gl.glEnable(GL10.GL_DEPTH_TEST);
 		gl.glEnableClientState(GL10.GL_VERTEX_ARRAY);//启用矩阵绘制顶点模式
 		gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
-		if(tietu)gl.glEnable(GL10.GL_TEXTURE_2D);//开启纹理贴图 至关重要
+		gl.glEnable(GL10.GL_TEXTURE_2D);//开启纹理贴图 至关重要
 
 //		gl.glEnable(GL10.GL_CULL_FACE);//背面裁剪
 		gl.glCullFace(GL10.GL_BACK);
@@ -87,7 +86,7 @@ public class Render implements Renderer{
 		gl.glLoadIdentity();
 
 		long t1=System.currentTimeMillis();
-		if(!created&&tietu)texId.loadTextureId(gl);
+		if(!created)texId.loadTextureId(gl);
 		created=true;
 		Log.i("texTime"+-(t1-System.currentTimeMillis())+"ms");
 		

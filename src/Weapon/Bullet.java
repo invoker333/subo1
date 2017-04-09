@@ -99,7 +99,7 @@ public class Bullet extends AnimationMove{
 			 int id = gra.map[xx][yy];
 			 if(id!=gra.getZero()
 					 &&gra.getgList().get(id).notBroken
-					 &&!(gra.getgList().get(id) instanceof BigGrass)){
+					 &&(gra.getgList().get(id).attackedAble)){
 				 Grass grass= gra.getgList().get(id);
 				enemyGrass.setPosition(x,y);
 				 gotTarget(enemyGrass);
@@ -134,7 +134,7 @@ public class Bullet extends AnimationMove{
 		push(enemy, rate);
 	}
 
-	void resetBullet() {// �������·���
+	public void resetBullet() {// �������·���
 		frame = 0;
 		fire = false;
 		disappear();

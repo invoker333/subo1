@@ -7,9 +7,9 @@ import element2.Tail;
 import element2.TexId;
 import Enviroments.GrassSet;
 
-public class WeaponMan extends Player{
+public class FlagPlayer extends Player{
 
-	public WeaponMan(char bi, GrassSet grassSet, World world,float x, float y) {
+	public FlagPlayer(char bi, GrassSet grassSet, World world,float x, float y) {
 		// TODO Auto-generated constructor stub
 		super(bi, grassSet,world, x, y);
 		setFlag();
@@ -19,11 +19,10 @@ public class WeaponMan extends Player{
 		wudiTime=0;
 		
 		
-		attack=1;
 		haveBlade();
 		noGun();
 		downData[0]=true;
-		realBlade.tail=new Tail(20,TexId.REDCREEPER);
+		realBlade.tail=new Tail(25,TexId.REDCREEPER);
 		realBlade.tail.setTextureId(TexId.CUP);
 		realBlade.setTextureId(TexId.QIGAN);
 //		realBlade.angstart=60;

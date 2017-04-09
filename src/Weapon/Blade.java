@@ -32,7 +32,7 @@ public class Blade extends Joint {
 	private float w1;
 	private float w2; //range should be
 	public Tail tail;
-	private final int length = 192;
+	public final int length = 192;
 	private float attack=255;
 	private final float checkWidth=64;
 
@@ -42,8 +42,13 @@ public class Blade extends Joint {
 	public Blade(Creature p, EnemySet es,float h) {
 		this.es = es;
 		this.player = p;
-
-		setSpeed((angend - angstart) / (3f / p.getAniStep2()[1]));
+		
+		angstart = 120;
+		angend = -20;
+		{
+			setSpeed((angend - angstart) / (3f / p.getAniStep2()[1]));
+			start();
+		}
 		this.h=h;
 		loadTexture(TexId.SWORD);
 		
@@ -51,10 +56,9 @@ public class Blade extends Joint {
 		loadSound();
 		// holdy = HandCentre;// meishayong
 
-		tail = new Tail(5, TexId.WIND);
+		tail = new Tail(4, TexId.WIND);
 		// tail.width=length/2;
-		angstart = 120;
-		angend = -20;
+		
 	}
 
 	 public void syncTextureSize() {
@@ -163,7 +167,6 @@ public class Blade extends Joint {
 			setDagree(0);
 //			angleA = angleAMax / 2;
 			angleA = angleAMax / 5 ;
-			
 //			angleA = angleAMax / 25 ;
 			
 			setAngle(angend);
@@ -173,7 +176,8 @@ public class Blade extends Joint {
 		}
 	}
 
-	public void attack() {
+	public void attack(int direc) {
+		this.direction=direc;
 		if (fire)
 			return;
 		player.setAnimationFinished(false);
@@ -211,26 +215,6 @@ public class Blade extends Joint {
 	public void playSound() {
 		music.playSound(getSoundId(), 0);
 	}
-
-	public void resume() {
-		if (!isRunning()) {
-			setRunning(true);
-			// new Thread(this).start();
-		}
-	}
-
-	// public void run() {
-	// while (isRunning()) {
-	// if (fire) {
-	// positionCheck();
-	// targetCheck();
-	// } else {
-	// // if(yp!=holdy)
-	// // yp+=16f;
-	// }
-	// World.timeRush();
-	// }
-	// }
 
 	float anglface = -75;
 	float angrface = -105;

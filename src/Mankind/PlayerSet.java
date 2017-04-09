@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import com.mingli.toms.Map;
+import com.mingli.toms.World;
+
 import Enviroments.GrassSet;
 import element2.Tail;
 import element2.TexId;
@@ -50,10 +53,13 @@ public class PlayerSet extends EnemySet{
 		
 //		addEmplacement(new EpAuto(bi,gra, 500, 500));
 		
-//		JointCreature bfg;
-//		addCreature(bfg=new JointCreature(gra));
-//		bfg.changeSize(4);
-//		bfg.loadTexture();
+		if(World.curMapIndex==Map.max+1)
+			for(int i=0;i<4;i++){
+			JointCreature bfg;
+			addCreature(bfg=new FlagMan(bi, gra, player.x+(i+1)*100, player.y));
+			bfg.changeSize((float) (0.5f+Math.random()*0.5f));
+			bfg.loadTexture();
+		}
 //		
 		
 		   final float w=16;

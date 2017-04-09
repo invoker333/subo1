@@ -33,8 +33,10 @@ public class Client implements Runnable{
 //				s=new Socket("23.105.206.67",8888);
 //				s=new Socket("192.168.46.28",8888);
 //				s=new Socket("192.168.47.134",8888);
-				s=new Socket("192.168.47.251",8888);
+//				s=new Socket("192.168.47.251",8888);
 //				s=new Socket("192.168.47.176",8888);
+//				s=new Socket("192.168.47.73",8888);
+				s=new Socket("23.105.206.67",8888);
 				if(s!=null){
 					Log.i("已连接","");
 					connected=true;

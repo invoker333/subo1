@@ -54,7 +54,7 @@ public class Baller extends Enemy {
 		if(getLifeMax()<lifechange)super.die();
 		else {
 			changeSize(sizeRate*(float) Math.sqrt(1/2f));// right but why don't know
-//			changeSize(sizeRate/2f);
+			y++;// to avoid land
 			loadTexture();
 			
 			isDead=false;

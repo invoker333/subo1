@@ -23,7 +23,7 @@ public class Spide3 extends Spide{
 	
 	}
 	void initbullet(EnemySet es) {
-		this.es = es;
+		this.enemySet = es;
 		b = new Hook(es,  gra, this){
 			protected void gotTarget(Creature enemy) {
 //				if(enemy.equals(b.enemyGrass)){return;}

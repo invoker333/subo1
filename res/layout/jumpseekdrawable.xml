@@ -4,7 +4,7 @@
     <item android:id="@android:id/background">
 
         <shape>
-            <solid android:color="#ddddff" />
+            <solid android:color="#88ddddff" />
             <stroke
                 android:width="20dp"
                 android:color="#00555555" />

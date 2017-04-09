@@ -2,7 +2,7 @@
 <resources>
 
     <!-- <string name="app_name">超级大冒险</string> -->
-    <string name="app_name">火星猎人</string>
+    <string name="app_name">火星英雄</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="icon_width">40</string>

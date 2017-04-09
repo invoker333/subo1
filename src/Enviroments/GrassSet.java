@@ -11,6 +11,7 @@ import Element.AnimationMove;
 import Element.Draw;
 import Element.FireSet;
 import Mankind.Baller;
+import Mankind.BladeMan;
 import Mankind.Creature;
 import Mankind.Creeper;
 import Mankind.Emplacement;
@@ -18,6 +19,7 @@ import Mankind.EnemySet;
 import Mankind.EpAuto;
 import Mankind.FireBall;
 import Mankind.Flyer;
+import Mankind.GunMan;
 import Mankind.Hedgehog;
 import Mankind.JointCreature;
 import Mankind.Player;
@@ -25,7 +27,7 @@ import Mankind.Spide;
 import Mankind.Spide3;
 import Mankind.TestEnemy;
 import Mankind.Walker;
-import Mankind.WeaponMan;
+import Mankind.FlagPlayer;
 import aid.Log;
 
 import com.mingli.toms.MusicId;
@@ -46,7 +48,6 @@ public class GrassSet extends Set{
 	public Grass [][]grassMap;
 	private ArrayList<Grass>gList;
 	private ArrayList<Grass>drawList;
-//	private ArrayList<Draw>effectList;
 	public ArrayList<Animation>animationList; 
 	private ArrayList<Fruit>coinList;
 	private ArrayList<Fruit>fruitList;
@@ -198,6 +199,7 @@ public class GrassSet extends Set{
 				case 116:gList.add(new BigGrass(bi,grassData(x, y),TexId.TREE,true,edge));break;//t
 				case 119:gList.add(new Grass(bi,grassData(x, y),TexId.WOOD));break;//w
 				case 122:gList.add(new Grass(bi,grassData(x, y),TexId.ZHUAN,true));break;//z
+				case 'm':gList.add(new GrassSticker(bi,grassData(x, y),TexId.STICKER));break;
 				case 85:int ran=(int) (Math.random()*2);
 					Burrow bro=new Burrow(bi,grassData(x, y),TexId.BAMBOO,grid*3/32,0,ran);
 					Burrow bro2=new Burrow(' ', grassData(x+1, y),TexId.BAMBOO,grid*3/32,1,ran);
@@ -232,7 +234,7 @@ public class GrassSet extends Set{
 					player = new Player(bi, this, world,(x+0.5f)*grid,(mapHeight-y)*grid);
 					// here has no break because these two char has same code and different code
 				case 'Y':
-					if(player==null)player=new WeaponMan(bi,this,world,(x+0.5f)*grid,(mapHeight-y)*grid);
+					if(player==null)player=new FlagPlayer(bi,this,world,(x+0.5f)*grid,(mapHeight-y)*grid);
 //					setStartPosition(bi,(x+0.5f)*grid,(mapHeight-y)*grid);
 					if(World.editMode){
 						Creature c=new JointCreature(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid);
@@ -255,22 +257,14 @@ public class GrassSet extends Set{
 				case 99:enemyList.add(new Creeper(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid));break;//c
 				case 100:enemyList.add(new Baller(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid));break;//d
 				case 101:enemyList.add(new Hedgehog(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid));break;//e
+				case 'o':enemyList.add(new GunMan(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid));break;//e
+				case 'p':enemyList.add(new BladeMan(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid));break;//e
 				case 106://j
-					int ran1=(int) (Math.random()*2);
-					if(ran1==0){
-//					if(false){
-						int size=(int) (3*Math.random()+1);// +1 to avoid length is zero
-						Creature[] spideMans = new Creature[size];
-//						float dy=Spide.dsmax;
-						for(int j=0;j<spideMans.length;j++){
-								spideMans[j]=new Walker(' ',this,(x+0.5f)*grid,(mapHeight-y)*grid);
-						};
-						for(Creature spideMan:spideMans){
-							enemyList.add(spideMan);
-						}
-						emplacementList.add(new Spide3(bi,this,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,spideMans));
-					}
-					else 
+//					int ran1=(int) (Math.random()*2);
+//					if(ran1==0){
+//						newSpide3(grid, bi, x, y);
+//					}
+//					else 
 						emplacementList.add(new Spide(bi,this,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid));
 					break;
 				case 'k':
@@ -279,6 +273,7 @@ public class GrassSet extends Set{
 					enemyList.add(new TestEnemy(this,(x+0.75f)*grid,(mapHeight-y-0.25f)*grid));
 					enemyList.add(new TestEnemy(this,(x+0.75f)*grid,(mapHeight-y-0.75f)*grid));
 					break;
+				
 				case 53: break;//5 结束标志
 				case 13:x=0;y++;break;
 				//一个是”\r“一个是“\n”
@@ -317,6 +312,18 @@ public class GrassSet extends Set{
 		animationList.add(goal);
 		player.
 		goal=goal;
+	}
+	private void newSpide3(float grid, char bi, int x, int y) {
+		int size=(int) (3*Math.random()+1);// +1 to avoid length is zero
+		Creature[] spideMans = new Creature[size];
+//						float dy=Spide.dsmax;
+		for(int j=0;j<spideMans.length;j++){
+				spideMans[j]=new Walker(' ',this,(x+0.5f)*grid,(mapHeight-y)*grid);
+		};
+		for(Creature spideMan:spideMans){
+			enemyList.add(spideMan);
+		}
+		emplacementList.add(new Spide3(bi,this,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,spideMans));
 	}
 	private void initGoreAnimation() {
 		topAni=new AnimationMove();

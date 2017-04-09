@@ -217,9 +217,14 @@ public class GameMenu {
 			
 			(view.findViewById(R.id.backtostagechoosser)).setOnTouchListener(otl);
 			(view.findViewById(R.id.getLifeFree)).setOnTouchListener(otl);
-			(view.findViewById(R.id.choseFileGameMenu)).setOnTouchListener(otl);
-			(view.findViewById(R.id.choseNetstageGameMenu)).setOnTouchListener(otl);
-			
+			View chosef;
+			View chosonline;
+			(chosef=view.findViewById(R.id.choseFileGameMenu)).setOnTouchListener(otl);
+			(chosonline=view.findViewById(R.id.choseNetstageGameMenu)).setOnTouchListener(otl);
+			if(!World.openMode){
+				chosef.setVisibility(View.INVISIBLE);
+				chosonline.setVisibility(View.INVISIBLE);
+			}
 			if(!World.editMode){
 				save.setVisibility(View.INVISIBLE);
 			}

@@ -122,6 +122,7 @@ public class Producer {
 //					acti.chance -= selectedItem.chancecost;
 //					// ///
 					world.buildAnimation(selectedItem);
+					hideCheck();
 //
 //				} else {
 //					if (acti.coinCount - selectedItem.cost < 0)

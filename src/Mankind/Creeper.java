@@ -13,18 +13,21 @@ public class Creeper extends Enemy {
 		super(bi,gra, x, y);
 		setSoundId(MusicId.creeper4);
 		changeLifeRate(2);
+		attack=0;
+		treadable=false;
 	}
 	protected void init(){
 //		setJumpHeight(8);
-		setH(38);
+		setH(29);
+		setW(w*3/4);
 		sethRate(0.85f);
 		setTextureId(TexId.CREEPER);
 		setJumpHeight(10);
 		super.init();
 	}
 	protected void afterInit() {
-		setxSpeedMax(3);
-		setxSpeedMin(-3);
+		setxSpeedMax(1);
+		setxSpeedMin(-1);
 
 		super.afterInit();
 	}

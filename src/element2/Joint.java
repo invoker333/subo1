@@ -16,7 +16,7 @@ public class Joint extends State {
 	protected float xp;// 立足点
 //	private float xpReal;// 初始立足点
 	protected float yp;
-	private int direction;
+	protected int direction;
 	int myDirection=1;
 
 

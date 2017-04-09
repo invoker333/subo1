@@ -35,8 +35,6 @@ public class TexId{
 	public static int BACKGROUND;
 //	public static int BUBBLE;
 	public static int RED;
-	public static int BUTTON_LEF;
-	public static int BUTTON_RIGHT;
 	public static int CLOCK;
 	public static int COIN;
 	public static int WALKER;
@@ -130,8 +128,14 @@ public class TexId{
 	public static int QIGAN;
 	public static int WIPE;
 	public static int GOLDENFOOT;
+	public static int STICKER;
+	public static int CLOTHENEMY;
+	public static int CAPENEMY;
 	public  void loadTextureId(GL10 gl) {
 //		if(1<2)return;
+		CAPENEMY=loadTexture(gl,R.drawable.toukuienemy);
+		CLOTHENEMY=loadTexture(gl,R.drawable.clothenemy);
+		STICKER=loadTexture(gl,R.drawable.sticker);
 		GOLDENFOOT=loadTexture(gl,R.drawable.goldenfoot);
 		BAMBOOPIPLE=loadTexture(gl,R.drawable.bamboopiple);
 		WIPE=loadTexture(gl,R.drawable.wipe);
@@ -190,8 +194,6 @@ public class TexId{
 		BACK=loadTexture(gl,R.drawable.back);
 		BACKGROUND=loadTexture(gl,R.drawable.background);
 
-		BUTTON_LEF=loadTexture(gl,R.drawable.button_left);
-		BUTTON_RIGHT=loadTexture(gl,R.drawable.button_right);
 		CLOCK=loadTexture(gl,R.drawable.clock);
 		WALKER=loadTexture(gl,R.drawable.walker);
 		GREENWALKER=loadTexture(gl,R.drawable.greenwalker);

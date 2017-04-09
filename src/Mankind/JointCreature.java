@@ -18,7 +18,7 @@ public class JointCreature extends Creature{
 	protected ArrayList<Joint> holdList;
 	float[] speedAgo;
 	float[] speedJump;
-	private Joint cap;
+	protected Joint cap;
 	protected GunDraw gunDraw;
 	
 	protected Blade blade;
@@ -97,9 +97,8 @@ public class JointCreature extends Creature{
 //				TexId.MEIMAO, 1, 5));
 		
 		jointList.add(foot=new Joint(this, -9, -24, 9, 0, -9, -31, TexId.FOOT, -1));
-		Joint cloth;
-		jointList.add(cloth=new Joint(this, -36, -25, 36, 25, 0, -12, TexId.CLOTH, 1,5));// �㷨����124 84
-		jointList.add(cap = new Joint(this, -49, -31, 49, 31, 0, 60, TexId.CAP,
+		jointList.add(cloth=new Joint(this, -36, -25, 36, 25, 0, -12, TexId.CLOTHENEMY, 1,5));// �㷨����124 84
+		jointList.add(cap = new Joint(this, -49, -31, 49, 31, 0, 60, TexId.CAPENEMY,
 				1, 5));
 			noGunDraw=new GunDraw(0, this, -32, -23, 96, 23, -10, -0,TexId.GUN, 1, 5){	
 				public void drawElement(GL10 gl){}
@@ -193,24 +192,31 @@ public class JointCreature extends Creature{
 
 	}
 
+	
+	
 	protected void faceLeft() {
 		setDirection(-1);
-		for (int i = 0; i < jointList.size(); i++) {
-			Joint joint = jointList.get(i);
-			if (joint.getDirection() == 0)
-				joint.start();
-		}
 		gunDraw.faceLeft();
 		blade.faceLeft();
 	}
-
-	protected void faceRight() {
-		setDirection(1);
+	 protected void turnLeft(){
+		super.turnLeft();
 		for (int i = 0; i < jointList.size(); i++) {
 			Joint joint = jointList.get(i);
 			if (joint.getDirection() == 0)
 				joint.start();
 		}
+	}
+	 protected void turnRight(){
+			super.turnRight();
+			for (int i = 0; i < jointList.size(); i++) {
+				Joint joint = jointList.get(i);
+				if (joint.getDirection() == 0)
+					joint.start();
+			}
+		}
+	protected void faceRight() {
+		setDirection(1);
 		gunDraw.faceRight();
 		blade.faceRight();
 	}
@@ -218,11 +224,12 @@ public class JointCreature extends Creature{
 	float ang;
 	protected Blade realBlade;
 	private Joint expression;
+	protected Joint cloth;
 
 	 protected void attack() {
 		if (blade != null) {
-			blade.setDirection(getDirection());
-			blade.attack();
+//			blade.setDirection(getDirection());
+			blade.attack(getDirection());
 		}
 	}
 

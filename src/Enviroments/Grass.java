@@ -16,6 +16,7 @@ public class Grass extends Animation{
 	private boolean isburrow;
 	public boolean notBroken=true;
 	public boolean canBeBreak;
+	public boolean attackedAble=true;
 	public Grass(char mapSign,float data[],int texId,boolean canBeBreak){
 		this(mapSign, data, texId);
 		this.canBeBreak = canBeBreak;

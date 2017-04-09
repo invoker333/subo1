@@ -22,7 +22,7 @@ public class Gun extends Set {// 子弹
 	protected int bulletIndex;// 子弹计数器
 	public float gunLength = 64;// 枪长系数
 	float x, y;// 枪口位置
-	protected double bSpeed = World.baseBSpeed;// 射速系数
+	public double bSpeed = World.baseBSpeed;// 射速系数
 	protected ArrayList<Bullet> bList;
 	protected ArrayList<Creature> sList;
 	protected Creature player;

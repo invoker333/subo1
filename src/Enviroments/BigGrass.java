@@ -17,10 +17,12 @@ public class BigGrass extends Grass{
 	private float edge;
 	public BigGrass(char bi,float[] data, int texId,boolean canBeBreak,float edge) {
 		super(bi,data, texId,canBeBreak);
+		attackedAble=false;
 		this.edge = edge;
 	}
 	public BigGrass(char bi,float[] data, int texId,float edge) {
 		super(bi,data, texId);
+		attackedAble=false;
 		this.edge = edge;
 	}
 	public void syncTextureSize(){

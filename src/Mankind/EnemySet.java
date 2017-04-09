@@ -201,8 +201,8 @@ public class EnemySet extends Set {
 			for (int i = 0; i < enemySet.cList.size(); i++) {
 				another = enemySet.cList.get(i);
 				if (Math.abs(self.x - another.x) < another.getW() + self.getW()
-						&& another.y - another.getH() < self.y // foot
-						&& another.y + another.getH() > self.y - self.getH()) {// head higher than foot
+						&& another.y - another.gethEdge() < self.y // foot
+						&& another.y + another.gethEdge() > self.y - self.gethEdge()) {// head higher than foot
 					tooClose(self,another);
 				}
 			}
@@ -281,7 +281,8 @@ public class EnemySet extends Set {
 	}
 
 	public void treaded(Player player, Creature spi, int attack) {
-		spi.treaded(spi, attack);
+		attacked(player, spi,attack);
+		spi.treaded(spi);
 		spi.playSound();
 	}
 

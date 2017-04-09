@@ -46,8 +46,8 @@ public class FireBall extends Enemy{
 		 Creature another;
 			for (int i = 0; i < es.cList.size(); i++) {
 				another = es.cList.get(i);
-				if (Math.abs(x - another.x) < another.getwEdge() + getW()
-					&&Math.abs(y - another.y) < another.gethEdge() + getH()) {
+				if (Math.abs(x - another.x) < another.getW() + getW()
+					&&Math.abs(y - another.y) < another.getW() + getH()) {
 					tooClose(another,es);
 				}
 				else if (Math.abs(fireSet.x - another.x) < another.getwEdge() + fireSet.w

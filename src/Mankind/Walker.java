@@ -11,20 +11,18 @@ public class Walker extends Enemy {
 	public Walker(char bi,GrassSet gra, float x, float y) {
 		super(bi,gra, x, y);
 		setSoundId(MusicId.walker);
-		// TODO Auto-generated constructor stub
 		
-//		changeSize(0.7f);
 		setxSpeedMax(getxSpeedMax()/4);
 		setxSpeedMin(-getxSpeedMax());
 	}
 	public void sizeCheck(){
 		setwEdge((int) (getW() * 55 / 64f));// 左边身体宽度
-		sethEdge((int) (getH() * 62 / 64f));// 60/64f=15/16
+		sethEdge((int) (getH() * 56 / 64f));// 60/64f=15/16
 		aniStepCheck();
 	}
 	protected void init(){
-		setH(0.7f*getH());
-		w*=0.7f;
+		setH(0.6f*getH());
+		w*=0.6f;
 		setTextureId(TexId.WALKER);
 		super.init();
 	}
