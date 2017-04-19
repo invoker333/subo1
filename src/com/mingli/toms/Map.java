@@ -31,7 +31,8 @@ public class Map {
 		String mapFile = null;
 
 		
-		mapIndex=mapIndex%(max+1);//关卡循环机制
+//		mapIndex=mapIndex%(max+1);//关卡循环机制
+		if(mapIndex==max+1)mapIndex=0;
 		mapFile="w"+mapIndex+".txt";//关卡文件位置
 
 		try {
@@ -102,21 +103,6 @@ public class Map {
 		}
 	}
 	public void saveMap(String fileString, File f) {
-		// TODO Auto-generated method stub
-		Writer os;
-		Reader bais;
-		try {
-			os=new FileWriter(f);
-			bais=new FileReader(fileString);
-			os.write(fileString);
-			
-			bais.close();
-			os.close();
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		saveMap(fileString.getBytes(),f);
 	}
 }

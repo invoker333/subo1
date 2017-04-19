@@ -363,7 +363,6 @@
         android:id="@+id/choseFileGameMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/choseNetstageGameMenu"
         android:layout_below="@+id/backtostagechoosser"
         android:layout_margin="10dp"
         android:background="@drawable/bg_selected"

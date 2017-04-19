@@ -26,6 +26,9 @@ public class Client implements Runnable{
 	}
 	public void connect(){
 		while(!connected){
+			World.timeRush(1000);
+			if(!MenuActivity.isNetworkAvailable(acti))continue;
+			Log.i("尝试连接网络");
 			try {
 //				s=new Socket("127.0.0.1",8888);
 //				s=new Socket("192.168.137.1",8888);
@@ -52,8 +55,7 @@ public class Client implements Runnable{
 				e.printStackTrace();
 			}	
 			
-			World.timeRush(1000);
-			Log.i("尝试连接网络");
+			
 		}
 	}
 

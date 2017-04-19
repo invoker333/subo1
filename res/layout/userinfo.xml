@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/usericonEdit"
+        android:layout_below="@+id/userIdText"
         android:layout_marginRight="87dp"
         android:background="@drawable/bg_button"
         android:text="取消" />
@@ -44,9 +44,9 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/editcancel"
         android:layout_alignBottom="@+id/editcancel"
         android:layout_alignLeft="@+id/usernameedit"
+        android:layout_below="@+id/userIdText"
         android:background="@drawable/bg_button"
         android:text="确定" />
 

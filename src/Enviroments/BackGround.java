@@ -16,15 +16,13 @@ public class BackGround extends Square{
 	
 	public BackGround(int mapId){
 		this();
-		final int count=6;
-		int id=Math.abs(mapId)/World.dStage%count;
+		int id=(Math.abs(mapId-1)/World.dStage)%(World.dStage);
 		switch(id){
 //		default:setTextureId(TexId.SEA);break;		
-		default:setTextureId(TexId.BACKGROUND);break;
-		case 2:setTextureId(TexId.SUNSET);break;
-		case 3:setTextureId(TexId.ZHIJINDONG);break;
-		case 4:setTextureId(TexId.HUANGSHAN);break;
-		case 5:setTextureId(TexId.TIANSHAN);break;			
+		default:setTextureId(TexId.MORNING);break;
+		case 1:setTextureId(TexId.SUNSET);break;
+		case 2:setTextureId(TexId.DESERT);break;
+		case 3:setTextureId(TexId.EVENING);break;
 		}
 		
 	}

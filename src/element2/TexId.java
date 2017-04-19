@@ -32,7 +32,7 @@ public class TexId{
 	public static int EGG;
 	public static int BULLET;
 	public static int BACK;
-	public static int BACKGROUND;
+	public static int MORNING;
 //	public static int BUBBLE;
 	public static int RED;
 	public static int CLOCK;
@@ -55,7 +55,7 @@ public class TexId{
 	public static int ATTACK;
 	public static int BLANK;
 	public static int GOAL;
-	public static int HUANGSHAN;
+	public static int EVENING;
 	public static int SUNSET;
 	public static int TIANSHAN;
 	public static int STONE;
@@ -70,7 +70,7 @@ public class TexId{
 	public static int JINGUBANG;
 	public static int BLUE;
 	public static int GREEN;
-	public static int ZHIJINDONG;
+	public static int DESERT;
 	public static int FLYER;
 	public static int BALLER;
 	public static int BODY;
@@ -131,8 +131,12 @@ public class TexId{
 	public static int STICKER;
 	public static int CLOTHENEMY;
 	public static int CAPENEMY;
+	public static int FLAG;
+	public static int EXPRESSIONENEMY;
 	public  void loadTextureId(GL10 gl) {
 //		if(1<2)return;
+		EXPRESSIONENEMY=loadTexture(gl,R.drawable.espressionenemy);
+		FLAG=loadTexture(gl,R.drawable.flag);
 		CAPENEMY=loadTexture(gl,R.drawable.toukuienemy);
 		CLOTHENEMY=loadTexture(gl,R.drawable.clothenemy);
 		STICKER=loadTexture(gl,R.drawable.sticker);
@@ -192,7 +196,7 @@ public class TexId{
 		CLOTH=loadTexture(gl,R.drawable.cloth);
 		CAP=loadTexture(gl,R.drawable.cap);
 		BACK=loadTexture(gl,R.drawable.back);
-		BACKGROUND=loadTexture(gl,R.drawable.background);
+		MORNING=loadTexture(gl,R.drawable.background);
 
 		CLOCK=loadTexture(gl,R.drawable.clock);
 		WALKER=loadTexture(gl,R.drawable.walker);
@@ -234,8 +238,8 @@ public class TexId{
 		PRICKX=loadTexture(gl, R.drawable.spinex);
 		
 		
-		ZHIJINDONG=repeatLoadTexture(gl, R.drawable.zhijindong);
-		HUANGSHAN=repeatLoadTexture(gl, R.drawable.huangshan2);
+		DESERT=repeatLoadTexture(gl, R.drawable.zhijindong);
+		EVENING=repeatLoadTexture(gl, R.drawable.huangshan2);
 		SUNSET=repeatLoadTexture(gl, R.drawable.sunset);
 		TIANSHAN=repeatLoadTexture(gl, R.drawable.tianshan);
 	}

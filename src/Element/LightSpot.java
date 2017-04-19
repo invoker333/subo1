@@ -14,7 +14,7 @@ public class LightSpot extends Animation{
 	protected float alpha;
 	
 	private float time=10;
-	private float da=1/60f;
+	private float da=1/300f;
 	private float dr=da;
 	private float dg=da;
 	private float db=da;

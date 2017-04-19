@@ -1,4 +1,4 @@
-package com.mingli.toms;
+﻿package com.mingli.toms;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -66,7 +66,7 @@ public class World extends GLSurfaceView implements Runnable {
 	public static float alpha = 1;
 	private ArrayList<Draw> drawList = new ArrayList<Draw>();
 	static ArrayList<Draw> recycleList = new ArrayList<Draw>();
-	public static int dStage = 1;// �ؿ��ֶ�
+	public static int dStage = 4;// �ؿ��ֶ�
 
 	private LightSpotSet lightSpotSet;
 	public Tail touchTail;
@@ -107,6 +107,7 @@ public class World extends GLSurfaceView implements Runnable {
 	private BloodSet snowBloodSet;
 	public  File mapFile;
 	String mapName;
+	public Creature storySpeaker;
 	public static int curMapIndex;
 	
 	
@@ -174,7 +175,7 @@ public class World extends GLSurfaceView implements Runnable {
 		
 //		char[] ch={'s','g','0','t','w','f','1','A','T','C','n','U','a','x','b','c','d','e','i','I','H','Z','z','2','↑','↓','←','→','B','D','K','M','O','S','j','J','E','F','V','l','L',13};
 		
-		Map map=new Map(-10,acti);
+		Map map=new Map(-99,acti);
 		GrassSet gs=new GrassSet(gra.getGrid(), map.charData, lightningSet, this);
 		
 		
@@ -289,12 +290,15 @@ public class World extends GLSurfaceView implements Runnable {
 		
 		animationList=gra.animationList;
 		
-		bg = new BackGround(mapIndex);
-		// bg = new BackGroundRoll(mapIndex);
-		// bg.setTextureId(TexId.ICE);
-		if (bg.getTextureId() == TexId.TIANSHAN)
-			snowSet = new SnowSet(20, gra);
 		ps = new ParticleSet(gra, 10);
+		{
+			bg = new BackGround(mapIndex);
+			if(!gra.getGoal().pickable)bg.setTextureId(TexId.TIANSHAN);
+			// bg = new BackGroundRoll(mapIndex);
+			// bg.setTextureId(TexId.ICE);
+			if (bg.getTextureId() == TexId.TIANSHAN)
+				snowSet = new SnowSet(20, gra);
+		}
 
 		enemySet = new EnemySet(gra);
 		if (RAMPAGE)
@@ -350,12 +354,15 @@ public class World extends GLSurfaceView implements Runnable {
 		guidePost = new GuidePost();
 		
 		 if(editMode)initAnimationShopList();
-		 
+		 if(storySpeaker==null||editMode)
+		 sendLoadedMessage();
+	}
+	public void sendLoadedMessage() {
 		 sendMessage(LOADED);
 	}
 
-
 	public void loadGame(int i) {
+		storySpeaker=null;
 		music.initSoundPool();
 		drawList.clear();
 //		pauseDraw();
@@ -366,7 +373,7 @@ public class World extends GLSurfaceView implements Runnable {
 		recycleList.clear();
 
 		drawList.add(bg);
-		 if(bg!=null&&(bg.getTextureId()==TexId.HUANGSHAN))
+		 if(bg!=null&&(bg.getTextureId()==TexId.EVENING))
 		drawList.add(lightSpotSet);
 		 
 		 drawList.add(gra);
@@ -415,9 +422,13 @@ public class World extends GLSurfaceView implements Runnable {
 			if(i==2)MenuActivity.showDialog("厉害了我的哥", "欢迎来到火星猎人的世界第"+i+"关", R.drawable.zan);
 			else if(i==Map.max+1){
 				MenuActivity.showDialog("厉害了我的哥", "经历了各种有趣的难关，终于到达这里，旅程也算告一段落，但是精彩并没有结束！还有各种有意思的地方没有去。更多精彩尽在“在线关卡”，各种新奇关卡，等你来闯关！", R.drawable.zan);
+				gameTime=0;
 				mapName="这并不是终点";
 			}
+			
+			
 		}
+		if(editMode)gameTime=0;
 	}
 
 //	public boolean onTouchEvent(MotionEvent e) {
@@ -489,9 +500,9 @@ public class World extends GLSurfaceView implements Runnable {
 					if(editMode)return;// edit mode dont dai
 //					player.setGotGoal(true);// maybe the boy has gotgoal 
 					Log.i("gametime"+gameTime+"getgoal"+player.isGotGoal());
-					player.isDead=true;
+					player.die();
 //					player.setGotGoal(true);
-					gameOver();
+//					gameOver();
 					// break;
 				}
 
@@ -538,7 +549,7 @@ public class World extends GLSurfaceView implements Runnable {
 			// gra.newBendTail();
 
 		}
-		if (player != null && guidePost != null		) {
+		if (player != null && guidePost != null	&&!player.isGotGoal()) {
 			if(!isMapMoved(5 * 60) ) {
 				tringerGuidePost();
 			} 
@@ -598,7 +609,7 @@ public class World extends GLSurfaceView implements Runnable {
 	}
 
 	public void drawElements(GL10 gl) {
-		try{
+//		try{
 			for (int i = 0; i < drawList.size(); i++) {
 				drawList.get(i).drawElement(gl);
 			}
@@ -609,9 +620,9 @@ public class World extends GLSurfaceView implements Runnable {
 			if(editMode&&touchMove!=null)touchMove.drawElement(gl);
 //		if(paused)return;
 			timerTask();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
 	}
 
 	public void quitGame() {
@@ -627,8 +638,7 @@ public class World extends GLSurfaceView implements Runnable {
 	}
 
 	public void succeed() {
-		if (player.isDead)
-			return;
+//		if (player.isDead)return;
 		music.setBGM(R.raw.victory);
 		music.setLooping(false);
 		increaseScore(20);
@@ -843,6 +853,7 @@ public class World extends GLSurfaceView implements Runnable {
 	public static double baseBSpeed=15;//20
 	public static boolean bigMode;
 	public static boolean openMode;
+	public static int baseActionCdMax=180;
 
 	public void astarSearch(float x, float y) {
 		if (astar == null)

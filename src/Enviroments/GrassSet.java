@@ -12,6 +12,7 @@ import Element.Draw;
 import Element.FireSet;
 import Mankind.Baller;
 import Mankind.BladeMan;
+import Mankind.BossRunner;
 import Mankind.Creature;
 import Mankind.Creeper;
 import Mankind.Emplacement;
@@ -201,10 +202,14 @@ public class GrassSet extends Set{
 				case 122:gList.add(new Grass(bi,grassData(x, y),TexId.ZHUAN,true));break;//z
 				case 'm':gList.add(new GrassSticker(bi,grassData(x, y),TexId.STICKER));break;
 				case 85:int ran=(int) (Math.random()*2);
-					Burrow bro=new Burrow(bi,grassData(x, y),TexId.BAMBOO,grid*3/32,0,ran);
-					Burrow bro2=new Burrow(' ', grassData(x+1, y),TexId.BAMBOO,grid*3/32,1,ran);
-					burrorList.add(bro);burrorList.add(bro2);
-					gList.add(bro);gList.add(bro2);break;//U 表示地洞 竹子
+					Burrow bro=new Burrow(bi,grassData(x, y),TexId.BAMBOO,grid*3/32,ran);
+					burrorList.add(bro);
+					gList.add(bro);
+					if(World.editMode)break;// no 2 if edit
+						Burrow bro2=new Burrow(' ', grassData(x+1, y),TexId.BAMBOO,grid*3/32,ran);
+						burrorList.add(bro2);
+						gList.add(bro2);
+					break;//U 表示地洞 竹子
 				case 73:coinList.add(new GoreCoin(' ', (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));
 					gList.add(new BankGrass(bi,grassData(x, y),TexId.GOLDENBANK));break;//I 带金币的砖
 				case 90:
@@ -224,7 +229,7 @@ public class GrassSet extends Set{
 				case 77:fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.JUJI));break;//M 
 				case 79:fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.GUANGDANQIANG));break;//O normal bullet
 				case 83:fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.SHOTGUN));break;//S 
-				case 'P':fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.BOOMGUN));break;//S 
+				case 'P':fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.BOOMGUN));break;//
 				case 'L':fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.ZIDONGDAN));break;//L
 				case 84:if(World.rpgMode)fruitList.add(new Tomato(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid, 500));break;//T 加血道具
 				case 110:fruitList.add(new Toukui(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,9999));break;//n toukui
@@ -259,6 +264,8 @@ public class GrassSet extends Set{
 				case 101:enemyList.add(new Hedgehog(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid));break;//e
 				case 'o':enemyList.add(new GunMan(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid));break;//e
 				case 'p':enemyList.add(new BladeMan(bi,this,(x+0.5f)*grid,(mapHeight-y)*grid));break;//e
+				case 'u':enemyList.add(new BossRunner(world, bi,this,(x+0.5f)*grid,(mapHeight-y)*grid));break;//e
+				
 				case 106://j
 //					int ran1=(int) (Math.random()*2);
 //					if(ran1==0){
@@ -309,6 +316,7 @@ public class GrassSet extends Set{
 		if(goal==null)goal=new Goal(' ', -1000, 0){
 			 public void drawElement(GL10 gl){}
 		};
+		goal.searchBoss(player,enemyList);
 		animationList.add(goal);
 		player.
 		goal=goal;
@@ -422,7 +430,7 @@ public class GrassSet extends Set{
 		else viewGrid=grid;
 	}
 	public void drawElement(GL10 gl) {
-		grassTail.drawElement(gl);
+//		grassTail.drawElement(gl);
 		if(gore) {
 			topAni.springCheck(goreAni, 0,3f / 5f,0.9f);
 			goreAni.drawElement(gl);

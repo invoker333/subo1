@@ -37,7 +37,7 @@ public class TouchMove implements OnTouchListener {
 	private Animation cloner;
 	private World world;
 	private Animation deleter;
-	private boolean deleteMode;
+	boolean deleteEdgeMode;
 	private boolean moveCloneMode;
 
 	public TouchMove( LightSpotSet lightSpotSet, Player player){
@@ -196,13 +196,19 @@ public class TouchMove implements OnTouchListener {
 		if(yy<0)yy-=grid;
 		editTarget.setStartXY(xx, yy);
 		
-		if(deleteMode){
-			animationList.remove(editTarget);
-//			world.removeDraw(editTarget);
-			editTarget.setPosition(0, 400);
-	}
+		if(deleteEdgeMode){
+			deleteTarget();
+			deleteEdgeMode=false;
+			return;
+		}
 		
 		if(World.editMode)editTarget=null;
+	}
+	private void deleteTarget() {
+		animationList.remove(editTarget);
+//			world.removeDraw(editTarget);
+		editTarget.setPosition(0, 400);
+		editTarget=null;
 	}
 
 	private void build8CHeck() {
@@ -226,7 +232,7 @@ public class TouchMove implements OnTouchListener {
 		
 		
 		
-		if(moveCloneMode){
+		if(moveCloneMode||deleteMuchMode){
 			
 			Log.i("MoveCloneMode=true");
 			float grid=player.getGra().getGrid();
@@ -242,12 +248,19 @@ public class TouchMove implements OnTouchListener {
 				Animation a=animationList.get(i);
 				if(Math.abs(tx-a.x)<grid&&
 						Math.abs(ty-a.y)<grid) {
+					
+					if(deleteMuchMode){
+						editTarget=a;
+						deleteTarget();
+						return true;
+					}
+					
 					noDul=false;
 					Log.i("noDul=false;");
 					break;
 				}
 			}
-			if(noDul){
+			if(moveCloneMode)if(noDul){
 				Log.i("noDul=true;  newAnimation(cloner);");
 				newAnimation(tx,ty);
 			}
@@ -262,8 +275,8 @@ public class TouchMove implements OnTouchListener {
 			
 			if(Math.abs(xx-deleter.x)<deleter.w
 					&&Math.abs(yy-deleter.y)<deleter.h){
-				deleteMode=true;
-			}else deleteMode=false;
+				deleteEdgeMode=true;
+			}else deleteEdgeMode=false;
 			moveViewCheck(ex2,ey2);
 			return true;
 		}
@@ -302,11 +315,16 @@ public class TouchMove implements OnTouchListener {
 			if (Math.abs(ex - a.x) < a.getW()
 					&& Math.abs(ey - a.y) < a.getH()) {
 				editTarget=a;
+				if(deleteMuchMode){
+					deleteTarget();
+					return;
+				}
 				cloner=a;
 				return;//avoid clone
 			}
 		}
 		
+		if(!deleteMuchMode)
 		if(cloner!=null) {
 			for(Animation aa:build8group){
 				if (Math.abs(ex - aa.x) < grid/2
@@ -332,10 +350,11 @@ public class TouchMove implements OnTouchListener {
 	}
 	float alphaClone=1f;
 	 float alphaSpeed=0.02f;
+	public boolean deleteMuchMode;
 	public void drawElement(GL10 gl){
 		if(editTarget!=null){
 			deleter.setPosition(Render.px+Render.width/2, Render.py+Render.height-deleter.h);
-			if(deleteMode)gl.glColor4f(1	, 0, 0, 1);
+			if(deleteEdgeMode)gl.glColor4f(1	, 0, 0, 1);
 			
 			deleter.drawTranElement(gl);
 		}

@@ -93,7 +93,7 @@ class Lightninig extends Animation{
 	private float red;
 	float alpha;
 	static float max=1f;
-	float aMax=0.02f;
+	float aMax=0.01f;
 	private float aSmall=aMax/1f;
 	private float alphaA=aMax;
 	float speedMax= (float) Math.sqrt(2*alphaA*max);
@@ -106,6 +106,8 @@ class Lightninig extends Animation{
 		this.blue=blue;
 	}
 	void colorInc(){
+		angle = (int) (360*Math.random());
+		
 		red+=alphaSpeed;
 		green+=alphaSpeed;
 		blue+=alphaSpeed;
@@ -123,6 +125,11 @@ class Lightninig extends Animation{
 		gl.glColor4f(getRed(), getGreen(), getBlue(), alpha);
 		gl.glTranslatef(x, y, 0);
 		gl.glRotatef(angle, 0, 0, 1);
+//		if(alpha!=0){
+//			gl.glScalef(alpha, alpha, 0);
+//			super.baseDrawElement(gl);
+//			gl.glScalef(1/alpha, 1/alpha, 0);
+//		}else 
 		super.baseDrawElement(gl);
 		gl.glRotatef(-angle, 0, 0, 1);
 		gl.glTranslatef(-x, -y, 0);

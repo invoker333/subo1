@@ -70,12 +70,14 @@ public class Enemy extends Creature {
 	protected void tooRight() {
 		super.tooRight();
 		setAnimationFinished(true);
+		if(xSpeed>getxSpeedMax())xSpeed=getxSpeedMax();
 		turnLeft();
 	}
 
 	protected void tooLeft() {
 		super.tooLeft();
 		setAnimationFinished(true);
+		if(xSpeed<getxSpeedMin())xSpeed=getxSpeedMin();
 		turnRight();
 	}
 //	public void attackAnotherOne(EnemySet es){// thi effect too foot is good than all body

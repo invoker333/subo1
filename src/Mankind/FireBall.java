@@ -76,4 +76,6 @@ public class FireBall extends Enemy{
 		xSpeed=0;
 //		if(false)super.moveCheck();
 	}
+	public void die(){}
+	
 }

@@ -44,6 +44,7 @@ public class Spide extends Emplacement {
 				if (catcher == null || catcher.isDead) {
 					catcher = enemy;
 				}
+				b.resetBullet();return;
 			}
 		};
 		b.loadTexture(TexId.THUNDER);
@@ -52,6 +53,7 @@ public class Spide extends Emplacement {
 	}
 
 	public void randomAction() {
+		if(catcher!=null&&!catcher.isDead)return;
 		if (hirtIndex > hirtIndexBorn)
 			super.randomAction();
 		else

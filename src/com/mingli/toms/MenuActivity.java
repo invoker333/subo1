@@ -353,7 +353,10 @@ public class MenuActivity extends Activity {
 				if (gameMenu!=null&&gameMenu.returnCurStateAndHide()){
 					pauseGame();
 					gameMenu.showWindow(world);
-				}else resumeGame();
+				}else {
+					if (world != null)
+						world.resume();
+				}
 				
 			}
 			return false;
@@ -406,6 +409,8 @@ public class MenuActivity extends Activity {
 	private static String talk;
 
 	private static int resId;
+	private static int direction1;
+	private static int direction2;
 	private Client client;
 	public String userName;
 	public ArrayList<Info4> userInfoList=new ArrayList<Info4>();
@@ -445,12 +450,19 @@ public class MenuActivity extends Activity {
 
 //	public static boolean titleMode;
 	
-	public static void showDialog(String speaker, String talk, int resId) {	
+	public static void showDialog(String speaker, String talk, int resId,int direction1,int direction2) {	
+		MenuActivity.direction1=direction1;
+		MenuActivity.direction2=direction2;
 		MenuActivity.speaker = speaker;
 		MenuActivity.talk = talk;
 		MenuActivity.resId = resId;
 		
 		myHandler.sendEmptyMessage(World.DIALOG);
+		
+	}
+	
+	public static void showDialog(String speaker, String talk, int resId) {	
+		showDialog(speaker, talk, resId, Gravity.TOP,Gravity.CENTER_HORIZONTAL);
 	}
 	public void showGuideDialog(){
 		final Dialog d=new Dialog(this,R.style.toumingDialog);
@@ -467,6 +479,7 @@ public class MenuActivity extends Activity {
 	}
 	
 	public static void showDialogView() {	
+		dl.getWindow().setGravity(direction1|direction2);
 		TextView nameView = (TextView) dl.findViewById(R.id.speakername);
 		TextView talkView = (TextView) dl.findViewById(R.id.dialogue);
 		ImageView img=(ImageView) dl.findViewById(R.id.speaker);
@@ -551,7 +564,8 @@ public class MenuActivity extends Activity {
 		userName=sp.getString("username", UserName.randomName());
 		userId=sp.getInt("userId", 5);
 	}
-	void saveUserMessage(){
+	void saveUserMessage(String sn){
+		userName=sn;
 		startMenu.setUserName(userName);
 		client.send(ConsWhenConnecting.REQUEST_UPDATE_NAME+userId+" "+userName);
 		editor.putString("username",userName);

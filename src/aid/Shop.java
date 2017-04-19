@@ -2,8 +2,10 @@ package aid;
 
 import java.util.ArrayList;
 
+import Enviroments.ChanceFruit;
 import Enviroments.Fruit;
 import Enviroments.FruitSet;
+import Mankind.Creature;
 import android.app.Activity;
 import android.content.Context;
 import android.view.Gravity;
@@ -130,19 +132,19 @@ public class Shop {
 	private void initButton(View v) {
 		// TODO Auto-generated method stub
 		Button buy = (Button) v.findViewById(R.id.buy);
-		Button buyanduse = (Button) v.findViewById(R.id.buyanduse);
 		
-		if(!World.rpgMode){
-			buyanduse.setText(buy.getText());
-			buy.setVisibility(View.GONE);
-		}
 		
 		OnClickListener click = new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-
+				Creature player=world.player;
+				if(selectedItem instanceof ChanceFruit&&player!=null&&!player.isDead){
+					setNoneSelected();
+					MenuActivity.showDialog("店老板", "现在不用复活", R.drawable.egg);
+					return;
+				}
 				if (selectedItem == null) {
 					MenuActivity.showDialog("店老板", "请选择要买的东西", R.drawable.cap);
 					return;
@@ -150,14 +152,10 @@ public class Shop {
 				if (acti.coinCount - selectedItem.cost >= 0
 						&& acti.chance - selectedItem.chancecost >= 0) {
 					fs.buyItem(selectedItem);
-					if (v.getId() == R.id.buyanduse) {
-						fs.useItem(selectedItem);
-						
-					}
 					
-					selectedItem = null;
-					if(selectedView!=null)selectedView.setBackgroundResource(R.drawable.whitestroke);
-					instruction.setText("请选择一个商品查看说明");
+					fs.useItem(selectedItem);
+					
+					setNoneSelected();
 					hideCheck();
 //					popupWindow.dismiss();
 				} else {
@@ -169,10 +167,16 @@ public class Shop {
 //				selectedItem = null;
 				itemadapter.notifyDataSetChanged();
 			}
+
+			
 			
 		};
 		buy.setOnClickListener(click);
-		buyanduse.setOnClickListener(click);
+	}
+	private void setNoneSelected() {
+		selectedItem = null;
+		if(selectedView!=null)selectedView.setBackgroundResource(R.drawable.whitestroke);
+		instruction.setText("请选择一个商品查看说明");
 	}
 
 	public void hideCheck() {

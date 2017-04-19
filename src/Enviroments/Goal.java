@@ -1,16 +1,21 @@
 package Enviroments;
 
+import java.util.ArrayList;
+
 import javax.microedition.khronos.opengles.GL;
 import javax.microedition.khronos.opengles.GL10;
 
 import Element.Animation;
 import Element.LightSpot;
+import Mankind.Creature;
+import Mankind.JointEnemy;
 import Mankind.Player;
 import aid.Log;
 
 import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.Render;
+import com.mingli.toms.World;
 
 import element2.TexId;
 
@@ -31,19 +36,22 @@ public class Goal extends RotateFruit{
 	LightSpot ls;
 	Animation a;
 	private boolean hasFirstBlood=true;
+	public boolean pickable=true;
 	Goal(char bi,float x,float y){
 		super(bi,x, y);
-		x1=x-getW();
-		x2=x+getW();
-		y1=y-getH();
-		y2=y+getH();
+		angleSpeed=0.2f;
+		float pickWidth=w*1.99f;
+		x1=x-pickWidth;
+		x2=x+pickWidth;
+		y1=y-pickWidth;
+		y2=y+pickWidth;
 		setTextureId(TexId.CUP);
 		
 		Log.i("Goal .x1:"+x1+"x2:"+x2+"y1:"+y1+"y2:"+y2);
 		ls=new LightSpot(){
 			public void loadTexture(int i){
 				super.loadTexture(i);
-				min=-1f;
+				min=0.01f;
 				max=1.0f;
 			}
 		};
@@ -54,16 +62,13 @@ public class Goal extends RotateFruit{
 		ls.loadTexture(TexId.LIGHTTAIL);
 		
 		a=new Animation();
-//		final float d=getW()*1.4f;
-		final float d=getW()*1.99f;
-		a.setW(d);
-		a.setH(d);
+		a.setW(pickWidth);
+		a.setH(pickWidth);
 		a.loadTexture(TexId.GOALCIRCLE);
-//		ls.
 	}
 	void init(){
-		setW(128);
-		setH(128);
+		setW(64);
+		setH(64);
 		super.init();
 	}
 //	public void drawElement(GL10 gl){
@@ -71,6 +76,7 @@ public class Goal extends RotateFruit{
 //		super.drawElement(gl);
 //	}
 	public void drawElement(GL10 gl){
+		if(!pickable)return;
 		ls.drawElement(gl);
 		
 		gl.glEnable(GL10.GL_CULL_FACE);//背面裁剪
@@ -86,21 +92,6 @@ public class Goal extends RotateFruit{
 			a.randomWave(a.w*4f/5f);
 	}
 	
-/*	public Goal(float x, float y,int count) {
-		this(count);
-		float h=256;
-		float w=256;
-		this.x=x;this.y=y;
-		tringer(x,y, count);
-		x1=x-w;x2=x+w;
-		y1=y-h;y2=y+h;
-		// TODO Auto-generated constructor stub
-	}
-	public void drawElement(GL10 gl){
-		super.drawElement(gl);
-		if(index++%5==0)
-			tringerExplode(5,x,y,1);
-	}*/
 
 	public void loadSound() {
 		setSoundId(MusicId.finalcoin);
@@ -113,7 +104,20 @@ public class Goal extends RotateFruit{
 	public void picked() {
 		// TODO Auto-generated method stub
 		playSound();
+		pickable=true;
 		hasFirstBlood=false;
+	}
+	public void searchBoss(Player player, ArrayList<Creature> enemyList) {
+		// TODO Auto-generated method stub
+		int length=200;
+		for(Creature c:enemyList){
+			if(c instanceof JointEnemy){
+				if(Math.abs(c.x-x)<length&&Math.abs(c.y-y)<length){
+					((JointEnemy)c).player=player;
+					pickable=false;
+				}
+			}
+		}
 	}
 
 }

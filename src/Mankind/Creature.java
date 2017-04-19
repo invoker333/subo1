@@ -645,4 +645,24 @@ public class Creature extends AnimationGrass {
 		// TODO Auto-generated method stub
 		this.friendSet=friendSet;
 	}
+
+	public void culTreadxSpeed(Creature c) {
+		float rs=c.xSpeed-getxSpeed();    //relativeSpeed;
+		
+		float am=c.getAm();
+		
+		if(c.fdirection==0){
+			c.xSpeed=getxSpeed(); 
+		}else {
+			if(c.fdirection==1){
+				if(rs<c.getxSpeedMax()){
+					c.xSpeed+=c.am;
+				}
+			}else if(c.fdirection==-1){
+				if(rs>c.getxSpeedMin()){
+					c.xSpeed-=c.am;
+				}
+			}
+		}
+	}
 }

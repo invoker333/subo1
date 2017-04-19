@@ -136,11 +136,10 @@ class Burrow extends Grass{
 
 	private float edge;
 	
-	public Burrow(char bi,float[] data, int texId,float edge,int xState,int yState) {
+	public Burrow(char bi,float[] data, int texId,float edge,int yState) {
 		super(bi,data, texId);
 		// TODO Auto-generated constructor stub
-		setxCount(2);setyCount(2);
-		setxState(xState);
+		setyCount(2);
 		setyState(yState);
 		this.edge = edge;
 		setIsburrow(true);
@@ -149,17 +148,18 @@ class Burrow extends Grass{
 //	public Burrow( float[] data, int texId,float edge,int xState) {
 //		
 //	}
-	public void loadTexture(){
-		setTexture((int)getxState(),(int)getyState());
+	public void drawElement(GL10 gl){
+		if(mapSign!=' ')super.drawElement(gl);
+		
 	}
 	public void syncTextureSize(){
 		fbSpi.clear();
 		fbSpi.put(new float[]{
-				w,h+edge,getDepth(),
+				3*w,h+edge,getDepth(),
 				-w,h+edge,getDepth(),
 				-w,-h-edge,getDepth(),
-				w,-h-edge,getDepth(),
-				w,h+edge,getDepth(),
+				3*w,-h-edge,getDepth(),
+				3*w,h+edge,getDepth(),
 				
 				
 //				data[0],data[1]-edge,getDepth(),

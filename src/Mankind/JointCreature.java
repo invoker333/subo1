@@ -92,7 +92,7 @@ public class JointCreature extends Creature{
 		jointList
 				.add(body=new Joint(this, -x0, -y0, x0, y0, 0, 11, TexId.BODY, 1, 5));
 		jointList.add(expression=new Joint(4, this, -20, -24, 20, 24, 16, 18,
-				TexId.EXPRESSION, 1, 5));
+				TexId.EXPRESSIONENEMY, 1, 5));
 //		jointList.add(expression=new Joint(4, this, -20, -24, 20, 34, 16, 18,
 //				TexId.MEIMAO, 1, 5));
 		
@@ -223,7 +223,7 @@ public class JointCreature extends Creature{
 
 	float ang;
 	protected Blade realBlade;
-	private Joint expression;
+	protected Joint expression;
 	protected Joint cloth;
 
 	 protected void attack() {

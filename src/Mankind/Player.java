@@ -61,6 +61,7 @@ public class Player extends JointCreature {
     	
     	cloth.setTextureId(TexId.CLOTH);
 		cap.setTextureId(TexId.CAP);
+		expression.setTextureId(TexId.EXPRESSION);
     	
     	this.world = world;
     	controller=this;
@@ -342,7 +343,6 @@ public class Player extends JointCreature {
     	   footTail.drawElement(gl);
 //    	   footTail.drawScale(gl);
        }
-//       if(autoBulletTime>0)ab.drawElement(gl);
        
        final float alpw=0.5f;// alpha wudi
        if(wudiTime>0){
@@ -396,20 +396,22 @@ public class Player extends JointCreature {
               if(destoryed) {
             	  setySpeed((float) -Math.sqrt(Math.pow(ySpeed, 2) - E));//��������ʧ
             	  gaoTime--;
+            	  dropToCheck(goreId);
               }
-              else super.tooDown();
                 //p*v^2p*v^2=E��
-            } else {
+            } 
+            else {
+          	  //fog trick lightning
                 getgList().get(goreId).setRgb((float) Math.random(),
                         (float) Math.random(), (float) Math.random());
-                super.tooDown();
             }
-        } else {
-        	super.tooDown();
-        }
+        } 
+        super.tooDown();
+        
     }
 
-    private void initView() {
+    
+	private void initView() {
         if (getGra().getMapWidth() > getGra().getMapHeight()) {//����
         	 if (startX - 0 < getGra().getGrid() * getGra().getMapWidth()//�����
                      - startX) {
@@ -440,7 +442,7 @@ public class Player extends JointCreature {
     
     boolean turnDown() {
     	Grass gras=getgList().get(getLandId());
-        if (isJumpAble() && (gras.isIsburrow() ||gras.turnDown(this) )) {
+        if (isJumpAble() && (gras.turnDown(this) )) {
             y -= 1;
             land();
             return true;
@@ -472,18 +474,22 @@ public class Player extends JointCreature {
 		Log.i("Player.ySpeedMax: "+getySpeedMax());
 	}
 
+    public void succeed() {
+    	  gotGoal = true;
+          goal.picked();
+          world.succeed();
+    }
     private void timerTask() {
+    	if(isDead)return;
     	
-    	
-    	 if (y < 0 && !isDead) {
+    	 if (y < 0 ) {
 //         	isDead = true;
     		 die();
          }
-         if (!gotGoal && x > goal.x1 && x < goal.x2
+         if (goal.pickable&&!gotGoal && x > goal.x1 && x < goal.x2
                  && y > goal.y1 && y < goal.y2) {
-             gotGoal = true;
-             goal.picked();
-             world.succeed();
+//        	 if(!isDead)
+        	 succeed();
          }
          // randomColor();
          actCheck(controller);
@@ -523,6 +529,7 @@ public class Player extends JointCreature {
 		
 		Grass footGrass=gList.get(getLandId());
 		setPosition(footGrass.data[0]+gra.getGrid()/2, footGrass.data[3]+gethEdge()*1.2f);
+		xSpeed=0;
 		world.relife();
 	}
 	public void reLife(){
@@ -750,7 +757,7 @@ public class Player extends JointCreature {
         if(treadListCheck( enemySet))return;//caizhong le fan hui
         if(treadListCheck( friendSet))return;
       
-        world.sendMessage(World.NOTREADICON);
+       sendIcon(World.NOTREADICON);
     }
 
     private boolean treadListCheck(EnemySet es) {
@@ -769,16 +776,8 @@ public class Player extends JointCreature {
             	 float dYspeed=getySpeed() - c.getySpeed();
             	 if(dYspeed>footdepth)continue;//相对向上跳速度相差太大不踩
             	 
-            	 
-            	 
-            	 ySpeed+=getG();// remove the g 's effect
-            	 c.yStandCheck(this,gethEdge()+c.gethEdge(), 0.2f, 1);
-
-            	 
-            	 culxSpeed(c);
+            	c. culTreadxSpeed(this);
                 // c carry me so set c's speed as base speed instead of my speed
-             
-             
                 
                 if(treader!=c){
                 	if(
@@ -798,8 +797,12 @@ public class Player extends JointCreature {
                 }
                 treader=c;
                 fallen=true;
+           	 
+           	 ySpeed+=getG();// remove the g 's effect
+           	 c.yStandCheck(this,gethEdge()+c.gethEdge(), 0.2f, 1);
+
                  
-              world.sendMessage(World.TREADICON);
+              sendIcon(World.TREADICON);
                  
                 return true;
              } 
@@ -809,25 +812,10 @@ public class Player extends JointCreature {
     	 return false;
       
 	}
-	private void culxSpeed(Creature c) {
-		float rs=xSpeed-c.getxSpeed();    //relativeSpeed;
-		
-		float am=c.getAm();
-		
-		if(fdirection==0){
-				xSpeed=c.getxSpeed(); 
-		}else {
-			if(fdirection==1){
-				if(rs<getxSpeedMax()){
-					xSpeed+=am;
-				}
-			}else if(fdirection==-1){
-				if(rs>getxSpeedMin()){
-					xSpeed-=am;
-				}
-			}
-		}
+	 void sendIcon(int i) {
+		world.sendMessage(i);
 	}
+	
 
     boolean destory(int grassId, int x1, int my1) {
     	Grass g=gra.getgList().get(grassId);
@@ -846,14 +834,36 @@ public class Player extends JointCreature {
 	private Creature treader;
 	private float mh1;
 	private float mh2;
+	private void dropToCheck(int goreId) {
+		// TODO Auto-generated method stub
+		Grass gg=gList.get(goreId);
+		int dir=x<gg.x?1:-1;
+		
+		double v = Math.sqrt(Math.abs(2*1*(x-gg.x)));
+		xSpeed+=dir*v;
+		
+	}
+	private boolean crossToCheck(int goreId) {
+		// TODO Auto-generated method stub
+		Grass gg=gList.get(goreId);
+		int dir=x>gg.x?1:-1;
 
+		float max=gra.getGrid()/2+wEdge;
+		float dw = dir*max-(x-gg.x)-xSpeed;// xSpeed 1 is more to avoid move inside grass
+		
+		float most = gra.getGrid()/4;
+		if(Math.abs(dw)>most)return false;
+		
+		setxPro(getxPro() + dw);
+		return true;
+	}
     protected void tooHigh() {
-
         int goreId;
         int x1 = (int) (x / getGra().getGrid());
         if ((goreId = getGra().map[x1][getMy1()]) == getGra().getZero()) {
             x1 = getMx1();
             goreId = getTopId();
+            if(crossToCheck(goreId))return;
         }
 
         if (toukuiTime > 0) destory(goreId, x1, getMy1());//���ƻ� Ҫ��Ȼש��᲻��ʧ
@@ -1031,9 +1041,6 @@ public class Player extends JointCreature {
         destorySound = MusicId.wood2;
     }
 
-    public void succeed1() {
-//        world.succeed();
-    }
 
     public void increaseScoreBy(int score) {
     	this.setScore(this.getScore() + score);
@@ -1173,6 +1180,8 @@ public class Player extends JointCreature {
 		pifeng.setPosition(x, y);
 	}
 	public void doubleDownCheck() {
+		if(true)return;
+		
 		if(downIndex<20)setDoubleClicked(true);
 		downIndex=0;
 	}

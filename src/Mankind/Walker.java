@@ -16,7 +16,7 @@ public class Walker extends Enemy {
 		setxSpeedMin(-getxSpeedMax());
 	}
 	public void sizeCheck(){
-		setwEdge((int) (getW() * 55 / 64f));// 左边身体宽度
+		setwEdge((int) (getW() * 50 / 64f));// 左边身体宽度
 		sethEdge((int) (getH() * 56 / 64f));// 60/64f=15/16
 		aniStepCheck();
 	}

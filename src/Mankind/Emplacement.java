@@ -3,6 +3,7 @@ package Mankind;
 import javax.microedition.khronos.opengles.GL10;
 
 import com.mingli.toms.MusicId;
+import com.mingli.toms.World;
 
 import aid.Log;
 import element2.TexId;
@@ -15,14 +16,15 @@ import Weapon.Missile;
 import Weapon.TailBullet;
 
 public class Emplacement extends Creature {
-	 Bullet b;
+	 private  final int cdMax = World.baseActionCdMax;
+	Bullet b;
 //	Animation guideCircle;
 	protected double bSpeed = 5;
 	private int range = 500;
 	double range2 = range * range;
 	private int angleSpeed;
 	private Creature targetPeople;
-	int cd;// bullet's cd 
+	int cd=cdMax;// bullet's cd 
 
 	// int gunSoundId;
 	public Emplacement(char bi,GrassSet gra, float x, float y) {
@@ -62,7 +64,7 @@ public class Emplacement extends Creature {
 	
 	public void randomAction() {
 		super.randomAction();
-		if(cd++<60)return;
+		if(cd++<cdMax)return;
 		
 		
 		if (enemySet == null)

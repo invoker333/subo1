@@ -5,14 +5,19 @@ import aid.Circle;
 import aid.CircleSurface;
 import aid.MyMoveView;
 import aid.Shop;
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Message;
 import android.text.method.Touch;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -21,6 +26,7 @@ import android.widget.SlidingDrawer;
 /**
  * Created by Administrator on 2016/7/13.
  */
+@SuppressLint("NewApi")
 public class ButtonController {
 	private MenuActivity acti;
 	private World world;
@@ -30,6 +36,7 @@ public class ButtonController {
 	private ItemWindow itemWindow;
 	private CircleSurface circleSurface;
 	private Player player;
+	private Drawable ob;
 
 	ButtonController(Activity acti, World world, GameMenu gameMenu) {
 		this.acti = (MenuActivity) acti;
@@ -85,6 +92,11 @@ public class ButtonController {
 			ride.setOnTouchListener(ontl);
 			shopButton.setOnTouchListener(ontl);
 			buildButton.setOnTouchListener(ontl);
+			
+			eraser = (ImageButton) buttonView.findViewById(R.id.eraser);
+			if(!World.editMode)eraser.setVisibility(View.INVISIBLE);
+			eraser.setOnTouchListener(ontl);
+			ob=eraser.getBackground();
 			if(!World.editMode)buildButton.setVisibility(View.INVISIBLE);
 			// itembutton.setOnTouchListener(ontl);
 			menu.setOnTouchListener(ontl);
@@ -119,6 +131,8 @@ public class ButtonController {
 
 		@Override
 		// touch.onTouch(v, event);
+		
+		
 		public boolean onTouch(View v, MotionEvent event) {
 			world.playerMoveIndex=0;
 
@@ -200,6 +214,19 @@ public class ButtonController {
 					if(World.editMode)acti.showAnimationShop(v);
 				}
 				break;
+			case R.id.eraser:
+				TouchMove tm = world.touchMove;
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					if(tm.deleteMuchMode){
+						tm.deleteMuchMode=false;
+						eraser.setBackground(ob);
+					}
+					else {
+							tm.deleteMuchMode=true;
+							eraser.setBackgroundResource(R.drawable.greenrect);
+					}
+				}
+				break;
 			/*
 			 * case R.id.circle1: if (event.getAction() ==
 			 * MotionEvent.ACTION_DOWN) { Player.GunAngle=(float)
@@ -213,8 +240,8 @@ public class ButtonController {
 			// if(v.getId()==R.id.maskview)
 			// touch.onTouch(v, event);
 			return false;
+			
 		}
-
 		// // TODO Auto-generated method stub
 		//
 		// }
@@ -298,6 +325,7 @@ public class ButtonController {
 	private View attack;
 	private View ride;
 	private mySeekBar jumpSeekBar;
+	private ImageButton eraser;
 
 	public void hide() {
 		// TODO Auto-generated method stub

@@ -30,7 +30,6 @@
 
     <!-- android:background="@drawable/button_up" -->
 
-
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="300dp"
@@ -136,5 +135,16 @@
             </GridView>
         </LinearLayout>
     </SlidingDrawer>
+
+    <ImageButton
+        android:id="@+id/eraser"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/pause"
+        android:padding="5dp"
+        android:scaleType="centerCrop"
+        android:layout_margin="5dp"
+        android:src="@drawable/eraser" />
 
 </RelativeLayout>

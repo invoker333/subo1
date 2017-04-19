@@ -1,4 +1,6 @@
-package Mankind;
+﻿package Mankind;
+
+import aid.Log;
 
 import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
@@ -44,6 +46,16 @@ public class Creeper extends Enemy {
 				tooClose(another, es);
 			}
 		}
+	}
+	public void culTreadxSpeed(Creature c){
+//		super.culTreadxSpeed(c);
+	}
+	public void treaded(Creature player) {// ����
+		super.treaded(player);
+		float width=wEdge+player.gethEdge();
+		float dx=player.x-x;
+		player.setxSpeed(player.getxSpeed()+(float) (-player.getySpeed()*Math.sin(3.14f*dx/width)));
+		this.xSpeed+=-player.getxSpeed()/2;
 	}
 	protected void tooClose(Creature another){
 		 float dYspeed=another.getySpeed() - getySpeed();

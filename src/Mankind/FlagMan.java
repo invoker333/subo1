@@ -18,7 +18,7 @@ public class FlagMan extends JointCreature{
 		
 		haveBlade();
 		realBlade.tail=new Tail(25,TexId.REDCREEPER);
-		realBlade.tail.setTextureId(TexId.CUP);
+		realBlade.tail.setTextureId(TexId.FLAG);
 		realBlade.setTextureId(TexId.QIGAN);
 //		realBlade.angstart=60;
 		realBlade.angstart=75;

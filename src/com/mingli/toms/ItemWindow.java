@@ -61,11 +61,11 @@ public class ItemWindow {
 //		long tim = System.currentTimeMillis();
 		
 		slideWindow = (GridView) sd.findViewById(R.id.itemGridView);
-		slideWindow.setNumColumns(itemCount);// ////
+//		slideWindow.setNumColumns(itemCount);// ////
 		
-		int space = 3;
-		slideWindow.setHorizontalSpacing(space);
-		slideWindow.setVerticalSpacing(space);
+//		int space = 3;
+//		slideWindow.setHorizontalSpacing(space);
+//		slideWindow.setVerticalSpacing(space);
 		
 		Log.i("world.fs"+world.getFruitSet());
 		fs = world.getFruitSet();
@@ -126,7 +126,7 @@ public class ItemWindow {
 			
 			// TODO Auto-generated method stub
 			View v = null;
-			View im = null ;
+			ImageView im = null ;
 			if (convertView == null) {
 				v = ((Activity) context).getLayoutInflater().inflate(
 						R.layout.biankuang, null);
@@ -136,21 +136,19 @@ public class ItemWindow {
 				// ItemWindow.itemWidth));// bug
 
 				// 设置大小
-
+			
 
 			} else {
 				v=convertView;
 			}
 			
-			im =  v.findViewById(R.id.iv_image);
+			im =  (ImageView) v.findViewById(R.id.iv_image);
 			LayoutParams param = im.getLayoutParams();
-			int itemWidth = (MenuActivity.screenWidth-slideWindow.getWidth())/(itemCount-1);
+			int itemWidth = param.width;
 			param.width = itemWidth;
 			param.height = itemWidth;
-			// im.setBackground("#111111");
 			im.setLayoutParams(param);// nobug
-			
-			im.setBackgroundResource((fruList.get(position).getIcon()));
+			im.setImageResource((fruList.get(position).getIcon()));
 			return v;
 
 		}

@@ -87,7 +87,7 @@ public class FruitSet extends Set {
 			shopList.add(new FruitGun(bi, 1, 1, TexId.BOOMGUN));
 			shopList.add(new FruitGun(bi, 1, 1, TexId.HOOKGUN));
 			shopList.add(new FruitBlade(bi, 1, 1));
-			if (World.rpgMode) {
+//			if (World.rpgMode) {
 				shopList.add(new Tomato(bi, 1, 1, 500));// ..
 				shopList.add(new FruitGun(bi, 1, 1, TexId.ZIDONGDAN));
 				shopList.add(new FruitGun(bi, 1, 1, TexId.GUANGDANQIANG));
@@ -95,7 +95,7 @@ public class FruitSet extends Set {
 				shopList.add(new FruitGun(bi, 1, 1, TexId.MISSILE));
 				shopList.add(new FruitGun(bi, 1, 1, TexId.JUJI));
 				shopList.add(new FruitGun(bi, 1, 1, TexId.SHUFUDAN));
-			}
+//			}
 		}
 	}
 
@@ -224,7 +224,7 @@ public class FruitSet extends Set {
 		if (fruit.loadAble(player)) {
 			if (World.rpgMode)
 				pickedList.add(fruit);
-			gunLoseCheck(fruit);
+//			gunLoseCheck(fruit);
 		}
 		effectList.add(fruit);
 		fruitList.remove(fruit);// 2016.10

@@ -14,6 +14,7 @@ import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
@@ -238,8 +239,11 @@ public class StartMenu{
 					
 					switch(v.getId()){
 					case R.id.editok:
-						acti.userName=editT.getText().toString();
-						acti.saveUserMessage();
+						String sn=editT.getText().toString();
+						if(sn.length()>5)sn=sn.substring(0, 5);
+						if(sn.contains("\n"))sn=sn.substring(0, sn.indexOf("\n"));
+						
+						acti.saveUserMessage(sn);
 						dl.cancel();
 						break;
 					case R.id.editcancel:dl.cancel();break;

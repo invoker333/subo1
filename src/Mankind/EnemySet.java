@@ -282,7 +282,7 @@ public class EnemySet extends Set {
 
 	public void treaded(Player player, Creature spi, int attack) {
 		attacked(player, spi,attack);
-		spi.treaded(spi);
+		spi.treaded(player);
 		spi.playSound();
 	}
 

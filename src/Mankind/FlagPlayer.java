@@ -13,6 +13,7 @@ public class FlagPlayer extends Player{
 		// TODO Auto-generated constructor stub
 		super(bi, grassSet,world, x, y);
 		setFlag();
+		setGotGoal(true);
 		setPosition(x, y);
 	}
 	private void setFlag() {
@@ -23,7 +24,7 @@ public class FlagPlayer extends Player{
 		noGun();
 		downData[0]=true;
 		realBlade.tail=new Tail(25,TexId.REDCREEPER);
-		realBlade.tail.setTextureId(TexId.CUP);
+		realBlade.tail.setTextureId(TexId.FLAG);
 		realBlade.setTextureId(TexId.QIGAN);
 //		realBlade.angstart=60;
 		realBlade.angstart=75;
@@ -42,8 +43,8 @@ public class FlagPlayer extends Player{
 		downData[0]=false;
 		downData[1]=true;
 	}
-	public void die(){}
-	
+	public void die(){setGotGoal(true);}// avoid gameOver
+	void sendIcon(int i){world.sendMessage(World.NOTREADICON);}
 //	public void quitgame(){
 //		for(int i=0;i<downData.length;i++){
 //			downData[i]=false;

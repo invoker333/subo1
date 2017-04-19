@@ -20,6 +20,7 @@ public class GrassPrick extends Grass {
 		if(angle==0||angle==180)setTextureId(TexId.PRICKX);
 		else setTextureId(TexId.PRICK);
 		this.angle = angle;
+		attackedAble=false;
 	}
 	public boolean tooDown(AnimationGrass a){
 		if(angle==90)attack(a);
