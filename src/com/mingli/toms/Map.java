@@ -6,13 +6,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.Reader;
-import java.io.Writer;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -20,7 +16,7 @@ import android.content.res.AssetManager;
 
 public class Map {
 	byte[] data;
-	char[] charData;
+	public char[] charData;
 	public static int max=17;//关卡总数
 	
 
@@ -54,7 +50,9 @@ public class Map {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+//		for(int i=0;i<charData.length;i++){
+//			Log.i(" "+charData[i]);
+//		}
 	}
 	public Map(File f,Context context){
 		InputStream is;
@@ -83,6 +81,10 @@ public class Map {
 	public Map(String mapString) {
 		// TODO Auto-generated constructor stub
 		charData=mapString.toCharArray();
+	}
+	public Map(char[] mapCharSet) {
+		// TODO Auto-generated constructor stub
+		charData=mapCharSet;
 	}
 	public void saveMap(byte[]s,File f){
 		OutputStream os;

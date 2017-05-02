@@ -1,5 +1,6 @@
-package Mankind;
+﻿package Mankind;
 
+import Enviroments.GrassSet;
 import android.view.Gravity;
 
 import com.mingli.toms.MenuActivity;
@@ -7,29 +8,28 @@ import com.mingli.toms.R;
 import com.mingli.toms.Render;
 import com.mingli.toms.World;
 
-import Enviroments.GrassSet;
-
 public class BossRunner extends JointCreature{
 
 	private Creature chaser;
 	String []strSet={
-	"小子！我们是全火星最强大的冰山集团！"
-	,"我永远效忠于伟大的“冰棍”首领！“冰棍”万岁！",
-	"我们的计划是冰冻整个火星！",	
-	"所有反抗者都会变成冰渣！然后被寒风吹走！哈哈哈！",
+	"嘿嘿！火星可不是一般人能来的！"
+//	,"我永远效忠于伟大的“冰棍”首领！",
+//	"我们的计划是冰冻整个火星！",	
+//	"所有反抗者都会变成冰渣！哈哈哈！",
 	};
 	int strId;
-	private int cd;
-	private final int cdMax=180;
+	private final int cdMax=World.baseActionCdMax;
+	private int cd=cdMax;
 	private World world;
 
 	public BossRunner(World world,char bi, GrassSet gra, float x, float y) {
 		super(bi, gra, x, y);
 		this.world = world;
-		world.storySpeaker=this;
+		if(world!=null)world.storySpeaker=this;
 		attack=0;
 		// TODO Auto-generated constructor stub
 	}	
+	protected void tooHigh(){}
 	 public void randomAction(){
 		 if(y<0)jump();
 		 int direction1=Gravity.CENTER_HORIZONTAL;

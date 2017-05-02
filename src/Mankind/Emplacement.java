@@ -2,18 +2,14 @@ package Mankind;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import Enviroments.GrassSet;
+import Weapon.Bullet;
+import Weapon.Missile;
+
 import com.mingli.toms.MusicId;
 import com.mingli.toms.World;
 
-import aid.Log;
 import element2.TexId;
-import Element.Animation;
-import Element.BoomSet;
-import Enviroments.GrassSet;
-import Weapon.AutoBullet;
-import Weapon.Bullet;
-import Weapon.Missile;
-import Weapon.TailBullet;
 
 public class Emplacement extends Creature {
 	 private  final int cdMax = World.baseActionCdMax;
@@ -30,9 +26,10 @@ public class Emplacement extends Creature {
 	public Emplacement(char bi,GrassSet gra, float x, float y) {
 		super(bi,gra,x,y);
 		// TODO Auto-generated constructor stub
-	setJumpHeight(10);
-	setxSpeedMax(1);
-	setxSpeedMin(-1);
+		setJumpHeight(10);
+		setxSpeedMax(1);
+		setxSpeedMin(-1);
+		setLifeMax(5*World.baseAttack);
 	}// 炮台
 
 	protected void init(){

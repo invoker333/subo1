@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.mingli.toms.MusicId;
-import com.mingli.toms.World;
-
 import Element.Animation;
 import Enviroments.BackGround;
 import Mankind.Creature;
+
+import com.mingli.toms.MusicId;
+import com.mingli.toms.World;
 
 public class LightningSet extends Set{
 	ArrayList<Lightninig> weatherList = new ArrayList<Lightninig>(10);

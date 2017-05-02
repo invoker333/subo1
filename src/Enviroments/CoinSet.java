@@ -6,14 +6,8 @@ import javax.microedition.khronos.opengles.GL10;
 
 import Mankind.Player;
 
-import com.mingli.toms.Music;
 import com.mingli.toms.MusicId;
-import com.mingli.toms.R;
 import com.mingli.toms.World;
-
-import element2.Set;
-import element2.Tail;
-import element2.TexId;
 
 public class CoinSet extends FruitSet {
 

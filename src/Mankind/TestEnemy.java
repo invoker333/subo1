@@ -1,9 +1,5 @@
 package Mankind;
 
-import javax.microedition.khronos.opengles.GL10;
-
-import com.mingli.toms.World;
-
 import Enviroments.GrassSet;
 
 public class TestEnemy extends EnemyGrass{

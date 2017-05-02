@@ -1,10 +1,10 @@
 package Mankind;
 
+import Enviroments.GrassSet;
+
 import com.mingli.toms.MusicId;
-import com.mingli.toms.R;
 
 import element2.TexId;
-import Enviroments.GrassSet;
 
 public class Walker extends Enemy {
 

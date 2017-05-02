@@ -2,15 +2,12 @@ package Mankind;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import Enviroments.GrassSet;
 import Weapon.BoomBullet;
-import Weapon.Missile;
 
 import com.mingli.toms.MusicId;
-import com.mingli.toms.R;
 
 import element2.TexId;
-import Element.Boom;
-import Enviroments.GrassSet;
 
 public class Flyer extends Enemy {
 	private static final int cdMAX = 180;
@@ -55,10 +52,6 @@ public class Flyer extends Enemy {
 		setxSpeedMax(4);
 		setxSpeedMin(-4);
 		super.afterInit();
-	}
-	protected void tooDown(){
-
-		super.tooDown();
 	}
 	public void sizeCheck(){
 		setwEdge((int) (getW() * 62 / 64f));// 左边身体宽度

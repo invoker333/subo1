@@ -1,12 +1,6 @@
 package Enviroments;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-
 import javax.microedition.khronos.opengles.GL10;
-
-import Mankind.Player;
 
 public class ShakeFruit extends Fruit{
 	float angleSpeed=0;

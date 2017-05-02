@@ -2,12 +2,11 @@ package Enviroments;
 
 import java.util.ArrayList;
 
-import com.mingli.toms.MusicId;
-import com.mingli.toms.R;
-
-import element2.Tail;
-import element2.TexId;
 import Mankind.Player;
+
+import com.mingli.toms.MusicId;
+
+import element2.TexId;
 
 public class Toukui extends ShakeFruit{
 
@@ -129,6 +128,33 @@ class FruitFly extends ShakeFruit{
 		doubleCost(max);
 		super.use(player, pickedList);
 	}
-
-//	public
 }
+ 
+ class Fenshen extends ShakeFruit{
+
+		private int time;
+		private int count=10;
+
+		public Fenshen(char bi,float x, float y,int count) {
+			super(bi,x, y);
+			this.count = count;
+			// TODO Auto-generated constructor stub
+			name="分身果";
+			instruction="使用后分身为"+(count+1)+"个。点击任意个体使本体与之交换位置。";
+			setGoodsCost(50,50);
+		}
+		public Fenshen(char bi,float x, float y) {
+			this(bi,x,y,4);
+			// TODO Auto-generated constructor stub
+		}
+		void init(){
+			setSoundId(MusicId.light);
+			loadTexture(TexId.FENSHEN);
+		}
+		public void use(Player player,ArrayList<Fruit> pickedList){
+			final int max=200;
+			player.fenshen(count);
+			doubleCost(max);
+			super.use(player, pickedList);
+		}
+	}

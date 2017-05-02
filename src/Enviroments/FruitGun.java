@@ -2,17 +2,10 @@ package Enviroments;
 
 import java.util.ArrayList;
 
+import Mankind.Player;
+
 import com.mingli.toms.MenuActivity;
 import com.mingli.toms.R;
-import com.mingli.toms.World;
-
-import Mankind.Player;
-import Weapon.Gun;
-import Weapon.HookGun;
-import Weapon.MissileGun;
-import Weapon.ShotGun;
-import Weapon.TailGun;
-import element2.TexId;
 
 public class FruitGun extends RotateFruit{
 
@@ -47,12 +40,12 @@ public class FruitGun extends RotateFruit{
 			break;
 		case R.drawable.s:
 			name="霰弹枪";
-			instruction="大范围发射子弹，离得越近伤害越高";
+			instruction="大范围发射子弹";
 			setGoodsCost(20,0);
 			break;
-		case R.drawable.putongdan:
+		case R.drawable.guangdan:
 			name="光弹枪";
-			instruction="射速较快的武器";
+			instruction="威力大 范围广 射速慢";
 			setGoodsCost(10,0);
 			break;
 		case R.drawable.jujidan:
@@ -62,13 +55,18 @@ public class FruitGun extends RotateFruit{
 			break;
 		case R.drawable.huck:
 			setGoodsCost(15,0);
-			instruction="可以将目标拉过来，或者将自己拉向地形边缘，点击地形发射或解除";
+			instruction="或者将自己拉向地形边缘，点击地形发射或解除。\n如果拉到敌人也会把他拉过来";
 			name="钩爪";
 			break;
 		case R.drawable.daodan:
 			setGoodsCost(40,0);
 			name="火箭筒";
 			instruction="直线运行，造成范围伤害";
+			break;
+		case R.drawable.putongdan:
+			setGoodsCost(20,0);
+			name="步枪";
+			instruction="快速射击的步枪，威力一般射速较快。";
 			break;
 		}
 	}

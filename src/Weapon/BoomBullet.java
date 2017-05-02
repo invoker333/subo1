@@ -9,12 +9,10 @@ import element2.TexId;
 
 public class BoomBullet extends  Bullet{
 
-	private GrassSet gra;
 	BoomAttack boomA;
 	public BoomBullet(EnemySet es,GrassSet gra) {
 		super( es,gra);
 		// TODO Auto-generated constructor stub
-		this.gra = gra;
 		setSize(20, 20);
 		setTextureId(TexId.BULLET);
 		boomA=new BoomAttack(this);

@@ -6,10 +6,6 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import aid.Log;
-import element2.TexId;
-import Mankind.Player;
-
 public class RotateFruit extends Fruit{
 	float angleSpeed=1;
 	protected float angle;//起始位置

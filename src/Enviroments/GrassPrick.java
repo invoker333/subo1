@@ -2,14 +2,12 @@ package Enviroments;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import Element.AnimationGrass;
 import aid.Log;
-import android.R.anim;
 
 import com.mingli.toms.World;
 
 import element2.TexId;
-import Element.AnimationGrass;
-import Mankind.EnemySet;
 
 public class GrassPrick extends Grass {
 
@@ -30,6 +28,14 @@ public class GrassPrick extends Grass {
 		if(angle==270)attack(animationGrass);
 		// TODO Auto-generated method stub
 		return false;
+	}
+	public void setTexture(){
+		super.setTexture();
+		float length=10;
+		data[0]+=length;
+//		data[1]+=length;
+		data[2]-=length;
+		data[3]-=length;
 	}
 	public boolean tooLeft(AnimationGrass animationGrass) {
 		// TODO Auto-generated method stub

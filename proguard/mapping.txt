@@ -1,0 +1,4275 @@
+Element.Animation -> a.a:
+    float x -> a
+    float y -> b
+    float h -> c
+    float w -> d
+    char mapSign -> e
+    float wEdge -> f
+    float hEdge -> g
+    int score -> C
+    float startX -> h
+    float startY -> i
+    java.nio.ByteBuffer bbSpi -> j
+    java.nio.ByteBuffer[][] bbtex -> k
+    java.nio.FloatBuffer fbSpi -> l
+    java.nio.FloatBuffer[][] fbtex -> m
+    int spiSize -> n
+    int texSize -> o
+    int xCount -> D
+    int yCount -> E
+    boolean visible -> p
+    java.lang.String name -> q
+    int cost -> r
+    int chancecost -> s
+    float xState -> F
+    float yState -> G
+    float depth -> H
+    boolean animationFinished -> I
+    int indexWave -> t
+    double indexWaveRandom -> u
+    float maxScaleLengthX -> v
+    float scaleLength -> w
+    float scaleSpeed -> x
+    float scaleA -> y
+    float tanxingxishu -> z
+    float scaleZuni -> J
+    float xScaleRate -> K
+    float yScaleRate -> L
+    float angle -> A
+    float rotateSpeed -> B
+    int frameCount -> M
+    java.lang.Object superClone() -> a_
+    Element.Animation clone() -> b
+    float getwEdge() -> c
+    void setwEdge(float) -> a
+    void setGoodsCost(int,int) -> a
+    int getIcon() -> d
+    void randomWave(float) -> b
+    void setStartXY(float,float) -> a
+    void loadTexture(int) -> a
+    void loadTexture(int,int,int) -> a
+    void scaleTringer(float) -> c
+    void scaleCheck() -> e
+    void culYScaleRate() -> f
+    void drawScale(javax.microedition.khronos.opengles.GL10) -> a
+    void setTexture(int,int) -> b
+    void setTexture() -> g
+    void baseSetTexture() -> h
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void baseDrawElement(javax.microedition.khronos.opengles.GL10) -> c
+    void syncTextureSize() -> i
+    void baseSynchronizedSize() -> j
+    void changeState(float) -> d
+    float getH() -> k
+    void setH(float) -> e
+    float getW() -> l
+    void setW(float) -> f
+    void setPosition(float,float) -> b
+    int getxCount() -> m
+    void setxCount(int) -> b
+    float getxState() -> n
+    void setxState(float) -> g
+    void setState(float,float) -> c
+    int getyCount() -> o
+    void setyCount(int) -> c
+    void setFrameCount(int,int) -> c
+    float getyState() -> p
+    void setyState(float) -> h
+    float getDepth() -> q
+    void setDepth(float) -> i
+    boolean isAnimationFinished() -> r
+    void setAnimationFinished(boolean) -> a
+    float getxScaleRate() -> s
+    void setxScaleRate(float) -> j
+    float getyScaleRate() -> t
+    void setyScaleRate(float) -> k
+    void setScaleZuni(float) -> l
+    float getAngle() -> u
+    void setAngle(float) -> m
+    void toStartPosition() -> v
+    float gethEdge() -> w
+    void sethEdge(float) -> n
+    void drawTranElement(javax.microedition.khronos.opengles.GL10) -> d
+    int getScore() -> x
+    void setScore(int) -> d
+    java.lang.Object clone() -> clone
+Element.AnimationGrass -> a.b:
+    float[] xdata -> C
+    float[] ydata -> U
+    Enviroments.GrassSet gra -> D
+    int landId -> V
+    int topId -> W
+    int collisionId -> X
+    float xEdgeNew -> Y
+    float xPro -> Z
+    float yPro -> aa
+    java.util.ArrayList gList -> E
+    float edge -> F
+    float edge2 -> G
+    float wRate -> ab
+    float hRate -> ac
+    float sin -> H
+    float cos -> I
+    int mx1 -> ad
+    int my1 -> ae
+    int mx2 -> J
+    int my2 -> K
+    float xEdgeAgo -> af
+    float climbBuffer -> L
+    float yEdgeNew -> ag
+    float yEdgeAgo -> ah
+    float backSpeed -> ai
+    boolean fallen -> M
+    void setPosition(float,float) -> b
+    void toStartPosition() -> v
+    void sizeCheck() -> y
+    void aniStepCheck() -> z
+    void gravity() -> A
+    void gravityCheck() -> B
+    void move() -> C
+    void moveCheck() -> D
+    void mapyCheck() -> E
+    void mapxCheck() -> F
+    boolean leftCheck(int) -> p
+    boolean rightCheck(int) -> q
+    void tooLeft() -> G
+    void autoClimb() -> H
+    void tooRight() -> I
+    boolean upCheck(int) -> e
+    void tooHigh() -> J
+    boolean downCheck(int) -> f
+    void tooDown() -> K
+    void bendUpCheck() -> L
+    void bendDownCheck() -> M
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    int getLandId() -> N
+    void setLandId(int) -> g
+    java.util.ArrayList getgList() -> O
+    float getyPro() -> P
+    void setyPro(float) -> o
+    float getxPro() -> Q
+    void setxPro(float) -> p
+    void setCollisionId(int) -> h
+    void setwRate(float) -> q
+    int getTopId() -> R
+    void setTopId(int) -> i
+    float gethRate() -> S
+    void sethRate(float) -> r
+    void sethEdge(int) -> j
+    int getMx1() -> T
+    int getMy1() -> U
+    void attacked(int) -> k
+Element.AnimationGravity -> a.c:
+    float g -> C
+    void gravity() -> A
+Element.AnimationMove -> a.d:
+    float xSpeed -> N
+    float ySpeed -> O
+    float aTanxing -> P
+    float aSin -> Q
+    float aCos -> R
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void toStartPosition() -> v
+    void aCheck(Element.AnimationMove,float,float,float) -> a
+    void springCheck(Element.AnimationMove,float,float,float) -> b
+    void springACheck(Element.AnimationMove,float,float,float) -> j
+    void stringCheck(Element.AnimationMove,float,float,float) -> c
+    void stringCheck2(Element.AnimationMove,float,float,float) -> d
+    boolean stringACheck(Element.AnimationMove,float,float,float) -> e
+    void xPushCheck(Element.AnimationMove,float,float,float) -> f
+    void xACheck(Element.AnimationMove,float,float,float) -> g
+    void yStandCheck(Element.AnimationMove,float,float,float) -> h
+    void yACheck(Element.AnimationMove,float,float,float) -> i
+    void move() -> C
+    void gravity() -> A
+    float getxSpeed() -> V
+    void setxSpeed(float) -> s
+    float getySpeed() -> W
+    void setySpeed(float) -> t
+Element.Blood -> a.e:
+Element.BloodSet -> a.f:
+    java.util.ArrayList bloodList -> a
+    int tringerIndex -> b
+    void init(int) -> a
+    void tringerExplode(float,float,float,float,int) -> a
+    void tringer(float,float,float,float,int) -> b
+    void loadTexture() -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void tringer(double,double,double,double,int) -> a
+    int getCount() -> b
+Element.BloodSized -> a.g:
+    int index -> D
+    float agoW -> E
+    float dSize -> F
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void gravityCheck() -> y
+    void setPosition(float,float) -> b
+    void reLoadBlood() -> B
+    void resetBlood() -> z
+Element.Boom -> a.h:
+    float alpha -> C
+    float blue -> M
+    float green -> N
+    float red -> O
+    float fruSpeed -> D
+    float alphaSpeed -> E
+    float fruLength -> P
+    float windRate -> F
+    void init() -> y
+    void colorInc() -> z
+    void tringer(float,float) -> d
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void resetBooom() -> E
+    float getBlue() -> A
+    void setBlue(float) -> o
+    float getGreen() -> B
+    void setGreen(float) -> p
+    float getRed() -> C
+    void setRed(float) -> q
+Element.BoomSet -> a.i:
+    java.util.ArrayList boomList -> a
+    void init(int) -> a
+    void tringer(float,float) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void tringer(double,double) -> a
+Element.Bubble -> a.j:
+    float x0 -> C
+    float y0 -> D
+    float dSize -> E
+    float agoW -> F
+    int rate -> G
+    void tringer(float,float) -> d
+    void gravity() -> A
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void gravityCheck() -> y
+    void resetBubble() -> z
+Element.BubbleSet -> a.k:
+    java.util.ArrayList bubList -> a
+    int tringerIndex -> b
+    void setBubble(int) -> a
+    void tringer(float,float,int) -> a
+    void tringerScreen(int) -> b
+    void loadTexture() -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+Element.Curtain -> a.l:
+    float alpha -> D
+    float blue -> E
+    float green -> F
+    float red -> G
+    float dAlpha -> C
+    float alphaSpeed -> H
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void open() -> y
+    void close() -> z
+    void incAlpha(float) -> o
+Element.Draw -> a.m:
+    boolean running -> a
+    int textureId -> b
+    int soundId -> S
+    com.mingli.toms.Music music -> T
+    void loadTexture() -> a
+    void quitgame() -> X
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void setRunning(boolean) -> b
+    void loadSound() -> Y
+    void loadSound(int) -> l
+    void playSound() -> Z
+    void setTexture() -> g
+    int getSoundId() -> aa
+    void setSoundId(int) -> m
+    void playSound(int) -> n
+    int getTextureId() -> ab
+    void setTextureId(int) -> o
+Element.Fire -> a.n:
+    float frontTime -> H
+    float backTime -> I
+    float timeAll -> J
+    float alphaMid -> M
+    float alpha -> U
+    float blue -> V
+    float green -> W
+    float red -> X
+    float dAlpha -> K
+    int index -> L
+    void incAlpha(float) -> o
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void tringer(float,float) -> d
+    void gravityCheck() -> y
+    void resetBubble() -> z
+Element.FireSet -> a.o:
+    float x -> c
+    float y -> d
+    float w -> e
+    float h -> f
+    float T -> h
+    int index -> g
+    void setBubble(int) -> a
+    void loadTexture() -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+Element.GuidePost -> a.p:
+    float angle -> D
+    int stayIndex -> C
+    void tringer(float,float,float,float) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+Element.LightSpot -> a.q:
+    float red -> G
+    float green -> H
+    float blue -> I
+    float alpha -> J
+    float time -> C
+    float da -> D
+    float dr -> E
+    float dg -> F
+    float db -> M
+    float max -> K
+    float min -> L
+    void init() -> y
+    void setRgb(float,float,float,float) -> b
+    void colorChange() -> D
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void tringerInColor(float,float) -> e
+    void tringer(float,float) -> d
+Element.LightSpotSet -> a.r:
+    java.util.ArrayList boomList -> b
+    int tringerIndex -> c
+    void init(int) -> a
+    void tringer(float,float) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void tringer(double,double) -> a
+Element.Pifeng -> a.s:
+    Mankind.Creature master -> a
+    Element.AnimationMove[] nodes -> b
+    element2.Tail clothTail -> c
+    float dsmax -> d
+    void timerTask() -> b
+    void timerTask(float,float) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void setPosition(float,float) -> b
+Enviroments.BackGround -> b.a:
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void loadTexture() -> a
+Enviroments.BankGrass -> b.b:
+    void gored() -> y
+Enviroments.BigGrass -> b.c:
+    float edge -> C
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void syncTextureSize() -> i
+    boolean tooHigh(Element.AnimationGrass) -> a
+    boolean tooLeft(Element.AnimationGrass) -> b
+    boolean tooRight(Element.AnimationGrass) -> c
+    boolean turnDown(Element.AnimationGrass) -> d
+Enviroments.Burrow -> b.d:
+    float edge -> C
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void syncTextureSize() -> i
+Enviroments.ChanceFruit -> b.e:
+    void use(Mankind.Player,java.util.ArrayList) -> a
+    boolean loadAble(Mankind.Player) -> a
+    void effectCheck(Mankind.Player,java.util.ArrayList) -> b
+Enviroments.Coin -> b.f:
+    int coinCount -> F
+    int getCoinCount() -> y
+    int getIcon() -> d
+    void init() -> z
+    void use(Mankind.Player,java.util.ArrayList) -> a
+    boolean loadAble(Mankind.Player) -> a
+Enviroments.CoinSet -> b.g:
+    com.mingli.toms.World world -> j
+    void picked(Enviroments.Fruit) -> a
+    void loadSound() -> Y
+    void playSound() -> Z
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void timerTask() -> b
+    float getStar() -> c
+Enviroments.Fog -> b.h:
+    float dr -> C
+    float dg -> D
+    float db -> E
+    float time -> N
+    int maxLightningTime -> F
+    int lightningTime -> G
+    element2.LightningSet lns -> O
+    float max -> H
+    float min -> I
+    void setRgb(float,float,float) -> a
+    void colorInc() -> z
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void lightning() -> E
+Enviroments.Fruit -> b.i:
+    float alpha -> E
+    float blue -> F
+    float green -> G
+    float red -> H
+    java.lang.String kind -> C
+    java.lang.String instruction -> D
+    void doubleCost(int) -> e
+    void init() -> z
+    boolean loadAble(Mankind.Player) -> a
+    void use(Mankind.Player,java.util.ArrayList) -> a
+    void playSound() -> Z
+    void effectCheck(Mankind.Player,java.util.ArrayList) -> b
+    float getBlue() -> A
+    void setBlue(float) -> o
+    float getGreen() -> B
+    void setGreen(float) -> p
+    float getRed() -> C
+    void setRed(float) -> q
+    float getAlpha() -> D
+Enviroments.FruitBlade -> b.j:
+    boolean loadAble(Mankind.Player) -> a
+    void use(Mankind.Player,java.util.ArrayList) -> a
+    void syncTextureSize() -> i
+Enviroments.FruitFly -> b.k:
+    int time -> H
+    void init() -> z
+    void use(Mankind.Player,java.util.ArrayList) -> a
+    void effectCheck(Mankind.Player,java.util.ArrayList) -> b
+Enviroments.FruitGun -> b.l:
+    void nameCheck(int) -> f
+    boolean loadAble(Mankind.Player) -> a
+    void use(Mankind.Player,java.util.ArrayList) -> a
+Enviroments.FruitSet -> b.m:
+    java.util.ArrayList fruitList -> a
+    java.util.ArrayList drawList -> b
+    java.util.ArrayList effectList -> c
+    Mankind.Player player -> d
+    com.mingli.toms.Music music -> e
+    Enviroments.GrassSet gs -> f
+    float COUNT -> g
+    java.util.ArrayList shopList -> h
+    java.util.ArrayList pickedList -> i
+    void checkShopList() -> i
+    void initShopList() -> d
+    void initItemList(char[]) -> a
+    char[] getItemArray() -> e
+    void pick(Enviroments.Fruit) -> b
+    void picked(Enviroments.Fruit) -> a
+    void loadTexture() -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void timerTask() -> b
+    java.util.ArrayList getItemList() -> f
+    float getStar() -> c
+    void useItem(int) -> a
+    void useItem(Enviroments.Fruit) -> c
+    void buyItem(Enviroments.Fruit) -> d
+    void cml() -> h
+Enviroments.Gao -> b.n:
+    int time -> H
+    void init() -> z
+    void use(Mankind.Player,java.util.ArrayList) -> a
+    void effectCheck(Mankind.Player,java.util.ArrayList) -> b
+Enviroments.Goal -> b.o:
+    float x1 -> E
+    float x2 -> F
+    float y1 -> G
+    float y2 -> H
+    Element.LightSpot ls -> I
+    Element.Animation a -> J
+    boolean hasFirstBlood -> L
+    boolean pickable -> K
+    void init() -> z
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void loadSound() -> Y
+    void playSound() -> Z
+    void picked() -> y
+    void searchBoss(Mankind.Player,java.util.ArrayList) -> c
+Enviroments.Goal$1 -> b.p:
+    Enviroments.Goal this$0 -> C
+    void loadTexture(int) -> a
+Enviroments.GoreCoin -> b.q:
+    float ySpeed -> F
+    float g -> G
+    void use(Mankind.Player,java.util.ArrayList) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+Enviroments.Grass -> b.r:
+    float[] data -> J
+    float green -> C
+    float red -> D
+    float blue -> E
+    boolean isburrow -> F
+    boolean notBroken -> K
+    boolean canBeBreak -> L
+    boolean attackedAble -> M
+    void setRgb(float,float,float) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    float getGreen() -> A
+    void setGreen(float) -> o
+    float getRed() -> B
+    void setRed(float) -> p
+    float getBlue() -> C
+    void setBlue(float) -> q
+    boolean isIsburrow() -> D
+    void setIsburrow(boolean) -> c
+    boolean tooDown(Element.AnimationGrass) -> e
+    boolean tooHigh(Element.AnimationGrass) -> a
+    boolean tooLeft(Element.AnimationGrass) -> b
+    boolean tooRight(Element.AnimationGrass) -> c
+    boolean turnDown(Element.AnimationGrass) -> d
+    void gored() -> y
+Enviroments.GrassPrick -> b.s:
+    int angle -> C
+    boolean tooDown(Element.AnimationGrass) -> e
+    boolean tooHigh(Element.AnimationGrass) -> a
+    boolean tooLeft(Element.AnimationGrass) -> b
+    boolean tooRight(Element.AnimationGrass) -> c
+    void attack(Element.AnimationGrass) -> f
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void drawDirection(javax.microedition.khronos.opengles.GL10) -> e
+Enviroments.GrassSet -> b.t:
+    int[][] map -> a
+    java.util.ArrayList gList -> j
+    java.util.ArrayList drawList -> k
+    java.util.ArrayList animationList -> b
+    java.util.ArrayList coinList -> l
+    java.util.ArrayList fruitList -> m
+    java.util.ArrayList enemyList -> n
+    int grassId -> o
+    float speedBack -> p
+    int mapHeight -> q
+    float grid -> r
+    int mapWidth -> s
+    int index -> c
+    int zero -> t
+    Enviroments.Goal goal -> u
+    float[] bendDownData -> d
+    float[] bendUpData -> e
+    element2.Tail grassTail -> v
+    float viewGrid -> w
+    boolean isCastle -> f
+    com.mingli.toms.World world -> x
+    boolean gore -> y
+    java.util.ArrayList emplacementList -> z
+    int topId -> A
+    element2.ParticleSet ps -> g
+    Mankind.Player player -> h
+    Element.AnimationMove topAni -> B
+    Element.AnimationMove goreAni -> i
+    void newMapData(char[]) -> a
+    float[] grassData(int,int) -> a
+    void loadTexture() -> a
+    byte[] saveMap() -> b
+    void initGoreAnimation() -> s
+    void toStartPosition() -> c
+    void newBendTail() -> t
+    void newBendData() -> u
+    void downHoleCheck(float,float) -> a
+    void sort() -> d
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void loadSound() -> Y
+    void playSound() -> Z
+    void up(int,float,float) -> a
+    void setGrassId(int) -> a
+    float getSpeedBack() -> e
+    java.util.ArrayList getgList() -> f
+    float getGrid() -> h
+    int getMapWidth() -> i
+    int getMapHeight() -> j
+    java.util.ArrayList getCoinList() -> k
+    java.util.ArrayList getEnemyList() -> l
+    int getZero() -> m
+    Enviroments.Goal getGoal() -> n
+    java.util.ArrayList getFruitList() -> o
+    boolean isGore() -> p
+    void setGore(boolean) -> a
+    float getViewGrid() -> q
+    float getRate(int) -> b
+    void toNull(int,int,int) -> a
+    java.util.ArrayList getEmplacementList() -> r
+    void particleCheck(int,int,Mankind.Creature) -> a
+Enviroments.GrassSet$1 -> b.u:
+    Enviroments.GrassSet this$0 -> L
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+Enviroments.GrassSticker -> b.v:
+    boolean tooDown(Element.AnimationGrass) -> e
+    boolean tooHigh(Element.AnimationGrass) -> a
+    boolean tooLeft(Element.AnimationGrass) -> b
+    boolean tooRight(Element.AnimationGrass) -> c
+Enviroments.RotateFruit -> b.w:
+    float angleSpeed -> M
+    float angle -> N
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void setTexture() -> g
+    void syncTextureSize() -> i
+    void syncTextureSize(float,float,float) -> a
+    void baseDrawElement(javax.microedition.khronos.opengles.GL10) -> c
+Enviroments.ShakeFruit -> b.x:
+    float angleSpeed -> E
+    float angleA -> F
+    float aMax -> G
+    float angle -> H
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+Enviroments.SixFruit -> b.y:
+    int angleSpeed -> E
+    int angle -> F
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    boolean loadAble(Mankind.Player) -> a
+    void setTexture() -> g
+    void syncTextureSize() -> i
+    void baseDrawElement(javax.microedition.khronos.opengles.GL10) -> c
+Enviroments.Tomato -> b.z:
+    int bloodMax -> H
+    int bloodStep -> I
+    int maxback -> J
+    void init() -> z
+    boolean loadAble(Mankind.Player) -> a
+    void use(Mankind.Player,java.util.ArrayList) -> a
+    void effectCheck(Mankind.Player,java.util.ArrayList) -> b
+Enviroments.Toukui -> b.aa:
+    int time -> H
+    void init() -> z
+    void use(Mankind.Player,java.util.ArrayList) -> a
+Enviroments.Wudi -> b.ab:
+    int time -> H
+    void init() -> z
+    void use(Mankind.Player,java.util.ArrayList) -> a
+Enviroments.sizeFruit -> b.ac:
+    float growSpeed -> E
+    float time -> F
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    boolean loadAble(Mankind.Player) -> a
+    void culYScaleRate() -> f
+    void use(Mankind.Player,java.util.ArrayList) -> a
+    void effectCheck(Mankind.Player,java.util.ArrayList) -> b
+Mankind.Baller -> c.a:
+    void init() -> ac
+    void afterInit() -> ad
+    void attackAnotherOne(Mankind.EnemySet) -> a
+    void die() -> ae
+    void tooClose(Mankind.Creature,Mankind.EnemySet) -> a
+    void randomAction() -> af
+Mankind.BladeMan -> c.b:
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void chaseCheck(Mankind.Creature) -> c
+    void randomAction() -> af
+Mankind.BossRunner -> c.c:
+    Mankind.Creature chaser -> aG
+    java.lang.String[] strSet -> U
+    int strId -> V
+    int cdMax -> aH
+    int cd -> aI
+    com.mingli.toms.World world -> aJ
+    void randomAction() -> af
+    void setEnemySet(Mankind.EnemySet) -> b
+    void tooLeft() -> G
+    void tooRight() -> I
+Mankind.Creature -> c.d:
+    float DEATHSPEED -> W
+    int jumpHeight -> U
+    float g -> V
+    float ySpeedMax -> at
+    float amLand -> au
+    float afLand -> X
+    float am -> av
+    float af -> aw
+    float xSpeedMax -> ax
+    float xSpeedMin -> ay
+    boolean jumpAble -> az
+    int landId -> aA
+    int fdirection -> Y
+    int direction -> Z
+    int lifeMax -> aB
+    int life -> aC
+    int attack -> aa
+    float speedSizeMax -> ab
+    float[] agoMax -> aD
+    java.util.ArrayList friendList -> ac
+    java.util.ArrayList enemyList -> ad
+    boolean isDead -> ae
+    float sizeRate -> af
+    float red -> ag
+    float green -> ah
+    float blue -> ai
+    float alpha -> aj
+    float index -> ak
+    boolean attackable -> al
+    boolean moving -> aE
+    float aniStep -> aF
+    float[] aniStep2 -> am
+    int chance -> an
+    int attackSoundId -> ao
+    Mankind.EnemySet enemySet -> ap
+    Mankind.EnemySet friendSet -> aq
+    int rightDirection -> ar
+    boolean treadable -> as
+    void afterInit() -> ad
+    void init() -> ac
+    void autoClimb() -> H
+    boolean turnDown() -> ag
+    void changeSpeed(float) -> u
+    void changeSize(float) -> v
+    void stopJump() -> ah
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void disappear(float) -> w
+    void drawDeath(javax.microedition.khronos.opengles.GL10) -> e
+    void gravity() -> A
+    void changeToLandData() -> ai
+    void tooDown() -> K
+    void moveCheck() -> D
+    void faceRight() -> aj
+    void stopMove() -> ak
+    void turnRight() -> al
+    void turnLeft() -> am
+    void faceLeft() -> an
+    void attack() -> ao
+    void animation() -> ap
+    void speedCheck() -> aq
+    void jump() -> ar
+    void changeToAirData() -> aJ
+    void jump(float) -> x
+    void land() -> as
+    int getLandId() -> N
+    void setLandId(int) -> g
+    float getG() -> at
+    void setG(float) -> y
+    void increaseScoreBy(int) -> p
+    void increaseChanceBy(int) -> q
+    void attacked(int) -> k
+    void baseAttacked(int) -> w
+    float getAm() -> au
+    void setAm(float) -> z
+    void setAf(float) -> A
+    int getLife() -> av
+    void setLife(int) -> r
+    int getLifeMax() -> aw
+    void setLifeMax(int) -> s
+    int getDirection() -> ax
+    void setDirection(int) -> t
+    float[] getAniStep2() -> ay
+    void setJumpHeight(int) -> u
+    float getxSpeedMax() -> az
+    void setxSpeedMax(float) -> B
+    float getxSpeedMin() -> aA
+    void setxSpeedMin(float) -> C
+    boolean isJumpAble() -> aB
+    void randomAction() -> af
+    float[] getAgoMax() -> aC
+    void treaded(Mankind.Creature) -> a
+    Enviroments.GrassSet getGra() -> aD
+    void attackAnotherOne(Mankind.EnemySet) -> a
+    void die() -> ae
+    float getAlpha() -> aE
+    float getBlue() -> aF
+    void setBlue(float) -> D
+    float getGreen() -> aG
+    void setGreen(float) -> E
+    float getRed() -> aH
+    void setRed(float) -> F
+    void setRgb(float,float,float) -> a
+    void setGunAngle(double) -> a
+    void setSpeed(double,double) -> a
+    float getySpeedMax() -> aI
+    void changeLifeRate(float) -> G
+    void setSoundIdAttack(int) -> v
+    void setEnemySet(Mankind.EnemySet) -> b
+    void setFriendSet(Mankind.EnemySet) -> c
+    void culTreadxSpeed(Mankind.Creature) -> b
+Mankind.Creeper -> c.e:
+    void init() -> ac
+    void afterInit() -> ad
+    void attackAnotherOne(Mankind.EnemySet) -> a
+    void culTreadxSpeed(Mankind.Creature) -> b
+    void treaded(Mankind.Creature) -> a
+    void tooClose(Mankind.Creature) -> c
+    void randomAction() -> af
+Mankind.Emplacement -> c.f:
+    int cdMax -> av
+    Weapon.Bullet b -> U
+    double bSpeed -> V
+    int range -> aw
+    double range2 -> at
+    int angleSpeed -> ax
+    Mankind.Creature targetPeople -> ay
+    int cd -> au
+    void init() -> ac
+    void setEnemySet(Mankind.EnemySet) -> b
+    void initbullet(Mankind.EnemySet) -> d
+    void randomAction() -> af
+    boolean targetCanbeCatched(Mankind.Creature) -> c
+    void bulletCheck(Mankind.Creature,double) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void attacked(int) -> k
+    int getRange() -> aJ
+    void setRange(int) -> w
+Mankind.Enemy -> c.g:
+    void init() -> ac
+    void changeSize(float) -> v
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void baseDrawElement(javax.microedition.khronos.opengles.GL10) -> c
+    void drawDeath(javax.microedition.khronos.opengles.GL10) -> e
+    void changeState(float) -> d
+    void attacked(int) -> k
+    void jump() -> ar
+    void tooRight() -> I
+    void tooLeft() -> G
+    void attackAnotherOne(Mankind.EnemySet) -> a
+    void tooClose(Mankind.Creature,Mankind.EnemySet) -> a
+Mankind.EnemyGrass -> c.h:
+    void moveCheck() -> D
+    void gravityCheck() -> B
+    void setPosition(float,float) -> b
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void attacked(int) -> k
+Mankind.EnemySet -> c.i:
+    java.util.ArrayList cList -> a
+    java.util.ArrayList emplacementList -> b
+    Element.BloodSet bloodSet -> c
+    boolean CHASE_MODEL -> j
+    Mankind.Creature player -> d
+    Mankind.EnemySet enemySet -> k
+    Menu.State lifecolumn -> e
+    Menu.State backLife -> f
+    float bloodW -> g
+    float bloodH -> h
+    Element.Animation guideCircle -> l
+    Mankind.EnemySet friendSet -> m
+    Mankind.Creature systemAttacker -> n
+    Mankind.Creature enemyGrass -> i
+    void setPlayer(Mankind.Creature) -> a
+    void initGuideCircle() -> d
+    void randomAction(Mankind.Creature) -> d
+    void chasePlayer(Mankind.Creature) -> e
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void timerTask() -> b
+    void tooClose(Mankind.Creature,Mankind.Creature) -> a
+    void drawGuideCircle(javax.microedition.khronos.opengles.GL10) -> a
+    void drawLifeColumn(Mankind.Creature,javax.microedition.khronos.opengles.GL10) -> a
+    boolean attacked(Mankind.Creature,int) -> a
+    boolean attacked(Mankind.Creature,Mankind.Creature,int) -> a
+    void treaded(Mankind.Player,Mankind.Creature,int) -> a
+    void setCHASE_MODEL(boolean) -> a
+    void addCreature(Mankind.Creature) -> b
+    void setFriendSet(Mankind.EnemySet) -> a
+    void setEnemySet(Mankind.EnemySet) -> b
+    Mankind.Creature getSystemAttacker() -> c
+    void setSystemAttacker(Mankind.Creature) -> c
+Mankind.FireBall -> c.j:
+    float angleSpeed -> U
+    Element.FireSet fireSet -> V
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void afterInit() -> ad
+    void init() -> ac
+    void attackAnotherOne(Mankind.EnemySet) -> a
+    void tooClose(Mankind.Creature,Mankind.EnemySet) -> a
+    void gravityCheck() -> B
+    void moveCheck() -> D
+    void die() -> ae
+Mankind.FlagMan -> c.k:
+    void setFlag() -> aQ
+    void tooRight() -> I
+    void tooLeft() -> G
+    void die() -> ae
+Mankind.FlagPlayer -> c.l:
+    void setFlag() -> bc
+    void tooRight() -> I
+    void tooLeft() -> G
+    void die() -> ae
+    void sendIcon(int) -> w
+Mankind.Flyer -> c.m:
+    float yStart -> U
+    Weapon.BoomBullet b -> V
+    int cd -> at
+    void setEnemySet(Mankind.EnemySet) -> b
+    void initbullet(Mankind.EnemySet) -> d
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void init() -> ac
+    void afterInit() -> ad
+    void tooDown() -> K
+    void sizeCheck() -> y
+    void sizeCheck2() -> aJ
+    void attacked(int) -> k
+    void toWalker() -> aK
+    void hwChange() -> aL
+    void attackAnotherOne(Mankind.EnemySet) -> a
+    void tooClose(Mankind.Creature,Mankind.EnemySet) -> a
+    void randomAction() -> af
+Mankind.GunMan -> c.n:
+    Weapon.Gun gun -> aH
+    void setEnemySet(Mankind.EnemySet) -> b
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void randomAction() -> af
+    void chaseCheck(Mankind.Creature) -> c
+Mankind.Hedgehog -> c.o:
+    void toCrepper() -> aJ
+    void init() -> ac
+    void afterInit() -> ad
+    void attacked(int) -> k
+    void attackAnotherOne(Mankind.EnemySet) -> a
+    void tooClose(Mankind.Creature,Mankind.EnemySet) -> a
+    void randomAction() -> af
+Mankind.JointCreature -> c.p:
+    java.util.ArrayList jointList -> U
+    java.util.ArrayList shakeList -> V
+    java.util.ArrayList holdList -> at
+    float[] speedAgo -> au
+    float[] speedJump -> av
+    element2.Joint cap -> aw
+    Weapon.GunDraw gunDraw -> ax
+    Weapon.Blade blade -> ay
+    element2.Joint hand -> az
+    Weapon.GunDraw gunHand -> aG
+    element2.Joint normalHand -> aH
+    Weapon.GunDraw haveGunDraw -> aI
+    Weapon.GunDraw noGunDraw -> aJ
+    Weapon.Blade noBlade -> aA
+    element2.Joint foot -> aB
+    element2.Joint foot1 -> aC
+    Weapon.Blade realBlade -> aD
+    element2.Joint expression -> aE
+    element2.Joint cloth -> aF
+    Mankind.JointCreature clone() -> aJ
+    void haveGun() -> aK
+    void noGun() -> aL
+    void init() -> ac
+    void jump(float) -> x
+    void stopJump() -> ah
+    void setGunAngle(double) -> a
+    void faceLeft() -> an
+    void turnLeft() -> am
+    void turnRight() -> al
+    void faceRight() -> aj
+    void attack() -> ao
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void incAngle() -> aM
+    void baseDrawElement(javax.microedition.khronos.opengles.GL10) -> c
+    void changeState(float,float,element2.Joint) -> a
+    void stopMove() -> ak
+    void animation() -> ap
+    element2.Joint getCap() -> aN
+    void haveBlade() -> aO
+    void noBlade() -> aP
+    void setEnemySet(Mankind.EnemySet) -> b
+    Element.Animation clone() -> b
+Mankind.JointCreature$1 -> c.q:
+    Mankind.JointCreature this$0 -> C
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void drawNotMove(javax.microedition.khronos.opengles.GL10) -> e
+    void drawTail(javax.microedition.khronos.opengles.GL10) -> f
+Mankind.JointCreature$2 -> c.r:
+    Mankind.JointCreature this$0 -> C
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void drawNotMove(javax.microedition.khronos.opengles.GL10) -> e
+Mankind.JointEnemy -> c.s:
+    Mankind.Player player -> U
+    int cdMAX -> V
+    int cd -> aG
+    void die() -> ae
+Mankind.Player -> c.t:
+    float baseGunLength -> bq
+    float GunAngle -> U
+    float px -> V
+    float py -> aG
+    com.mingli.toms.World world -> aH
+    boolean doubleClicked -> br
+    boolean[] downData -> aI
+    Mankind.Creature controller -> aJ
+    Enviroments.Goal goal -> aK
+    boolean gotGoal -> bs
+    boolean tooLong -> bt
+    element2.Tail footTail -> aL
+    Mankind.Shader shader -> bu
+    float guideAlpha -> aM
+    float guideAlphaSpeed -> bv
+    float ex1 -> aN
+    float ey1 -> aO
+    float testRate -> aP
+    double yGuideSpeed -> bw
+    double xGuideSpeed -> bx
+    element2.Tail guideTail -> aQ
+    Mankind.Creature guideCre -> aR
+    int wudiTimeBorn -> aS
+    int wudiTime -> aT
+    Element.Pifeng pifeng -> by
+    float gx1 -> aU
+    float gx2 -> aV
+    float gy1 -> aW
+    float gy2 -> aX
+    float growSpeed -> aY
+    float hx1 -> aZ
+    float hy1 -> ba
+    float hx2 -> bb
+    float hy2 -> bc
+    int agoProgress -> bd
+    int downIndex -> be
+    float vtDestory -> bf
+    double E -> bz
+    int coolingId -> bA
+    Mankind.Creature treader -> bB
+    float mh1 -> bC
+    float mh2 -> bD
+    float xMax -> bg
+    float mw1 -> bE
+    float mw2 -> bF
+    int death -> bh
+    int brake -> bG
+    int destorySound -> bH
+    int secondaryLife -> bi
+    Weapon.Gun gun -> bj
+    int gunFruitId -> bk
+    int bladeFruitId -> bl
+    int toukuiTime -> bI
+    int gaoTime -> bJ
+    int flyTime -> bm
+    boolean touched -> bn
+    float curJumpProgress -> bo
+    int jumpProgress -> bp
+    void initVtDestory() -> bc
+    void initEffect(float,float) -> g
+    void extendsDate() -> bd
+    void reSetDownDate() -> be
+    void changeToukui(int) -> x
+    void changeGao(int) -> y
+    void setEnemySet(Mankind.EnemySet) -> b
+    void startTouch(float,float) -> d
+    void endTouch(float,float) -> e
+    void drawGuideTail(javax.microedition.khronos.opengles.GL10) -> f
+    void moveAction(float,float) -> f
+    void calcuPlayerSpeed(float,float) -> h
+    void setGuideSpeed(double,double) -> b
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void initGuideTail(Enviroments.GrassSet) -> a
+    void changeToLandData() -> ai
+    void tooDown() -> K
+    void initView() -> bf
+    boolean turnDown() -> ag
+    void stopJump() -> ah
+    void jump(float) -> x
+    void setJumpHeight(int) -> u
+    void succeed() -> aQ
+    void timerTask() -> bg
+    void attacked(int) -> k
+    void drawDeath(javax.microedition.khronos.opengles.GL10) -> e
+    void reLife(int) -> z
+    void reLife() -> aR
+    void die() -> ae
+    void baseDrawElement(javax.microedition.khronos.opengles.GL10) -> c
+    void move() -> C
+    void changeSize(float) -> v
+    void setGunLength() -> bh
+    void setViewPot() -> aS
+    void gravityCheck() -> B
+    void setLeftData(boolean,int) -> a
+    void doubleClickCheck(int) -> I
+    void setRightData(boolean,int) -> b
+    void actCheck(Mankind.Creature) -> c
+    float culJumpRate() -> bi
+    void treadCheck() -> bj
+    boolean treadListCheck(Mankind.EnemySet) -> d
+    void sendIcon(int) -> w
+    boolean destory(int,int,int) -> b
+    void dropToCheck(int) -> J
+    boolean crossToCheck(int) -> K
+    void tooHigh() -> J
+    void landView() -> aT
+    void moveView() -> aU
+    void setMyView(float,float,float,float) -> a
+    void goreEnemyCheck() -> bk
+    void loadSound() -> Y
+    void increaseScoreBy(int) -> p
+    int getToukuiTime() -> aV
+    void setToukuiTime(int) -> A
+    boolean isGotGoal() -> aW
+    void setGotGoal(boolean) -> c
+    void setPlayerList(java.util.ArrayList) -> a
+    Mankind.EnemySet getEnemySet() -> aX
+    void CircleDown(float) -> H
+    void CircleUp() -> aY
+    void changeGun(int) -> B
+    boolean haveGun(int) -> C
+    void changeBlade(int) -> D
+    void haveBlade() -> aO
+    void noBlade() -> aP
+    void haveGun() -> aK
+    void noGun() -> aL
+    boolean haveBlade(int) -> E
+    void increaseCoinBy(int) -> F
+    void increaseChanceBy(int) -> q
+    void addFlyTime(int) -> G
+    void doubleDownCheck() -> aZ
+    void StopDoubleClick() -> ba
+    boolean isDoubleClicked() -> bb
+    void setDoubleClicked(boolean) -> d
+    void incWudiTime(int) -> H
+Mankind.PlayerSet -> c.u:
+    void setPlayer(Mankind.Creature) -> a
+    void timerTask() -> b
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+Mankind.Shader -> c.v:
+    Mankind.Creature master -> c
+    element2.Tail tail -> d
+    float[][] position -> a
+    int id -> b
+    float x -> e
+    float y -> f
+    void move() -> b
+    void setPosition(float,float) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void backToMaster() -> c
+Mankind.Spide -> c.w:
+    float dsmax -> av
+    element2.Tail tail -> aw
+    Mankind.Creature catcher -> ax
+    int hirtIndexBorn -> ay
+    int hirtIndex -> az
+    void initbullet(Mankind.EnemySet) -> d
+    void randomAction() -> af
+    void attacked(int) -> k
+    boolean targetCanbeCatched(Mankind.Creature) -> c
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void moveCheck() -> D
+    void gravityCheck() -> B
+    void tailCheck() -> aK
+Mankind.Spide$1 -> c.x:
+    Mankind.Spide this$0 -> C
+    void gotTarget(Mankind.Creature) -> a
+Mankind.TestEnemy -> c.y:
+    void init() -> ac
+Mankind.Walker -> c.z:
+    void sizeCheck() -> y
+    void init() -> ac
+    void attackAnotherOne(Mankind.EnemySet) -> a
+    void tooClose(Mankind.Creature,Mankind.EnemySet) -> a
+Menu.Square -> d.a:
+    void loadTexture(int,int,int) -> a
+    void setTexture(int,int) -> b
+    void setTexture() -> g
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void baseDrawElement(javax.microedition.khronos.opengles.GL10) -> c
+    void syncTextureSize() -> i
+Menu.State -> d.b:
+    float x1 -> D
+    float y1 -> E
+    float x2 -> F
+    float y2 -> G
+    void setPosition(float,float,float,float) -> a
+    void syncTextureSize() -> i
+    void setFrameCount(int,int) -> c
+Weapon.AutoBubble -> e.a:
+    float[] speedBackup -> C
+    boolean firstBlood -> D
+    Mankind.Creature targetEnemy -> Y
+    float fruTime -> E
+    float fruTimeBack -> F
+    float fruSpeed -> G
+    float fruA -> H
+    float dLength -> Z
+    void setFire() -> y
+    void refresh() -> I
+    void disappear() -> z
+    void gotTarget(Mankind.Creature) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void setwReal(float) -> o
+Weapon.AutoBubbleGun -> e.b:
+    void setBullet(int) -> a
+Weapon.AutoBullet -> e.c:
+    Mankind.Creature player -> C
+    float speed -> I
+    Mankind.Creature enemy -> D
+    boolean grassCheck() -> B
+    void tringer(float,float,Mankind.Creature) -> a
+    void speedCheck(float,float) -> d
+    void resetBullet() -> D
+    void targetCheck() -> E
+    void loadSound() -> Y
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void setwReal(float) -> o
+Weapon.AutoBulletGun -> e.d:
+    Mankind.EnemySet es -> o
+    void setBullet(int) -> a
+    boolean gunCheck(float,float) -> a
+    void tringerCheck(Weapon.Bullet) -> a
+Weapon.Blade -> e.e:
+    float angleA -> H
+    boolean fire -> C
+    Mankind.Creature player -> Y
+    float attackHandCentre -> I
+    Mankind.EnemySet es -> Z
+    float w1 -> aa
+    float w2 -> ab
+    element2.Tail tail -> J
+    int length -> K
+    float attack -> ac
+    float checkWidth -> ad
+    float anglface -> L
+    float angrface -> M
+    float holdx -> N
+    float holdy -> O
+    float distanceToHeart -> ae
+    float length2 -> af
+    void syncTextureSize() -> i
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void drawTail(javax.microedition.khronos.opengles.GL10) -> f
+    void tailTringer() -> J
+    void targetCheck() -> y
+    void stop() -> z
+    void positionCheck() -> A
+    void attack(int) -> e
+    void gotTarget(Mankind.Creature) -> a
+    void loadSound() -> Y
+    void playSound() -> Z
+    void setEs(Mankind.EnemySet) -> a
+Weapon.BoomAttack -> e.f:
+    Element.LightSpot ls -> a
+    Weapon.Bullet bullet -> b
+    void gotTarget(Mankind.Creature) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> a
+Weapon.BoomBullet -> e.g:
+    Enviroments.GrassSet gra -> D
+    Weapon.BoomAttack boomA -> C
+    void gravity() -> A
+    void gotTarget(Mankind.Creature) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+Weapon.BoomGun -> e.h:
+    void setBullet(int) -> a
+Weapon.Bullet -> e.i:
+    boolean fire -> C
+    int frame -> J
+    java.util.ArrayList eList -> K
+    int attack -> L
+    int frameMax -> M
+    Mankind.EnemySet es -> U
+    Enviroments.GrassSet gra -> D
+    Mankind.Creature enemyGrass -> V
+    void setSize(float,float) -> e
+    void playSound() -> Z
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void shot() -> F
+    void rangeCheck() -> G
+    void targetCheck() -> E
+    boolean grassCheck() -> B
+    void gotTarget(Mankind.Creature) -> a
+    void push(Mankind.Creature,float) -> a
+    void push(Mankind.Creature) -> b
+    void resetBullet() -> D
+    void disappear() -> z
+    void setSpeed(double,double) -> a
+    void setFire() -> y
+    void tringer(float,float,double,double) -> a
+    boolean isFire() -> H
+Weapon.Gun -> e.j:
+    int bulletIndex -> a
+    float gunLength -> b
+    float x -> c
+    float y -> d
+    double bSpeed -> e
+    java.util.ArrayList bList -> f
+    java.util.ArrayList sList -> g
+    Mankind.Creature player -> h
+    float et -> i
+    Mankind.EnemySet enemySet -> j
+    double angle -> o
+    double cos -> k
+    double sin -> l
+    int cd -> m
+    Enviroments.GrassSet gra -> n
+    void setBullet(int) -> a
+    void gunCheck(float) -> a
+    boolean gunCheck(float,float) -> a
+    void tringerCheck(Weapon.Bullet) -> a
+    void alwaysFire() -> b
+    void loadTexture() -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    double getAngle() -> c
+    void setAngle(double) -> a
+    void setGunLength(float) -> b
+Weapon.GunDraw -> e.k:
+    int holdAngle -> C
+    int holdIndex -> H
+    void setAngle(float) -> m
+    void positionCheck() -> A
+Weapon.Hook -> e.l:
+    boolean back -> D
+    int speed -> E
+    Mankind.Creature player -> C
+    Mankind.Creature huckEnemy -> F
+    int range -> W
+    boolean getGrass -> X
+    Mankind.Creature hookGrass -> G
+    int hookLength -> Y
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void gotTarget(Mankind.Creature) -> a
+    void rangeCheck() -> G
+    void targetCheck() -> E
+    void shot() -> F
+    void letGo() -> I
+    void speedCheck(float,float) -> d
+    void tringer(float,float,double,double) -> a
+    int getRange() -> J
+    void setRange(int) -> e
+Weapon.HookGun -> e.m:
+    void setBullet(int) -> a
+    boolean gunCheck(float,float) -> a
+Weapon.Missile -> e.n:
+    Weapon.BoomAttack boomA -> C
+    void shot() -> F
+    void gotTarget(Mankind.Creature) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+Weapon.MissileGun -> e.o:
+    void setBullet(int) -> a
+Weapon.ShotGun -> e.p:
+    int count -> o
+    boolean gunCheck(float,float) -> a
+    void gunCheck(float,float,int) -> a
+    void alwaysFire() -> b
+    void gunCheck(float) -> a
+    void otherBulletCheck(int) -> b
+    void playSound2() -> d
+    void playSound() -> Z
+    void setBullet(int) -> a
+Weapon.TailBullet -> e.q:
+    element2.Tail tail -> H
+    int attackMax -> I
+    void setSize(float,float) -> e
+    void gotTarget(Mankind.Creature) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void setPosition(float,float) -> b
+    void tringer(float,float,double,double) -> a
+Weapon.TailGun -> e.r:
+    void setBullet(int) -> a
+Weapon.ToBigBullet -> e.s:
+    float scaleTime -> W
+    float backTime -> X
+    float wReal -> C
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void resetBullet() -> D
+    void setwReal(float) -> o
+aid.Ad -> aid.a:
+    com.baidu.appx.BDBannerAd bannerview -> a
+    com.baidu.appx.BDInterstitialAd interstitialAd -> b
+    com.baidu.appx.BDAppWallAd appWallAd -> c
+    java.lang.String SDK_APP_KEY -> d
+    java.lang.String SDK_BANNER_AD_ID -> e
+    java.lang.String SDK_SPLASH_AD_ID -> f
+    java.lang.String SDK_INTERSTITIAL_AD_ID -> g
+    java.lang.String SDK_APPWALL_AD_ID -> h
+    com.mingli.toms.MenuActivity acti -> i
+    aid.AdListener adl -> j
+    void showBanner(android.view.ViewGroup) -> a
+    void hideBanner(android.view.ViewGroup) -> b
+    void loadInterstitial() -> a
+    void showInterstitial() -> b
+    void loadAppWallAd() -> c
+    void showAppWallAd() -> d
+    void println(java.lang.String) -> a
+    com.baidu.appx.BDBannerAd getBannerview() -> e
+    void setBannerview(com.baidu.appx.BDBannerAd) -> a
+aid.AdListener -> aid.b:
+    com.mingli.toms.MenuActivity acti -> a
+    void onAdvertisementDataDidLoadFailure() -> a
+    void onAdvertisementDataDidLoadSuccess() -> b
+    void onAdvertisementViewDidClick() -> c
+    void onAdvertisementViewDidShow() -> d
+    void onAdvertisementViewWillStartNewIntent() -> e
+    void onAdvertisementViewDidHide() -> f
+    void println(java.lang.String) -> a
+aid.Circle -> aid.Circle:
+    android.graphics.Paint paint -> c
+    int LENGTH -> a
+    int RockerCircleX -> d
+    int RockerCircleY -> e
+    float SmallRockerCircleX -> f
+    float SmallRockerCircleY -> g
+    int SmallRockerCircleR -> h
+    int RockerCircleR -> i
+    double rad -> j
+    Mankind.Player player -> b
+    void cons(android.content.Context) -> a
+    double getAngle() -> getAngle
+    double getRad(float,float,float,float) -> a
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    void getXY(float,float,float,double) -> a
+    void onDraw(android.graphics.Canvas) -> onDraw
+aid.CircleSurface -> aid.CircleSurface:
+    java.lang.Thread th -> b
+    android.view.SurfaceHolder sfh -> c
+    android.graphics.Canvas canvas -> d
+    android.graphics.Paint paint -> e
+    boolean flag -> f
+    int LENGTH -> g
+    int RockerCircleX -> h
+    int RockerCircleY -> i
+    float SmallRockerCircleX -> j
+    float SmallRockerCircleY -> k
+    int SmallRockerCircleR -> l
+    int RockerCircleR -> m
+    double rad -> n
+    Mankind.Player player -> a
+    void cons() -> b
+    void surfaceCreated(android.view.SurfaceHolder) -> surfaceCreated
+    double getRad(float,float,float,float) -> a
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    void getXY(float,float,float,double) -> a
+    void draw() -> a
+    void onDraw(android.graphics.Canvas) -> onDraw
+    void run() -> run
+    void surfaceChanged(android.view.SurfaceHolder,int,int,int) -> surfaceChanged
+    void surfaceDestroyed(android.view.SurfaceHolder) -> surfaceDestroyed
+aid.Client -> aid.c:
+    java.net.Socket s -> a
+    java.io.DataInputStream dis -> b
+    java.io.DataOutputStream dos -> c
+    boolean connected -> d
+    java.lang.Thread recThread -> e
+    com.mingli.toms.MenuActivity acti -> g
+    int threadCount -> f
+    void connect() -> a
+    void run() -> run
+    void handleReceiveMessage(java.lang.String) -> b
+    void send(java.lang.String) -> a
+    void closeStream() -> b
+aid.Log -> aid.d:
+    void i(java.lang.String,java.lang.String) -> a
+    void i(java.lang.String) -> a
+    void d(java.lang.String) -> b
+aid.MyMoveView -> aid.MyMoveView:
+    com.mingli.toms.TouchMove tm -> a
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+aid.Producer -> aid.e:
+    android.widget.PopupWindow popupWindow -> d
+    com.mingli.toms.MenuActivity acti -> a
+    aid.Producer$ItemAdapter itemadapter -> e
+    int itemcount -> b
+    Element.Animation selectedItem -> c
+    android.widget.AdapterView$OnItemClickListener gridListener -> f
+    com.mingli.toms.World world -> g
+    aid.Tips tips -> h
+    android.view.ViewGroup animationShopadcontainer -> i
+    void showWindow(android.view.View) -> a
+    void initButton(android.view.View) -> b
+    void hideCheck() -> a
+    com.mingli.toms.World access$0(aid.Producer) -> a
+    aid.Producer$ItemAdapter access$1(aid.Producer) -> b
+aid.Producer$1 -> aid.f:
+    android.view.View selectedView -> b
+    aid.Producer this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+aid.Producer$2 -> aid.g:
+    aid.Producer this$0 -> a
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+aid.Producer$3 -> aid.h:
+    aid.Producer this$0 -> a
+    void onClick(android.view.View) -> onClick
+aid.Producer$ItemAdapter -> aid.i:
+    android.content.Context context -> c
+    java.util.ArrayList animationList -> a
+    aid.Producer this$0 -> b
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+aid.Shop -> aid.j:
+    android.widget.PopupWindow popupWindow -> d
+    com.mingli.toms.MenuActivity acti -> a
+    aid.Shop$ItemAdapter itemadapter -> e
+    int itemcount -> b
+    Enviroments.Fruit selectedItem -> c
+    android.view.View selectedView -> f
+    android.widget.AdapterView$OnItemClickListener gridListener -> g
+    com.mingli.toms.World world -> h
+    Enviroments.FruitSet fs -> i
+    android.view.ViewGroup shopadcontainer -> j
+    android.widget.TextView instruction -> k
+    android.widget.GridView gridView -> l
+    int buyLifePosition -> m
+    void selected(android.view.View,int) -> a
+    void showWindow(android.view.View) -> a
+    void initButton(android.view.View) -> b
+    void setNoneSelected() -> c
+    void hideCheck() -> a
+    void toBuyLife() -> b
+    void access$0(aid.Shop,android.view.View,int) -> a
+    int access$1(aid.Shop) -> a
+    void access$2(aid.Shop,int) -> a
+    com.mingli.toms.World access$3(aid.Shop) -> b
+    void access$4(aid.Shop) -> c
+    Enviroments.FruitSet access$5(aid.Shop) -> d
+    aid.Shop$ItemAdapter access$6(aid.Shop) -> e
+aid.Shop$1 -> aid.k:
+    aid.Shop this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+aid.Shop$2 -> aid.l:
+    aid.Shop this$0 -> a
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+aid.Shop$3 -> aid.m:
+    aid.Shop this$0 -> a
+    void onClick(android.view.View) -> onClick
+aid.Shop$ItemAdapter -> aid.n:
+    android.content.Context context -> c
+    java.util.ArrayList shopList -> a
+    aid.Shop this$0 -> b
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+aid.Tips -> aid.o:
+    android.widget.PopupWindow popupWindow -> a
+    com.mingli.toms.MenuActivity acti -> b
+    android.widget.TextView te -> c
+    void showDownTip(android.view.View,java.lang.String) -> a
+    void initTip(android.view.View) -> a
+    boolean isHided() -> a
+    android.widget.TextView getTextView() -> b
+aid.Tips$1 -> aid.p:
+    aid.Tips this$0 -> a
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+android.support.v4.os.ParcelableCompat -> f.a.a.a.a:
+    android.os.Parcelable$Creator newCreator(android.support.v4.os.ParcelableCompatCreatorCallbacks) -> a
+android.support.v4.os.ParcelableCompat$CompatCreator -> f.a.a.a.b:
+    android.support.v4.os.ParcelableCompatCreatorCallbacks mCallbacks -> a
+    java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+    java.lang.Object[] newArray(int) -> newArray
+android.support.v4.os.ParcelableCompatCreatorCallbacks -> f.a.a.a.c:
+    java.lang.Object createFromParcel(android.os.Parcel,java.lang.ClassLoader) -> a
+    java.lang.Object[] newArray(int) -> a
+android.support.v4.os.ParcelableCompatCreatorHoneycombMR2 -> f.a.a.a.d:
+    android.support.v4.os.ParcelableCompatCreatorCallbacks mCallbacks -> a
+    java.lang.Object createFromParcel(android.os.Parcel) -> createFromParcel
+    java.lang.Object createFromParcel(android.os.Parcel,java.lang.ClassLoader) -> createFromParcel
+    java.lang.Object[] newArray(int) -> newArray
+android.support.v4.os.ParcelableCompatCreatorHoneycombMR2Stub -> f.a.a.a.e:
+    android.os.Parcelable$Creator instantiate(android.support.v4.os.ParcelableCompatCreatorCallbacks) -> a
+android.support.v4.view.AccessibilityDelegateCompat -> f.a.a.b.a:
+    android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateImpl IMPL -> b
+    java.lang.Object DEFAULT_DELEGATE -> c
+    java.lang.Object mBridge -> a
+    java.lang.Object getBridge() -> a
+    void sendAccessibilityEvent(android.view.View,int) -> a
+    void sendAccessibilityEventUnchecked(android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    boolean dispatchPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> b
+    void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> c
+    void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> d
+    void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat) -> a
+    boolean onRequestSendAccessibilityEvent(android.view.ViewGroup,android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(android.view.View) -> a
+    boolean performAccessibilityAction(android.view.View,int,android.os.Bundle) -> a
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateIcsImpl -> f.a.a.b.b:
+    java.lang.Object newAccessiblityDelegateDefaultImpl() -> a
+    java.lang.Object newAccessiblityDelegateBridge(android.support.v4.view.AccessibilityDelegateCompat) -> a
+    boolean dispatchPopulateAccessibilityEvent(java.lang.Object,android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    void onInitializeAccessibilityEvent(java.lang.Object,android.view.View,android.view.accessibility.AccessibilityEvent) -> b
+    void onInitializeAccessibilityNodeInfo(java.lang.Object,android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat) -> a
+    void onPopulateAccessibilityEvent(java.lang.Object,android.view.View,android.view.accessibility.AccessibilityEvent) -> c
+    boolean onRequestSendAccessibilityEvent(java.lang.Object,android.view.ViewGroup,android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    void sendAccessibilityEvent(java.lang.Object,android.view.View,int) -> a
+    void sendAccessibilityEventUnchecked(java.lang.Object,android.view.View,android.view.accessibility.AccessibilityEvent) -> d
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateIcsImpl$1 -> f.a.a.b.c:
+    android.support.v4.view.AccessibilityDelegateCompat val$compat -> a
+    android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateIcsImpl this$0 -> b
+    boolean dispatchPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> b
+    void onInitializeAccessibilityNodeInfo(android.view.View,java.lang.Object) -> a
+    void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> c
+    boolean onRequestSendAccessibilityEvent(android.view.ViewGroup,android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    void sendAccessibilityEvent(android.view.View,int) -> a
+    void sendAccessibilityEventUnchecked(android.view.View,android.view.accessibility.AccessibilityEvent) -> d
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateImpl -> f.a.a.b.d:
+    java.lang.Object newAccessiblityDelegateDefaultImpl() -> a
+    java.lang.Object newAccessiblityDelegateBridge(android.support.v4.view.AccessibilityDelegateCompat) -> a
+    boolean dispatchPopulateAccessibilityEvent(java.lang.Object,android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    void onInitializeAccessibilityEvent(java.lang.Object,android.view.View,android.view.accessibility.AccessibilityEvent) -> b
+    void onInitializeAccessibilityNodeInfo(java.lang.Object,android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat) -> a
+    void onPopulateAccessibilityEvent(java.lang.Object,android.view.View,android.view.accessibility.AccessibilityEvent) -> c
+    boolean onRequestSendAccessibilityEvent(java.lang.Object,android.view.ViewGroup,android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    void sendAccessibilityEvent(java.lang.Object,android.view.View,int) -> a
+    void sendAccessibilityEventUnchecked(java.lang.Object,android.view.View,android.view.accessibility.AccessibilityEvent) -> d
+    android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(java.lang.Object,android.view.View) -> a
+    boolean performAccessibilityAction(java.lang.Object,android.view.View,int,android.os.Bundle) -> a
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateJellyBeanImpl -> f.a.a.b.e:
+    java.lang.Object newAccessiblityDelegateBridge(android.support.v4.view.AccessibilityDelegateCompat) -> a
+    android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(java.lang.Object,android.view.View) -> a
+    boolean performAccessibilityAction(java.lang.Object,android.view.View,int,android.os.Bundle) -> a
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateJellyBeanImpl$1 -> f.a.a.b.f:
+    android.support.v4.view.AccessibilityDelegateCompat val$compat -> a
+    android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateJellyBeanImpl this$0 -> b
+    boolean dispatchPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> b
+    void onInitializeAccessibilityNodeInfo(android.view.View,java.lang.Object) -> a
+    void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> c
+    boolean onRequestSendAccessibilityEvent(android.view.ViewGroup,android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    void sendAccessibilityEvent(android.view.View,int) -> a
+    void sendAccessibilityEventUnchecked(android.view.View,android.view.accessibility.AccessibilityEvent) -> d
+    java.lang.Object getAccessibilityNodeProvider(android.view.View) -> a
+    boolean performAccessibilityAction(android.view.View,int,android.os.Bundle) -> a
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateStubImpl -> f.a.a.b.g:
+    java.lang.Object newAccessiblityDelegateDefaultImpl() -> a
+    java.lang.Object newAccessiblityDelegateBridge(android.support.v4.view.AccessibilityDelegateCompat) -> a
+    boolean dispatchPopulateAccessibilityEvent(java.lang.Object,android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    void onInitializeAccessibilityEvent(java.lang.Object,android.view.View,android.view.accessibility.AccessibilityEvent) -> b
+    void onInitializeAccessibilityNodeInfo(java.lang.Object,android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat) -> a
+    void onPopulateAccessibilityEvent(java.lang.Object,android.view.View,android.view.accessibility.AccessibilityEvent) -> c
+    boolean onRequestSendAccessibilityEvent(java.lang.Object,android.view.ViewGroup,android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    void sendAccessibilityEvent(java.lang.Object,android.view.View,int) -> a
+    void sendAccessibilityEventUnchecked(java.lang.Object,android.view.View,android.view.accessibility.AccessibilityEvent) -> d
+    android.support.v4.view.accessibility.AccessibilityNodeProviderCompat getAccessibilityNodeProvider(java.lang.Object,android.view.View) -> a
+    boolean performAccessibilityAction(java.lang.Object,android.view.View,int,android.os.Bundle) -> a
+android.support.v4.view.AccessibilityDelegateCompatIcs -> f.a.a.b.h:
+    java.lang.Object newAccessibilityDelegateDefaultImpl() -> a
+    java.lang.Object newAccessibilityDelegateBridge(android.support.v4.view.AccessibilityDelegateCompatIcs$AccessibilityDelegateBridge) -> a
+    boolean dispatchPopulateAccessibilityEvent(java.lang.Object,android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    void onInitializeAccessibilityEvent(java.lang.Object,android.view.View,android.view.accessibility.AccessibilityEvent) -> b
+    void onInitializeAccessibilityNodeInfo(java.lang.Object,android.view.View,java.lang.Object) -> a
+    void onPopulateAccessibilityEvent(java.lang.Object,android.view.View,android.view.accessibility.AccessibilityEvent) -> c
+    boolean onRequestSendAccessibilityEvent(java.lang.Object,android.view.ViewGroup,android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    void sendAccessibilityEvent(java.lang.Object,android.view.View,int) -> a
+    void sendAccessibilityEventUnchecked(java.lang.Object,android.view.View,android.view.accessibility.AccessibilityEvent) -> d
+android.support.v4.view.AccessibilityDelegateCompatIcs$1 -> f.a.a.b.i:
+    android.support.v4.view.AccessibilityDelegateCompatIcs$AccessibilityDelegateBridge val$bridge -> a
+    boolean dispatchPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> dispatchPopulateAccessibilityEvent
+    void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> onInitializeAccessibilityEvent
+    void onInitializeAccessibilityNodeInfo(android.view.View,android.view.accessibility.AccessibilityNodeInfo) -> onInitializeAccessibilityNodeInfo
+    void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> onPopulateAccessibilityEvent
+    boolean onRequestSendAccessibilityEvent(android.view.ViewGroup,android.view.View,android.view.accessibility.AccessibilityEvent) -> onRequestSendAccessibilityEvent
+    void sendAccessibilityEvent(android.view.View,int) -> sendAccessibilityEvent
+    void sendAccessibilityEventUnchecked(android.view.View,android.view.accessibility.AccessibilityEvent) -> sendAccessibilityEventUnchecked
+android.support.v4.view.AccessibilityDelegateCompatIcs$AccessibilityDelegateBridge -> f.a.a.b.j:
+    boolean dispatchPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> b
+    void onInitializeAccessibilityNodeInfo(android.view.View,java.lang.Object) -> a
+    void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> c
+    boolean onRequestSendAccessibilityEvent(android.view.ViewGroup,android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    void sendAccessibilityEvent(android.view.View,int) -> a
+    void sendAccessibilityEventUnchecked(android.view.View,android.view.accessibility.AccessibilityEvent) -> d
+android.support.v4.view.AccessibilityDelegateCompatJellyBean -> f.a.a.b.k:
+    java.lang.Object newAccessibilityDelegateBridge(android.support.v4.view.AccessibilityDelegateCompatJellyBean$AccessibilityDelegateBridgeJellyBean) -> a
+    java.lang.Object getAccessibilityNodeProvider(java.lang.Object,android.view.View) -> a
+    boolean performAccessibilityAction(java.lang.Object,android.view.View,int,android.os.Bundle) -> a
+android.support.v4.view.AccessibilityDelegateCompatJellyBean$1 -> f.a.a.b.l:
+    android.support.v4.view.AccessibilityDelegateCompatJellyBean$AccessibilityDelegateBridgeJellyBean val$bridge -> a
+    boolean dispatchPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> dispatchPopulateAccessibilityEvent
+    void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> onInitializeAccessibilityEvent
+    void onInitializeAccessibilityNodeInfo(android.view.View,android.view.accessibility.AccessibilityNodeInfo) -> onInitializeAccessibilityNodeInfo
+    void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> onPopulateAccessibilityEvent
+    boolean onRequestSendAccessibilityEvent(android.view.ViewGroup,android.view.View,android.view.accessibility.AccessibilityEvent) -> onRequestSendAccessibilityEvent
+    void sendAccessibilityEvent(android.view.View,int) -> sendAccessibilityEvent
+    void sendAccessibilityEventUnchecked(android.view.View,android.view.accessibility.AccessibilityEvent) -> sendAccessibilityEventUnchecked
+    android.view.accessibility.AccessibilityNodeProvider getAccessibilityNodeProvider(android.view.View) -> getAccessibilityNodeProvider
+    boolean performAccessibilityAction(android.view.View,int,android.os.Bundle) -> performAccessibilityAction
+android.support.v4.view.AccessibilityDelegateCompatJellyBean$AccessibilityDelegateBridgeJellyBean -> f.a.a.b.m:
+    boolean dispatchPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> b
+    void onInitializeAccessibilityNodeInfo(android.view.View,java.lang.Object) -> a
+    void onPopulateAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> c
+    boolean onRequestSendAccessibilityEvent(android.view.ViewGroup,android.view.View,android.view.accessibility.AccessibilityEvent) -> a
+    void sendAccessibilityEvent(android.view.View,int) -> a
+    void sendAccessibilityEventUnchecked(android.view.View,android.view.accessibility.AccessibilityEvent) -> d
+    java.lang.Object getAccessibilityNodeProvider(android.view.View) -> a
+    boolean performAccessibilityAction(android.view.View,int,android.os.Bundle) -> a
+android.support.v4.view.KeyEventCompat -> f.a.a.b.n:
+    android.support.v4.view.KeyEventCompat$KeyEventVersionImpl IMPL -> a
+    boolean hasModifiers(android.view.KeyEvent,int) -> a
+    boolean hasNoModifiers(android.view.KeyEvent) -> a
+android.support.v4.view.KeyEventCompat$BaseKeyEventVersionImpl -> f.a.a.b.o:
+    int metaStateFilterDirectionalModifiers(int,int,int,int,int) -> a
+    int normalizeMetaState(int) -> a
+    boolean metaStateHasModifiers(int,int) -> a
+    boolean metaStateHasNoModifiers(int) -> b
+android.support.v4.view.KeyEventCompat$HoneycombKeyEventVersionImpl -> f.a.a.b.p:
+    boolean metaStateHasModifiers(int,int) -> a
+    boolean metaStateHasNoModifiers(int) -> b
+android.support.v4.view.KeyEventCompat$KeyEventVersionImpl -> f.a.a.b.q:
+    boolean metaStateHasModifiers(int,int) -> a
+    boolean metaStateHasNoModifiers(int) -> b
+android.support.v4.view.KeyEventCompatHoneycomb -> f.a.a.b.r:
+    boolean metaStateHasModifiers(int,int) -> a
+    boolean metaStateHasNoModifiers(int) -> a
+android.support.v4.view.MotionEventCompat -> f.a.a.b.s:
+    android.support.v4.view.MotionEventCompat$MotionEventVersionImpl IMPL -> a
+    int getActionIndex(android.view.MotionEvent) -> a
+    int findPointerIndex(android.view.MotionEvent,int) -> a
+    int getPointerId(android.view.MotionEvent,int) -> b
+    float getX(android.view.MotionEvent,int) -> c
+    float getY(android.view.MotionEvent,int) -> d
+android.support.v4.view.MotionEventCompat$BaseMotionEventVersionImpl -> f.a.a.b.t:
+    int findPointerIndex(android.view.MotionEvent,int) -> a
+    int getPointerId(android.view.MotionEvent,int) -> b
+    float getX(android.view.MotionEvent,int) -> c
+    float getY(android.view.MotionEvent,int) -> d
+android.support.v4.view.MotionEventCompat$EclairMotionEventVersionImpl -> f.a.a.b.u:
+    int findPointerIndex(android.view.MotionEvent,int) -> a
+    int getPointerId(android.view.MotionEvent,int) -> b
+    float getX(android.view.MotionEvent,int) -> c
+    float getY(android.view.MotionEvent,int) -> d
+android.support.v4.view.MotionEventCompat$MotionEventVersionImpl -> f.a.a.b.v:
+    int findPointerIndex(android.view.MotionEvent,int) -> a
+    int getPointerId(android.view.MotionEvent,int) -> b
+    float getX(android.view.MotionEvent,int) -> c
+    float getY(android.view.MotionEvent,int) -> d
+android.support.v4.view.MotionEventCompatEclair -> f.a.a.b.w:
+    int findPointerIndex(android.view.MotionEvent,int) -> a
+    int getPointerId(android.view.MotionEvent,int) -> b
+    float getX(android.view.MotionEvent,int) -> c
+    float getY(android.view.MotionEvent,int) -> d
+android.support.v4.view.PagerAdapter -> f.a.a.b.x:
+    android.database.DataSetObservable mObservable -> a
+    int getCount() -> a
+    void startUpdate(android.view.ViewGroup) -> a
+    java.lang.Object instantiateItem(android.view.ViewGroup,int) -> a
+    void destroyItem(android.view.ViewGroup,int,java.lang.Object) -> a
+    void setPrimaryItem(android.view.ViewGroup,int,java.lang.Object) -> b
+    void finishUpdate(android.view.ViewGroup) -> b
+    void startUpdate(android.view.View) -> a
+    java.lang.Object instantiateItem(android.view.View,int) -> a
+    void destroyItem(android.view.View,int,java.lang.Object) -> a
+    void setPrimaryItem(android.view.View,int,java.lang.Object) -> b
+    void finishUpdate(android.view.View) -> b
+    boolean isViewFromObject(android.view.View,java.lang.Object) -> a
+    android.os.Parcelable saveState() -> b
+    void restoreState(android.os.Parcelable,java.lang.ClassLoader) -> a
+    int getItemPosition(java.lang.Object) -> a
+    void registerDataSetObserver(android.database.DataSetObserver) -> a
+    void unregisterDataSetObserver(android.database.DataSetObserver) -> b
+    float getPageWidth(int) -> a
+android.support.v4.view.VelocityTrackerCompat -> f.a.a.b.y:
+    android.support.v4.view.VelocityTrackerCompat$VelocityTrackerVersionImpl IMPL -> a
+    float getXVelocity(android.view.VelocityTracker,int) -> a
+android.support.v4.view.VelocityTrackerCompat$BaseVelocityTrackerVersionImpl -> f.a.a.b.z:
+    float getXVelocity(android.view.VelocityTracker,int) -> a
+android.support.v4.view.VelocityTrackerCompat$HoneycombVelocityTrackerVersionImpl -> f.a.a.b.aa:
+    float getXVelocity(android.view.VelocityTracker,int) -> a
+android.support.v4.view.VelocityTrackerCompat$VelocityTrackerVersionImpl -> f.a.a.b.ab:
+    float getXVelocity(android.view.VelocityTracker,int) -> a
+android.support.v4.view.VelocityTrackerCompatHoneycomb -> f.a.a.b.ac:
+    float getXVelocity(android.view.VelocityTracker,int) -> a
+android.support.v4.view.ViewCompat -> f.a.a.b.ad:
+    android.support.v4.view.ViewCompat$ViewCompatImpl IMPL -> a
+    boolean canScrollHorizontally(android.view.View,int) -> a
+    int getOverScrollMode(android.view.View) -> a
+    void setAccessibilityDelegate(android.view.View,android.support.v4.view.AccessibilityDelegateCompat) -> a
+    void postInvalidateOnAnimation(android.view.View) -> b
+    void postOnAnimation(android.view.View,java.lang.Runnable) -> a
+    int getImportantForAccessibility(android.view.View) -> c
+    void setImportantForAccessibility(android.view.View,int) -> b
+    void setLayerType(android.view.View,int,android.graphics.Paint) -> a
+android.support.v4.view.ViewCompat$BaseViewCompatImpl -> f.a.a.b.ae:
+    boolean canScrollHorizontally(android.view.View,int) -> a
+    int getOverScrollMode(android.view.View) -> a
+    void setAccessibilityDelegate(android.view.View,android.support.v4.view.AccessibilityDelegateCompat) -> a
+    void postInvalidateOnAnimation(android.view.View) -> b
+    void postOnAnimation(android.view.View,java.lang.Runnable) -> a
+    long getFrameTime() -> a
+    int getImportantForAccessibility(android.view.View) -> c
+    void setImportantForAccessibility(android.view.View,int) -> b
+    void setLayerType(android.view.View,int,android.graphics.Paint) -> a
+android.support.v4.view.ViewCompat$GBViewCompatImpl -> f.a.a.b.af:
+    int getOverScrollMode(android.view.View) -> a
+android.support.v4.view.ViewCompat$HCViewCompatImpl -> f.a.a.b.ag:
+    long getFrameTime() -> a
+    void setLayerType(android.view.View,int,android.graphics.Paint) -> a
+android.support.v4.view.ViewCompat$ICSViewCompatImpl -> f.a.a.b.ah:
+    boolean canScrollHorizontally(android.view.View,int) -> a
+    void setAccessibilityDelegate(android.view.View,android.support.v4.view.AccessibilityDelegateCompat) -> a
+android.support.v4.view.ViewCompat$JBViewCompatImpl -> f.a.a.b.ai:
+    void postInvalidateOnAnimation(android.view.View) -> b
+    void postOnAnimation(android.view.View,java.lang.Runnable) -> a
+    int getImportantForAccessibility(android.view.View) -> c
+    void setImportantForAccessibility(android.view.View,int) -> b
+android.support.v4.view.ViewCompat$JbMr1ViewCompatImpl -> f.a.a.b.aj:
+android.support.v4.view.ViewCompat$ViewCompatImpl -> f.a.a.b.ak:
+    boolean canScrollHorizontally(android.view.View,int) -> a
+    int getOverScrollMode(android.view.View) -> a
+    void setAccessibilityDelegate(android.view.View,android.support.v4.view.AccessibilityDelegateCompat) -> a
+    void postInvalidateOnAnimation(android.view.View) -> b
+    void postOnAnimation(android.view.View,java.lang.Runnable) -> a
+    int getImportantForAccessibility(android.view.View) -> c
+    void setImportantForAccessibility(android.view.View,int) -> b
+    void setLayerType(android.view.View,int,android.graphics.Paint) -> a
+android.support.v4.view.ViewCompatGingerbread -> f.a.a.b.al:
+    int getOverScrollMode(android.view.View) -> a
+android.support.v4.view.ViewCompatHC -> f.a.a.b.am:
+    long getFrameTime() -> a
+    void setLayerType(android.view.View,int,android.graphics.Paint) -> a
+android.support.v4.view.ViewCompatICS -> f.a.a.b.an:
+    boolean canScrollHorizontally(android.view.View,int) -> a
+    void setAccessibilityDelegate(android.view.View,java.lang.Object) -> a
+android.support.v4.view.ViewCompatJB -> f.a.a.b.ao:
+    void postInvalidateOnAnimation(android.view.View) -> a
+    void postOnAnimation(android.view.View,java.lang.Runnable) -> a
+    int getImportantForAccessibility(android.view.View) -> b
+    void setImportantForAccessibility(android.view.View,int) -> a
+android.support.v4.view.ViewConfigurationCompat -> f.a.a.b.ap:
+    android.support.v4.view.ViewConfigurationCompat$ViewConfigurationVersionImpl IMPL -> a
+    int getScaledPagingTouchSlop(android.view.ViewConfiguration) -> a
+android.support.v4.view.ViewConfigurationCompat$BaseViewConfigurationVersionImpl -> f.a.a.b.aq:
+    int getScaledPagingTouchSlop(android.view.ViewConfiguration) -> a
+android.support.v4.view.ViewConfigurationCompat$FroyoViewConfigurationVersionImpl -> f.a.a.b.ar:
+    int getScaledPagingTouchSlop(android.view.ViewConfiguration) -> a
+android.support.v4.view.ViewConfigurationCompat$ViewConfigurationVersionImpl -> f.a.a.b.as:
+    int getScaledPagingTouchSlop(android.view.ViewConfiguration) -> a
+android.support.v4.view.ViewConfigurationCompatFroyo -> f.a.a.b.at:
+    int getScaledPagingTouchSlop(android.view.ViewConfiguration) -> a
+android.support.v4.view.ViewPager -> f.a.a.b.au:
+    int[] LAYOUT_ATTRS -> a
+    java.util.Comparator COMPARATOR -> b
+    android.view.animation.Interpolator sInterpolator -> c
+    java.util.ArrayList mItems -> d
+    android.support.v4.view.ViewPager$ItemInfo mTempItem -> e
+    android.graphics.Rect mTempRect -> f
+    android.support.v4.view.PagerAdapter mAdapter -> g
+    int mCurItem -> h
+    int mRestoredCurItem -> i
+    android.os.Parcelable mRestoredAdapterState -> j
+    java.lang.ClassLoader mRestoredClassLoader -> k
+    android.widget.Scroller mScroller -> l
+    android.support.v4.view.ViewPager$PagerObserver mObserver -> m
+    int mPageMargin -> n
+    android.graphics.drawable.Drawable mMarginDrawable -> o
+    int mTopPageBounds -> p
+    int mBottomPageBounds -> q
+    float mFirstOffset -> r
+    float mLastOffset -> s
+    int mChildWidthMeasureSpec -> t
+    int mChildHeightMeasureSpec -> u
+    boolean mInLayout -> v
+    boolean mScrollingCacheEnabled -> w
+    boolean mPopulatePending -> x
+    int mOffscreenPageLimit -> y
+    boolean mIsBeingDragged -> z
+    boolean mIsUnableToDrag -> A
+    int mDefaultGutterSize -> B
+    int mGutterSize -> C
+    int mTouchSlop -> D
+    float mLastMotionX -> E
+    float mLastMotionY -> F
+    float mInitialMotionX -> G
+    float mInitialMotionY -> H
+    int mActivePointerId -> I
+    android.view.VelocityTracker mVelocityTracker -> J
+    int mMinimumVelocity -> K
+    int mMaximumVelocity -> L
+    int mFlingDistance -> M
+    int mCloseEnough -> N
+    boolean mFakeDragging -> O
+    android.support.v4.widget.EdgeEffectCompat mLeftEdge -> P
+    android.support.v4.widget.EdgeEffectCompat mRightEdge -> Q
+    boolean mFirstLayout -> R
+    boolean mNeedCalculatePageOffsets -> S
+    boolean mCalledSuper -> T
+    int mDecorChildCount -> U
+    android.support.v4.view.ViewPager$OnPageChangeListener mOnPageChangeListener -> V
+    android.support.v4.view.ViewPager$OnPageChangeListener mInternalPageChangeListener -> W
+    android.support.v4.view.ViewPager$OnAdapterChangeListener mAdapterChangeListener -> Z
+    android.support.v4.view.ViewPager$PageTransformer mPageTransformer -> aa
+    java.lang.reflect.Method mSetChildrenDrawingOrderEnabled -> ab
+    int mDrawingOrder -> ac
+    java.util.ArrayList mDrawingOrderedChildren -> ad
+    android.support.v4.view.ViewPager$ViewPositionComparator sPositionComparator -> ae
+    java.lang.Runnable mEndScrollRunnable -> af
+    int mScrollState -> ag
+    void initViewPager() -> a
+    void onDetachedFromWindow() -> onDetachedFromWindow
+    void setScrollState(int) -> setScrollState
+    void setAdapter(android.support.v4.view.PagerAdapter) -> setAdapter
+    void removeNonDecorViews() -> g
+    android.support.v4.view.PagerAdapter getAdapter() -> getAdapter
+    void setOnAdapterChangeListener(android.support.v4.view.ViewPager$OnAdapterChangeListener) -> setOnAdapterChangeListener
+    void setCurrentItem(int) -> setCurrentItem
+    void setCurrentItem(int,boolean) -> a
+    int getCurrentItem() -> getCurrentItem
+    void setCurrentItemInternal(int,boolean,boolean) -> a
+    void setCurrentItemInternal(int,boolean,boolean,int) -> a
+    void scrollToItem(int,boolean,int,boolean) -> a
+    void setOnPageChangeListener(android.support.v4.view.ViewPager$OnPageChangeListener) -> setOnPageChangeListener
+    void setChildrenDrawingOrderEnabledCompat(boolean) -> setChildrenDrawingOrderEnabledCompat
+    int getChildDrawingOrder(int,int) -> getChildDrawingOrder
+    int getOffscreenPageLimit() -> getOffscreenPageLimit
+    void setOffscreenPageLimit(int) -> setOffscreenPageLimit
+    void setPageMargin(int) -> setPageMargin
+    int getPageMargin() -> getPageMargin
+    void setPageMarginDrawable(android.graphics.drawable.Drawable) -> setPageMarginDrawable
+    void setPageMarginDrawable(int) -> setPageMarginDrawable
+    boolean verifyDrawable(android.graphics.drawable.Drawable) -> verifyDrawable
+    void drawableStateChanged() -> drawableStateChanged
+    float distanceInfluenceForSnapDuration(float) -> a
+    void smoothScrollTo(int,int,int) -> a
+    android.support.v4.view.ViewPager$ItemInfo addNewItem(int,int) -> a
+    void dataSetChanged() -> b
+    void populate() -> c
+    void populate(int) -> a
+    void calculatePageOffsets(android.support.v4.view.ViewPager$ItemInfo,int,android.support.v4.view.ViewPager$ItemInfo) -> a
+    android.os.Parcelable onSaveInstanceState() -> onSaveInstanceState
+    void onRestoreInstanceState(android.os.Parcelable) -> onRestoreInstanceState
+    void addView(android.view.View,int,android.view.ViewGroup$LayoutParams) -> addView
+    void removeView(android.view.View) -> removeView
+    android.support.v4.view.ViewPager$ItemInfo infoForChild(android.view.View) -> a
+    android.support.v4.view.ViewPager$ItemInfo infoForAnyChild(android.view.View) -> b
+    android.support.v4.view.ViewPager$ItemInfo infoForPosition(int) -> b
+    void onAttachedToWindow() -> onAttachedToWindow
+    void onMeasure(int,int) -> onMeasure
+    void onSizeChanged(int,int,int,int) -> onSizeChanged
+    void recomputeScrollPosition(int,int,int,int) -> a
+    void onLayout(boolean,int,int,int,int) -> onLayout
+    void computeScroll() -> computeScroll
+    boolean pageScrolled(int) -> d
+    void onPageScrolled(int,float,int) -> a
+    void completeScroll(boolean) -> a
+    boolean isGutterDrag(float,float) -> a
+    void enableLayers(boolean) -> b
+    boolean onInterceptTouchEvent(android.view.MotionEvent) -> onInterceptTouchEvent
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    boolean performDrag(float) -> b
+    android.support.v4.view.ViewPager$ItemInfo infoForCurrentScrollPosition() -> h
+    int determineTargetPage(int,float,int,int) -> a
+    void draw(android.graphics.Canvas) -> draw
+    void onDraw(android.graphics.Canvas) -> onDraw
+    void onSecondaryPointerUp(android.view.MotionEvent) -> a
+    void endDrag() -> i
+    void setScrollingCacheEnabled(boolean) -> setScrollingCacheEnabled
+    boolean canScroll(android.view.View,boolean,int,int,int) -> a
+    boolean dispatchKeyEvent(android.view.KeyEvent) -> dispatchKeyEvent
+    boolean executeKeyEvent(android.view.KeyEvent) -> a
+    boolean arrowScroll(int) -> c
+    android.graphics.Rect getChildRectInPagerCoordinates(android.graphics.Rect,android.view.View) -> a
+    boolean pageLeft() -> d
+    boolean pageRight() -> e
+    void addFocusables(java.util.ArrayList,int,int) -> addFocusables
+    void addTouchables(java.util.ArrayList) -> addTouchables
+    boolean onRequestFocusInDescendants(int,android.graphics.Rect) -> onRequestFocusInDescendants
+    boolean dispatchPopulateAccessibilityEvent(android.view.accessibility.AccessibilityEvent) -> dispatchPopulateAccessibilityEvent
+    android.view.ViewGroup$LayoutParams generateDefaultLayoutParams() -> generateDefaultLayoutParams
+    android.view.ViewGroup$LayoutParams generateLayoutParams(android.view.ViewGroup$LayoutParams) -> generateLayoutParams
+    boolean checkLayoutParams(android.view.ViewGroup$LayoutParams) -> checkLayoutParams
+    android.view.ViewGroup$LayoutParams generateLayoutParams(android.util.AttributeSet) -> generateLayoutParams
+    void access$000(android.support.v4.view.ViewPager,int) -> a
+    android.support.v4.view.PagerAdapter access$200(android.support.v4.view.ViewPager) -> a
+    int access$300(android.support.v4.view.ViewPager) -> b
+    int[] access$400() -> f
+android.support.v4.view.ViewPager$1 -> f.a.a.b.av:
+    int compare(android.support.v4.view.ViewPager$ItemInfo,android.support.v4.view.ViewPager$ItemInfo) -> a
+    int compare(java.lang.Object,java.lang.Object) -> compare
+android.support.v4.view.ViewPager$2 -> f.a.a.b.aw:
+    float getInterpolation(float) -> getInterpolation
+android.support.v4.view.ViewPager$3 -> f.a.a.b.ax:
+    android.support.v4.view.ViewPager this$0 -> a
+    void run() -> run
+android.support.v4.view.ViewPager$Decor -> f.a.a.b.ay:
+android.support.v4.view.ViewPager$ItemInfo -> f.a.a.b.az:
+    java.lang.Object object -> a
+    int position -> b
+    boolean scrolling -> c
+    float widthFactor -> d
+    float offset -> e
+android.support.v4.view.ViewPager$LayoutParams -> f.a.a.b.ba:
+    boolean isDecor -> a
+    int gravity -> b
+    float widthFactor -> c
+    boolean needsMeasure -> d
+    int position -> e
+    int childIndex -> f
+android.support.v4.view.ViewPager$MyAccessibilityDelegate -> f.a.a.b.bb:
+    android.support.v4.view.ViewPager this$0 -> b
+    void onInitializeAccessibilityEvent(android.view.View,android.view.accessibility.AccessibilityEvent) -> d
+    void onInitializeAccessibilityNodeInfo(android.view.View,android.support.v4.view.accessibility.AccessibilityNodeInfoCompat) -> a
+    boolean performAccessibilityAction(android.view.View,int,android.os.Bundle) -> a
+android.support.v4.view.ViewPager$OnAdapterChangeListener -> f.a.a.b.bc:
+    void onAdapterChanged(android.support.v4.view.PagerAdapter,android.support.v4.view.PagerAdapter) -> a
+android.support.v4.view.ViewPager$OnPageChangeListener -> f.a.a.b.bd:
+    void onPageScrolled(int,float,int) -> a
+    void onPageSelected(int) -> a
+    void onPageScrollStateChanged(int) -> b
+android.support.v4.view.ViewPager$PageTransformer -> f.a.a.b.be:
+    void transformPage(android.view.View,float) -> a
+android.support.v4.view.ViewPager$PagerObserver -> f.a.a.b.bf:
+    android.support.v4.view.ViewPager this$0 -> a
+    void onChanged() -> onChanged
+    void onInvalidated() -> onInvalidated
+android.support.v4.view.ViewPager$SavedState -> f.a.a.b.bg:
+    int position -> a
+    android.os.Parcelable adapterState -> b
+    java.lang.ClassLoader loader -> c
+    android.os.Parcelable$Creator CREATOR -> CREATOR
+    void writeToParcel(android.os.Parcel,int) -> writeToParcel
+    java.lang.String toString() -> toString
+android.support.v4.view.ViewPager$SavedState$1 -> f.a.a.b.bh:
+    android.support.v4.view.ViewPager$SavedState createFromParcel(android.os.Parcel,java.lang.ClassLoader) -> b
+    android.support.v4.view.ViewPager$SavedState[] newArray(int) -> b
+    java.lang.Object[] newArray(int) -> a
+    java.lang.Object createFromParcel(android.os.Parcel,java.lang.ClassLoader) -> a
+android.support.v4.view.ViewPager$ViewPositionComparator -> f.a.a.b.bi:
+    int compare(android.view.View,android.view.View) -> a
+    int compare(java.lang.Object,java.lang.Object) -> compare
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat -> f.a.a.b.a.a:
+    android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl IMPL -> a
+    java.lang.Object mInfo -> b
+    java.lang.Object getInfo() -> a
+    void addAction(int) -> a
+    void setScrollable(boolean) -> a
+    void setClassName(java.lang.CharSequence) -> a
+    int hashCode() -> hashCode
+    boolean equals(java.lang.Object) -> equals
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoIcsImpl -> f.a.a.b.a.b:
+    void addAction(java.lang.Object,int) -> a
+    void setClassName(java.lang.Object,java.lang.CharSequence) -> a
+    void setScrollable(java.lang.Object,boolean) -> a
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoImpl -> f.a.a.b.a.c:
+    void addAction(java.lang.Object,int) -> a
+    void setScrollable(java.lang.Object,boolean) -> a
+    void setClassName(java.lang.Object,java.lang.CharSequence) -> a
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoJellybeanImpl -> f.a.a.b.a.d:
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityNodeInfoStubImpl -> f.a.a.b.a.e:
+    void addAction(java.lang.Object,int) -> a
+    void setClassName(java.lang.Object,java.lang.CharSequence) -> a
+    void setScrollable(java.lang.Object,boolean) -> a
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompatIcs -> f.a.a.b.a.f:
+    void addAction(java.lang.Object,int) -> a
+    void setClassName(java.lang.Object,java.lang.CharSequence) -> a
+    void setScrollable(java.lang.Object,boolean) -> a
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat -> f.a.a.b.a.g:
+    android.support.v4.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderImpl IMPL -> a
+    java.lang.Object mProvider -> b
+    java.lang.Object getProvider() -> a
+    android.support.v4.view.accessibility.AccessibilityNodeInfoCompat createAccessibilityNodeInfo(int) -> a
+    boolean performAction(int,int,android.os.Bundle) -> a
+    java.util.List findAccessibilityNodeInfosByText(java.lang.String,int) -> a
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderImpl -> f.a.a.b.a.h:
+    java.lang.Object newAccessibilityNodeProviderBridge(android.support.v4.view.accessibility.AccessibilityNodeProviderCompat) -> a
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl -> f.a.a.b.a.i:
+    java.lang.Object newAccessibilityNodeProviderBridge(android.support.v4.view.accessibility.AccessibilityNodeProviderCompat) -> a
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl$1 -> f.a.a.b.a.j:
+    android.support.v4.view.accessibility.AccessibilityNodeProviderCompat val$compat -> a
+    android.support.v4.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderJellyBeanImpl this$0 -> b
+    boolean performAction(int,int,android.os.Bundle) -> a
+    java.util.List findAccessibilityNodeInfosByText(java.lang.String,int) -> a
+    java.lang.Object createAccessibilityNodeInfo(int) -> a
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderStubImpl -> f.a.a.b.a.k:
+    java.lang.Object newAccessibilityNodeProviderBridge(android.support.v4.view.accessibility.AccessibilityNodeProviderCompat) -> a
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompatJellyBean -> f.a.a.b.a.l:
+    java.lang.Object newAccessibilityNodeProviderBridge(android.support.v4.view.accessibility.AccessibilityNodeProviderCompatJellyBean$AccessibilityNodeInfoBridge) -> a
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompatJellyBean$1 -> f.a.a.b.a.m:
+    android.support.v4.view.accessibility.AccessibilityNodeProviderCompatJellyBean$AccessibilityNodeInfoBridge val$bridge -> a
+    android.view.accessibility.AccessibilityNodeInfo createAccessibilityNodeInfo(int) -> createAccessibilityNodeInfo
+    java.util.List findAccessibilityNodeInfosByText(java.lang.String,int) -> findAccessibilityNodeInfosByText
+    boolean performAction(int,int,android.os.Bundle) -> performAction
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompatJellyBean$AccessibilityNodeInfoBridge -> f.a.a.b.a.n:
+    java.lang.Object createAccessibilityNodeInfo(int) -> a
+    boolean performAction(int,int,android.os.Bundle) -> a
+    java.util.List findAccessibilityNodeInfosByText(java.lang.String,int) -> a
+android.support.v4.widget.EdgeEffectCompat -> f.a.a.c.a:
+    java.lang.Object mEdgeEffect -> a
+    android.support.v4.widget.EdgeEffectCompat$EdgeEffectImpl IMPL -> b
+    void setSize(int,int) -> a
+    boolean isFinished() -> a
+    void finish() -> b
+    boolean onPull(float) -> a
+    boolean onRelease() -> c
+    boolean draw(android.graphics.Canvas) -> a
+android.support.v4.widget.EdgeEffectCompat$BaseEdgeEffectImpl -> f.a.a.c.b:
+    java.lang.Object newEdgeEffect(android.content.Context) -> a
+    void setSize(java.lang.Object,int,int) -> a
+    boolean isFinished(java.lang.Object) -> a
+    void finish(java.lang.Object) -> b
+    boolean onPull(java.lang.Object,float) -> a
+    boolean onRelease(java.lang.Object) -> c
+    boolean draw(java.lang.Object,android.graphics.Canvas) -> a
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectIcsImpl -> f.a.a.c.c:
+    java.lang.Object newEdgeEffect(android.content.Context) -> a
+    void setSize(java.lang.Object,int,int) -> a
+    boolean isFinished(java.lang.Object) -> a
+    void finish(java.lang.Object) -> b
+    boolean onPull(java.lang.Object,float) -> a
+    boolean onRelease(java.lang.Object) -> c
+    boolean draw(java.lang.Object,android.graphics.Canvas) -> a
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectImpl -> f.a.a.c.d:
+    java.lang.Object newEdgeEffect(android.content.Context) -> a
+    void setSize(java.lang.Object,int,int) -> a
+    boolean isFinished(java.lang.Object) -> a
+    void finish(java.lang.Object) -> b
+    boolean onPull(java.lang.Object,float) -> a
+    boolean onRelease(java.lang.Object) -> c
+    boolean draw(java.lang.Object,android.graphics.Canvas) -> a
+android.support.v4.widget.EdgeEffectCompatIcs -> f.a.a.c.e:
+    java.lang.Object newEdgeEffect(android.content.Context) -> a
+    void setSize(java.lang.Object,int,int) -> a
+    boolean isFinished(java.lang.Object) -> a
+    void finish(java.lang.Object) -> b
+    boolean onPull(java.lang.Object,float) -> a
+    boolean onRelease(java.lang.Object) -> c
+    boolean draw(java.lang.Object,android.graphics.Canvas) -> a
+com.baidu.android.bba.common.security.AESUtil -> com.baidu.a.a.a.a.a:
+    byte[] encrypt(java.lang.String,java.lang.String,byte[]) -> a
+    byte[] decrypt(java.lang.String,java.lang.String,byte[]) -> b
+com.baidu.android.bba.common.security.Base64 -> com.baidu.a.a.a.a.b:
+    byte[] MAP -> a
+    byte[] decode(byte[]) -> a
+    byte[] decode(byte[],int) -> a
+    java.lang.String encode(byte[],java.lang.String) -> a
+com.baidu.android.bba.common.util.CommonParam -> com.baidu.a.a.a.b.a:
+    java.lang.String TAG -> a
+    java.lang.String getCUID(android.content.Context) -> a
+    java.lang.String getDeviceId(android.content.Context) -> b
+com.baidu.android.bba.common.util.DeviceId -> com.baidu.a.a.a.b.b:
+    java.lang.String getDeviceID(android.content.Context) -> a
+    java.lang.String getIMEI(android.content.Context) -> b
+    java.lang.String getAndroidId(android.content.Context) -> c
+    void checkPermission(android.content.Context,java.lang.String) -> a
+    java.lang.String getExternalDeviceId(java.lang.String) -> a
+    void setExternalDeviceId(java.lang.String,java.lang.String) -> a
+com.baidu.android.bba.common.util.Util -> com.baidu.a.a.a.b.c:
+    java.lang.String toMd5(byte[],boolean) -> a
+    java.lang.String toHexString(byte[],java.lang.String,boolean) -> a
+com.baidu.appx.BDAdListener -> com.baidu.appx.a:
+    void onAdvertisementDataDidLoadSuccess() -> b
+    void onAdvertisementDataDidLoadFailure() -> a
+    void onAdvertisementViewDidShow() -> d
+    void onAdvertisementViewDidClick() -> c
+    void onAdvertisementViewWillStartNewIntent() -> e
+com.baidu.appx.BDAppWallAd -> com.baidu.appx.b:
+    com.baidu.appx.a.c a -> a
+    void loadAd() -> a
+    boolean isLoaded() -> b
+    void doShowAppWall() -> c
+com.baidu.appx.BDBannerAd -> com.baidu.appx.c:
+    com.baidu.appx.a.d a -> a
+    int b -> b
+    int c -> c
+    com.baidu.appx.BDBannerAd$BannerAdListener d -> d
+    boolean e -> e
+    com.baidu.appx.ui.f f -> f
+    void b() -> c
+    void setAdListener(com.baidu.appx.BDBannerAd$BannerAdListener) -> setAdListener
+    void setAdSize(int) -> setAdSize
+    void destroy() -> a
+    void setAdContext(android.app.Activity,java.lang.String,java.lang.String) -> a
+    com.baidu.appx.a.d$a c() -> d
+    int a(android.content.Context) -> a
+    void a(boolean) -> a
+    boolean d() -> e
+    void onLayout(boolean,int,int,int,int) -> onLayout
+    void onDetachedFromWindow() -> onDetachedFromWindow
+    void onAttachedToWindow() -> onAttachedToWindow
+    void e() -> f
+    void b(boolean) -> b
+    void a(int) -> a
+    boolean a() -> b
+    com.baidu.appx.BDBannerAd$BannerAdListener a(com.baidu.appx.BDBannerAd) -> a
+    boolean b(com.baidu.appx.BDBannerAd) -> b
+    void a(com.baidu.appx.BDBannerAd,boolean) -> a
+    void c(com.baidu.appx.BDBannerAd) -> c
+    com.baidu.appx.a.d d(com.baidu.appx.BDBannerAd) -> d
+com.baidu.appx.BDBannerAd$1 -> com.baidu.appx.d:
+    com.baidu.appx.BDBannerAd a -> a
+    void didUploadAdEventId(com.baidu.appx.c.b,int) -> a
+    void bannerAdDidLoad(com.baidu.appx.c.b,boolean) -> a
+com.baidu.appx.BDBannerAd$2 -> com.baidu.appx.e:
+    com.baidu.appx.BDBannerAd a -> a
+    void onClick(android.view.View) -> onClick
+com.baidu.appx.BDBannerAd$3 -> com.baidu.appx.f:
+    com.baidu.appx.BDBannerAd a -> a
+    void OnBannerViewConfirmedToClick() -> a
+    void OnBannerViewAttachedToWindow(boolean) -> a
+com.baidu.appx.BDBannerAd$4 -> com.baidu.appx.g:
+    com.baidu.appx.BDBannerAd a -> a
+    void onClick(android.view.View) -> onClick
+com.baidu.appx.BDBannerAd$BannerAdListener -> com.baidu.appx.h:
+com.baidu.appx.BDInterstitialAd -> com.baidu.appx.i:
+    com.baidu.appx.BDInterstitialAd$InterstitialAdListener a -> a
+    com.baidu.appx.a.e b -> b
+    void setAdListener(com.baidu.appx.BDInterstitialAd$InterstitialAdListener) -> a
+    boolean isLoaded() -> a
+    void loadAd() -> b
+    boolean showAd() -> c
+    com.baidu.appx.a.e a(com.baidu.appx.BDInterstitialAd) -> a
+    com.baidu.appx.BDInterstitialAd$InterstitialAdListener b(com.baidu.appx.BDInterstitialAd) -> b
+com.baidu.appx.BDInterstitialAd$1 -> com.baidu.appx.j:
+    com.baidu.appx.BDInterstitialAd a -> a
+    com.baidu.appx.b.b b -> b
+    void onClick(android.view.View) -> onClick
+com.baidu.appx.BDInterstitialAd$2 -> com.baidu.appx.k:
+    com.baidu.appx.BDInterstitialAd a -> a
+    java.util.ArrayList b -> b
+    void dialogViewDidClose() -> a
+    void dialogViewDidShowPage(int) -> a
+com.baidu.appx.BDInterstitialAd$3 -> com.baidu.appx.l:
+    com.baidu.appx.BDInterstitialAd a -> a
+    void multipleAdDidLoad(java.util.ArrayList,boolean) -> a
+    boolean isValidAdInfo(com.baidu.appx.b.b,boolean) -> a
+    void didUploadAdEventId(java.lang.String,int) -> a
+com.baidu.appx.BDInterstitialAd$InterstitialAdListener -> com.baidu.appx.m:
+    void onAdvertisementViewDidHide() -> f
+com.baidu.appx.BDSplashAd$SplashAdListener -> com.baidu.appx.n:
+com.baidu.appx.BaiduAppX -> com.baidu.appx.o:
+    boolean a -> a
+    void a(android.content.Context,java.lang.String) -> a
+    void a() -> a
+com.baidu.appx.a.a -> com.baidu.appx.a.a:
+    int a -> a
+    com.baidu.appx.a.a$b b -> b
+    int c -> c
+    void a(com.baidu.appx.c.c,boolean) -> a
+    void a(com.baidu.appx.c.c) -> a
+    void b(com.baidu.appx.c.c) -> b
+    void a(java.lang.Object,int) -> a
+    void a(java.lang.Object) -> a
+    void b(java.lang.Object) -> b
+    void c(java.lang.Object) -> c
+    int a() -> a
+    void b() -> b
+    void c() -> c
+    void d() -> d
+com.baidu.appx.a.a$a -> com.baidu.appx.a.b:
+    com.baidu.appx.c.c a -> a
+    int b -> b
+com.baidu.appx.a.a$b -> com.baidu.appx.a.c:
+    android.app.Activity a(com.baidu.appx.a.a) -> a
+    void a(com.baidu.appx.c.c,int) -> a
+com.baidu.appx.a.b -> com.baidu.appx.a.d:
+    com.baidu.appx.a.b$a a -> a
+    boolean b -> b
+    boolean c -> c
+    boolean d -> d
+    int e -> e
+    android.os.Handler f -> f
+    java.lang.Runnable g -> g
+    java.lang.Runnable h -> h
+    void a() -> a
+    void a(com.baidu.appx.g.b,com.baidu.appx.e.a,org.json.JSONObject) -> a
+    void a(java.lang.Object,boolean) -> a
+    void a(boolean) -> a
+    void e() -> e
+    void f() -> f
+    void b(long) -> b
+    void g() -> g
+    void b() -> b
+    void a(long) -> a
+    void c() -> c
+    void d() -> d
+    void a(com.baidu.appx.a.b,boolean) -> a
+com.baidu.appx.a.b$1 -> com.baidu.appx.a.e:
+    com.baidu.appx.a.b a -> a
+    void run() -> run
+com.baidu.appx.a.b$2 -> com.baidu.appx.a.f:
+    com.baidu.appx.a.b a -> a
+    void run() -> run
+com.baidu.appx.a.b$a -> com.baidu.appx.a.g:
+    void a() -> a
+    java.lang.Object a(org.json.JSONObject) -> a
+    java.lang.Object a(java.lang.Object) -> a
+    void b(java.lang.Object) -> b
+    void a(java.lang.Object,boolean) -> a
+    long a(int) -> a
+com.baidu.appx.a.c -> com.baidu.appx.a.h:
+    java.util.ArrayList a -> a
+    java.util.ArrayList b -> b
+    boolean isValidAdInfo(com.baidu.appx.b.b,boolean) -> a
+    void didUploadAdEventId(java.lang.String,int) -> a
+    void multipleAdDidLoad(java.util.ArrayList,boolean) -> a
+com.baidu.appx.a.d -> com.baidu.appx.a.i:
+    java.lang.String a -> a
+    int b -> b
+    int c -> c
+    android.app.Activity d -> d
+    com.baidu.appx.c.b e -> e
+    com.baidu.appx.a.d$a f -> f
+    int g -> g
+    com.baidu.appx.b.b h -> h
+    com.baidu.appx.a.b i -> i
+    com.baidu.appx.a.a j -> j
+    com.baidu.appx.a.g k -> k
+    void a(int,int) -> a
+    void b() -> b
+    void c() -> c
+    void a(com.baidu.appx.c.c,boolean) -> a
+    boolean d() -> d
+    void a() -> a
+    java.lang.Object a(org.json.JSONObject) -> a
+    boolean a(com.baidu.appx.c.b) -> a
+    java.lang.Object a(java.lang.Object) -> a
+    void b(java.lang.Object) -> b
+    void a(java.lang.Object,boolean) -> a
+    long a(int) -> a
+    void a(int,com.baidu.appx.b.b,java.lang.Object) -> a
+    android.app.Activity a(com.baidu.appx.a.a) -> a
+    void a(com.baidu.appx.c.c,int) -> a
+    void b(com.baidu.appx.c.b,int) -> b
+    void a(com.baidu.appx.c.b,int) -> a
+    void e() -> e
+com.baidu.appx.a.d$a -> com.baidu.appx.a.j:
+    void bannerAdDidLoad(com.baidu.appx.c.b,boolean) -> a
+    void didUploadAdEventId(com.baidu.appx.c.b,int) -> a
+com.baidu.appx.a.e -> com.baidu.appx.a.k:
+    java.lang.String c -> c
+    int d -> d
+    android.app.Activity e -> e
+    java.util.ArrayList f -> f
+    com.baidu.appx.a.e$a g -> g
+    com.baidu.appx.a.b a -> a
+    com.baidu.appx.a.a b -> b
+    com.baidu.appx.b.b h -> h
+    com.baidu.appx.a.g i -> i
+    void b() -> b
+    boolean c() -> c
+    android.app.Activity a(com.baidu.appx.a.a) -> a
+    void a(com.baidu.appx.c.c,boolean) -> a
+    void a(com.baidu.appx.c.c,int) -> a
+    void a(int,com.baidu.appx.b.b,java.lang.Object) -> a
+    void a() -> a
+    java.lang.Object a(org.json.JSONObject) -> a
+    java.lang.Object a(java.lang.Object) -> a
+    void b(java.lang.Object) -> b
+    void a(org.json.JSONObject,org.json.JSONObject) -> a
+    void a(java.lang.Object,boolean) -> a
+    long a(int) -> a
+    void a(com.baidu.appx.b.b,int) -> a
+    void a(java.util.ArrayList,int) -> a
+    void a(java.lang.String,java.lang.String,int) -> a
+    void b(com.baidu.appx.b.b,int) -> b
+com.baidu.appx.a.e$a -> com.baidu.appx.a.l:
+    boolean isValidAdInfo(com.baidu.appx.b.b,boolean) -> a
+    void didUploadAdEventId(java.lang.String,int) -> a
+    void multipleAdDidLoad(java.util.ArrayList,boolean) -> a
+com.baidu.appx.a.e$b -> com.baidu.appx.a.m:
+    java.util.ArrayList a -> a
+    int b -> b
+com.baidu.appx.a.f -> com.baidu.appx.a.n:
+    java.lang.String a -> a
+    java.lang.String b -> b
+    int c -> c
+    java.lang.String d -> d
+    java.lang.String e -> e
+    java.lang.String f -> f
+    java.lang.String g -> g
+    java.lang.String h -> h
+    java.lang.String i -> i
+    java.lang.String j -> j
+    com.baidu.appx.a.f a() -> a
+    void b() -> b
+    void c() -> c
+    java.lang.String d() -> d
+    java.lang.String e() -> e
+    java.lang.String f() -> f
+    java.lang.String a(java.lang.String,java.lang.String) -> a
+    void a(java.util.HashMap) -> a
+    void b(java.util.HashMap) -> b
+    void b(java.lang.String,java.lang.String) -> b
+    java.lang.String a(java.lang.String) -> a
+    void a(java.io.InputStream,java.lang.String) -> a
+    java.lang.String g() -> g
+    void b(java.lang.String) -> b
+    java.lang.String h() -> h
+    void a(com.baidu.appx.a.f,java.util.HashMap) -> a
+    java.lang.String a(com.baidu.appx.a.f) -> a
+    java.lang.String a(com.baidu.appx.a.f,java.lang.String) -> a
+    void a(com.baidu.appx.a.f,java.io.InputStream,java.lang.String) -> a
+com.baidu.appx.a.f$1 -> com.baidu.appx.a.o:
+    com.baidu.appx.a.f a -> a
+    void a(com.baidu.appx.g.b,com.baidu.appx.e.a,org.json.JSONObject) -> a
+com.baidu.appx.a.f$2 -> com.baidu.appx.a.p:
+    com.baidu.appx.a.f a -> a
+    java.lang.String b -> b
+    void a(java.lang.Error,java.lang.String,java.lang.String) -> a
+com.baidu.appx.a.f$a -> com.baidu.appx.a.q:
+    com.baidu.appx.a.f a -> a
+com.baidu.appx.a.g -> com.baidu.appx.a.r:
+    android.os.HandlerThread a -> a
+    android.os.Handler b -> b
+    void a(org.json.JSONArray) -> a
+    void a() -> a
+    boolean handleMessage(android.os.Message) -> handleMessage
+com.baidu.appx.app_download.CompleteReceiver -> com.baidu.appx.app_download.CompleteReceiver:
+    android.app.DownloadManager a -> a
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.baidu.appx.app_download.CompleteReceiver$a -> com.baidu.appx.app_download.a:
+    void a(java.lang.Object) -> a
+    void b(java.lang.Object) -> b
+    void c(java.lang.Object) -> c
+com.baidu.appx.app_download.a -> com.baidu.appx.app_download.b:
+    java.util.ArrayList a -> a
+    com.baidu.appx.app_download.a a() -> a
+    void a(android.content.Context,java.lang.String,java.lang.String) -> a
+    void a(android.content.Context,java.lang.String,java.lang.String,com.baidu.appx.app_download.CompleteReceiver$a,java.lang.Object) -> a
+    boolean a(long) -> a
+    boolean a(java.lang.String) -> a
+    boolean b(java.lang.String) -> b
+    java.util.ArrayList b() -> b
+    void a(long,java.lang.String,com.baidu.appx.app_download.CompleteReceiver$a,java.lang.Object) -> a
+com.baidu.appx.app_download.a$a -> com.baidu.appx.app_download.c:
+    com.baidu.appx.app_download.a a -> a
+    com.baidu.appx.app_download.a a() -> a
+com.baidu.appx.b.a -> com.baidu.appx.b.a:
+    org.json.JSONObject a -> a
+    java.lang.String a(java.lang.String) -> a
+    int b(java.lang.String) -> b
+    long c(java.lang.String) -> c
+    boolean d(java.lang.String) -> d
+com.baidu.appx.b.b -> com.baidu.appx.b.b:
+    java.lang.String b -> b
+    java.lang.String c -> c
+    java.lang.String d -> d
+    int e -> e
+    int b() -> a
+    java.lang.String c() -> b
+    java.lang.String d() -> c
+    java.lang.String e() -> d
+    java.lang.String f() -> e
+    java.lang.String g() -> f
+    java.lang.String h() -> g
+    java.lang.String i() -> h
+    java.lang.String j() -> i
+    long k() -> j
+    int m() -> k
+    org.json.JSONArray n() -> l
+    org.json.JSONArray o() -> m
+    org.json.JSONArray p() -> n
+    java.lang.String q() -> o
+    int r() -> p
+    java.lang.String s() -> q
+    java.lang.String u() -> r
+    boolean v() -> s
+    int w() -> t
+    java.lang.String y() -> u
+    java.lang.String z() -> v
+    java.lang.String A() -> w
+    int B() -> x
+    java.lang.String I() -> y
+    java.lang.String J() -> z
+    java.lang.String K() -> A
+    com.baidu.appx.c.b$c L() -> B
+    com.baidu.appx.c.b$e M() -> C
+    com.baidu.appx.c.b$d N() -> D
+    com.baidu.appx.c.b$b O() -> E
+    void a(int,java.lang.String,com.baidu.appx.b.b$a,java.lang.Object) -> a
+    boolean P() -> F
+com.baidu.appx.b.b$1 -> com.baidu.appx.b.c:
+    com.baidu.appx.b.b a -> a
+    int b -> b
+    com.baidu.appx.b.b$a c -> c
+    java.lang.Object d -> d
+    void a(java.lang.Error,java.lang.String,java.lang.String) -> a
+com.baidu.appx.b.b$a -> com.baidu.appx.b.d:
+    void a(int,com.baidu.appx.b.b,java.lang.Object) -> a
+com.baidu.appx.c.a -> com.baidu.appx.c.a:
+    java.lang.String f() -> e
+    java.lang.String K() -> A
+    java.lang.String g() -> f
+    java.lang.String y() -> u
+    java.lang.String z() -> v
+com.baidu.appx.c.b -> com.baidu.appx.c.b:
+    int w() -> t
+    int b() -> a
+    com.baidu.appx.c.b$c L() -> B
+    com.baidu.appx.c.b$e M() -> C
+    com.baidu.appx.c.b$d N() -> D
+    com.baidu.appx.c.b$b O() -> E
+    long k() -> j
+    int m() -> k
+com.baidu.appx.c.b$a -> com.baidu.appx.c.c:
+com.baidu.appx.c.b$b -> com.baidu.appx.c.d:
+    java.lang.String c() -> b
+com.baidu.appx.c.b$c -> com.baidu.appx.c.e:
+    java.lang.String J() -> z
+    java.lang.String d() -> c
+com.baidu.appx.c.b$d -> com.baidu.appx.c.f:
+    java.lang.String K() -> A
+    java.lang.String e() -> d
+com.baidu.appx.c.b$e -> com.baidu.appx.c.g:
+    java.lang.String f() -> e
+    java.lang.String g() -> f
+    java.lang.String i() -> h
+    java.lang.String j() -> i
+    java.lang.String I() -> y
+com.baidu.appx.c.c -> com.baidu.appx.c.h:
+    int r() -> p
+    java.lang.String q() -> o
+    java.lang.String u() -> r
+    boolean v() -> s
+    org.json.JSONArray o() -> m
+    org.json.JSONArray p() -> n
+    boolean P() -> F
+com.baidu.appx.c.d -> com.baidu.appx.c.i:
+    java.lang.String s() -> q
+    org.json.JSONArray n() -> l
+com.baidu.appx.c.e -> com.baidu.appx.c.j:
+com.baidu.appx.c.f -> com.baidu.appx.c.k:
+com.baidu.appx.c.g -> com.baidu.appx.c.l:
+com.baidu.appx.d.a -> com.baidu.appx.d.a:
+    java.security.spec.KeySpec a -> a
+    java.lang.String b -> b
+    javax.crypto.SecretKey c -> c
+    javax.crypto.SecretKeyFactory d -> d
+    java.lang.String e -> e
+    void b(byte[]) -> b
+    byte[] c(byte[]) -> c
+    javax.crypto.spec.IvParameterSpec d(byte[]) -> d
+    byte[] a(byte[]) -> a
+    byte[] a() -> a
+com.baidu.appx.d.b -> com.baidu.appx.d.b:
+    byte[] a(int) -> a
+    int a(byte[]) -> a
+com.baidu.appx.d.c -> com.baidu.appx.d.c:
+    char[] a -> a
+    java.lang.String a(byte[]) -> a
+com.baidu.appx.d.d -> com.baidu.appx.d.d:
+    byte[] a(byte[]) -> a
+    java.lang.String b(byte[]) -> b
+com.baidu.appx.e.a -> com.baidu.appx.e.a:
+    int a -> a
+    java.lang.String b -> b
+    com.baidu.appx.e.a a(int,java.lang.String) -> a
+    java.lang.String toString() -> toString
+com.baidu.appx.f.a -> com.baidu.appx.f.a:
+    void a(boolean,int) -> a
+com.baidu.appx.f.b -> com.baidu.appx.f.b:
+    java.io.InputStream c -> c
+    int d -> d
+    int a -> a
+    int b -> b
+    boolean e -> e
+    int f -> f
+    int g -> g
+    int[] h -> h
+    int[] i -> i
+    int[] j -> j
+    int k -> k
+    int l -> l
+    int m -> m
+    int n -> n
+    boolean o -> o
+    boolean p -> p
+    int q -> q
+    int r -> r
+    int s -> s
+    int t -> t
+    int u -> u
+    int v -> v
+    int w -> w
+    int x -> x
+    int y -> y
+    android.graphics.Bitmap z -> z
+    android.graphics.Bitmap A -> A
+    com.baidu.appx.f.c B -> B
+    boolean C -> C
+    byte[] D -> D
+    int E -> E
+    int F -> F
+    int G -> G
+    boolean H -> H
+    int I -> I
+    int J -> J
+    short[] K -> K
+    byte[] L -> L
+    byte[] M -> M
+    byte[] N -> N
+    com.baidu.appx.f.c O -> O
+    int P -> P
+    com.baidu.appx.f.a Q -> Q
+    byte[] R -> R
+    void run() -> run
+    void a() -> a
+    int b() -> b
+    android.graphics.Bitmap c() -> c
+    void e() -> e
+    android.graphics.Bitmap a(int) -> a
+    com.baidu.appx.f.c b(int) -> b
+    com.baidu.appx.f.c d() -> d
+    int f() -> f
+    int g() -> g
+    void h() -> h
+    boolean i() -> i
+    void j() -> j
+    int k() -> k
+    int l() -> l
+    int[] c(int) -> c
+    void m() -> m
+    void n() -> n
+    void o() -> o
+    void p() -> p
+    void q() -> q
+    void r() -> r
+    int s() -> s
+    void t() -> t
+    void u() -> u
+com.baidu.appx.f.c -> com.baidu.appx.f.c:
+    android.graphics.Bitmap a -> a
+    int b -> b
+    com.baidu.appx.f.c c -> c
+com.baidu.appx.f.d -> com.baidu.appx.f.d:
+    com.baidu.appx.f.b a -> a
+    android.graphics.Bitmap b -> b
+    boolean c -> c
+    boolean d -> d
+    int e -> e
+    int f -> f
+    android.graphics.Rect g -> g
+    android.widget.ImageView$ScaleType h -> h
+    com.baidu.appx.f.d$a i -> i
+    com.baidu.appx.f.d$b j -> j
+    android.os.Handler k -> k
+    int[] l -> l
+    void b(java.io.InputStream) -> b
+    void a(java.io.InputStream) -> a
+    void onDraw(android.graphics.Canvas) -> onDraw
+    void onMeasure(int,int) -> onMeasure
+    void a(com.baidu.appx.f.d$b) -> a
+    void a(android.widget.ImageView$ScaleType) -> a
+    void onLayout(boolean,int,int,int,int) -> onLayout
+    void a(double,double,double,double) -> a
+    void b(double,double,double,double) -> b
+    void a(int,int,int,int) -> a
+    void a(boolean,int) -> a
+    void b() -> b
+    com.baidu.appx.f.b a(com.baidu.appx.f.d) -> a
+    boolean b(com.baidu.appx.f.d) -> b
+    boolean c(com.baidu.appx.f.d) -> c
+    void a(com.baidu.appx.f.d,android.graphics.Bitmap) -> a
+    android.os.Handler d(com.baidu.appx.f.d) -> d
+    int[] a() -> a
+com.baidu.appx.f.d$1 -> com.baidu.appx.f.e:
+    com.baidu.appx.f.d a -> a
+    void handleMessage(android.os.Message) -> handleMessage
+com.baidu.appx.f.d$a -> com.baidu.appx.f.f:
+    com.baidu.appx.f.d a -> a
+    void run() -> run
+com.baidu.appx.f.d$b -> com.baidu.appx.f.g:
+    com.baidu.appx.f.d$b a -> a
+    com.baidu.appx.f.d$b b -> b
+    com.baidu.appx.f.d$b c -> c
+    int d -> d
+    com.baidu.appx.f.d$b[] e -> e
+    com.baidu.appx.f.d$b[] values() -> values
+    com.baidu.appx.f.d$b valueOf(java.lang.String) -> valueOf
+com.baidu.appx.g.a -> com.baidu.appx.g.a:
+    void a(com.baidu.appx.g.b,com.baidu.appx.e.a,java.lang.Object) -> a
+com.baidu.appx.g.b -> com.baidu.appx.g.b:
+    java.lang.Object a -> a
+    com.baidu.appx.g.c b -> b
+    com.baidu.appx.g.d c -> c
+    com.baidu.appx.g.a d -> d
+    int e -> e
+    int f -> f
+    int g -> g
+    boolean h -> h
+    boolean a() -> a
+    void k() -> k
+    void b() -> b
+    void l() -> l
+    void c() -> c
+    void m() -> m
+    void d() -> d
+    java.net.HttpURLConnection n() -> n
+    void a(java.net.HttpURLConnection) -> a
+    void b(java.net.HttpURLConnection) -> b
+    com.baidu.appx.e.a a(int) -> a
+    boolean c(java.net.HttpURLConnection) -> c
+    void d(java.net.HttpURLConnection) -> d
+    void o() -> o
+    void a(com.baidu.appx.e.a,java.lang.Object) -> a
+    void e() -> e
+    void f() -> f
+    void g() -> g
+    void a(java.lang.String) -> a
+    void h() -> h
+    void i() -> i
+    boolean j() -> j
+    void a(com.baidu.appx.e.a) -> a
+    void a(com.baidu.appx.g.b) -> a
+com.baidu.appx.g.b$1 -> com.baidu.appx.g.c:
+    com.baidu.appx.g.b a -> a
+    void run() -> run
+com.baidu.appx.g.b$2 -> com.baidu.appx.g.d:
+    com.baidu.appx.g.b a -> a
+    com.baidu.appx.g.a b -> b
+    com.baidu.appx.g.b c -> c
+    com.baidu.appx.e.a d -> d
+    java.lang.Object e -> e
+    void run() -> run
+com.baidu.appx.g.b$3 -> com.baidu.appx.g.e:
+    com.baidu.appx.g.b a -> a
+    void run() -> run
+com.baidu.appx.g.c -> com.baidu.appx.g.f:
+    java.lang.String a() -> a
+    byte[] b() -> b
+    java.util.HashMap c() -> c
+com.baidu.appx.g.d -> com.baidu.appx.g.g:
+    void a() -> a
+    void a(byte[],int) -> a
+    void b() -> b
+    void c() -> c
+    java.lang.Object d() -> d
+    com.baidu.appx.e.a e() -> e
+com.baidu.appx.h.a -> com.baidu.appx.h.a:
+    boolean a -> a
+    java.util.ArrayList b -> b
+    boolean a() -> a
+    void a(boolean) -> a
+    java.util.ArrayList b() -> b
+    void a(com.baidu.appx.g.b) -> a
+    void a(com.baidu.appx.h.j) -> a
+    java.lang.String a(android.content.Context) -> a
+    boolean c() -> c
+    void d() -> d
+    void e() -> e
+    void a(com.baidu.appx.e.a) -> a
+    void b(com.baidu.appx.g.b) -> b
+    void a(java.lang.String,com.baidu.appx.h.j) -> a
+    void a(java.lang.String,int,com.baidu.appx.h.j) -> a
+    void a(java.lang.String,int,int,int,int,com.baidu.appx.h.j) -> a
+    void f() -> f
+    void g() -> g
+    void b(java.lang.String,int,com.baidu.appx.h.j) -> b
+    void a(java.lang.String,java.lang.String,int,com.baidu.appx.h.j) -> a
+com.baidu.appx.h.a$1 -> com.baidu.appx.h.b:
+    org.json.JSONObject d() -> d
+com.baidu.appx.h.a$10 -> com.baidu.appx.h.c:
+    java.lang.String b -> b
+    int c -> c
+    org.json.JSONObject d() -> d
+com.baidu.appx.h.a$2 -> com.baidu.appx.h.d:
+    java.lang.String b -> b
+    int c -> c
+    java.lang.String d -> d
+    org.json.JSONObject d() -> d
+com.baidu.appx.h.a$3 -> com.baidu.appx.h.e:
+    void a(com.baidu.appx.g.b,com.baidu.appx.e.a,org.json.JSONObject) -> a
+com.baidu.appx.h.a$4 -> com.baidu.appx.h.f:
+    com.baidu.appx.g.b a -> a
+    void run() -> run
+com.baidu.appx.h.a$5 -> com.baidu.appx.h.g:
+    java.lang.String b -> b
+    org.json.JSONObject d() -> d
+com.baidu.appx.h.a$6 -> com.baidu.appx.h.h:
+    java.lang.String b -> b
+    int c -> c
+    org.json.JSONObject d() -> d
+com.baidu.appx.h.a$7 -> com.baidu.appx.h.i:
+    java.lang.String b -> b
+    int c -> c
+    int d -> d
+    int e -> e
+    int f -> f
+    org.json.JSONObject d() -> d
+com.baidu.appx.h.a$8 -> com.baidu.appx.h.j:
+    java.util.ArrayList b -> b
+    org.json.JSONObject d() -> d
+com.baidu.appx.h.a$9 -> com.baidu.appx.h.k:
+    void a(com.baidu.appx.g.b,com.baidu.appx.e.a,org.json.JSONObject) -> a
+com.baidu.appx.h.a$9$1 -> com.baidu.appx.h.l:
+    com.baidu.appx.h.a$9 a -> a
+    void run() -> run
+com.baidu.appx.h.b -> com.baidu.appx.h.m:
+    org.json.JSONObject a -> a
+    org.json.JSONObject a() -> a
+    java.lang.String a(int) -> a
+    java.lang.String a(java.lang.String) -> a
+    java.lang.String b(java.lang.String) -> b
+com.baidu.appx.h.c -> com.baidu.appx.h.n:
+    int b -> b
+    com.baidu.appx.h.i$a c -> c
+    java.lang.String a -> a
+    java.lang.String a() -> a
+    byte[] b() -> b
+    java.util.HashMap c() -> c
+    org.json.JSONObject d() -> d
+    java.lang.String toString() -> toString
+com.baidu.appx.h.d -> com.baidu.appx.h.o:
+    int a -> a
+    byte[] b -> b
+    int c -> c
+    java.lang.String d -> d
+    byte[] e -> e
+    byte[] a() -> a
+    void a(byte[]) -> a
+    java.lang.String b() -> b
+    void a(java.lang.String) -> a
+    byte[] c() -> c
+    void d() -> d
+    void e() -> e
+    java.util.HashMap f() -> f
+com.baidu.appx.h.e -> com.baidu.appx.h.p:
+    org.apache.http.util.ByteArrayBuffer a -> a
+    com.baidu.appx.e.a b -> b
+    org.json.JSONObject c -> c
+    void a() -> a
+    void a(byte[],int) -> a
+    void b() -> b
+    byte[] f() -> f
+    org.json.JSONObject g() -> g
+    void c() -> c
+    com.baidu.appx.e.a e() -> e
+    java.lang.String toString() -> toString
+    java.lang.Object d() -> d
+com.baidu.appx.h.f -> com.baidu.appx.h.q:
+    com.baidu.appx.e.a a -> a
+    org.json.JSONObject b -> b
+    com.baidu.appx.e.a a() -> a
+    void a(com.baidu.appx.e.a) -> a
+    org.json.JSONObject b() -> b
+    boolean a(byte[]) -> a
+    int c(byte[]) -> c
+    boolean b(byte[]) -> b
+    int d(byte[]) -> d
+    org.json.JSONObject e(byte[]) -> e
+    boolean c() -> c
+com.baidu.appx.h.g -> com.baidu.appx.h.r:
+    com.baidu.appx.h.g$a a(int) -> a
+    boolean b(int) -> b
+    com.baidu.appx.h.g$a a() -> a
+    com.baidu.appx.h.g$a b() -> b
+    byte[] c(byte[],int,int) -> c
+    com.baidu.appx.h.g$a c() -> c
+    byte[] d(byte[],int,int) -> d
+    com.baidu.appx.h.g$a d() -> d
+    byte[] a(byte[],int,int) -> a
+    byte[] b(byte[],int,int) -> b
+com.baidu.appx.h.g$1 -> com.baidu.appx.h.s:
+    byte[] a(byte[],int,int) -> a
+com.baidu.appx.h.g$2 -> com.baidu.appx.h.t:
+    byte[] a(byte[],int,int) -> a
+com.baidu.appx.h.g$3 -> com.baidu.appx.h.u:
+    byte[] a(byte[],int,int) -> a
+com.baidu.appx.h.g$4 -> com.baidu.appx.h.v:
+    byte[] a(byte[],int,int) -> a
+com.baidu.appx.h.g$a -> com.baidu.appx.h.w:
+    byte[] a(byte[],int,int) -> a
+com.baidu.appx.h.h -> com.baidu.appx.h.x:
+    int a -> a
+    com.baidu.appx.h.i$a b -> b
+    org.json.JSONObject c -> c
+    byte[] a() -> a
+    byte[] b() -> b
+    byte[] c() -> c
+    int d() -> d
+    byte[] a(int,byte[]) -> a
+com.baidu.appx.h.i -> com.baidu.appx.h.y:
+    com.baidu.appx.h.i$a a() -> a
+com.baidu.appx.h.i$1 -> com.baidu.appx.h.z:
+    int a() -> a
+    byte[] a(byte[]) -> a
+com.baidu.appx.h.i$a -> com.baidu.appx.h.aa:
+    int a() -> a
+    byte[] a(byte[]) -> a
+com.baidu.appx.h.j -> com.baidu.appx.h.ab:
+    void a(com.baidu.appx.g.b,com.baidu.appx.e.a,java.lang.Object) -> a
+    void a(com.baidu.appx.g.b,com.baidu.appx.e.a,org.json.JSONObject) -> a
+com.baidu.appx.i.a -> com.baidu.appx.i.a:
+    android.content.Context a -> a
+    void a(android.content.Context) -> a
+    android.content.Context a() -> a
+    java.lang.String b() -> b
+    int c() -> c
+    java.lang.String d() -> d
+    android.content.pm.PackageInfo a(java.lang.String) -> a
+    int a(android.content.pm.PackageInfo) -> a
+    java.lang.String b(android.content.pm.PackageInfo) -> b
+    java.lang.String a(android.content.pm.PackageManager,android.content.pm.ApplicationInfo) -> a
+    java.lang.String c(android.content.pm.PackageInfo) -> c
+    boolean b(java.lang.String) -> b
+com.baidu.appx.i.b -> com.baidu.appx.i.b:
+    int a -> a
+    java.lang.String a(android.content.Context) -> a
+    java.lang.String b(android.content.Context) -> b
+    java.lang.String c(android.content.Context) -> c
+    java.lang.String d(android.content.Context) -> d
+    int e(android.content.Context) -> e
+    boolean f(android.content.Context) -> f
+    int g(android.content.Context) -> g
+    int h(android.content.Context) -> h
+    java.lang.String i(android.content.Context) -> i
+    java.lang.String a() -> a
+    java.lang.String b() -> b
+    boolean c() -> c
+com.baidu.appx.i.c -> com.baidu.appx.i.c:
+    java.lang.String a -> a
+    android.os.HandlerThread b -> b
+    android.os.Handler c -> c
+    android.os.Handler d -> d
+    void b() -> b
+    void c() -> c
+    com.baidu.appx.i.c a() -> a
+    void a(java.lang.String,com.baidu.appx.i.c$a) -> a
+    void a(com.baidu.appx.i.c$a,java.lang.Error,java.lang.String,java.lang.String) -> a
+    void a(java.lang.String,java.lang.String,com.baidu.appx.i.c$a) -> a
+    java.lang.String a(java.lang.String,java.lang.String) -> a
+    java.io.InputStream a(java.lang.String) -> a
+    void a(android.os.Message,java.util.HashMap) -> a
+    void b(android.os.Message,java.util.HashMap) -> b
+    boolean handleMessage(android.os.Message) -> handleMessage
+com.baidu.appx.i.c$a -> com.baidu.appx.i.d:
+    void a(java.lang.Error,java.lang.String,java.lang.String) -> a
+com.baidu.appx.i.c$b -> com.baidu.appx.i.e:
+    com.baidu.appx.i.c a -> a
+    com.baidu.appx.i.c a() -> a
+com.baidu.appx.i.d -> com.baidu.appx.i.f:
+    long skip(long) -> skip
+com.baidu.appx.i.e -> com.baidu.appx.i.g:
+    boolean a() -> a
+    java.lang.String a(android.content.Context,android.net.Uri) -> a
+    void a(java.lang.String,java.io.InputStream) -> a
+    java.lang.String b() -> b
+    java.lang.String a(android.content.Context) -> a
+    java.lang.String a(android.content.Context,boolean) -> a
+    boolean a(java.io.InputStream) -> a
+com.baidu.appx.i.f -> com.baidu.appx.i.h:
+    java.lang.StringBuilder a() -> a
+    java.io.InputStream a(java.lang.String,java.lang.Object) -> a
+    android.graphics.Bitmap a(java.lang.String,java.lang.Object,android.content.res.Resources) -> a
+com.baidu.appx.i.g -> com.baidu.appx.i.i:
+    java.lang.Object a(byte[],java.lang.String) -> a
+    java.lang.String b(byte[],java.lang.String) -> b
+    java.lang.String a(org.json.JSONObject,java.lang.String) -> a
+    java.lang.Boolean b(org.json.JSONObject,java.lang.String) -> b
+com.baidu.appx.i.h -> com.baidu.appx.i.j:
+    double a -> a
+    double b -> b
+    boolean a() -> a
+    double b() -> b
+    double c() -> c
+    void d() -> d
+    void a(double) -> a
+    void b(double) -> b
+com.baidu.appx.i.h$1 -> com.baidu.appx.i.k:
+    void run() -> run
+com.baidu.appx.i.h$2 -> com.baidu.appx.i.l:
+    android.location.LocationManager a -> a
+    void onStatusChanged(java.lang.String,int,android.os.Bundle) -> onStatusChanged
+    void onProviderEnabled(java.lang.String) -> onProviderEnabled
+    void onProviderDisabled(java.lang.String) -> onProviderDisabled
+    void onLocationChanged(android.location.Location) -> onLocationChanged
+com.baidu.appx.i.i -> com.baidu.appx.i.m:
+    java.lang.String a -> a
+    com.baidu.appx.i.i$c b -> b
+    void a(java.lang.String,java.lang.String) -> a
+    void a(java.lang.String) -> a
+    void a(java.lang.Exception) -> a
+    void a(java.lang.Object) -> a
+    java.lang.String b(java.lang.Object) -> b
+    java.lang.String c(java.lang.Object) -> c
+com.baidu.appx.i.i$a -> com.baidu.appx.i.n:
+    void a(java.lang.String,java.lang.String) -> a
+    void a(java.lang.Exception) -> a
+    java.lang.String a(java.lang.Object) -> a
+com.baidu.appx.i.i$b -> com.baidu.appx.i.o:
+    android.os.HandlerThread a -> a
+    android.os.Handler b -> b
+    boolean c -> c
+    java.io.PrintStream d -> d
+    void a(java.lang.String,java.lang.String) -> a
+    void a(java.lang.Exception) -> a
+    java.lang.String a(java.lang.Object) -> a
+    java.lang.String a() -> a
+    java.lang.String b() -> b
+    java.io.File c() -> c
+    java.io.PrintStream d() -> d
+    java.io.PrintStream a(com.baidu.appx.i.i$b) -> a
+com.baidu.appx.i.i$b$1 -> com.baidu.appx.i.p:
+    com.baidu.appx.i.i$b a -> a
+    void handleMessage(android.os.Message) -> handleMessage
+com.baidu.appx.i.i$c -> com.baidu.appx.i.q:
+    void a(java.lang.String,java.lang.String) -> a
+    void a(java.lang.Exception) -> a
+    java.lang.String a(java.lang.Object) -> a
+com.baidu.appx.i.j -> com.baidu.appx.i.r:
+    java.util.concurrent.ExecutorService a -> a
+    java.net.URLConnection a(java.net.URL) -> a
+    boolean a() -> a
+    boolean b() -> b
+    boolean g() -> g
+    java.util.concurrent.ExecutorService c() -> c
+    void d() -> d
+    int e() -> e
+    int f() -> f
+com.baidu.appx.i.k -> com.baidu.appx.i.s:
+    boolean a(java.lang.String) -> a
+    java.lang.String b(java.lang.String) -> b
+    java.lang.String a(java.lang.String,int,boolean) -> a
+    java.lang.String c(java.lang.String) -> c
+    java.lang.String a(java.lang.String,boolean) -> a
+com.baidu.appx.i.l -> com.baidu.appx.i.t:
+    java.util.ArrayList a(android.content.Context) -> a
+com.baidu.appx.i.m -> com.baidu.appx.i.u:
+    com.baidu.appx.i.m a -> a
+    boolean b -> b
+    java.lang.String c -> c
+    java.lang.String d -> d
+    int e -> e
+    double f -> f
+    boolean a() -> a
+    java.lang.String b() -> b
+    int c() -> c
+    double d() -> d
+com.baidu.appx.i.n -> com.baidu.appx.i.v:
+    float a(float,android.content.Context) -> a
+    float b(float,android.content.Context) -> b
+    android.view.View a(java.lang.String,android.content.Context,java.lang.Object) -> a
+    void a(android.view.View,android.widget.ImageView$ScaleType) -> a
+    android.widget.ImageView a(android.graphics.Bitmap,android.content.Context) -> a
+    boolean a(java.io.InputStream) -> a
+    android.graphics.drawable.Drawable a(android.graphics.Bitmap,android.content.res.Resources) -> a
+    android.graphics.Rect a(byte[]) -> a
+    int a(byte[],int) -> a
+    int a(java.lang.String,int) -> a
+com.baidu.appx.ui.a -> com.baidu.appx.j.a:
+    java.util.ArrayList a -> a
+    java.util.ArrayList b -> b
+    java.util.ArrayList c -> c
+    com.baidu.appx.a.c d -> d
+    boolean[] e -> e
+    com.baidu.appx.ui.c f -> f
+    android.widget.BaseAdapter g -> g
+    void a(android.os.Bundle,android.app.Activity) -> a
+    void a() -> a
+    void b() -> i
+    void a(boolean) -> a
+    void a(boolean,java.util.ArrayList) -> a
+    java.util.ArrayList a(com.baidu.appx.ui.a) -> a
+    com.baidu.appx.a.c b(com.baidu.appx.ui.a) -> b
+    void a(com.baidu.appx.ui.a,boolean) -> a
+com.baidu.appx.ui.a$1 -> com.baidu.appx.j.b:
+    com.baidu.appx.ui.a a -> a
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+    com.baidu.appx.ui.a a(com.baidu.appx.ui.a$1) -> a
+com.baidu.appx.ui.a$1$1 -> com.baidu.appx.j.c:
+    com.baidu.appx.ui.a$1 a -> a
+    void onClick(android.view.View) -> onClick
+com.baidu.appx.ui.a$2 -> com.baidu.appx.j.d:
+    com.baidu.appx.ui.a a -> a
+    android.app.Activity b -> b
+    void onClick(android.view.View) -> onClick
+com.baidu.appx.ui.a$3 -> com.baidu.appx.j.e:
+    com.baidu.appx.ui.a a -> a
+    void onClick(android.view.View) -> onClick
+com.baidu.appx.ui.a$4 -> com.baidu.appx.j.f:
+    com.baidu.appx.ui.a a -> a
+    void onClick(android.view.View) -> onClick
+com.baidu.appx.ui.b -> com.baidu.appx.j.g:
+    int a -> a
+    int b -> b
+    double c -> c
+    boolean d -> d
+    android.view.View e -> e
+    android.widget.RelativeLayout f -> f
+    com.baidu.appx.ui.b$a g -> g
+    void onBackPressed() -> onBackPressed
+    void onAttachedToWindow() -> onAttachedToWindow
+    void a() -> a
+    void a(android.content.Context,boolean) -> a
+    void a(android.widget.ImageView) -> a
+    void a(android.view.View) -> a
+    void a(java.util.ArrayList) -> a
+    void a(com.baidu.appx.ui.b) -> a
+    com.baidu.appx.ui.b$a b(com.baidu.appx.ui.b) -> b
+com.baidu.appx.ui.b$1 -> com.baidu.appx.j.h:
+    com.baidu.appx.ui.b a -> a
+    void onClick(android.view.View) -> onClick
+com.baidu.appx.ui.b$2 -> com.baidu.appx.j.i:
+    com.baidu.appx.ui.b a -> a
+    java.util.ArrayList b -> b
+    java.lang.Object instantiateItem(android.view.View,int) -> a
+    void destroyItem(android.view.View,int,java.lang.Object) -> a
+    boolean isViewFromObject(android.view.View,java.lang.Object) -> a
+    int getCount() -> a
+com.baidu.appx.ui.b$3 -> com.baidu.appx.j.j:
+    com.baidu.appx.ui.b a -> a
+    com.baidu.appx.ui.g b -> b
+    void onPageSelected(int) -> a
+    void onPageScrolled(int,float,int) -> a
+    void onPageScrollStateChanged(int) -> b
+com.baidu.appx.ui.b$a -> com.baidu.appx.j.k:
+    void dialogViewDidClose() -> a
+    void dialogViewDidShowPage(int) -> a
+com.baidu.appx.ui.c -> com.baidu.appx.j.l:
+    int e -> e
+    int f -> f
+    android.widget.ImageView a -> a
+    android.widget.TextView b -> b
+    android.widget.TextView c -> c
+    android.widget.ListView d -> d
+    void a(android.widget.TextView,boolean) -> a
+    void a(android.content.Context) -> a
+    void b(android.content.Context) -> b
+    void a(android.content.Context,android.widget.RelativeLayout) -> a
+    void b(android.content.Context,android.widget.RelativeLayout) -> b
+    int a(android.content.Context,int) -> a
+com.baidu.appx.ui.d -> com.baidu.appx.j.m:
+    android.widget.ImageView a -> a
+    android.widget.ImageView b -> b
+    android.widget.TextView c -> c
+    android.widget.TextView d -> d
+    android.widget.TextView e -> e
+    android.widget.TextView f -> f
+    void a(com.baidu.appx.c.a) -> a
+    int a(int) -> a
+    java.lang.String a(java.lang.String) -> a
+    java.lang.String b(java.lang.String) -> b
+    void a(android.content.Context) -> a
+    void b(android.content.Context) -> b
+    void c(android.content.Context) -> c
+    void a(android.content.Context,android.widget.RelativeLayout) -> a
+    void b(android.content.Context,android.widget.RelativeLayout) -> b
+    void c(android.content.Context,android.widget.RelativeLayout) -> c
+    void d(android.content.Context,android.widget.RelativeLayout) -> d
+    android.widget.TextView a(android.content.Context,int) -> a
+com.baidu.appx.ui.e -> com.baidu.appx.j.n:
+    android.os.Handler c -> c
+    java.lang.Runnable d -> d
+    long e -> e
+    int f -> f
+    int g -> g
+    java.util.ArrayList h -> h
+    int i -> i
+    int a -> a
+    float j -> j
+    boolean k -> k
+    android.text.TextPaint l -> l
+    int m -> m
+    com.baidu.appx.ui.e$a b -> b
+    void b() -> b
+    void c() -> c
+    void d() -> d
+    void e() -> e
+    boolean f() -> f
+    boolean g() -> g
+    void h() -> h
+    void b(int) -> b
+    boolean i() -> i
+    boolean j() -> j
+    void k() -> k
+    void onAttachedToWindow() -> onAttachedToWindow
+    void onDetachedFromWindow() -> onDetachedFromWindow
+    void onDraw(android.graphics.Canvas) -> onDraw
+    void onSizeChanged(int,int,int,int) -> onSizeChanged
+    int a(java.lang.String,int,int) -> a
+    void a() -> a
+    void a(int) -> a
+    boolean a(com.baidu.appx.ui.e) -> a
+    void b(com.baidu.appx.ui.e) -> b
+com.baidu.appx.ui.e$1 -> com.baidu.appx.j.o:
+    com.baidu.appx.ui.e a -> a
+    void run() -> run
+com.baidu.appx.ui.e$a -> com.baidu.appx.j.p:
+    void a(int) -> a
+com.baidu.appx.ui.e$b -> com.baidu.appx.j.q:
+    java.lang.String a -> a
+    float b -> b
+    long c -> c
+    java.util.ArrayList d -> d
+    int e -> e
+    com.baidu.appx.ui.e f -> f
+    void a() -> a
+    void a(float,android.graphics.Paint) -> a
+    void a(android.graphics.Canvas,android.graphics.Paint,float) -> a
+    boolean a(android.graphics.Canvas,android.graphics.Paint,float,boolean) -> a
+    boolean a(int,android.graphics.Canvas,android.graphics.Paint,float) -> a
+    boolean b() -> b
+    boolean c() -> c
+    boolean d() -> d
+    void e() -> e
+com.baidu.appx.ui.f -> com.baidu.appx.j.r:
+    com.baidu.appx.ui.f$c c -> c
+    android.webkit.WebView d -> d
+    com.baidu.appx.ui.e e -> e
+    android.view.View f -> f
+    android.view.View g -> g
+    android.view.View h -> h
+    android.view.View i -> i
+    boolean a -> a
+    com.baidu.appx.ui.f$a b -> b
+    com.baidu.appx.ui.f$b j -> j
+    void d() -> d
+    void onLayout(boolean,int,int,int,int) -> onLayout
+    android.webkit.WebView a() -> a
+    android.view.View b() -> b
+    void c() -> c
+    void a(java.lang.String) -> a
+    void a(android.view.View) -> a
+    void a(android.view.View,java.lang.String,java.lang.String,android.view.View,android.view.View$OnClickListener) -> a
+    void b(android.view.View) -> b
+    void c(android.view.View) -> c
+    void a(int) -> a
+    void a(android.widget.ImageView,java.lang.String) -> a
+    void setLayoutParams(android.view.ViewGroup$LayoutParams) -> setLayoutParams
+    int b(int) -> b
+    int a(android.view.ViewGroup,boolean) -> a
+    int a(android.view.ViewGroup) -> a
+    void onAttachedToWindow() -> onAttachedToWindow
+    void onDetachedFromWindow() -> onDetachedFromWindow
+    void a(boolean) -> a
+    void a(java.lang.String,boolean) -> a
+    void e() -> e
+    int a(com.baidu.appx.ui.f,int) -> a
+com.baidu.appx.ui.f$1 -> com.baidu.appx.j.s:
+    com.baidu.appx.ui.f a -> a
+    boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+com.baidu.appx.ui.f$a -> com.baidu.appx.j.t:
+    void OnBannerViewAttachedToWindow(boolean) -> a
+    void OnBannerViewConfirmedToClick() -> a
+com.baidu.appx.ui.f$b -> com.baidu.appx.j.u:
+    android.widget.TextView d -> d
+    android.widget.TextView e -> e
+    android.view.View f -> f
+    int g -> g
+    android.os.Handler a -> a
+    java.lang.Runnable b -> b
+    com.baidu.appx.ui.f c -> c
+    void onClick(android.view.View) -> onClick
+    void onLayout(boolean,int,int,int,int) -> onLayout
+    void a(int,int) -> a
+    void a() -> a
+    void b() -> b
+    void c() -> c
+    void b(java.lang.String) -> b
+    int d() -> d
+    void e() -> e
+    void f() -> f
+    void g() -> g
+    void a(java.lang.String) -> a
+    void a(boolean) -> a
+    void a(com.baidu.appx.ui.f$b) -> a
+com.baidu.appx.ui.f$b$1 -> com.baidu.appx.j.v:
+    com.baidu.appx.ui.f$b a -> a
+    void run() -> run
+com.baidu.appx.ui.f$c -> com.baidu.appx.j.w:
+    com.baidu.appx.ui.f$c a -> a
+    com.baidu.appx.ui.f$c b -> b
+    com.baidu.appx.ui.f$c c -> c
+    com.baidu.appx.ui.f$c d -> d
+    com.baidu.appx.ui.f$c[] e -> e
+    com.baidu.appx.ui.f$c[] values() -> values
+    com.baidu.appx.ui.f$c valueOf(java.lang.String) -> valueOf
+com.baidu.appx.ui.f$d -> com.baidu.appx.j.x:
+    com.baidu.appx.ui.f$d a -> a
+    com.baidu.appx.ui.f$d b -> b
+    com.baidu.appx.ui.f$d c -> c
+    com.baidu.appx.ui.f$d d -> d
+    com.baidu.appx.ui.f$d e -> e
+    com.baidu.appx.ui.f$d f -> f
+    com.baidu.appx.ui.f$d g -> g
+    com.baidu.appx.ui.f$d h -> h
+    com.baidu.appx.ui.f$d i -> i
+    com.baidu.appx.ui.f$d j -> j
+    com.baidu.appx.ui.f$d k -> k
+    com.baidu.appx.ui.f$d l -> l
+    com.baidu.appx.ui.f$d m -> m
+    com.baidu.appx.ui.f$d n -> n
+    com.baidu.appx.ui.f$d o -> o
+    com.baidu.appx.ui.f$d p -> p
+    com.baidu.appx.ui.f$d q -> q
+    com.baidu.appx.ui.f$d r -> r
+    com.baidu.appx.ui.f$d s -> s
+    int t -> t
+    com.baidu.appx.ui.f$d[] u -> u
+    com.baidu.appx.ui.f$d[] values() -> values
+    com.baidu.appx.ui.f$d valueOf(java.lang.String) -> valueOf
+    int a(com.baidu.appx.ui.f$d) -> a
+com.baidu.appx.ui.g -> com.baidu.appx.j.y:
+    int a -> a
+    int b -> b
+    int c -> c
+    int d -> d
+    int e -> e
+    android.graphics.Rect f -> f
+    android.graphics.Rect g -> g
+    android.graphics.Bitmap h -> h
+    android.graphics.Bitmap i -> i
+    android.graphics.Paint j -> j
+    android.graphics.Paint k -> k
+    void a(int) -> a
+    void b(int) -> b
+    void onDraw(android.graphics.Canvas) -> onDraw
+    void onMeasure(int,int) -> onMeasure
+    int a(int,int) -> a
+    void a(android.content.Context) -> a
+com.baidu.appx.ui.h -> com.baidu.appx.j.z:
+    android.content.Context a -> a
+    com.baidu.appx.ui.h$a b -> b
+    boolean c -> c
+    android.webkit.WebView d -> d
+    android.widget.LinearLayout e -> e
+    android.widget.ImageButton f -> f
+    android.widget.ImageButton g -> g
+    android.widget.ImageButton h -> h
+    android.widget.ImageButton i -> i
+    android.widget.ImageButton j -> j
+    void a(android.content.Context) -> a
+    android.graphics.drawable.StateListDrawable a(java.lang.String,java.lang.String,java.lang.String) -> a
+    android.graphics.drawable.Drawable a(java.lang.String) -> a
+    android.webkit.WebViewClient a() -> a
+    android.webkit.WebView getWebView() -> getWebView
+    void onClick(android.view.View) -> onClick
+    void a(android.view.View) -> a
+    void b(android.view.View) -> b
+    void c(android.view.View) -> c
+    void d(android.view.View) -> d
+    void e(android.view.View) -> e
+    android.widget.ImageButton a(com.baidu.appx.ui.h) -> a
+    android.widget.ImageButton b(com.baidu.appx.ui.h) -> b
+    boolean c(com.baidu.appx.ui.h) -> c
+    void a(com.baidu.appx.ui.h,boolean) -> a
+    com.baidu.appx.ui.h$a d(com.baidu.appx.ui.h) -> d
+com.baidu.appx.ui.h$1 -> com.baidu.appx.j.aa:
+    com.baidu.appx.ui.h a -> a
+    boolean shouldOverrideUrlLoading(android.webkit.WebView,java.lang.String) -> shouldOverrideUrlLoading
+    void onPageStarted(android.webkit.WebView,java.lang.String,android.graphics.Bitmap) -> onPageStarted
+    void onPageFinished(android.webkit.WebView,java.lang.String) -> onPageFinished
+com.baidu.appx.ui.h$a -> com.baidu.appx.j.ab:
+    void a(java.lang.String,boolean) -> a
+com.baidu.appx.uikit.BDActivity -> com.baidu.appx.uikit.BDActivity:
+    android.util.SparseArray a -> a
+    int b -> b
+    com.baidu.appx.uikit.a c -> c
+    int d -> d
+    boolean a(android.content.Context,com.baidu.appx.uikit.a) -> a
+    void onCreate(android.os.Bundle) -> onCreate
+    void onStart() -> onStart
+    void onResume() -> onResume
+    void onPause() -> onPause
+    void onStop() -> onStop
+    void onRestoreInstanceState(android.os.Bundle) -> onRestoreInstanceState
+    void onSaveInstanceState(android.os.Bundle) -> onSaveInstanceState
+    void onDestroy() -> onDestroy
+    void onAttachedToWindow() -> onAttachedToWindow
+    void onBackPressed() -> onBackPressed
+    void a(android.os.Bundle) -> a
+    void finish() -> finish
+com.baidu.appx.uikit.a -> com.baidu.appx.uikit.a:
+    void a(android.os.Bundle,android.app.Activity) -> a
+    void f() -> b
+    void d() -> c
+    void g() -> d
+    void h() -> e
+    void a(android.os.Bundle) -> a
+    void i() -> f
+    void b(android.os.Bundle) -> b
+    void a() -> a
+    void c() -> g
+    boolean e() -> h
+com.baidu.appx.uikit.a$a -> com.baidu.appx.uikit.b:
+    void a(android.os.Bundle,android.app.Activity) -> a
+    void f() -> b
+    void d() -> c
+    void g() -> d
+    void h() -> e
+    void a(android.os.Bundle) -> a
+    void i() -> f
+    void b(android.os.Bundle) -> b
+    void a() -> a
+    boolean e() -> h
+    void c() -> g
+com.baidu.appx.uikit.b -> com.baidu.appx.uikit.c:
+    java.lang.String a -> a
+    com.baidu.appx.uikit.b$a b -> b
+    android.app.Activity c -> c
+    void a(android.os.Bundle,android.app.Activity) -> a
+    void a() -> a
+    void onDownloadStart(java.lang.String,java.lang.String,java.lang.String,java.lang.String,long) -> onDownloadStart
+    void a(java.lang.String,boolean) -> a
+com.baidu.appx.uikit.b$a -> com.baidu.appx.uikit.d:
+    void b() -> b
+    void c() -> c
+com.mingli.toms.ButtonController -> com.mingli.toms.a:
+    com.mingli.toms.MenuActivity acti -> c
+    com.mingli.toms.World world -> d
+    com.mingli.toms.GameMenu gameMenu -> e
+    com.mingli.toms.ItemWindow itemWindow -> f
+    aid.CircleSurface circleSurface -> g
+    Mankind.Player player -> h
+    android.graphics.drawable.Drawable ob -> i
+    android.widget.SeekBar$OnSeekBarChangeListener editSeekListener -> j
+    android.widget.SeekBar$OnSeekBarChangeListener seekListener -> k
+    android.view.View$OnTouchListener ontl -> a
+    android.view.View menu -> l
+    android.widget.RelativeLayout buttonView -> b
+    aid.Circle circle -> m
+    android.view.View attack -> n
+    android.view.View ride -> o
+    com.mingli.toms.mySeekBar jumpSeekBar -> p
+    android.widget.ImageButton eraser -> q
+    void freshItem() -> a
+    void adController() -> b
+    void hide() -> c
+    void handleCheck(android.os.Message) -> a
+    Mankind.Player access$0(com.mingli.toms.ButtonController) -> a
+    com.mingli.toms.World access$1(com.mingli.toms.ButtonController) -> b
+    com.mingli.toms.ItemWindow access$2(com.mingli.toms.ButtonController) -> c
+    com.mingli.toms.MenuActivity access$3(com.mingli.toms.ButtonController) -> d
+    com.mingli.toms.GameMenu access$4(com.mingli.toms.ButtonController) -> e
+    android.widget.ImageButton access$5(com.mingli.toms.ButtonController) -> f
+    android.graphics.drawable.Drawable access$6(com.mingli.toms.ButtonController) -> g
+com.mingli.toms.ButtonController$1 -> com.mingli.toms.b:
+    com.mingli.toms.ButtonController this$0 -> a
+    void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
+    void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
+    void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+com.mingli.toms.ButtonController$2 -> com.mingli.toms.c:
+    com.mingli.toms.ButtonController this$0 -> a
+    void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
+    void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
+    void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+com.mingli.toms.ButtonController$ClickGame -> com.mingli.toms.d:
+    com.mingli.toms.ButtonController this$0 -> a
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+com.mingli.toms.GameMenu -> com.mingli.toms.e:
+    android.widget.PopupWindow popupWindow -> g
+    com.mingli.toms.MenuActivity acti -> a
+    com.mingli.toms.GameMenu$PopWindowTouchEvent touchEvent -> h
+    android.widget.RatingBar speed -> i
+    android.widget.RatingBar coin -> j
+    android.widget.RatingBar fruit -> k
+    android.widget.RatingBar summarize -> l
+    com.mingli.toms.World world -> m
+    android.view.View rateGrid -> b
+    android.view.View resume -> c
+    android.view.View next -> d
+    int sum -> n
+    android.widget.TextView gameTitle -> o
+    android.view.ViewGroup gameMenuAdContainer -> p
+    android.view.ViewGroup$LayoutParams lp -> q
+    Mankind.Player player -> e
+    android.view.View getLifeAbou -> r
+    android.view.animation.Animation$AnimationListener listener -> f
+    void showWindow(android.view.View) -> a
+    void findView(android.view.View) -> b
+    void showStar() -> a
+    void initAnimation() -> g
+    void initSummaryAnimation() -> b
+    boolean returnCurStateAndHide() -> c
+    void normalMenu() -> d
+    void gameover() -> e
+    void succeed() -> f
+    android.view.View access$0(com.mingli.toms.GameMenu) -> a
+    com.mingli.toms.World access$1(com.mingli.toms.GameMenu) -> b
+    com.mingli.toms.GameMenu$PopWindowTouchEvent access$2(com.mingli.toms.GameMenu) -> c
+com.mingli.toms.GameMenu$1 -> com.mingli.toms.f:
+    com.mingli.toms.GameMenu this$0 -> a
+    void onAnimationEnd(android.view.animation.Animation) -> onAnimationEnd
+    void onAnimationRepeat(android.view.animation.Animation) -> onAnimationRepeat
+    void onAnimationStart(android.view.animation.Animation) -> onAnimationStart
+com.mingli.toms.GameMenu$2 -> com.mingli.toms.g:
+    com.mingli.toms.GameMenu this$0 -> a
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+com.mingli.toms.GameMenu$PopWindowTouchEvent -> com.mingli.toms.h:
+    com.mingli.toms.MenuActivity menuActivity -> d
+    android.widget.CheckBox ex -> a
+    android.widget.CheckBox music -> b
+    android.view.View$OnTouchListener otl -> e
+    com.mingli.toms.GameMenu this$0 -> c
+    void findView(android.view.View) -> a
+    void touchAction(android.view.View,android.view.MotionEvent) -> a
+com.mingli.toms.GameMenu$PopWindowTouchEvent$1 -> com.mingli.toms.i:
+    com.mingli.toms.GameMenu$PopWindowTouchEvent this$1 -> a
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+com.mingli.toms.Info4 -> com.mingli.toms.j:
+    int paiming -> a
+    int userScore -> b
+    java.lang.String userName -> c
+    int userId -> d
+com.mingli.toms.ItemWindow -> com.mingli.toms.k:
+    android.widget.GridView slideWindow -> d
+    android.app.Activity acti -> a
+    com.mingli.toms.ItemWindow$ItemAdapter itemadapter -> e
+    int itemCount -> b
+    android.widget.AdapterView$OnItemClickListener gridListener -> f
+    com.mingli.toms.World world -> g
+    Enviroments.FruitSet fs -> h
+    android.widget.SlidingDrawer sd -> c
+    android.widget.SlidingDrawer$OnDrawerOpenListener onDrawerOpenListener -> i
+    void initWindow() -> a
+    void closeDrawer() -> b
+    void hide() -> c
+    void freshItem() -> d
+    Enviroments.FruitSet access$0(com.mingli.toms.ItemWindow) -> a
+    com.mingli.toms.ItemWindow$ItemAdapter access$1(com.mingli.toms.ItemWindow) -> b
+com.mingli.toms.ItemWindow$1 -> com.mingli.toms.l:
+    com.mingli.toms.ItemWindow this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+com.mingli.toms.ItemWindow$2 -> com.mingli.toms.m:
+    com.mingli.toms.ItemWindow this$0 -> a
+    void onDrawerOpened() -> onDrawerOpened
+com.mingli.toms.ItemWindow$ItemAdapter -> com.mingli.toms.n:
+    android.content.Context context -> c
+    java.util.ArrayList fruList -> a
+    com.mingli.toms.ItemWindow this$0 -> b
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+com.mingli.toms.Map -> com.mingli.toms.o:
+    byte[] data -> a
+    char[] charData -> b
+    int max -> c
+    void saveMap(byte[],java.io.File) -> a
+    void saveMap(java.lang.String,java.io.File) -> a
+com.mingli.toms.MenuActivity -> com.mingli.toms.MenuActivity:
+    android.content.SharedPreferences sp -> q
+    android.content.Context content -> r
+    android.content.Context myActivity -> s
+    int FPS -> a
+    aid.Ad ad -> b
+    int startTime -> t
+    com.mingli.toms.StateWindow stateWindow -> u
+    com.mingli.toms.World world -> v
+    com.mingli.toms.ButtonController btnc -> w
+    com.mingli.toms.StartMenu startMenu -> x
+    com.mingli.toms.GameMenu gameMenu -> y
+    com.mingli.toms.MenuActivity$MyHandler myHandler -> z
+    android.app.Dialog dl -> A
+    android.content.SharedPreferences$Editor editor -> B
+    int screenWidth -> c
+    int screenHeight -> d
+    int score -> e
+    int chance -> f
+    int coinCount -> g
+    com.mingli.toms.Stagechoosser stageChooser -> C
+    int mapIndex -> h
+    java.lang.String starString -> i
+    int[] star -> j
+    int userId -> k
+    java.lang.String itemString -> D
+    char[] item -> l
+    aid.Shop shop -> E
+    aid.Tips tips -> F
+    aid.Producer animationShop -> G
+    boolean titleMode -> m
+    java.lang.String speaker -> H
+    java.lang.String talk -> I
+    int resId -> J
+    int direction1 -> K
+    int direction2 -> L
+    aid.Client client -> M
+    java.lang.String userName -> n
+    java.util.ArrayList userInfoList -> o
+    java.lang.String paimingString -> N
+    java.lang.String selectedToSaveOnlineFileName -> p
+    void onDestroy() -> onDestroy
+    void finish() -> finish
+    void onCreate(android.os.Bundle) -> onCreate
+    void initNetController() -> y
+    void initTips() -> z
+    void initGame() -> a
+    void initStartMenu() -> b
+    void getUserId() -> A
+    void initSp() -> B
+    void initAd() -> C
+    void initWindowSize() -> D
+    void startGame() -> c
+    void loadGameMenu() -> d
+    boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
+    void initDialog() -> e
+    void initPaimingInfo() -> f
+    void savePaiming(java.lang.String) -> a
+    void showDialog(java.lang.String,java.lang.String,int,int,int) -> a
+    void showDialog(java.lang.String,java.lang.String,int) -> a
+    void showGuideDialog() -> g
+    void showDialogView() -> h
+    void showExitDialog() -> E
+    void save() -> i
+    void getMessage() -> F
+    void saveUserMessage(java.lang.String) -> b
+    int getMaxMapIndex() -> j
+    void reLoadGame() -> k
+    void nextStage() -> l
+    void startWithIndex(int) -> a
+    void quitGame() -> m
+    void loadTitleView() -> n
+    void resumeGame() -> o
+    void onResume() -> onResume
+    void onPause() -> onPause
+    void pauseGame() -> p
+    void showShop(android.view.View) -> a
+    void showAppWall() -> q
+    void initStageChooser() -> r
+    void setStar(int) -> b
+    int[] stringToInts(java.lang.String) -> c
+    void addView(android.view.View) -> b
+    void removeView(android.view.View) -> removeView
+    void showBanner(android.view.ViewGroup) -> a
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    boolean getLifeFree() -> s
+    void showInAd() -> G
+    boolean isNetworkAvailable(android.content.Context) -> a
+    void showAnimationShop(android.view.View) -> showAnimationShop
+    void adShow() -> t
+    void adClicked() -> u
+    void saveUserId(java.lang.String) -> d
+    void showBuyLifeShop(android.view.View) -> showBuyLifeShop
+    void intentToFileChooser() -> v
+    void sendOnlineStageRequest() -> w
+    void showOnlineStage(java.lang.String) -> e
+    void getTheOnlineStage(java.lang.String) -> f
+    void startGame(java.lang.String) -> g
+    com.mingli.toms.StateWindow access$0(com.mingli.toms.MenuActivity) -> a
+    com.mingli.toms.ButtonController access$1(com.mingli.toms.MenuActivity) -> b
+    com.mingli.toms.StartMenu access$2(com.mingli.toms.MenuActivity) -> c
+    com.mingli.toms.World access$3(com.mingli.toms.MenuActivity) -> d
+    aid.Tips access$4(com.mingli.toms.MenuActivity) -> e
+    void access$5(com.mingli.toms.MenuActivity,com.mingli.toms.StateWindow) -> a
+    com.mingli.toms.GameMenu access$6(com.mingli.toms.MenuActivity) -> f
+    android.content.SharedPreferences$Editor access$7(com.mingli.toms.MenuActivity) -> g
+    aid.Client access$8(com.mingli.toms.MenuActivity) -> h
+    android.app.Dialog access$9() -> x
+com.mingli.toms.MenuActivity$1 -> com.mingli.toms.p:
+    com.mingli.toms.MenuActivity this$0 -> a
+    void run() -> run
+com.mingli.toms.MenuActivity$2 -> com.mingli.toms.q:
+    com.mingli.toms.MenuActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.mingli.toms.MenuActivity$3 -> com.mingli.toms.r:
+    com.mingli.toms.MenuActivity this$0 -> a
+    android.app.Dialog val$d -> b
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+com.mingli.toms.MenuActivity$4 -> com.mingli.toms.s:
+    com.mingli.toms.MenuActivity this$0 -> a
+    void onClick(android.content.DialogInterface,int) -> onClick
+com.mingli.toms.MenuActivity$MyHandler -> com.mingli.toms.t:
+    com.mingli.toms.MenuActivity this$0 -> a
+    void handleMessage(android.os.Message) -> handleMessage
+    void gameover() -> a
+    void succeed() -> b
+com.mingli.toms.Music -> com.mingli.toms.u:
+    android.media.MediaPlayer mp -> a
+    android.media.SoundPool sp -> f
+    android.content.Context context -> g
+    boolean ex -> b
+    boolean bgm -> c
+    int musicId -> d
+    int soundPoolTime -> e
+    void setBGM(int) -> a
+    void initSoundPool() -> a
+    int loadSound(int) -> b
+    void playSound(int,int) -> a
+    void onDestroy() -> b
+    void releaseSoundPool() -> c
+    void hasEx() -> d
+    void noEx() -> e
+    void hasBgm() -> f
+    void noBgm() -> g
+    void pause() -> h
+    void resume() -> i
+    void setLooping(boolean) -> a
+    void pauseBGM() -> j
+com.mingli.toms.MusicId -> com.mingli.toms.v:
+    int baller -> a
+    int gun -> b
+    int sword -> c
+    int brake01 -> d
+    int land -> e
+    int gameover -> f
+    int wood2 -> g
+    int firecolumn -> h
+    int walker -> i
+    int emplacementAttack -> j
+    int flyer -> k
+    int hedgehog -> l
+    int creeper4 -> m
+    int zhizhu -> n
+    int coin -> o
+    int magic -> p
+    int finalcoin -> q
+    int gore -> r
+    int bomb -> s
+    int shotGun -> t
+    int boomgun -> u
+    int juji -> v
+    int lightNing -> w
+    int bubble -> x
+    int missile -> y
+    int light -> z
+    int fresh -> A
+    void loadSoundId(com.mingli.toms.Music) -> a
+com.mingli.toms.Render -> com.mingli.toms.w:
+    float px -> a
+    float py -> b
+    float width -> c
+    float height -> d
+    int frame -> e
+    com.mingli.toms.World world -> f
+    java.nio.FloatBuffer fb -> j
+    int pointSize -> k
+    int bmHeight -> l
+    int bmWidth -> m
+    javax.microedition.khronos.opengles.GL10 gl -> g
+    element2.TexId texId -> n
+    boolean created -> h
+    float rate -> i
+    void onSurfaceCreated(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig) -> onSurfaceCreated
+    void onSurfaceChanged(javax.microedition.khronos.opengles.GL10,int,int) -> onSurfaceChanged
+    void onDrawFrame(javax.microedition.khronos.opengles.GL10) -> onDrawFrame
+    void onDestory() -> a
+com.mingli.toms.Stagechoosser -> com.mingli.toms.Stagechoosser:
+    com.mingli.toms.MenuActivity acti -> a
+    int itemCount -> b
+    android.view.View stageChooserView -> c
+    void loadStage() -> a
+    void hide() -> b
+    com.mingli.toms.MenuActivity access$0(com.mingli.toms.Stagechoosser) -> a
+com.mingli.toms.Stagechoosser$1 -> com.mingli.toms.x:
+    com.mingli.toms.Stagechoosser this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.mingli.toms.Stagechoosser$2 -> com.mingli.toms.y:
+    com.mingli.toms.Stagechoosser this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+com.mingli.toms.Stagechoosser$StageAdapter -> com.mingli.toms.z:
+    android.content.Context context -> c
+    int[] star -> a
+    com.mingli.toms.Stagechoosser this$0 -> b
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+com.mingli.toms.StartMenu -> com.mingli.toms.aa:
+    com.mingli.toms.MenuActivity acti -> c
+    android.widget.RadioButton noweapon -> d
+    android.widget.RadioButton alwaysgun -> e
+    android.widget.CheckBox rampage -> f
+    android.view.View startView -> g
+    android.widget.TextView username -> h
+    android.widget.Button onlineStageChoose -> i
+    android.widget.Button fileChoose -> j
+    android.view.View$OnClickListener click -> a
+    android.widget.CompoundButton$OnCheckedChangeListener check -> b
+    android.view.View user -> k
+    com.mingli.toms.StartMenu$PaimingAdapter paimingAdapter -> l
+    void handleCheck(android.os.Message) -> a
+    void loadStartMenu() -> a
+    void initPaiming(android.view.View) -> a
+    void onlineAndFileMode(int) -> a
+    void hide() -> b
+    void setUserName(java.lang.String) -> a
+    com.mingli.toms.MenuActivity access$0(com.mingli.toms.StartMenu) -> a
+    android.widget.CheckBox access$1(com.mingli.toms.StartMenu) -> b
+    android.widget.RadioButton access$2(com.mingli.toms.StartMenu) -> c
+    android.widget.RadioButton access$3(com.mingli.toms.StartMenu) -> d
+    android.view.View access$4(com.mingli.toms.StartMenu) -> e
+    android.widget.Button access$5(com.mingli.toms.StartMenu) -> f
+com.mingli.toms.StartMenu$1 -> com.mingli.toms.ab:
+    int t -> a
+    com.mingli.toms.StartMenu this$0 -> b
+    void onClick(android.view.View) -> onClick
+    void newEditDialog() -> a
+    com.mingli.toms.StartMenu access$0(com.mingli.toms.StartMenu$1) -> a
+com.mingli.toms.StartMenu$1$1 -> com.mingli.toms.ac:
+    com.mingli.toms.StartMenu$1 this$1 -> a
+    android.widget.TextView val$editT -> b
+    android.app.Dialog val$dl -> c
+    void onClick(android.view.View) -> onClick
+com.mingli.toms.StartMenu$2 -> com.mingli.toms.ad:
+    java.lang.String str -> a
+    java.lang.String moneyStr -> b
+    java.lang.String editStr -> c
+    java.lang.String rpgStr -> d
+    java.lang.String bigMode -> e
+    java.lang.String openStr -> f
+    int maxLength -> g
+    com.mingli.toms.StartMenu this$0 -> h
+    void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
+com.mingli.toms.StartMenu$PaimingAdapter -> com.mingli.toms.ae:
+    java.util.ArrayList userInfoList -> a
+    com.mingli.toms.StartMenu this$0 -> b
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+com.mingli.toms.StateWindow -> com.mingli.toms.af:
+    android.widget.TextView coin -> b
+    android.widget.TextView score -> c
+    android.widget.TextView chance -> d
+    android.widget.ProgressBar life -> e
+    android.widget.TextView timer -> f
+    com.mingli.toms.MenuActivity acti -> g
+    android.view.View state -> a
+    com.mingli.toms.World world -> h
+    android.view.View$OnClickListener listener -> i
+    aid.Tips tips -> j
+    void initView() -> a
+    void handleCheck(android.os.Message) -> a
+    aid.Tips access$0(com.mingli.toms.StateWindow) -> a
+    android.widget.TextView access$1(com.mingli.toms.StateWindow) -> b
+    com.mingli.toms.World access$2(com.mingli.toms.StateWindow) -> c
+    android.widget.TextView access$3(com.mingli.toms.StateWindow) -> d
+    android.widget.ProgressBar access$4(com.mingli.toms.StateWindow) -> e
+    android.widget.TextView access$5(com.mingli.toms.StateWindow) -> f
+    android.widget.TextView access$6(com.mingli.toms.StateWindow) -> g
+com.mingli.toms.StateWindow$1 -> com.mingli.toms.ag:
+    com.mingli.toms.StateWindow this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.mingli.toms.Titlectivity -> com.mingli.toms.Titlectivity:
+    void onCreate(android.os.Bundle) -> onCreate
+com.mingli.toms.Titlectivity$1 -> com.mingli.toms.ah:
+    com.mingli.toms.Titlectivity this$0 -> a
+    void run() -> run
+com.mingli.toms.TouchMove -> com.mingli.toms.ai:
+    Element.LightSpotSet lightSpotSet -> e
+    Mankind.Player player -> f
+    element2.Tail tail -> g
+    Element.Curtain ct -> h
+    java.util.ArrayList animationList -> i
+    Element.Animation editTarget -> j
+    Element.Animation[] build8group -> k
+    float grid -> l
+    Element.Animation cloner -> m
+    com.mingli.toms.World world -> n
+    Element.Animation deleter -> o
+    boolean deleteEdgeMode -> a
+    boolean moveCloneMode -> p
+    float alphaClone -> b
+    float alphaSpeed -> c
+    boolean deleteMuchMode -> d
+    boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+    void stopEditTarget(float,float) -> a
+    void deleteTarget() -> a
+    void build8CHeck() -> b
+    boolean moveEditTarget(float,float) -> b
+    void moveViewCheck(float,float) -> c
+    void startEditTarget(float,float) -> d
+    Element.Animation newAnimation(float,float) -> e
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> a
+com.mingli.toms.UserName -> com.mingli.toms.aj:
+    java.lang.String[] nameArray -> a
+    java.lang.String randomName() -> a
+com.mingli.toms.World -> com.mingli.toms.ak:
+    long flash -> a
+    Mankind.Player player -> b
+    Enviroments.GrassSet gra -> K
+    Mankind.EnemySet enemySet -> L
+    Mankind.EnemySet playerSet -> M
+    Enviroments.BackGround bg -> N
+    Enviroments.CoinSet cs -> O
+    com.mingli.toms.Map map -> P
+    element2.ParticleSet ps -> Q
+    element2.HikariSet hikariSet -> R
+    element2.FireworkSet fireWorkSet -> S
+    element2.SnowSet snowSet -> T
+    element2.LightningSet lightningSet -> U
+    Element.BoomSet boomSet -> V
+    com.mingli.toms.Music music -> c
+    com.mingli.toms.MenuActivity acti -> d
+    float alpha -> e
+    java.util.ArrayList drawList -> W
+    java.util.ArrayList recycleList -> f
+    int dStage -> g
+    Element.LightSpotSet lightSpotSet -> Z
+    element2.Tail touchTail -> h
+    Element.BubbleSet bubbleSet -> aa
+    Element.GuidePost guidePost -> ab
+    Element.Curtain ct -> ac
+    int playerMoveIndex -> i
+    int mapMoveIndex -> ad
+    element2.TexId texId -> j
+    boolean RAMPAGE -> k
+    boolean NOWEPON -> l
+    boolean ALWAYSGUN -> m
+    int[] mes -> n
+    int baseLifeMax -> o
+    android.os.Handler handler -> p
+    Enviroments.FruitSet fruitSet -> ae
+    com.mingli.toms.Render render -> af
+    Element.BloodSet snowBloodSet -> ag
+    java.io.File mapFile -> q
+    java.lang.String mapName -> r
+    Mankind.Creature storySpeaker -> s
+    int curMapIndex -> t
+    int gameTime -> u
+    boolean isGameRunning -> ah
+    boolean paused -> ai
+    com.mingli.toms.TouchMove touchMove -> v
+    float px -> w
+    float py -> x
+    int drawThreadIndex -> y
+    int index -> z
+    int SPEEDSTAR -> aj
+    int COINSTAR -> ak
+    int ITEMSTAR -> al
+    Element.Draw sucDraw -> am
+    int timerMax -> A
+    Element.FireSet fireSet -> an
+    java.util.ArrayList animationList -> B
+    java.util.ArrayList animationshopList -> C
+    java.lang.String mapString -> D
+    boolean editMode -> E
+    boolean rpgMode -> F
+    double baseBSpeed -> G
+    boolean bigMode -> H
+    boolean openMode -> I
+    int baseActionCdMax -> J
+    java.lang.String getStr(int) -> a
+    void saveMap(java.lang.String,java.lang.String) -> a
+    void saveMap() -> a
+    void initAnimationShopList() -> q
+    void loadTitleView() -> b
+    void startGame(int) -> b
+    void initializeGame(int) -> j
+    void sendLoadedMessage() -> c
+    void loadGame(int) -> c
+    void onTouch() -> d
+    void run() -> run
+    void timerTask() -> e
+    void tringerGuidePost() -> r
+    boolean isMapMoved(int) -> k
+    void drawElements(javax.microedition.khronos.opengles.GL10) -> a
+    void quitGame() -> f
+    void succeed() -> g
+    void gameOver() -> h
+    void pauseGame() -> i
+    void pauseDraw() -> j
+    void resume() -> k
+    void onDestroy() -> l
+    void showLifeColumn(Mankind.Creature) -> a
+    void showSecondaryLifeColumn(Mankind.Player) -> a
+    void timeRush() -> m
+    void timeRush(long) -> a
+    java.util.ArrayList getDrawList() -> getDrawList
+    void sendMessage(int) -> d
+    void increaseScore(int) -> e
+    void increaseCoin(int) -> f
+    void increaseTime(int) -> g
+    void increaseChance(int) -> h
+    Enviroments.FruitSet getFruitSet() -> getFruitSet
+    void setFruitSet(Enviroments.FruitSet) -> setFruitSet
+    void culStar() -> n
+    int getSpeedStar() -> getSpeedStar
+    int getCoinStar() -> getCoinStar
+    int getItemStar() -> getItemStar
+    void onPause() -> onPause
+    void onResume() -> onResume
+    int getIntMes(int) -> i
+    void buildAnimation(Element.Animation) -> a
+    void relife() -> o
+    void setGameMusic() -> s
+    void addDrawAnimation(Element.Animation) -> b
+    boolean isOutMapResource() -> p
+    com.mingli.toms.Render access$0(com.mingli.toms.World) -> a
+    element2.FireworkSet access$1(com.mingli.toms.World) -> b
+    Element.BoomSet access$2(com.mingli.toms.World) -> c
+    java.util.ArrayList access$3(com.mingli.toms.World) -> d
+    Element.Draw access$4(com.mingli.toms.World) -> e
+com.mingli.toms.World$1 -> com.mingli.toms.al:
+    com.mingli.toms.World this$0 -> a
+    void run() -> run
+com.mingli.toms.World$2 -> com.mingli.toms.am:
+    com.mingli.toms.World this$0 -> a
+    int val$mapIndex -> b
+    void run() -> run
+com.mingli.toms.World$3 -> com.mingli.toms.an:
+    int sucIndex -> a
+    com.mingli.toms.World this$0 -> b
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+com.mingli.toms.World$4 -> com.mingli.toms.ao:
+    com.mingli.toms.World this$0 -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+com.mingli.toms.mySeekBar -> com.mingli.toms.mySeekBar:
+    void onSizeChanged(int,int,int,int) -> onSizeChanged
+    void onMeasure(int,int) -> onMeasure
+    void onDraw(android.graphics.Canvas) -> onDraw
+    boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+element2.Firework -> g.a:
+    float red -> au
+    float green -> av
+    float blue -> aw
+    float time -> ax
+    float dr -> ay
+    float dg -> az
+    float db -> aA
+    float alpha -> aB
+    float da -> aC
+    float max -> U
+    float min -> V
+    void setRgb(float,float,float,float) -> a
+    void colorChange() -> aJ
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void init() -> ac
+    void afterInit() -> ad
+    float getRed() -> aH
+    void setRed(float) -> F
+    float getGreen() -> aG
+    void setGreen(float) -> E
+    float getBlue() -> aF
+    void setBlue(float) -> D
+element2.FireworkSet -> g.b:
+    void loadTexture() -> a
+    void init(int) -> a
+element2.HikariSet -> g.c:
+    java.util.ArrayList hikariList -> a
+    boolean isCastle -> c
+    int tringerIndex -> b
+    void loadTexture() -> a
+    void init(int) -> a
+    void tringer(float,float,float,float,int) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+element2.Joint -> g.d:
+    float angle -> C
+    float dagree -> H
+    float xp -> P
+    float yp -> Q
+    int direction -> R
+    int myDirection -> U
+    float mAngle -> V
+    float angstart -> W
+    float angend -> X
+    float speed -> I
+    void init() -> B
+    void start() -> C
+    void stop() -> z
+    void faceLeft() -> D
+    void faceRight() -> E
+    void drawNotMove(javax.microedition.khronos.opengles.GL10) -> e
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void incAngle() -> F
+    void baseJointDrawElement(javax.microedition.khronos.opengles.GL10) -> g
+    void positionCheck() -> A
+    float getDagree() -> G
+    void setDagree(float) -> o
+    float getAngle() -> u
+    void setAngle(float) -> m
+    float getSpeed() -> H
+    void setSpeed(float) -> p
+    int getDirection() -> I
+element2.LightningSet -> g.e:
+    java.util.ArrayList weatherList -> a
+    int tringerIndex -> b
+    void loadTexture() -> a
+    void init(int) -> a
+    void tringer(float,float,int) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void tringer(double,double,int) -> a
+    void setEnemy(java.util.ArrayList) -> a
+element2.Lightninig -> g.f:
+    java.util.ArrayList cList -> C
+    int attack -> I
+    float blue -> J
+    float green -> K
+    float red -> L
+    float alpha -> D
+    float max -> E
+    float aMax -> F
+    float aSmall -> M
+    float alphaA -> N
+    float speedMax -> G
+    float alphaSpeed -> H
+    int angle -> O
+    void setEnemyList(java.util.ArrayList) -> a
+    void setRgb(float,float,float) -> a
+    void colorInc() -> y
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void tringer(float,float) -> d
+    float getBlue() -> z
+    float getGreen() -> A
+    float getRed() -> B
+element2.ParticleBall -> g.g:
+    int tringerId -> U
+    float angleRate -> V
+    void tringer(float,float,float,int) -> a
+    void autoClimb() -> H
+    void init() -> ac
+    float getLineSpeed(float) -> H
+    float getAngleSpeed(float) -> I
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void tooLeft() -> G
+    void tooRight() -> I
+    void speedCheck() -> aq
+    void xSpeedLoss() -> aJ
+    void ySpeedLoss() -> aK
+    void xSpeedCheck(int) -> y
+    void ySpeedCheck(int) -> z
+    float getRate(int) -> w
+    void gravityCheck() -> B
+    void jump(float) -> x
+    void jump() -> ar
+    void tooHigh() -> J
+    void setTringerId(int) -> x
+    void setAngleRate(float) -> J
+element2.ParticleBallRandom -> g.h:
+    void init() -> ac
+element2.ParticleBroken -> g.i:
+    void setTexture() -> g
+element2.ParticleSet -> g.j:
+    int topIndex -> a
+    java.util.ArrayList parList -> b
+    Enviroments.GrassSet gra -> c
+    void tringerCheck(int,int,Mankind.Creature) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+element2.Rain -> g.k:
+    float windRate -> at
+    void speedCheck() -> aq
+    void init() -> ac
+    void afterInit() -> ad
+    void jump(float) -> x
+element2.SceneTail -> g.l:
+    void startTouch(float,float) -> d
+    void tringer(float,float) -> e
+    void setTexture() -> g
+element2.Set -> g.m:
+    boolean running -> a
+    void setRunning(boolean) -> b
+element2.SnowSet -> g.n:
+    java.util.ArrayList weatherList -> a
+    Enviroments.GrassSet gra -> b
+    int tringerIndex -> c
+    void loadTexture() -> a
+    void init(int) -> a
+    void tringer(int,float,float,int) -> a
+    void tringer(float,float,float,float,int) -> a
+    void tringer(double,double,double,double,int) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+element2.Tail -> g.o:
+    int count -> C
+    float[][] tail -> D
+    int tringerIndex -> E
+    int startIndex -> F
+    int pointCount -> G
+    int drawStartIndex -> H
+    float agoX -> I
+    float agoY -> J
+    void startTouch(float,float) -> d
+    void tringer(float,float,float,float) -> a
+    void tringer(float,float) -> e
+    void syncTextureSize() -> i
+    void drawScale(javax.microedition.khronos.opengles.GL10) -> a
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void baseDrawElement(javax.microedition.khronos.opengles.GL10) -> c
+    void setTexture() -> g
+element2.TexId -> g.p:
+    int[] textures -> a
+    int textureId -> aX
+    int[] resIcon -> b
+    int BAMBOOPIPLE -> c
+    int PIFENG -> d
+    int STONEGRASS -> e
+    int PRICKX -> f
+    int EGG -> g
+    int BULLET -> h
+    int BACK -> i
+    int MORNING -> j
+    int RED -> k
+    int CLOCK -> l
+    int COIN -> m
+    int WALKER -> n
+    int GREENWALKER -> o
+    int CREEPER -> p
+    int REDCREEPER -> q
+    int HEDGEHOG -> r
+    int WATERBALL -> s
+    int NEXT -> t
+    int TOMENU -> u
+    int FIREBALL -> v
+    int ZHUAN -> w
+    int BANK -> x
+    int SWORD -> y
+    int PAUSE -> z
+    int ATTACK -> A
+    int BLANK -> B
+    int EVENING -> C
+    int SUNSET -> D
+    int TIANSHAN -> E
+    int STONE -> F
+    int WOOD -> G
+    int TREE -> H
+    int H -> I
+    int SOIL -> J
+    int SOILGRASS -> K
+    int FOG -> L
+    int TOMATO -> M
+    int JINGUBANG -> N
+    int BLUE -> O
+    int GREEN -> P
+    int DESERT -> Q
+    int FLYER -> R
+    int BALLER -> S
+    int BODY -> T
+    int HAND -> U
+    int FOOT -> V
+    int CLOTH -> W
+    int CAP -> X
+    int PRICK -> Y
+    int BAMBOO -> Z
+    int BAMBOOHEART -> aa
+    int TOUKUI -> ab
+    int GAO -> ac
+    int HIKARI -> ad
+    int EXPRESSION -> ae
+    int RAIN -> af
+    int SNOW -> ag
+    int WIND -> ah
+    int FIREWORK -> ai
+    int THUNDER -> aj
+    int BOOM -> ak
+    int BLACK -> al
+    int RAINBOW -> am
+    int LIGHTNING -> an
+    int LIGHTSPOT -> ao
+    int CANDLETAIL -> ap
+    int GUN -> aq
+    int BLOOD -> ar
+    int FIRE -> as
+    int CANDLEPOR -> at
+    int PAOTA -> au
+    int GUIDEPOST -> av
+    int GUIDECIRCLE -> aw
+    int SHOTGUN -> ax
+    int JUJI -> ay
+    int MISSILE -> az
+    int HOOKGUN -> aA
+    int CUP -> aB
+    int LIGHTTAIL -> aC
+    int K -> aD
+    int GUANGDANQIANG -> aE
+    int WOODROOT -> aF
+    int textureCount -> aG
+    int GOALCIRCLE -> aH
+    int GUIDERECT -> aI
+    int FRUITFLY -> aJ
+    int ZIDONGDAN -> aK
+    int SHUFUDAN -> aL
+    int GOLDENBANK -> aM
+    int ZAN -> aN
+    int BOOMGUN -> aO
+    int QIGAN -> aP
+    int WIPE -> aQ
+    int GOLDENFOOT -> aR
+    int STICKER -> aS
+    int CLOTHENEMY -> aT
+    int CAPENEMY -> aU
+    int FLAG -> aV
+    int EXPRESSIONENEMY -> aW
+    android.content.Context context -> aY
+    void loadTextureId(javax.microedition.khronos.opengles.GL10) -> a
+    int loadTexture(javax.microedition.khronos.opengles.GL10,int) -> a
+    int repeatLoadTexture(javax.microedition.khronos.opengles.GL10,int) -> b
+    void deleteTex(javax.microedition.khronos.opengles.GL10) -> b
+fileRW.FileActivity -> fileRW.FileActivity:
+    java.io.File currentParent -> a
+    java.io.File[] currentFiles -> b
+    fileRW.FileListAdapter fileListAdapter -> c
+    java.lang.String TAG -> d
+    android.view.View$OnClickListener parentClicked -> f
+    android.widget.AdapterView$OnItemClickListener listitemClicked -> g
+    android.widget.ListView list -> h
+    android.widget.EditText path -> i
+    android.widget.TextView fptv -> e
+    void onCreate(android.os.Bundle) -> onCreate
+    void initView() -> a
+    void initList(android.content.Context,java.io.File[]) -> a
+    android.widget.EditText access$0(fileRW.FileActivity) -> a
+    void access$1(fileRW.FileActivity,android.content.Context,java.io.File[]) -> a
+fileRW.FileActivity$1 -> fileRW.a:
+    fileRW.FileActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+fileRW.FileActivity$2 -> fileRW.b:
+    fileRW.FileActivity this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+fileRW.FileListAdapter -> fileRW.c:
+    java.io.File[] currentFiles -> a
+    android.view.LayoutInflater inflater -> b
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+fileRW.FileListAdapter$ViewHolder -> fileRW.d:
+    android.widget.ImageView icon -> a
+    android.widget.TextView file_name -> b
+    fileRW.FileListAdapter this$0 -> c
+onlineStageActivity.OnlineFileActivity -> onlineStageActivity.OnlineFileActivity:
+    java.lang.String[] onlineStageFiles -> a
+    android.widget.AdapterView$OnItemClickListener clickOnline -> b
+    void onCreate(android.os.Bundle) -> onCreate
+    void returnResault(int) -> a
+    void access$0(onlineStageActivity.OnlineFileActivity,java.lang.String[]) -> a
+    java.lang.String[] access$1(onlineStageActivity.OnlineFileActivity) -> a
+onlineStageActivity.OnlineFileActivity$1 -> onlineStageActivity.a:
+    onlineStageActivity.OnlineFileActivity this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+onlineStageActivity.OnlineFileActivity$OnlineListAdapter -> onlineStageActivity.b:
+    onlineStageActivity.OnlineFileActivity this$0 -> a
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView

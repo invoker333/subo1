@@ -2,16 +2,11 @@ package Weapon;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import aid.Log;
-
-import com.mingli.toms.World;
-
-import element2.TexId;
-import Element.Boom;
-import Element.LightSpot;
 import Enviroments.GrassSet;
 import Mankind.Creature;
 import Mankind.EnemySet;
+
+import com.mingli.toms.World;
 
 public class Missile extends TailBullet{
 	

@@ -1,12 +1,11 @@
 ﻿package Mankind;
 
-import aid.Log;
+import Enviroments.GrassSet;
 
 import com.mingli.toms.MusicId;
-import com.mingli.toms.R;
+import com.mingli.toms.World;
 
 import element2.TexId;
-import Enviroments.GrassSet;
 
 public class Creeper extends Enemy {
 
@@ -34,6 +33,19 @@ public class Creeper extends Enemy {
 		super.afterInit();
 	}
 	public void attackAnotherOne(EnemySet es){
+//		Log.i("xSpeed"+xSpeed);
+		if(xSpeed>getxSpeedMax()+1||xSpeed<getxSpeedMin()-1)
+		for (int i = 0; i < friendSet.cList.size(); i++) {
+			Creature another = friendSet.cList.get(i);
+			if (!another.isDead&&another!=this&&
+					Math.abs(x - another.x) < another.getwEdge() + getwEdge()
+				&&Math.abs(another.y-another.gethEdge()-y) <=  getH()
+					) {
+				friendSet.attacked(another, World.baseAttack);
+				another.setySpeed(another.getySpeed() + 5);
+			}
+		}
+		
 		Creature another;
 		for (int i = 0; i < es.cList.size(); i++) {
 			another = es.cList.get(i);
@@ -42,13 +54,15 @@ public class Creeper extends Enemy {
 				&&Math.abs(another.y-another.gethEdge()-y) <=  getH()
 					) {
 				
-				tooClose(another);
+//				tooClose(another);
 				tooClose(another, es);
 			}
 		}
 	}
-	public void culTreadxSpeed(Creature c){
+	public boolean culTreadSpeedAndCanBeTread(Creature c){
+//		if(false)
 //		super.culTreadxSpeed(c);
+		return false;
 	}
 	public void treaded(Creature player) {// ����
 		super.treaded(player);
@@ -57,9 +71,9 @@ public class Creeper extends Enemy {
 		player.setxSpeed(player.getxSpeed()+(float) (-player.getySpeed()*Math.sin(3.14f*dx/width)));
 		this.xSpeed+=-player.getxSpeed()/2;
 	}
-	protected void tooClose(Creature another){
+	 protected void tooClose(Creature another,EnemySet es){
 		 float dYspeed=another.getySpeed() - getySpeed();
-    	 if(dYspeed>10)return;//相对向上跳速度相差太大不踩
+    	 if(dYspeed>5)return;//相对向上跳速度相差太大不踩
 		
 		float dx=Math.abs(x-another.x);
 		float ds=getwEdge()+another.getwEdge();

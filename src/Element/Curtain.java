@@ -2,10 +2,8 @@ package Element;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import element2.TexId;
-
 import Enviroments.BackGround;
-import Menu.Square;
+import element2.TexId;
 
 public class Curtain extends BackGround {
 	private float alpha=1;

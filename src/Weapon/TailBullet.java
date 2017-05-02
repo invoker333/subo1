@@ -2,14 +2,14 @@ package Weapon;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.mingli.toms.World;
-
-import element2.SceneTail;
-import element2.Tail;
-import element2.TexId;
 import Enviroments.GrassSet;
 import Mankind.Creature;
 import Mankind.EnemySet;
+
+import com.mingli.toms.World;
+
+import element2.Tail;
+import element2.TexId;
 
 public class TailBullet extends Bullet{
 	Tail tail;

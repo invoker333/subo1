@@ -1,7 +1,5 @@
 package aid;
 
-import android.app.Activity;
-
 import com.baidu.appx.BDBannerAd;
 import com.baidu.appx.BDInterstitialAd;
 import com.baidu.appx.BDSplashAd;

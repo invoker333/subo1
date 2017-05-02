@@ -2,12 +2,12 @@ package Weapon;
 
 import java.util.ArrayList;
 
-import com.mingli.toms.Render;
-
 import Enviroments.GrassSet;
 import Mankind.Creature;
 import Mankind.EnemySet;
 import Mankind.Player;
+
+import com.mingli.toms.Render;
 
 public class AutoBulletGun extends Gun{
 

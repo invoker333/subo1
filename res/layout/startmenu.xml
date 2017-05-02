@@ -62,6 +62,17 @@
         android:orientation="vertical" >
 
         <Button
+            android:id="@+id/randomchalenge"
+            android:layout_width="128dp"
+            android:layout_height="64dp"
+            android:background="@drawable/greenrect"
+            android:padding="8dp"
+            android:text="随机挑战"
+            android:textColor="#ffffff"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Button
             android:id="@+id/startgame"
             android:layout_width="128dp"
             android:layout_height="64dp"
@@ -83,40 +94,6 @@
             android:textSize="24sp"
             android:textStyle="bold" />
     </LinearLayout>
-
-    <RelativeLayout
-        android:id="@+id/user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/gameModel"
-        android:layout_alignParentLeft="true"
-        android:background="@drawable/white"
-        android:padding="5dp" >
-
-        <ImageView
-            android:id="@+id/touxiang"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/cap" />
-
-        <TextView
-            android:id="@+id/nicheng"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/touxiang"
-            android:layout_weight="1"
-            android:shadowColor="#000000"
-            android:shadowDx="5"
-            android:shadowDy="5"
-            android:shadowRadius="5"
-            android:text="火星猎人"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#ffffff"
-            android:textSize="20sp" />
-    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/container"
@@ -193,7 +170,7 @@
         android:layout_height="50dp"
         android:layout_centerVertical="true"
         android:layout_margin="10dp"
-        android:background="@drawable/bg_selected"
+        android:background="@drawable/bg_default"
         android:padding="8dp"
         android:text="本地文件"
         android:textColor="#ffffff"
@@ -257,5 +234,39 @@
             android:background="#33eeff"
             android:text="追击模式" />
     </GridLayout>
+
+    <RelativeLayout
+        android:id="@+id/user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/fileChoose"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/white"
+        android:padding="5dp" >
+
+        <ImageView
+            android:id="@+id/touxiang"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/cap" />
+
+        <TextView
+            android:id="@+id/nicheng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/touxiang"
+            android:layout_weight="1"
+            android:shadowColor="#000000"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="5"
+            android:text="火星猎人"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </RelativeLayout>
 
 </RelativeLayout>

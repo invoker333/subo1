@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javax.microedition.khronos.opengles.GL10;
 
 import Element.AnimationGrass;
-import Element.AnimationMove;
 import Enviroments.GrassSet;
 
 import com.mingli.toms.Render;
@@ -227,8 +226,8 @@ public class Creature extends AnimationGrass {
 	}
 
 	protected void tooDown() {
-		super.tooDown();
 		stopJump();
+		 super.tooDown();
 	}
 
 	protected void moveCheck() {
@@ -243,7 +242,7 @@ public class Creature extends AnimationGrass {
 
 	float index;// ����������
 	protected boolean attackable=true;
-	private boolean moving;
+//	private boolean moving;
 	private float aniStep = xSpeedMax / 80f;//
 	float[] aniStep2 = { aniStep, 0.25f };
 	int chance=1;
@@ -263,13 +262,11 @@ public class Creature extends AnimationGrass {
 
 	public void stopMove() {
 		fdirection = 0;
-		moving = false;
 	}
 
 	
 	protected void turnRight() {
 		fdirection = 1;// ͨ���������ķ�������ƶ� �����ı����Ĵ�С
-		moving = true;
 		if (isAnimationFinished()) {
 			faceRight();
 		}
@@ -277,7 +274,6 @@ public class Creature extends AnimationGrass {
 
 	protected void turnLeft() {
 		fdirection = -1;
-		moving = true;
 		if (isAnimationFinished()) {
 			faceLeft();
 		}
@@ -442,14 +438,6 @@ public class Creature extends AnimationGrass {
 		this.attackable = attacking;
 	}
 
-	public boolean isMoving() {
-		return moving;
-	}
-
-	public void setMoving(boolean moving) {
-		this.moving = moving;
-	}
-
 	// @Override
 	// public void run() {
 	// setLiving(true);
@@ -484,6 +472,7 @@ public class Creature extends AnimationGrass {
 
 	public void setxSpeedMax(float speedMax) {
 		this.xSpeedMax = speedMax;
+//		if(xSpeed>xSpeedMax)xSpeed=xSpeedMax;
 	}
 
 	public float getxSpeedMin() {
@@ -492,6 +481,7 @@ public class Creature extends AnimationGrass {
 
 	public void setxSpeedMin(float speedMin) {
 		this.xSpeedMin = speedMin;
+//		if(xSpeed<xSpeedMin)xSpeed=xSpeedMin;
 	}
 
 	public boolean isJumpAble() {
@@ -639,17 +629,24 @@ public class Creature extends AnimationGrass {
 	public void setEnemySet(EnemySet es) {
 		// TODO Auto-generated method stub
 		this.enemySet=es;
+		enemyList=es.cList;
+	}
+	public EnemySet getEnemySet(){
+		return enemySet;
+	}
+	public EnemySet getFriendSet(){
+		return friendSet;
 	}
 
 	public void setFriendSet(EnemySet friendSet) {
 		// TODO Auto-generated method stub
 		this.friendSet=friendSet;
+		friendList=friendSet.cList;
 	}
 
-	public void culTreadxSpeed(Creature c) {
+	public boolean culTreadSpeedAndCanBeTread(Creature c) {
 		float rs=c.xSpeed-getxSpeed();    //relativeSpeed;
 		
-		float am=c.getAm();
 		
 		if(c.fdirection==0){
 			c.xSpeed=getxSpeed(); 
@@ -664,5 +661,16 @@ public class Creature extends AnimationGrass {
 				}
 			}
 		}
+		
+		{
+			c.ySpeed+=c.getG();// remove the g 's effect
+			yStandCheck(c,c.gethEdge()+gethEdge(), 0.2f, 1);
+		}
+		return true;
+          
 	}
+
+	public void timerTask() {//
+	}
+	
 }

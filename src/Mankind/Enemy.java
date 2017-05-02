@@ -2,10 +2,9 @@ package Mankind;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.mingli.toms.World;
-
-import element2.ParticleBallRandom;
 import Enviroments.GrassSet;
+
+import com.mingli.toms.World;
 
 public class Enemy extends Creature {
 

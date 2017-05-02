@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.mingli.toms.Render;
-
 import Element.AnimationMove;
 import Enviroments.GrassSet;
 import Mankind.Creature;
 import Mankind.Player;
+
+import com.mingli.toms.Render;
 
 public class SnowSet extends Set{
 	ArrayList<Creature> weatherList = new ArrayList<Creature>(10);

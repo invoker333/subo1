@@ -190,6 +190,7 @@ public class GameMenu {
 		// private View v;
 		// private MotionEvent e;
 		CheckBox ex, music;
+		private View randomMap;
 
 		PopWindowTouchEvent(MenuActivity acti) {
 			// this.acti = acti;
@@ -201,6 +202,8 @@ public class GameMenu {
 			view.findViewById(R.id.tomenu).setOnTouchListener(otl);
 			(resume = view.findViewById(R.id.resume)).setOnTouchListener(otl);
 			view.findViewById(R.id.retry).setOnTouchListener(otl);
+			(randomMap=view.findViewById(R.id.randommap)).setOnTouchListener(otl);
+			if(world.mapCharSet==null)randomMap.setVisibility(View.GONE);
 			(next = view.findViewById(R.id.next)).setOnTouchListener(otl);
 			 next.setVisibility(View.INVISIBLE);
 			ex = (CheckBox) view.findViewById(R.id.ex);
@@ -254,6 +257,10 @@ public class GameMenu {
 				case R.id.resume:
 					// viewList.get(1).setBackgroundResource(R.drawable.back);
 					menuActivity.resumeGame();
+					break;
+				case R.id.randommap:
+					// viewList.get(1).setBackgroundResource(R.drawable.back);
+					menuActivity.randomChalenge();
 					break;
 				case R.id.backtostagechoosser:
 					// viewList.get(1).setBackgroundResource(R.drawable.back);

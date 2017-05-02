@@ -1,15 +1,13 @@
 package Menu;
 
-import com.mingli.toms.R;
-import com.mingli.toms.R.layout;
-import com.mingli.toms.R.style;
-
 import android.app.Activity;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
+
+import com.mingli.toms.R;
 
 /**
  * Created by Administrator on 2016/7/10.

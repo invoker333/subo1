@@ -1,9 +1,9 @@
 package Mankind;
 
+import Enviroments.GrassSet;
 import Weapon.Hook;
 import element2.Tail;
 import element2.TexId;
-import Enviroments.GrassSet;
 
 public class Spide3 extends Spide{
 

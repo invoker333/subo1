@@ -1,7 +1,5 @@
 package Weapon;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import Mankind.Creature;
 import element2.Joint;
 

@@ -2,13 +2,10 @@ package Enviroments;
 
 import java.util.ArrayList;
 
-import com.mingli.toms.MusicId;
-import com.mingli.toms.R;
-import com.mingli.toms.World;
-
-import element2.TexId;
 import Element.Animation;
 import Mankind.Player;
+
+import com.mingli.toms.MusicId;
 
 public class Fruit extends Animation{
 	private float alpha=1;

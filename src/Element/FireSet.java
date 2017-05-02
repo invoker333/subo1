@@ -4,10 +4,6 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import android.util.Log;
-
-import com.mingli.toms.Render;
-
 import element2.TexId;
 
 public class FireSet extends BubbleSet{

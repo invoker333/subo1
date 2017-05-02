@@ -2,7 +2,6 @@ package aid;
 
 import android.app.Service;
 import android.content.Intent;
-import android.hardware.Sensor;
 import android.os.IBinder;
 
 public class Ser extends Service{

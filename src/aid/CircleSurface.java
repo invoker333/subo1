@@ -3,17 +3,16 @@ package aid;
   
 import Mankind.Player;
 import android.annotation.SuppressLint;
-import android.content.Context;  
-import android.graphics.Canvas;  
-import android.graphics.Color;  
-import android.graphics.Paint;  
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.util.AttributeSet;
-import android.util.Log;  
-import android.view.MotionEvent;  
-import android.view.SurfaceHolder;  
-import android.view.SurfaceView;  
-import android.view.SurfaceHolder.Callback;  
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceHolder.Callback;
+import android.view.SurfaceView;
 @SuppressLint("WrongCall")
 public class CircleSurface extends SurfaceView implements Callback,Runnable{  
     private Thread th;  

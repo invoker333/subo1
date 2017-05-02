@@ -1,17 +1,13 @@
 package Weapon;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
 import Mankind.Creature;
 import Mankind.EnemySet;
-import aid.Log;
-import android.net.Uri;
 
 import com.mingli.toms.MusicId;
-import com.mingli.toms.R;
 
 import element2.Joint;
 import element2.Tail;
@@ -29,7 +25,6 @@ public class Blade extends Joint {
 	float attackHandCentre = 15;
 
 	private EnemySet es;
-	private float w1;
 	private float w2; //range should be
 	public Tail tail;
 	public final int length = 192;
@@ -64,7 +59,6 @@ public class Blade extends Joint {
 	 public void syncTextureSize() {
 		distanceToHeart = 32f;
 		length2 = distanceToHeart + length;
-		w1 = distanceToHeart * distanceToHeart;
 		w2 = (float) Math.pow(length2 + checkWidth, 2);// big shangixng let check width 2 times bigger is  every one's body width
 		fbSpi.clear();
 		fbSpi.put(new float[] {

@@ -2,10 +2,11 @@ package Enviroments;
 
 import java.util.ArrayList;
 
+import Mankind.Player;
+
 import com.mingli.toms.MenuActivity;
 
 import element2.TexId;
-import Mankind.Player;
 
 public class FruitBlade extends RotateFruit{
 

@@ -2,12 +2,12 @@ package Weapon;
 
 import java.util.ArrayList;
 
-import com.mingli.toms.MusicId;
-import com.mingli.toms.World;
-
 import Enviroments.GrassSet;
 import Mankind.Creature;
 import Mankind.EnemySet;
+
+import com.mingli.toms.MusicId;
+import com.mingli.toms.World;
 
 public class TailGun extends Gun{
 

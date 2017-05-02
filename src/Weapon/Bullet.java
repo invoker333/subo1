@@ -4,17 +4,15 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.mingli.toms.World;
-
-import element2.TexId;
-import Element.AnimationGrass;
 import Element.AnimationMove;
-import Enviroments.BigGrass;
-import Enviroments.Grass;
 import Enviroments.GrassSet;
 import Mankind.Creature;
 import Mankind.EnemySet;
 import Mankind.Player;
+
+import com.mingli.toms.World;
+
+import element2.TexId;
 
 public class Bullet extends AnimationMove{
 	private boolean fire;// �ж��Ƿ���Ա�����
@@ -36,7 +34,7 @@ public class Bullet extends AnimationMove{
 		
 		enemyGrass=es.enemyGrass;
 		setSize(12, 12);
-		setTextureId(TexId.HIKARI);
+		setTextureId(TexId.BULLET);
 	}
 
 	void setSize(float w, float h) {
@@ -100,7 +98,6 @@ public class Bullet extends AnimationMove{
 			 if(id!=gra.getZero()
 					 &&gra.getgList().get(id).notBroken
 					 &&(gra.getgList().get(id).attackedAble)){
-				 Grass grass= gra.getgList().get(id);
 				enemyGrass.setPosition(x,y);
 				 gotTarget(enemyGrass);
 				 return true;

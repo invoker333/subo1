@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.mingli.toms.Render;
-
 import Mankind.Player;
+
+import com.mingli.toms.Render;
 
 import element2.Set;
 

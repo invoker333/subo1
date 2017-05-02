@@ -2,8 +2,6 @@ package Element;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.mingli.toms.Render;
-
 import element2.TexId;
 
 

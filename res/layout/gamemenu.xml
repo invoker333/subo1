@@ -72,6 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:gravity="center"
         android:background="@drawable/white"
         android:orientation="vertical"
         android:padding="10dp" >
@@ -304,6 +305,15 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/randommap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="@drawable/whitestroke"
+            android:text="随机地图" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -365,7 +375,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/backtostagechoosser"
         android:layout_margin="10dp"
-        android:background="@drawable/bg_selected"
+        android:background="@drawable/bg_default"
         android:shadowColor="#ffaa00"
         android:shadowDx="5"
         android:shadowDy="5"

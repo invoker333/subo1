@@ -1,23 +1,17 @@
 package onlineStageActivity;
 
-import com.mingli.toms.Info4;
-import com.mingli.toms.R;
-import com.mingli.toms.R.layout;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.mingli.toms.R;
 
 public class OnlineFileActivity extends Activity {
 	public static final String ONLINE_STAGE_STRING_FROM_NET = "onlineStageStringExtra";

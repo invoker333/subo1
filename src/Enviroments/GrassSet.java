@@ -6,19 +6,15 @@ import java.util.Collections;
 import javax.microedition.khronos.opengles.GL10;
 
 import Element.Animation;
-import Element.AnimationGrass;
 import Element.AnimationMove;
-import Element.Draw;
-import Element.FireSet;
 import Mankind.Baller;
 import Mankind.BladeMan;
 import Mankind.BossRunner;
 import Mankind.Creature;
 import Mankind.Creeper;
 import Mankind.Emplacement;
-import Mankind.EnemySet;
-import Mankind.EpAuto;
 import Mankind.FireBall;
+import Mankind.FlagPlayer;
 import Mankind.Flyer;
 import Mankind.GunMan;
 import Mankind.Hedgehog;
@@ -28,11 +24,9 @@ import Mankind.Spide;
 import Mankind.Spide3;
 import Mankind.TestEnemy;
 import Mankind.Walker;
-import Mankind.FlagPlayer;
 import aid.Log;
 
 import com.mingli.toms.MusicId;
-import com.mingli.toms.R;
 import com.mingli.toms.World;
 
 import element2.LightningSet;
@@ -46,7 +40,6 @@ import element2.TexId;
 public class GrassSet extends Set{
 
 	public int [][]map;
-	public Grass [][]grassMap;
 	private ArrayList<Grass>gList;
 	private ArrayList<Grass>drawList;
 	public ArrayList<Animation>animationList; 
@@ -69,7 +62,7 @@ public class GrassSet extends Set{
 	private Tail grassTail;
 	private float viewGrid;//隐藏格子
 	public  boolean isCastle;
-	private World world;
+	public World world;
 
 	private void newMapData(char[] b) {
 		char bi = 0;
@@ -83,7 +76,6 @@ public class GrassSet extends Set{
 		}
 		mapWidth+=1;//最后一个换行符 导致tab少一个
 		
-		isCastle=mapHeight>mapWidth;
 		
 		map=new int[mapWidth][mapHeight];//
 
@@ -93,6 +85,9 @@ public class GrassSet extends Set{
 				map[i][j]=zero;//整体赋值
 			}
 		}
+		isCastle=mapHeight>mapWidth;
+		if(isCastle)viewGrid=0;
+		else viewGrid=grid;
 	}
 	float[] grassData(int x,int y){
 		float a,b;
@@ -115,6 +110,23 @@ public class GrassSet extends Set{
 
 	}
 	public byte []saveMap(){
+		
+		byte[][] mapdata=getMapArray();
+		
+		byte[]mapsequence=new byte[mapWidth*2  *mapHeight];
+		
+		for(int j=0;j<mapHeight;j++){
+			for(int i=0;i<mapWidth;i++){
+				mapsequence[2*(j*mapWidth+i)]=mapdata[i][mapHeight-1-j];
+				mapsequence[2*(j*mapWidth+i)+1]='	';// tab
+			}
+			mapsequence[2*(j*mapWidth+mapWidth-1)+1]=13;// /r/n
+		}
+		
+		
+		return mapsequence;
+	}
+	public byte[][] getMapArray() {
 		int  mapWidth = 0,mapHeight = 0;
 		
 		
@@ -150,20 +162,7 @@ public class GrassSet extends Set{
 		for(Animation a:animationList){
 			mapdata[(int) (a.startX/grid)+xOffSet][(int) (a.startY/grid)+yOffSet]=(byte) a.mapSign;
 		}
-		
-		
-		byte[]mapsequence=new byte[mapWidth*2  *mapHeight];
-		
-		for(int j=0;j<mapHeight;j++){
-			for(int i=0;i<mapWidth;i++){
-				mapsequence[2*(j*mapWidth+i)]=mapdata[i][mapHeight-1-j];
-				mapsequence[2*(j*mapWidth+i)+1]='	';// tab
-			}
-			mapsequence[2*(j*mapWidth+mapWidth-1)+1]=13;// /r/n
-		}
-		
-		
-		return mapsequence;
+		return mapdata;
 	}
 	public GrassSet(float grid,char[]b,LightningSet lns, World world){
 		this.grid=grid;
@@ -202,11 +201,11 @@ public class GrassSet extends Set{
 				case 122:gList.add(new Grass(bi,grassData(x, y),TexId.ZHUAN,true));break;//z
 				case 'm':gList.add(new GrassSticker(bi,grassData(x, y),TexId.STICKER));break;
 				case 85:int ran=(int) (Math.random()*2);
-					Burrow bro=new Burrow(bi,grassData(x, y),TexId.BAMBOO,grid*3/32,ran);
+					Burrow bro=new Burrow(bi,grassData(x, y),TexId.BAMBOO,grid*3/32,ran,null);
 					burrorList.add(bro);
 					gList.add(bro);
 					if(World.editMode)break;// no 2 if edit
-						Burrow bro2=new Burrow(' ', grassData(x+1, y),TexId.BAMBOO,grid*3/32,ran);
+						Burrow bro2=new Burrow(' ', grassData(x+1, y),TexId.BAMBOO,grid*3/32,ran,bro);
 						burrorList.add(bro2);
 						gList.add(bro2);
 					break;//U 表示地洞 竹子
@@ -222,15 +221,17 @@ public class GrassSet extends Set{
 				case 66:fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.MISSILE));break;//B boom
 				case 67:fruitList.add(new ChanceFruit(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;//C 加机会
 				case 68:fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.HOOKGUN));break;//D drag hook
+				case 'Q':fruitList.add(new Fenshen(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;
 				case 71:fruitList.add(new Gao(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,9999));break;//G
 				case 72:fruitList.add(new sizeFruit(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;//H
 				case 75:fruitList.add(new FruitBlade( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;//k
 				case 'J':fruitList.add(new FruitFly( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid, 9999));break;// J jumppen qi guo
 				case 77:fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.JUJI));break;//M 
-				case 79:fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.GUANGDANQIANG));break;//O normal bullet
+				case 79:fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.PUTONGQIANG));break;//O normal bullet
 				case 83:fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.SHOTGUN));break;//S 
 				case 'P':fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.BOOMGUN));break;//
 				case 'L':fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.ZIDONGDAN));break;//L
+				case 'N':fruitList.add(new FruitGun( bi,(x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.GUANGDANQIANG));break;
 				case 84:if(World.rpgMode)fruitList.add(new Tomato(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid, 500));break;//T 加血道具
 				case 110:fruitList.add(new Toukui(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,9999));break;//n toukui
 				case 'x':fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.SHUFUDAN));break;//
@@ -313,11 +314,10 @@ public class GrassSet extends Set{
 		
 		initGoreAnimation();
 		
-		if(goal==null)goal=new Goal(' ', -1000, 0){
-			 public void drawElement(GL10 gl){}
-		};
-		goal.searchBoss(player,enemyList);
+		if(goal==null)goal=new Goal('2', grid*mapWidth-500, 400);
+		else goal.searchBoss(player,enemyList);// else is important
 		animationList.add(goal);
+		if(player==null)player=new Player('A', this, world, 500, 400);
 		player.
 		goal=goal;
 	}
@@ -384,27 +384,7 @@ public class GrassSet extends Set{
 		if((id=map[x1][y1])==zero)return;
 		Grass grass=gList.get(id);
 			if(grass.getTextureId()==TexId.BAMBOO)
-				grass.setTextureId(TexId.BAMBOOHEART);
-			
-			
-		if(x1+1<mapWidth){
-			if((id=map[x1+1][y1])!=zero)
-				if(gList.get(id).isIsburrow())
-					if(gList.get(id).getxState()==0)x1++;
-		}
-		if(x1-1>=0){
-			if((id=map[x1-1][y1])!=zero)
-				if(gList.get(id).isIsburrow())
-					if(gList.get(id).getxState()==1)x1--;
-		}
-		for(;y1>=0;y1--){
-			if((id=map[x1][y1])==zero)return;
-			grass=gList.get(map[x1][y1]);
-			if(grass.getTextureId()==TexId.BAMBOO)
-				grass.setTextureId(TexId.BAMBOOHEART);
-		}
-		
-		
+				grass.setTextureId(TexId.BAMBOOHEART);		
 		
 	}
 	
@@ -426,8 +406,6 @@ public class GrassSet extends Set{
 			}
 		}
 		drawList.addAll(leafList);
-		if(isCastle)viewGrid=0;
-		else viewGrid=grid;
 	}
 	public void drawElement(GL10 gl) {
 //		grassTail.drawElement(gl);
@@ -609,8 +587,8 @@ public class GrassSet extends Set{
 		Grass grass=gList.get(grassID);
 
 //		if(drawList.contains(grass))
-		grass.notBroken=false;
-		map[mx1][my1]=zero;
+		if(grass.breakCheck())
+			map[mx1][my1]=zero;
 	}
 	public ArrayList<Emplacement> getEmplacementList() {
 		return emplacementList;

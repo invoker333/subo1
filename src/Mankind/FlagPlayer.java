@@ -1,11 +1,13 @@
 package Mankind;
 
+import javax.microedition.khronos.opengles.GL10;
+
+import Enviroments.GrassSet;
+
 import com.mingli.toms.World;
 
-import element2.SceneTail;
 import element2.Tail;
 import element2.TexId;
-import Enviroments.GrassSet;
 
 public class FlagPlayer extends Player{
 
@@ -43,6 +45,10 @@ public class FlagPlayer extends Player{
 		downData[0]=false;
 		downData[1]=true;
 	}
+//	public void drawElement(GL10 gl){
+//		super.drawElement(gl);
+//		setViewPot();
+//	}
 	public void die(){setGotGoal(true);}// avoid gameOver
 	void sendIcon(int i){world.sendMessage(World.NOTREADICON);}
 //	public void quitgame(){

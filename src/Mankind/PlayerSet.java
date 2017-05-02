@@ -4,19 +4,16 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import Enviroments.GrassSet;
+
 import com.mingli.toms.Map;
 import com.mingli.toms.World;
-
-import Enviroments.GrassSet;
-import element2.Tail;
-import element2.TexId;
 
 public class PlayerSet extends EnemySet{
 //	  Creature wheel;
 //   	Creature wheel2;
 //   	Creature wheel3;
 //	private Tail body;
-	private Creature greenWalker;
 	public PlayerSet(GrassSet gra, Player player,EnemySet enemySet) {
 		this(gra, player);
 
@@ -35,8 +32,8 @@ public class PlayerSet extends EnemySet{
 		
 		// TODO Auto-generated constructor stub
 		this.cList=new ArrayList<Creature>();
+		cList.add(player);
 		this.emplacementList=new ArrayList<Emplacement>();
-		Creeper cp;
 		//////////////////////////new list
 //		addCreature(greenWalker=new Walker(bi,gra,player.x,player.y));
 //		greenWalker.setTextureId(TexId.GREENWALKER);
@@ -62,7 +59,6 @@ public class PlayerSet extends EnemySet{
 		}
 //		
 		
-		   final float w=16;
 //		   addCreature(  wheel=new ParticleBallRandom(gra));
 //		   addCreature( wheel2=new ParticleBallRandom(gra));
 //		   addCreature(wheel3=new ParticleBallRandom(gra));
@@ -73,9 +69,6 @@ public class PlayerSet extends EnemySet{
 //	       body.width=4;
 		
 		
-		player.setPlayerList(new ArrayList<Creature>(cList));
-		// wanjia 能 踩 的 对象 不包括自己 
-		cList.add(player);
 	}
 	public void timerTask() {};
 	public void drawElement(GL10 gl){
@@ -85,10 +78,6 @@ public class PlayerSet extends EnemySet{
 //		gl.glColor4f(1, 1, 1, 1);
 		
 		
-
-    	final float dsmax= player.getW()*10;
-    	final float tanxingxishu= 0.1f;
-    	final 	float zuni=1;
 		
 
 //    	player.masterCheck(wheel,dsmax,tanxingxishu,zuni);

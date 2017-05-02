@@ -1,11 +1,11 @@
 package Mankind;
 
+import Enviroments.GrassSet;
+
 import com.mingli.toms.MusicId;
-import com.mingli.toms.R;
 import com.mingli.toms.World;
 
 import element2.TexId;
-import Enviroments.GrassSet;
 
 public class Hedgehog extends Enemy {
 
@@ -19,14 +19,14 @@ public class Hedgehog extends Enemy {
 		setLife(getLifeMax());
 		isDead=false;
 		angle=0;
+		attack=0;
 		treadable=false;
 		rotateSpeed=0;
 		sethRate(0.85f);
 		changeSize(0.6f);
-		y++;
-		setxSpeedMax(3);
-		setxSpeedMin(-3);
-
+		ySpeed+=10;
+		setxSpeedMax(1);
+		setxSpeedMin(-1);
 		setTextureId(TexId.REDCREEPER);
 		setSoundId(MusicId.creeper4);
 	}
@@ -43,11 +43,9 @@ public class Hedgehog extends Enemy {
 		setxSpeedMin(-3);
 		super.afterInit();
 	}
-	public void attacked(int attack){
-//		float life1=getLife();
-		 super.attacked(attack);
-//		 if(life1>=lifeToChange&&getLife()<lifeToChange)
-			if(isDead&&getTextureId()==TexId.HEDGEHOG) toCrepper();
+	public void die(){
+		if(getTextureId()==TexId.HEDGEHOG) toCrepper();
+		else super.die();
 	}
 	 public void attackAnotherOne(EnemySet es){
 			Creature another;

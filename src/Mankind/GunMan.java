@@ -2,16 +2,11 @@
 
 import javax.microedition.khronos.opengles.GL10;
 
-import android.view.Gravity;
+import Enviroments.GrassSet;
+import Weapon.Gun;
 
 import com.mingli.toms.Render;
 import com.mingli.toms.World;
-
-import Weapon.AutoBullet;
-import Weapon.Bullet;
-import Weapon.Gun;
-import Weapon.TailGun;
-import Enviroments.GrassSet;
 
 public class GunMan extends JointEnemy {
 
@@ -21,7 +16,6 @@ public class GunMan extends JointEnemy {
 		super(bi, gra, x, y);
 		// TODO Auto-generated constructor stub
 		haveGun();
-		setLifeMax(5*World.baseAttack);
 		treadable = false;
 	}
 
@@ -39,14 +33,22 @@ public class GunMan extends JointEnemy {
 	
 
 	public void randomAction() {// 周期
-		if (cd < cdMAX/2)for(Creature chaser:enemySet.cList)  
-			chaseCheck(chaser);
-		
-		
+		if (cd < cdMAX*4/5){
+			for(Creature chaser:enemySet.cList) {
+				if(!chaser.isDead) {
+					chaseCheck(chaser);
+					break;
+				}
+			}
+		}else stopMove();
 		if (cd++ > cdMAX) {
 			cd = 0;
-		} else
-			return;
+		} else	return;
+		
+		searchAndAttack();
+	}
+
+	private void searchAndAttack() {
 		int enemyId = -1;
 		double minDistance = 10000 * 10000;// zheng wu qiong
 		for (int i = 0; i < enemySet.cList.size(); i++) {

@@ -6,10 +6,9 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.mingli.toms.Render;
-
 import Element.Animation;
-import Element.Draw;
+
+import com.mingli.toms.Render;
 
 public class Square extends Animation {
 	public Square(){

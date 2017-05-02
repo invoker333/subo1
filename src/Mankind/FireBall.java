@@ -6,7 +6,6 @@ import Element.FireSet;
 import Enviroments.GrassSet;
 
 import com.mingli.toms.MusicId;
-import com.mingli.toms.R;
 import com.mingli.toms.World;
 
 import element2.TexId;
@@ -23,6 +22,12 @@ public class FireBall extends Enemy{
 		attack=(int) (0.2f*World.baseAttack);
 		
 		fireSet=new FireSet(5,x,gra.getGrid());
+		treadable=false;
+	}
+	public boolean culTreadSpeedAndCanBeTread(Creature c){
+//		if(false)
+//		super.culTreadxSpeed(c);
+		return false;
 	}
 	public void drawElement(GL10 gl){
 		super.drawElement(gl);

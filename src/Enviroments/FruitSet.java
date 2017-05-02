@@ -5,12 +5,10 @@ import java.util.ArrayList;
 import javax.microedition.khronos.opengles.GL10;
 
 import Element.AnimationMove;
-import Mankind.Flyer;
 import Mankind.Player;
 import aid.Log;
 
 import com.mingli.toms.Music;
-import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
 import com.mingli.toms.World;
 
@@ -79,23 +77,25 @@ public class FruitSet extends Set {
 		{
 			shopList = new ArrayList<Fruit>();
 			shopList.add( new ChanceFruit(bi, 1, 1));// ..
+			shopList.add(new Wudi(bi, 1, 1));
 			shopList.add(new sizeFruit(bi, 1, 1));
 			shopList.add(new Toukui(bi, 0, 0, 9999));
 			shopList.add(new Gao(bi, 1, 1, 9999));
-			shopList.add(new Wudi(bi, 1, 1));
 			shopList.add(new FruitFly(bi, 1, 1, 9999));
+			shopList.add(new Fenshen(bi, 1, 1));
 			shopList.add(new FruitGun(bi, 1, 1, TexId.BOOMGUN));
 			shopList.add(new FruitGun(bi, 1, 1, TexId.HOOKGUN));
 			shopList.add(new FruitBlade(bi, 1, 1));
-//			if (World.rpgMode) {
+			if (World.rpgMode) {
 				shopList.add(new Tomato(bi, 1, 1, 500));// ..
+			}
+				shopList.add(new FruitGun(bi, 1, 1, TexId.PUTONGQIANG));
 				shopList.add(new FruitGun(bi, 1, 1, TexId.ZIDONGDAN));
 				shopList.add(new FruitGun(bi, 1, 1, TexId.GUANGDANQIANG));
 				shopList.add(new FruitGun(bi, 1, 1, TexId.SHOTGUN));
 				shopList.add(new FruitGun(bi, 1, 1, TexId.MISSILE));
 				shopList.add(new FruitGun(bi, 1, 1, TexId.JUJI));
-				shopList.add(new FruitGun(bi, 1, 1, TexId.SHUFUDAN));
-//			}
+//				shopList.add(new FruitGun(bi, 1, 1, TexId.SHUFUDAN));
 		}
 	}
 
@@ -174,7 +174,7 @@ public class FruitSet extends Set {
 			case R.drawable.s:
 				item[i] = 'S';
 				break;
-			case R.drawable.putongdan:
+			case R.drawable.guangdan:
 				item[i] = 'O';
 				break;
 			case R.drawable.jujidan:

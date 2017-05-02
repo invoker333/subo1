@@ -8,8 +8,6 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
-import com.mingli.toms.R;
 public class Circle extends View {  
     private Paint paint;  
     //固定摇杆背景圆形的X,Y坐标以及半径  

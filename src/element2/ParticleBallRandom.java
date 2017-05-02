@@ -1,9 +1,6 @@
 package element2;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import Enviroments.GrassSet;
-import Mankind.Creature;
 
 /**
  * Created by Administrator on 2016/7/7.

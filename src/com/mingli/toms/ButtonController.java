@@ -4,21 +4,15 @@ import Mankind.Player;
 import aid.Circle;
 import aid.CircleSurface;
 import aid.MyMoveView;
-import aid.Shop;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Message;
-import android.text.method.Touch;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.SlidingDrawer;
@@ -269,6 +263,8 @@ public class ButtonController {
 	};
 	private SeekBar.OnSeekBarChangeListener seekListener = new SeekBar.OnSeekBarChangeListener() {
 
+		private int agoProgress;
+
 		@Override
 		public void onStopTrackingTouch(SeekBar seekBar) {
 			world.playerMoveIndex=0;
@@ -281,7 +277,8 @@ public class ButtonController {
 			case R.id.directionSeekBar:
 				Player.downData[0]=false;
 				Player.downData[1]=false;
-				player.StopDoubleClick();
+				Player.downData[7]=false;
+				agoProgress=50;
 				seekBar.setProgress(50);
 				break;
 			}
@@ -292,7 +289,7 @@ public class ButtonController {
 			if(seekBar.getId()==R.id.jumpSeekbar1)Player.downData[3] = true;
 			
 			else if(seekBar.getId()==R.id.directionSeekBar){
-				player.doubleDownCheck();
+//				player.doubleDownCheck();
 			} 
 		}
 
@@ -306,16 +303,29 @@ public class ButtonController {
 				
 				break;
 			case R.id.directionSeekBar:
+				slideCheck(progress);
 				if (progress < 50) {
-					player.setLeftData(true, progress);
+					Player.downData[0] = true;
 					Player.downData[1] = false;
 				}else if (progress > 50) {
-					player.setRightData(true, progress);
+					Player.downData[1] = true;
 					Player.downData[0] = false;
 				}
 				break;
 			}
 
+		}
+
+		private void slideCheck(int progress) {
+			// TODO Auto-generated method stub
+			if(agoProgress!=50
+					&&agoProgress!=50
+							&&Math.abs(progress-agoProgress)>2) {
+				//				doubleClicked=true;
+				Player.downData[7]=true;
+			}
+				
+			agoProgress=progress;
 		}
 	};
 	public View.OnTouchListener ontl;

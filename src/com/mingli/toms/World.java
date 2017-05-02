@@ -55,7 +55,7 @@ public class World extends GLSurfaceView implements Runnable {
 	private HikariSet hikariSet;
 	private FireworkSet fireWorkSet;
 	private SnowSet snowSet;
-	private LightningSet lightningSet;
+	public LightningSet lightningSet;
 	private BoomSet boomSet;
 	public static Music music;
 
@@ -214,7 +214,7 @@ public class World extends GLSurfaceView implements Runnable {
 
 	void loadTitleView() {
 		int mapId=-1;
-		mapFile=null;mapString=null;
+		mapFile=null;mapString=null;mapCharSet=null;
 		if(!render.created)return;
 		// TODO Auto-generated method stub
 //		if(drawList.contains(bubbleSet))return;
@@ -269,8 +269,12 @@ public class World extends GLSurfaceView implements Runnable {
 	private void initializeGame(int mapIndex) {// ��ʼ���ǿ�ʼ�˵��Ķ���
 		 gameTime=timerMax;//chongzhi shi jian
 			
-	
-		 if(mapString!=null){
+		 if(mapCharSet!=null){
+				map = new Map(mapCharSet);
+				mapName="随机挑战关卡";
+				
+			}
+		 else if(mapString!=null){
 				map = new Map(mapString);
 				mapName=acti.selectedToSaveOnlineFileName.replace(".txt", "");
 				
@@ -343,7 +347,7 @@ public class World extends GLSurfaceView implements Runnable {
 		hikariSet = new HikariSet(10,gra.isCastle);
 
 		boomSet = new BoomSet(2);
-		lightSpotSet = new LightSpotSet(10, TexId.BLANK);
+		lightSpotSet = new LightSpotSet(10, TexId.HIKARI);
 //		lightSpotSet.tringer(Render.px + 1280 * Math.random(), Render.py + 720				* Math.random());
 
 		
@@ -477,14 +481,24 @@ public class World extends GLSurfaceView implements Runnable {
 	void timerTask() {
 		// if(tail!=null)tail.tringer(player.x,player.y);// 指示位置
 		if(paused)return;//////////test
-		if (player != null)	player.setViewPot();
+			
+		if(playerSet!=null)
+			for(Creature c:playerSet.cList){
+				c.timerTask();
+			}
+			if(enemySet!=null)
+			for(Creature c:enemySet.cList){
+				c.timerTask();
+			}
+		if (player != null) {
+			player.setViewPot();
+		}
 		if(MenuActivity.titleMode
 //				||editMode
 				)return;
 		
 		if(gra!=null&&editMode)gra.toStartPosition();
-		
-		
+	
 		
 		if (player != null) {
 			
@@ -497,13 +511,9 @@ public class World extends GLSurfaceView implements Runnable {
 				if (gameTime > 0)
 					increaseTime(-1);
 				else if (gameTime == 0) {
-					if(editMode)return;// edit mode dont dai
-//					player.setGotGoal(true);// maybe the boy has gotgoal 
+//					if(editMode)return;// edit mode dont dai
 					Log.i("gametime"+gameTime+"getgoal"+player.isGotGoal());
 					player.die();
-//					player.setGotGoal(true);
-//					gameOver();
-					// break;
 				}
 
 			}
@@ -674,6 +684,7 @@ public class World extends GLSurfaceView implements Runnable {
 	}
 
 	public void gameOver() {
+		if(editMode)return;
 		FruitSet.pickedList.clear();
 		music.setBGM(R.raw.death);
 		increaseChance(-1);
@@ -846,6 +857,7 @@ public class World extends GLSurfaceView implements Runnable {
 	public ArrayList<Animation> animationList;
 	public  ArrayList<Animation> animationshopList;
 	public String mapString;
+	public char[] mapCharSet;
 	
 	public static boolean editMode;
 	public static boolean rpgMode;
@@ -854,6 +866,7 @@ public class World extends GLSurfaceView implements Runnable {
 	public static boolean bigMode;
 	public static boolean openMode;
 	public static int baseActionCdMax=180;
+	public static boolean Item3Mode;
 
 	public void astarSearch(float x, float y) {
 		if (astar == null)
@@ -935,7 +948,7 @@ public class World extends GLSurfaceView implements Runnable {
 
 	public boolean isOutMapResource() {
 		// TODO Auto-generated method stub
-		if(mapString!=null||mapFile!=null)return true;
+		if(mapString!=null||mapFile!=null||mapCharSet!=null)return true;
 		return false;
 	}
 }

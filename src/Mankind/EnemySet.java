@@ -8,10 +8,7 @@ import Element.Animation;
 import Element.BloodSet;
 import Enviroments.GrassSet;
 import Menu.State;
-import aid.Log;
 
-import com.mingli.toms.MusicId;
-import com.mingli.toms.R;
 import com.mingli.toms.World;
 
 import element2.Set;
@@ -19,16 +16,6 @@ import element2.TexId;
 
 public class EnemySet extends Set {
 	private static final int _256 = 256;
-	// no zero because it's began value is 0
-//	public static final int BALLER = 1001;
-//	public static final int WALKER = 1002;
-//	public static final int EMPLACEMENT = 1003;
-//	public static final int CREEPER = 1004;
-//	public static final int FLYER = 1005;
-//	public static final int HEDGEHOG = 1006;
-//	public static final int FIREBALL = 1007;
-//	public static final int SPIDE = 1008;
-//	public   int METAL;
 	
 	public ArrayList<Creature> cList=new ArrayList<Creature>();
 	// 炮台和人是分开的
@@ -43,7 +30,6 @@ public class EnemySet extends Set {
 	float bloodW = 100;
 	float bloodH = 16;
 	private Animation guideCircle;
-	private EnemySet friendSet;
 	private Creature systemAttacker;// to avoid attacker is null
 	public Creature enemyGrass;
 
@@ -200,7 +186,7 @@ public class EnemySet extends Set {
 			if(!self.isDead)
 			for (int i = 0; i < enemySet.cList.size(); i++) {
 				another = enemySet.cList.get(i);
-				if (Math.abs(self.x - another.x) < another.getW() + self.getW()
+				if (Math.abs(self.x - another.x) < another.getwEdge() + self.getW()
 						&& another.y - another.gethEdge() < self.y // foot
 						&& another.y + another.gethEdge() > self.y - self.gethEdge()) {// head higher than foot
 					tooClose(self,another);
@@ -314,17 +300,14 @@ public class EnemySet extends Set {
 
 	public void setFriendSet(EnemySet friendSet) {
 		// TODO Auto-generated method stub
-		this.friendSet=friendSet;
 		for(Creature c:cList){
 			c.setFriendSet(friendSet);
-			c.friendList=friendSet.cList;
 		}
 	}
 	public void setEnemySet(EnemySet es) { // di dui shi li
 		this.enemySet = es;
 		for(Creature c:cList){
 			c.setEnemySet(es);
-			c.enemyList=es.cList;
 		}
 	}
 

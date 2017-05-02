@@ -5,7 +5,6 @@ import javax.microedition.khronos.opengles.GL10;
 import Enviroments.GrassSet;
 import Mankind.Creature;
 import Mankind.EnemySet;
-import Mankind.Player;
 
 import com.mingli.toms.World;
 

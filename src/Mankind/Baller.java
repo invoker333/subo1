@@ -1,11 +1,10 @@
 package Mankind;
 
-import javax.microedition.khronos.opengles.GL10;
+import Enviroments.GrassSet;
 
 import com.mingli.toms.MusicId;
 import com.mingli.toms.World;
 
-import Enviroments.GrassSet;
 import element2.TexId;
 
 public class Baller extends Enemy {

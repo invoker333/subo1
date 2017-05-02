@@ -1,22 +1,11 @@
 package com.mingli.toms;
 
 import aid.Tips;
-import android.app.ActionBar;
-import android.app.ActionBar.LayoutParams;
-import android.app.Activity;
-import android.os.Handler;
 import android.os.Message;
-import android.text.Layout;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**

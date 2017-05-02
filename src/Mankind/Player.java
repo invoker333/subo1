@@ -4,19 +4,15 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import Element.Animation;
-import Element.AnimationGravity;
 import Element.AnimationMove;
 import Element.Pifeng;
 import Enviroments.Goal;
 import Enviroments.Grass;
 import Enviroments.GrassSet;
-import Enviroments.Toukui;
-import Weapon.AutoBubble;
 import Weapon.AutoBubbleGun;
-import Weapon.AutoBullet;
 import Weapon.AutoBulletGun;
 import Weapon.BoomGun;
+import Weapon.GuangDanGun;
 import Weapon.Gun;
 import Weapon.HookGun;
 import Weapon.MissileGun;
@@ -24,13 +20,10 @@ import Weapon.ShotGun;
 import Weapon.TailGun;
 import aid.Log;
 
-import com.mingli.toms.MenuActivity;
 import com.mingli.toms.MusicId;
-import com.mingli.toms.R;
 import com.mingli.toms.Render;
 import com.mingli.toms.World;
 
-import element2.ParticleBallRandom;
 import element2.Tail;
 import element2.TexId;
 public class Player extends JointCreature {
@@ -46,7 +39,7 @@ public class Player extends JointCreature {
    
     
     private boolean doubleClicked;
-    public static boolean[] downData = new boolean[7];
+    public static boolean[] downData = new boolean[8];
     Creature controller;
 	public Goal goal;
     private boolean gotGoal;
@@ -75,6 +68,8 @@ public class Player extends JointCreature {
         initGuideTail(gra);     
         reSetDownDate();
       
+        lifeCount=1;
+        treadable=false;
     }
 	private void initVtDestory() {
 		// TODO Auto-generated method stub
@@ -129,7 +124,23 @@ public class Player extends JointCreature {
     public void startTouch(float ex1,float ey1){
     	this.ex1 = ex1;
     	this.ey1 = ey1;
-    	
+    	float ex = Render.px + ex1;
+		float ey = Render.py + ey1;
+		   if(this.isBenti)
+		   {
+	        	for(Creature c:friendList){
+	        		if(c instanceof Player&&!c.isDead){
+	        			float xx=c.x;float yy=c.y;
+	        			if(c!=this&&
+	        					Math.abs(xx-ex)<getW()&&
+	        					Math.abs(yy-ey)<getH()){
+	        				c.setPosition(x, y);
+		        			setPosition(xx,yy+gethEdge()-c.gethEdge());
+		        			return;
+	        			}
+	        		}
+	        	}
+	        }
     	if(gun!=null&&
     			(gun instanceof AutoBulletGun
     					||gun instanceof HookGun
@@ -141,11 +152,6 @@ public class Player extends JointCreature {
     				return;
     			}
 		}
-    	
-//    	if(autoBulletTime>0){
-//    		ab.tringerCheck(ex1, ey1);
-//    		autoBulletTime--;
-//    	}
     	else {
     		if(flyTime<1)return;
     		
@@ -194,7 +200,7 @@ public class Player extends JointCreature {
     
     float guideAlpha=0.5f;
    	private float guideAlphaSpeed=0.016f;
-    private void drawGuideCre(GL10 gl) {
+	private void drawGuideCre(GL10 gl) {
 		// TODO Auto-generated method stub
     	if(guideAlpha<guideAlphaSpeed||guideAlpha>1-guideAlphaSpeed)
     	guideAlphaSpeed=-guideAlphaSpeed;
@@ -324,12 +330,13 @@ public class Player extends JointCreature {
    int wudiTimeBorn=60;
 	 public int wudiTime=wudiTimeBorn;// wudi time
 	private Pifeng pifeng;
+	private boolean isBenti=true;
+	private static int relifeLandId;
 //	 private Pifeng pifeng2;
+	 static int lifeCount=1;
 	 
     public void drawElement(GL10 gl) {
     	if(touched)drawGuideTail(gl);	
-    	timerTask();
-    	
     	if(isDoubleClicked())shader.drawElement(gl);
      
    
@@ -436,6 +443,8 @@ public class Player extends JointCreature {
             }
         }
         xMax =  gra.getGrid()*gra.getMapWidth() - Render.width - gra.getViewGrid();
+        yMax =  gra.getGrid()*gra.getMapHeight() - Render.height - gra.getViewGrid();
+        Log.i("gra.getViewGrid()"+gra.getViewGrid());
     }
    
 
@@ -479,25 +488,30 @@ public class Player extends JointCreature {
           goal.picked();
           world.succeed();
     }
-    private void timerTask() {
+    public void timerTask() {
     	if(isDead)return;
     	
+//    	setViewPot();
+    	
     	 if (y < 0 ) {
-//         	isDead = true;
     		 die();
          }
-         if (goal.pickable&&!gotGoal && x > goal.x1 && x < goal.x2
+         if (goal.pickable&&goal.hasFirstBlood
+        		 &&!gotGoal && x > goal.x1 && x < goal.x2
                  && y > goal.y1 && y < goal.y2) {
-//        	 if(!isDead)
         	 succeed();
          }
-         // randomColor();
          actCheck(controller);
+         if(!isBenti){
+        	 if(getxPro()<Player.hx1)setxPro((float) (Player.hx1+Math.random()*Render.width));
+             else if(getxPro()>Player.hx2)setxPro((float) (Player.hx2-Math.random()*Render.width));
+             if(getyPro()<Player.hy1)setyPro((float) (Player.hy1+Render.height*Math.random()));
+             else if(getyPro()>Player.hy2)setyPro((float) (Player.hy2-Render.height*Math.random()));
+         }
+        
          
-
      	gra.downHoleCheck(x, y);
-         
-//         actCheck(wheel);
+     	gra.downHoleCheck(x-gra.getGrid(), y);
 	}
 	public void attacked(int attack) {
 		if(wudiTime>0)return;
@@ -511,26 +525,65 @@ public class Player extends JointCreature {
         
 //        bloodSecondaryindex=0;
     }
+	
+	public Player clone(){
+		Player p=new Player(mapSign, gra, world, x, y);
+		p.setEnemySet(enemySet);
+		p.setFriendSet(friendSet);
+		p.goal=goal;
+		p.isBenti=false;
+		return p;
+	}
+	
+	public void fenshen(int count){
+		if(isDead)return;
+		
+		int lifeCount=Player.lifeCount;// new player lead to life count ==1
+		for(int i=0;i<count;i++){
+			JointCreature c;
+			friendList.add(c=this.clone());
+//			final int distance=200;
+//			c.setPosition((float) (x+distance*2*(Math.random()-0.5)), (float) (y+distance*2*(Math.random()-0.5)));
+			
+			final int v=10;
+			c.setSpeed((float) (xSpeed+v*2*(Math.random()-0.5)), (float) (ySpeed+v*2*(Math.random()-0.5)));
+			c.changeSize((float) (0.5+0.5*Math.random()));
+			c.cap.setTextureId(TexId.BLANK);
+		}
+		Player.lifeCount=lifeCount+count;// new player lead to life count ==1
+	}
+	public void setFriendSet(EnemySet fs){
+		super.setFriendSet(fs);
+		//TODO
+	}
+	
 	public void drawDeath(GL10 gl){
 //		Log.i("alpha"+alpha+"DEATHSPEED"+DEATHSPEED);
 		if(alpha>0&&alpha<=DEATHSPEED){
-			if(!gotGoal)// to inlived death when got goal
-			world.gameOver();
+			if(!gotGoal){// to inlived death when got goal
+				if(lifeCount<1)
+				world.gameOver();
+			}
 		}
 		super.drawDeath(gl);
 	}
 	public void reLife(int time){
-		wudiTime=time;
-		isDead=false;
-//		setGotGoal(false);
-		setLife(getLifeMax());
-		alpha=1;
-		angle=0;
+		relifeJust();
 		
-		Grass footGrass=gList.get(getLandId());
+		lifeCount++;
+		wudiTime=time;
+//		setGotGoal(false);
+		
+		Grass footGrass=gList.get(relifeLandId);
 		setPosition(footGrass.data[0]+gra.getGrid()/2, footGrass.data[3]+gethEdge()*1.2f);
 		xSpeed=0;
 		world.relife();
+	}
+	private void relifeJust() {
+		isDead=false;
+		setLife(getLifeMax());
+		alpha=1;
+		angle=0;
 	}
 	public void reLife(){
 		reLife(wudiTimeBorn);
@@ -556,11 +609,26 @@ public class Player extends JointCreature {
         		return;// do not die as super
         	}
     	}
+    	 super.die();
+    	 
+        if(this.isBenti){
+        	for(Creature c:friendList){
+        		if(c instanceof Player&&!c.isDead){
+        			float xx=c.x;float yy=c.y;
+        			c.setPosition(x, y);
+        			c.die();
+        			setPosition(xx,yy+gethEdge()-c.gethEdge());
+        			relifeJust();
+        			return;
+        		}
+        	}
+        }
 //       if(isJumpAble())
     	   jump();
         playSound(death);
         setRgb(1, 0, 0);
-        super.die();
+        relifeLandId=this.getLandId();
+        lifeCount--;
     }
    
     
@@ -647,26 +715,6 @@ public class Player extends JointCreature {
         treadCheck();
     }
     
-	public  void setLeftData(boolean b,int progress) {
-		// TODO Auto-generated method stub
-		downData[0] = b;
-		doubleClickCheck(progress);
-	}
-	int agoProgress;
-	private void doubleClickCheck(int progress) {
-		// TODO Auto-generated method stub
-//		else doubleClicked=false;
-		if(agoProgress!=50&&
-				Math.abs(progress-agoProgress)>2)
-			setDoubleClicked(true);
-			
-		agoProgress=progress;
-	}
-	public  void setRightData(boolean b,int progress) {
-		// TODO Auto-generated method stub
-		downData[1] = b;
-		doubleClickCheck(progress);
-	}
     int downIndex;
     
     void actCheck(Creature controller) {
@@ -737,6 +785,11 @@ public class Player extends JointCreature {
         	}
         	downData[6]=false;
         }
+        if(downData[7]){
+        	if(!doubleClicked)setDoubleClicked(true);
+        }else {
+        	setDoubleClicked(false);
+        }
        
     }
 	private float culJumpRate() {
@@ -776,9 +829,7 @@ public class Player extends JointCreature {
             	 float dYspeed=getySpeed() - c.getySpeed();
             	 if(dYspeed>footdepth)continue;//相对向上跳速度相差太大不踩
             	 
-            	c. culTreadxSpeed(this);
-                // c carry me so set c's speed as base speed instead of my speed
-                
+           
                 if(treader!=c){
                 	if(
                 			!downData[5]&&
@@ -797,11 +848,8 @@ public class Player extends JointCreature {
                 }
                 treader=c;
                 fallen=true;
-           	 
-           	 ySpeed+=getG();// remove the g 's effect
-           	 c.yStandCheck(this,gethEdge()+c.gethEdge(), 0.2f, 1);
-
-                 
+             	
+              if(c. culTreadSpeedAndCanBeTread(this))                // c carry me so set c's speed as base speed instead of my speed
               sendIcon(World.TREADICON);
                  
                 return true;
@@ -815,6 +863,9 @@ public class Player extends JointCreature {
 	 void sendIcon(int i) {
 		world.sendMessage(i);
 	}
+	 public boolean culTreadSpeedAndCanBeTread(Creature c) {
+		 return false;
+	 }
 	
 
     boolean destory(int grassId, int x1, int my1) {
@@ -878,13 +929,6 @@ public class Player extends JointCreature {
 //		if(getVt()>-vtDestory)
     }
 
-    private void randomColor() {
-        getgList().get(getLandId()).setRgb((float) Math.random(),
-                (float) Math.random(), (float) Math.random());
-        getgList().get(getTopId()).setRgb((float) Math.random(),
-                (float) Math.random(), (float) Math.random());
-
-    }
 
     public void changeState(int step) {
 
@@ -935,59 +979,59 @@ public class Player extends JointCreature {
                 break;
         }
     }
-
+    public void moveView() {
+        float px1 = x - mw1;
+        if (px1 < px) {
+        	 px = px1;
+        }
+        
+        float left=gra.getViewGrid();
+        if (px < left) {
+        	px = left;
+        	float leftMax=left+getwEdge();
+        	if(getxPro()<leftMax){
+        		setxPro(leftMax);// too left
+        		xSpeed=0;
+        	}
+        }
+       
+        
+        float px2 = x - mw2;
+        if (px2 > px) {
+        	  px = px2;
+        }
+        if (px2 > xMax){
+          	px = xMax;
+          	float mapxMax=xMax+Render.width*(3/3f)-getwEdge();
+          	if(getxPro()>mapxMax){
+          		setxPro(mapxMax);//too right
+          		xSpeed=0;
+          	}
+          }
+        if(xMax<Render.width)px=0;//avoid tooHigh but viewport less thab
+    }
     public void landView() {
-        // py2=py;
-
-//		if (getVt() <= 0) {
         float py1 = y - mh1;
         if (py1 < py) {
-        	if (py1 < 0) py = 0;
-        	else py = py1;
-            return;
+        	py = py1;
         }
+        if (py < 0) py = 0;
 
         py1 = y - mh2;
         if (py1 > py) {
             py = py1;
-
-//		}
-            // dpy=py-py2;
         }
+        if (py1>yMax) {
+        	py = yMax;
+        }
+    	if(yMax<Render.height)py=0;//avoid tooHigh but viewport less thab
     }
-
+    float yMax;
     float xMax;
 	private float mw1;
 	private float mw2;
 
-    public void moveView() {
-        // px2=px;
-//		if (speed < 0) {
-        float px1 = x - mw1;
-        if (px1 < px) {
-        	// dpx=px-px2;
-        	final float left=gra.getViewGrid();
-        	 if (px1 < left) {
-             	px = left;
-             }
-        	 else px = px1;
-//            return;
-        }
-        
-       
-        
-//		} else if (speed > 0) {
-        float px2 = x - mw2;
-        if (px2 > px) {
-        	  if (px2 > xMax){
-              	px = xMax;
-              }
-        	  else 	px = px2;
-        }
-      
-//		}
-//        px=(float) (x-0.5*Render.width);
-    }
+    
     
 
 
@@ -1060,7 +1104,7 @@ public class Player extends JointCreature {
     }
 
     public void setToukuiTime(int toukuiTime) {
-        this.toukuiTime = toukuiTime;
+        Player.toukuiTime = toukuiTime;
     }
 
     public int getGaoTime() {
@@ -1075,15 +1119,6 @@ public class Player extends JointCreature {
 
 	public void setGotGoal(boolean gotGoal) {
 		this.gotGoal = gotGoal;
-	}
-	public ArrayList<Creature> getPlayerList() {
-		return friendList;
-	}
-	public void setPlayerList(ArrayList<Creature> playerList) {
-		this.friendList = playerList;
-	}
-	public EnemySet getEnemySet() {
-		return enemySet;
 	}
 	
 	public void CircleDown(float rad) {
@@ -1110,19 +1145,21 @@ public class Player extends JointCreature {
 			if(textureId== TexId.BOOMGUN)
 				gun=new BoomGun(getEnemySet(),  gra, this, 5);
 			else	if(textureId== TexId.SHUFUDAN)
-				gun=new AutoBubbleGun(getEnemySet(),  gra, this, 10);
+				gun=new AutoBubbleGun(getEnemySet(),  gra, this, 5);
 			else if(textureId== TexId.ZIDONGDAN)
 				gun=new AutoBulletGun(getEnemySet(),  gra, this, 10);
 			else  if(textureId== TexId.SHOTGUN)
 				gun=new ShotGun(getEnemySet(),  gra, this, 15);
 			else if(textureId== TexId.JUJI)// 
-				gun=new TailGun(getEnemySet(),  gra, this, 5);
+				gun=new TailGun(getEnemySet(),  gra, this, 3);
 			else if(textureId== TexId.MISSILE)
-				gun=new MissileGun(getEnemySet(),  gra, this, 5);
+				gun=new MissileGun(getEnemySet(),  gra, this, 4);
 			else if(textureId== TexId.HOOKGUN)
-				gun=new HookGun(getEnemySet(),  gra, this, 3);
-			else if(textureId== TexId.GUANGDANQIANG)
+				gun=new HookGun(getEnemySet(),  gra, this, 5);
+			else if(textureId== TexId.PUTONGQIANG)
 				gun=new Gun(getEnemySet(),  gra, this, 10);
+			else if(textureId== TexId.GUANGDANQIANG)
+				gun=new GuangDanGun(getEnemySet(),  gra, this, 4);
 		}
 		
 		setGunLength();
@@ -1182,13 +1219,12 @@ public class Player extends JointCreature {
 	public void doubleDownCheck() {
 		if(true)return;
 		
-		if(downIndex<20)setDoubleClicked(true);
-		downIndex=0;
+//		if(downIndex<20)setDoubleClicked(true);
+//		downIndex=0;
 	}
 	public void StopDoubleClick() {
 		// TODO Auto-generated method stub
 		setDoubleClicked(false);
-		agoProgress=50;
 	}
 	public boolean isDoubleClicked() {
 		return doubleClicked;

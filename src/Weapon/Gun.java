@@ -7,10 +7,8 @@ import javax.microedition.khronos.opengles.GL10;
 import Enviroments.GrassSet;
 import Mankind.Creature;
 import Mankind.EnemySet;
-import android.util.Log;
 
 import com.mingli.toms.MusicId;
-import com.mingli.toms.R;
 import com.mingli.toms.Render;
 import com.mingli.toms.World;
 
@@ -49,21 +47,11 @@ public class Gun extends Set {// 子弹
 
 	protected void setBullet(int bCount) {
 		bList = new ArrayList<Bullet>();
-		Bullet b;
-		final int ww=64;
 		for (int i = 0; i < bCount; i++) {
-			bList.add(i,b= new Bullet(enemySet,gra));// 子弹敌对势力
-//			bList.add(i, new Huck(enemySet,  1000,player));// 子弹敌对势力
-			b.w=ww;
-			b.h=ww;
+			bList.add(i,new Bullet(enemySet,gra));// 子弹敌对势力
 		}
 		loadTexture();
-		setSoundId(MusicId.gun);
-		for (int i = 0; i < bCount; i++) {
-			b=bList.get(i);
-			b.w=ww/3;
-			b.h=ww/3;
-		}
+		setSoundId(MusicId.bubble);
 	}
 
 	public void gunCheck(float angle){

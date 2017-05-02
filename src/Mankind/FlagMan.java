@@ -1,9 +1,8 @@
 package Mankind;
 
-import aid.Log;
+import Enviroments.GrassSet;
 import element2.Tail;
 import element2.TexId;
-import Enviroments.GrassSet;
 
 public class FlagMan extends JointCreature{
 

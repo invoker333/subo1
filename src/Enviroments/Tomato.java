@@ -2,14 +2,11 @@ package Enviroments;
 
 import java.util.ArrayList;
 
-import javax.microedition.khronos.opengles.GL10;
+import Mankind.Player;
 
 import com.mingli.toms.R;
 
-
 import element2.TexId;
-
-import Mankind.Player;
 
 public class Tomato extends ShakeFruit{
 	int bloodMax;//吃了增加的血量

@@ -2,11 +2,6 @@ package element2;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.mingli.toms.MusicId;
-import com.mingli.toms.R;
-
-
-
 import Enviroments.GrassSet;
 import Mankind.Creature;
 

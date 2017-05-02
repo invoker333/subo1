@@ -2,12 +2,11 @@ package Mankind;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import Enviroments.GrassSet;
+import Weapon.Hook;
+
 import com.mingli.toms.MusicId;
 
-import aid.Log;
-import Weapon.Hook;
-import Weapon.TailBullet;
-import Enviroments.GrassSet;
 import element2.Tail;
 import element2.TexId;
 

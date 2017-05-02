@@ -3,18 +3,18 @@ package com.mingli.toms;
 import java.io.File;
 import java.util.ArrayList;
 
-import javax.microedition.khronos.opengles.GL10;
-
 import onlineStageActivity.OnlineFileActivity;
 import Enviroments.FruitSet;
-import Mankind.Player;
 import aid.Ad;
 import aid.Client;
 import aid.ConsWhenConnecting;
 import aid.Log;
 import aid.Producer;
+import aid.RandomMap;
+//import aid.RandomMap;
 import aid.Shop;
 import aid.Tips;
+import aid.UserName;
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -29,11 +29,9 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Editable;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -184,7 +182,7 @@ public class MenuActivity extends Activity {
 		startMenu = new StartMenu(this);
 		startMenu.loadStartMenu();
 		
-		if(client!=null)client.send(ConsWhenConnecting.REQUEST_PIMING_INFO+userId);
+		if(client!=null)Client.send(ConsWhenConnecting.REQUEST_PIMING_INFO+userId);
 		getUserId();
 		initPaimingInfo();
 		
@@ -196,7 +194,7 @@ public class MenuActivity extends Activity {
 	private void getUserId() {
 		// TODO Auto-generated method stub
 		if(MenuActivity.userId<10)
-			client.send(ConsWhenConnecting.REQUEST_NEW_USER_ID+userName+" "+score);
+			Client.send(ConsWhenConnecting.REQUEST_NEW_USER_ID+userName+" "+score);
 	}
 
 	private void initSp() {
@@ -224,9 +222,7 @@ public class MenuActivity extends Activity {
 		content = getBaseContext();
 	}
 
-		class MyHandler extends Handler {
-
-
+	class MyHandler extends Handler {
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			if (stateWindow != null)
@@ -318,7 +314,7 @@ public class MenuActivity extends Activity {
 		shop = new Shop(this, world);
 		
 		if(World.editMode)
-			animationShop = new Producer(this, world, tips);
+			animationShop = new Producer(this, world);
 		
 		 if (btnc != null)btnc.hide();
 		btnc = new ButtonController(MenuActivity.this, world, gameMenu);// 添加按键
@@ -416,6 +412,8 @@ public class MenuActivity extends Activity {
 	public ArrayList<Info4> userInfoList=new ArrayList<Info4>();
 	private String paimingString;
 	String selectedToSaveOnlineFileName;
+	private final String requestFoItemMap = "requestFoItemMap.txt";
+	private RandomMap randomMap;
 	public void initPaimingInfo(){
 		paimingString=sp.getString("paimingString", "00000"+userName+" "+score+"1");
 		
@@ -436,9 +434,9 @@ public class MenuActivity extends Activity {
 	
 //	Info3 inf;
 //	for(int i=0;i<10;i++){
-//		userInfoList.add(inf=new Info3(i+1,UserName.randomName(),(int)(score*Math.random()+0.5)));
+//		userInfoList.add(inf=new Info3(i+1,userName.randomName(),(int)(score*Math.random()+0.5)));
 //	}
-//	userInfoList.set(5, new Info3(6,username,score));
+//	userInfoList.set(5, new Info3(6,userName,score));
 	
 	public void savePaiming(String paimingString) {
 		this.paimingString = paimingString;
@@ -532,7 +530,7 @@ public class MenuActivity extends Activity {
 		editor.putInt("chance", chance);
 		
 		editor.putInt("score", score);
-		client.send(ConsWhenConnecting.REQUEST_UPDATE_SCORE+userId+" "+score);
+		Client.send(ConsWhenConnecting.REQUEST_UPDATE_SCORE+userId+" "+score);
 
 		starString = "";
 		for (int i = 0; i < star.length; i++) {
@@ -561,14 +559,17 @@ public class MenuActivity extends Activity {
 		itemString =sp .getString("itemString", itemString);
 		star = stringToInts(starString);
 		item=itemString.toCharArray();
-		userName=sp.getString("username", UserName.randomName());
+		userName=sp.getString("userName", UserName.randomName());
+		if(!sp.contains("userName")){
+			editor.putString("userName", userName);
+		}
 		userId=sp.getInt("userId", 5);
 	}
 	void saveUserMessage(String sn){
 		userName=sn;
 		startMenu.setUserName(userName);
-		client.send(ConsWhenConnecting.REQUEST_UPDATE_NAME+userId+" "+userName);
-		editor.putString("username",userName);
+		Client.send(ConsWhenConnecting.REQUEST_UPDATE_NAME+userId+" "+userName);
+		editor.putString("userName",userName);
 		// Log.i("starString"+new String(starString));
 		editor.commit();
 	}
@@ -593,7 +594,7 @@ public class MenuActivity extends Activity {
 
 	public void startWithIndex(int index) {
 		mapIndex = index;
-		world.mapFile=null;world.mapString=null;
+		world.mapFile=null;world.mapString=null;world.mapCharSet=null;
 		startGame();
 	}
 
@@ -724,21 +725,23 @@ public class MenuActivity extends Activity {
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.i("onActivityResult");
+		if(dl!=null)dl.dismiss();
 		switch (resultCode) { //resultCode为回传的标记，我在B中回传的是RESULT_OK
 		   case RESULT_OK:
 		    String mapfile=data.getStringExtra("mapfile");//str即为回传的值
 		    	if(mapfile!=null&&mapfile!=""){
-		    		 world.mapFile=new File(mapfile);
+		    		
 		 		    Log.i("mapfile"+mapfile);
-		 		    startGame();
+					startGame(new File(mapfile));
 		    	}
 		    String onlineFileSelected=data.getStringExtra(OnlineFileActivity.ONLINE_STAGE_ITEM_SELECTED);
 		    if(onlineFileSelected!=null&&onlineFileSelected!=""){
-		    	client.send(ConsWhenConnecting.REQUEST_THIS_ONE_ONLINE_STAGE+onlineFileSelected);
+		    	Client.send(ConsWhenConnecting.REQUEST_THIS_ONE_ONLINE_STAGE+onlineFileSelected);
 		    	selectedToSaveOnlineFileName=onlineFileSelected;
 		    }
 		 }
 	}
+
 
 	public boolean getLifeFree() {
 		// TODO Auto-generated method stub
@@ -842,14 +845,59 @@ public class MenuActivity extends Activity {
 
 	public void getTheOnlineStage(String ss) {
 		// TODO Auto-generated method stub
+		if(selectedToSaveOnlineFileName.equals(requestFoItemMap)){
+			if(randomMap==null)randomMap=new RandomMap(world);
+			
+			Map map=new Map(ss);
+			
+			if(World.Item3Mode)randomMap.set3Item(map);
+			else randomMap.setWholeItem(map);
+			showDialog("地图更新成功", "随机地图更新成功", 0);
+			return;
+		}
 		world.saveMap(selectedToSaveOnlineFileName,ss);
 		startGame(ss);
 	}
-
+	
+	void requestFoItemMap(){
+		Client.send(ConsWhenConnecting.REQUEST_THIS_ONE_ONLINE_STAGE+requestFoItemMap);
+    	selectedToSaveOnlineFileName=requestFoItemMap;
+	}
+	private void startGame(File file) {
+		// TODO Auto-generated method stub
+		 world.mapFile=file;
+		 world.mapString=null;
+		 world.mapCharSet=null;
+		 myHandler.sendEmptyMessage(World.REQUEST_TO_STARTGAME);
+	}
 	private void startGame(String ss) {
 		// TODO Auto-generated method stub
 		world.mapString=ss;
+		world.mapFile=null;
+		 world.mapCharSet=null;
 		Log.i(ss);
+		myHandler.sendEmptyMessage(World.REQUEST_TO_STARTGAME);
+	}
+	public void randomChalenge() {
+		// TODO Auto-generated method stub
+		if(randomMap==null){
+			randomMap=new RandomMap(world);
+			Map map=new Map(-333, this);
+			if(World.Item3Mode)randomMap.set3Item(map);
+			else randomMap.setWholeItem(map);
+		}
+	
+		
+		char []cs;
+		if(World.Item3Mode){
+			cs=randomMap.getRandom333Map(10,1);
+		}
+		else {
+			cs=randomMap.getRandomWholeMap(10,1);
+		}
+		world.mapCharSet=cs;
+		world.mapString=null;
+		world.mapFile=null;
 		myHandler.sendEmptyMessage(World.REQUEST_TO_STARTGAME);
 	}
 }

@@ -1,14 +1,10 @@
 package Weapon;
 
-import Element.Boom;
-import Element.BoomSet;
 import Enviroments.GrassSet;
 import Mankind.Creature;
 import Mankind.EnemySet;
-import aid.Log;
 
 import com.mingli.toms.MusicId;
-import com.mingli.toms.R;
 import com.mingli.toms.Render;
 
 import element2.TexId;
@@ -30,10 +26,9 @@ public class AutoBullet extends ToBigBullet {
 		loadSound(MusicId.bubble);
 		this.player=player;
 	}
-	boolean grassCheck(){
-		return false;
-//		return super.grassCheck();
-	}
+//	boolean grassCheck(){
+//		return false;
+//	}
 	public void tringer(float x, float y,Creature enemy) {
 		this.enemy = enemy;
 		setFire();
@@ -75,11 +70,7 @@ public class AutoBullet extends ToBigBullet {
 		super.resetBullet();
 	}
 	void targetCheck(){
-//		speed+=0.2;
-//		if(enemyId==-1||enemyId>=eList.size())return;
-//		Creature enemy = eList.get(enemyId);
-		
-		
+		if(grassCheck())return;		
 		if (isFire()) {
 			speedCheck(enemy.x,enemy.y);
 			if(Math.abs(x-enemy.x)<(enemy.getW()+getW())&&Math.abs(y-enemy.y)<(enemy.getH()+getH())){
@@ -90,7 +81,7 @@ public class AutoBullet extends ToBigBullet {
 
 
 	public void loadSound() {
-		setSoundId(MusicId.gun);
+		setSoundId(MusicId.guangdanqiang);
 	}
 	
 

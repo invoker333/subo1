@@ -2,11 +2,9 @@ package Mankind;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import element2.TexId;
 import Enviroments.GrassSet;
 import Weapon.AutoBullet;
-import Weapon.Bullet;
-import Weapon.TailBullet;
+import element2.TexId;
 
 public class EpAuto extends Emplacement{
 

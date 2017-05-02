@@ -2,15 +2,12 @@ package Weapon;
 
 import java.util.ArrayList;
 
-import javax.microedition.khronos.opengles.GL10;
-
-import com.mingli.toms.MusicId;
-import com.mingli.toms.Render;
-import com.mingli.toms.World;
-
 import Enviroments.GrassSet;
 import Mankind.Creature;
 import Mankind.EnemySet;
+
+import com.mingli.toms.MusicId;
+import com.mingli.toms.Render;
 
 public class HookGun extends Gun {
 

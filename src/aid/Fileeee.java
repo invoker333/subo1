@@ -22,7 +22,7 @@ public class Fileeee {
 	 */
 	public void writeFileData(String fileName, String message) {
 		try {
-			FileOutputStream fout = c.openFileOutput(fileName, c.MODE_PRIVATE);
+			FileOutputStream fout = c.openFileOutput(fileName, Context.MODE_PRIVATE);
 			byte[] bytes = message.getBytes();
 			fout.write(bytes);
 			fout.close();

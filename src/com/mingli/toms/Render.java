@@ -1,19 +1,15 @@
 package com.mingli.toms;
 
-import java.io.BufferedWriter;
-import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
-import javax.xml.transform.stream.StreamSource;
 
-import element2.TexId;
-import Mankind.Player;
 import aid.Log;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView.Renderer;
+import element2.TexId;
 
 public class Render implements Renderer{
 

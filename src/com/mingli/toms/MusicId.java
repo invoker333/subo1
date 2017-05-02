@@ -1,13 +1,12 @@
 package com.mingli.toms;
 
-import android.media.SoundPool;
 
 public class MusicId {
 	
 	
 	
 	public static int baller;
-	public static int gun;
+	public static int guangdanqiang;
 	public static int sword;
 	public static int brake01;
 	public static int land;
@@ -41,7 +40,7 @@ public class MusicId {
 		bubble=music.loadSound(R.raw.bubble);
 		lightNing=music.loadSound(R.raw.lightning);
 		baller=music.loadSound(R.raw.baller);
-		gun=music.loadSound(R.raw.gunlight);
+		guangdanqiang=music.loadSound(R.raw.gunlight);
 		sword=music.loadSound(R.raw.sword);
 		brake01=music.loadSound(R.raw.brake01);
 		land=music.loadSound(R.raw.jumpsoft);

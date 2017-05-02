@@ -2,7 +2,6 @@ package Enviroments;
 
 import java.util.ArrayList;
 
-import javax.microedition.khronos.opengles.GL;
 import javax.microedition.khronos.opengles.GL10;
 
 import Element.Animation;
@@ -13,9 +12,7 @@ import Mankind.Player;
 import aid.Log;
 
 import com.mingli.toms.MusicId;
-import com.mingli.toms.R;
 import com.mingli.toms.Render;
-import com.mingli.toms.World;
 
 import element2.TexId;
 
@@ -35,7 +32,7 @@ public class Goal extends RotateFruit{
 	}*/
 	LightSpot ls;
 	Animation a;
-	private boolean hasFirstBlood=true;
+	public boolean hasFirstBlood=true;
 	public boolean pickable=true;
 	Goal(char bi,float x,float y){
 		super(bi,x, y);
@@ -113,7 +110,7 @@ public class Goal extends RotateFruit{
 		for(Creature c:enemyList){
 			if(c instanceof JointEnemy){
 				if(Math.abs(c.x-x)<length&&Math.abs(c.y-y)<length){
-					((JointEnemy)c).player=player;
+					((JointEnemy)c).setPlayerAndToBeBoss(player);
 					pickable=false;
 				}
 			}

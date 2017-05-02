@@ -4,9 +4,6 @@ import javax.microedition.khronos.opengles.GL10;
 
 import Element.Animation;
 import Mankind.Player;
-
-import com.mingli.toms.World;
-
 import element2.TexId;
 
 public class Mouse extends Animation{

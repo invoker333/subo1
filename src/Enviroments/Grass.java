@@ -4,7 +4,6 @@ import javax.microedition.khronos.opengles.GL10;
 
 import Element.Animation;
 import Element.AnimationGrass;
-import Menu.Square;
 
 public class Grass extends Animation{
 
@@ -105,5 +104,10 @@ public class Grass extends Animation{
 	public void gored() {
 		// TODO Auto-generated method stub
 		
+	}
+	public boolean breakCheck() {
+		// TODO Auto-generated method stub
+		notBroken=false;
+		return true;
 	}
 }

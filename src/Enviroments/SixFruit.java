@@ -6,7 +6,6 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import aid.Log;
 import Mankind.Player;
 
 public class SixFruit extends Fruit{

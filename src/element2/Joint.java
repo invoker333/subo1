@@ -1,12 +1,7 @@
 package element2;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-
 import javax.microedition.khronos.opengles.GL10;
 
-import android.util.Log;
 import Mankind.Creature;
 import Menu.State;
 

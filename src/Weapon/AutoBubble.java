@@ -2,14 +2,13 @@ package Weapon;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import aid.Log;
+import Enviroments.GrassSet;
+import Mankind.Creature;
+import Mankind.EnemySet;
 
 import com.mingli.toms.World;
 
 import element2.TexId;
-import Enviroments.GrassSet;
-import Mankind.Creature;
-import Mankind.EnemySet;
 
 public class AutoBubble extends AutoBullet {
 	public AutoBubble(EnemySet es, GrassSet gra,Creature s) {

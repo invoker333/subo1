@@ -1,11 +1,11 @@
 package aid;
 
-import com.mingli.toms.TouchMove;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.mingli.toms.TouchMove;
 
 public class MyMoveView extends View {
 

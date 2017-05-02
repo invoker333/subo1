@@ -2,8 +2,6 @@ package Element;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import Mankind.Creature;
-
 public class AnimationMove extends Animation{
 		protected float xSpeed;
 		protected float ySpeed;

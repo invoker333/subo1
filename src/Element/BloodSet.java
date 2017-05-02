@@ -4,14 +4,13 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import Mankind.Player;
 import aid.Log;
 
 import com.mingli.toms.Render;
 
 import element2.Set;
 import element2.TexId;
-import Mankind.Creature;
-import Mankind.Player;
 
 public class BloodSet extends Set {
 	ArrayList<AnimationGravity> bloodList = new ArrayList<AnimationGravity>(10);

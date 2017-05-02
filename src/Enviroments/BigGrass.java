@@ -1,11 +1,10 @@
-package Enviroments;
+﻿package Enviroments;
 
 import javax.microedition.khronos.opengles.GL10;
 
 import Element.AnimationGrass;
-
-import element2.HikariSet;
 import element2.LightningSet;
+import element2.TexId;
 
 
 public class BigGrass extends Grass{
@@ -135,12 +134,18 @@ class Fog extends BigGrass{
 class Burrow extends Grass{
 
 	private float edge;
+	private Burrow brother;
 	
-	public Burrow(char bi,float[] data, int texId,float edge,int yState) {
+	public Burrow(char bi,float[] data, int texId,float edge,int yState,Burrow brother) {
 		super(bi,data, texId);
+		if(brother!=null){
+			this.brother = brother;
+			brother.brother=this;
+		}
 		// TODO Auto-generated constructor stub
 		setyCount(2);
 		setyState(yState);
+		if(getyState()==1)canBeBreak=true;
 		this.edge = edge;
 		setIsburrow(true);
 		
@@ -162,19 +167,29 @@ class Burrow extends Grass{
 				3*w,h+edge,getDepth(),
 				
 				
-//				data[0],data[1]-edge,getDepth(),
-//				data[2],data[1]-edge,getDepth(),
-//				data[2],data[3]+edge,getDepth(),
-//				data[0],data[3]+edge,getDepth(),
-//				data[0],data[1]-edge,getDepth(),
 			}
 		);
-		float w=getW()*(3f/5);
-		if(getxState()==0){
-			data[2]-=w;
+		if(getyState()==0)culKeng();
+	}
+	public boolean breakCheck() {
+		if(!canBeBreak)return false;
+		canBeBreak=false;
+		
+		brother.breakCheck();
+		// TODO Auto-generated method stub
+		if(getyState()==1){
+			culKeng();
+			if(getTextureId()==TexId.BAMBOO)
+				setTextureId(TexId.BAMBOOHEART);
 		}
-		else if(getxState()==1){
-			data[0]+=w;
+		return false;
+	}
+	private void culKeng() {
+		float w=getW()*(4f/5);
+		if(mapSign == ' ') {
+			data[0]=data[2]-w;
+		} else {
+			data[2]=data[0]+w;
 		}
 	}	
 		

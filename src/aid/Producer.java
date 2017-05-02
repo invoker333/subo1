@@ -3,23 +3,20 @@ package aid;
 import java.util.ArrayList;
 
 import Element.Animation;
-import Enviroments.Fruit;
-import Enviroments.FruitSet;
-import aid.Shop.ItemAdapter;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.mingli.toms.MenuActivity;
 import com.mingli.toms.R;
@@ -48,13 +45,11 @@ public class Producer {
 	};
 	private World world;
 	// private ArrayList<Animation> fruList;
-	private Tips tips;
 	private ViewGroup animationShopadcontainer;
 
-	public Producer(MenuActivity acti, World world, Tips tips) {
+	public Producer(MenuActivity acti, World world) {
 		this.acti = acti;
 		this.world = world;
-		this.tips = tips;
 	}
 
 	public void showWindow(View v) {

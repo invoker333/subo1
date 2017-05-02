@@ -4,20 +4,18 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import element2.FireworkSet;
-import element2.Tail;
-import element2.TexId;
 import Element.Animation;
 import Element.BubbleSet;
 import Element.Curtain;
 import Element.LightSpotSet;
 import Mankind.Player;
-import Weapon.AutoBullet;
 import aid.Log;
-import android.provider.ContactsContract.DeletedContacts;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import element2.FireworkSet;
+import element2.Tail;
+import element2.TexId;
 
 public class TouchMove implements OnTouchListener {
 	private LightSpotSet lightSpotSet;
@@ -284,8 +282,8 @@ public class TouchMove implements OnTouchListener {
 	}
 	private void moveViewCheck(float ex2, float ey2) {
 		// TODO Auto-generated method stub
-		final float length=128;
-		final float devi=10;
+		final float length=200;
+		final float devi=15;
 		if(ex2<length){
 			float dx=length-ex2;player.px-=dx/devi;
 		}else{

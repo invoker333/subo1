@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import aid.Log;
-import Element.Animation;
 import Enviroments.GrassSet;
 import Weapon.Blade;
 import Weapon.GunDraw;
@@ -29,13 +27,10 @@ public class JointCreature extends Creature{
 	private GunDraw noGunDraw;
 	protected Blade noBlade;
 	Joint foot;Joint foot1;
-//	public Animation clone(){
-//		return clone();
-//	}
 	public JointCreature clone(){
 		// TODO Auto-generated method stub
 		JointCreature a=null;
-		a=(JointCreature) superClone();
+		a=new JointCreature(mapSign, gra, x, y);
 		return a;
 	}
 
@@ -71,7 +66,7 @@ public class JointCreature extends Creature{
 	public void init() {
 		setW(36);
 		setH(54);
-		setwRate(28 / 36f);
+		setwRate(30 / 36f);
 		sethRate(54 / 54f);
 		float x0 = getW();
 		float y0 = getH();
@@ -84,7 +79,7 @@ public class JointCreature extends Creature{
 			public void drawElement(GL10 gl){};
 			 public void drawNotMove(GL10 gl){};
 			  public void drawTail(GL10 gl){};
-			    public void attack(){};
+			     public void attack(int d){};
 		};
 		jointList.add(noBlade);
 		blade=noBlade;

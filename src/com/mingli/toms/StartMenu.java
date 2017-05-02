@@ -3,36 +3,19 @@ package com.mingli.toms;
 import java.util.ArrayList;
 
 import Enviroments.FruitSet;
-import Enviroments.Tomato;
 import aid.Log;
-import android.app.ActionBar;
-import android.app.Activity;
+import aid.UserName;
 import android.app.Dialog;
-import android.content.Intent;
-import android.database.DataSetObserver;
 import android.os.Message;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewManager;
-import android.view.Window;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Adapter;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -129,6 +112,7 @@ public class StartMenu{
 //        
         
         Button start = (Button) startView.findViewById(R.id.startgame);
+        Button random = (Button) startView.findViewById(R.id.randomchalenge);
         Button more = (Button) startView.findViewById(R.id.more);
         fileChoose = (Button) startView.findViewById(R.id.fileChoose);
        	onlineStageChoose = (Button) startView.findViewById(R.id.onlineFileChooser);
@@ -156,6 +140,7 @@ public class StartMenu{
         gameModel.setVisibility(View.INVISIBLE);
         
         start.setOnClickListener(click);
+        random.setOnClickListener(click);
         more.setOnClickListener(click);
         fileChoose.setOnClickListener(click);
         onlineStageChoose.setOnClickListener(click);
@@ -189,6 +174,9 @@ public class StartMenu{
 			switch (v.getId()) {
 			case R.id.startgame:
 				acti.startGame();// clear the map dile and string
+				break;
+			case R.id.randomchalenge:
+				acti.randomChalenge();// clear the map dile and string
 				break;
 			case R.id.fileChoose:
 				acti.intentToFileChooser();
@@ -268,11 +256,12 @@ public class StartMenu{
 
 		
 		String str="";
-		String moneyStr="010110100011";
-		String editStr="00001111";
-		String rpgStr="11110000";
-		String bigMode = "000111";
-		String openStr = "01010101";
+		String moneyStr="010110100011";//作弊
+		String editStr="00001111";//编辑模式
+		String rpgStr="11110000";//rpg
+		String bigMode = "000111";//自由变形模式
+		String openStr = "01010101";//开发者模式
+		String item3Str = "10101010";//三地形模式
 		int maxLength=15;// max length in the up number
 		
 		@Override
@@ -339,6 +328,15 @@ public class StartMenu{
 				}else {
 					World.bigMode=false;
 					Toast.makeText(acti, "自由变形模式关闭", Toast.LENGTH_SHORT).show();
+				}
+			}
+			else if(str.equals(item3Str)){
+				if(World.Item3Mode==false){
+					World.Item3Mode=true;
+					Toast.makeText(acti, "3地形模式开启", Toast.LENGTH_SHORT).show();
+				}else {
+					World.Item3Mode=false;
+					Toast.makeText(acti, "3地形模式关闭", Toast.LENGTH_SHORT).show();
 				}
 			}
 		

@@ -4,9 +4,8 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import element2.TexId;
-
 import Mankind.Player;
+import element2.TexId;
 
 public class sizeFruit extends Fruit{
 	public sizeFruit(){

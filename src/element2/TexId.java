@@ -10,10 +10,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLUtils;
-import android.view.View;
 
 import com.mingli.toms.R;
-import com.mingli.toms.World;
 
 public class TexId{
 	public TexId(Context context){
@@ -133,8 +131,12 @@ public class TexId{
 	public static int CAPENEMY;
 	public static int FLAG;
 	public static int EXPRESSIONENEMY;
+	public static int PUTONGQIANG;
+	public static int FENSHEN;
 	public  void loadTextureId(GL10 gl) {
 //		if(1<2)return;
+		FENSHEN=loadTexture(gl,R.drawable.fenshenguo);
+		PUTONGQIANG=loadTexture(gl,R.drawable.putongdan);
 		EXPRESSIONENEMY=loadTexture(gl,R.drawable.espressionenemy);
 		FLAG=loadTexture(gl,R.drawable.flag);
 		CAPENEMY=loadTexture(gl,R.drawable.toukuienemy);
@@ -154,7 +156,7 @@ public class TexId{
 		GUIDERECT=loadTexture(gl,R.drawable.guiderect);
 		GOALCIRCLE=loadTexture(gl,R.drawable.goalcircle);
 		WOODROOT=loadTexture(gl,R.drawable.woodroot);
-		GUANGDANQIANG=repeatLoadTexture(gl,R.drawable.putongdan);
+		GUANGDANQIANG=repeatLoadTexture(gl,R.drawable.guangdan);
 		K=repeatLoadTexture(gl,R.drawable.jian);
 		GUIDECIRCLE=loadTexture(gl,R.drawable.guidecircle);
 		EGG=loadTexture(gl,R.drawable.egg);

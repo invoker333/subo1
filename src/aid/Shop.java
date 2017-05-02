@@ -6,28 +6,23 @@ import Enviroments.ChanceFruit;
 import Enviroments.Fruit;
 import Enviroments.FruitSet;
 import Mankind.Creature;
-import android.app.Activity;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.mingli.toms.MenuActivity;
 import com.mingli.toms.R;
-import com.mingli.toms.Render;
-import com.mingli.toms.StateWindow;
 import com.mingli.toms.World;
 
 /**
@@ -99,7 +94,7 @@ public class Shop {
 			
 			fs = world.getFruitSet();
 			// fs.setitemWindow(this);
-			itemadapter = new ItemAdapter(acti, fs.shopList);
+			itemadapter = new ItemAdapter(acti, FruitSet.shopList);
 
 			gridView.setAdapter(itemadapter);
 			gridView.setOnItemClickListener(gridListener);

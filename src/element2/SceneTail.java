@@ -5,10 +5,6 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
-import javax.microedition.khronos.opengles.GL10;
-
-import Menu.Square;
-
 public class SceneTail extends Tail {
 
 

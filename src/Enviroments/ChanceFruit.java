@@ -2,13 +2,12 @@ package Enviroments;
 
 import java.util.ArrayList;
 
-import aid.Log;
+import Mankind.Player;
 
 import com.mingli.toms.MenuActivity;
 import com.mingli.toms.World;
 
 import element2.TexId;
-import Mankind.Player;
 
 public class ChanceFruit extends ShakeFruit{
 
