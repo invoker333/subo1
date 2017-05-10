@@ -31,7 +31,7 @@ public class Client implements Runnable{
 			Log.i("尝试连接网络");
 			try {
 //				s=new Socket("127.0.0.1",8888);
-//				s=new Socket("192.168.137.1",8888);
+//				s=new Socket("192.168.137.1",8888);//祖传wifi
 //				s=new Socket("192.168.25.123",8888);
 //				s=new Socket("23.105.206.67",8888);
 //				s=new Socket("192.168.46.28",8888);
@@ -39,12 +39,15 @@ public class Client implements Runnable{
 //				s=new Socket("192.168.47.251",8888);
 //				s=new Socket("192.168.47.176",8888);
 //				s=new Socket("192.168.47.73",8888);
-				s=new Socket("23.105.206.67",8888);
+//				s=new Socket("23.105.206.67",8888);//雷志豪
+//				s=new Socket("192.168.65.146",8888);
+				s=new Socket("192.168.4.243",8888);
 				if(s!=null){
 					Log.i("已连接","");
 					connected=true;
 					dis=new DataInputStream(s.getInputStream());
 					dos=new DataOutputStream(s.getOutputStream());
+					send(ConsWhenConnecting.THIS_IS_USER_ID_AND_NAME+acti.userId+" "+acti.userName);//sendUserNameFirst
 					(recThread=new Thread(this)).start();
 				}
 			} catch (UnknownHostException e) {
@@ -63,13 +66,11 @@ public class Client implements Runnable{
 	public void run(){
 		String s;
 		while(connected){
-			Log.i("已连接");
 			try {
 				if((s=dis.readUTF())!=null){
-					Log.i("",s+"\n");				
-
+//					Log.i("",s+"\n");				
 					handleReceiveMessage(s);
-					
+//					World.timeRush(100);
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -97,7 +98,29 @@ public class Client implements Runnable{
 		else 	if(s.startsWith(ConsWhenConnecting.THIS_IS_THE_SELECTED_ONLINE_STAGE)) {
 			String ss=s.substring(ConsWhenConnecting.THIS_IS_THE_SELECTED_ONLINE_STAGE.length());
 			acti.getTheOnlineStage(ss);
-		}	
+		}else 	if(s.startsWith(ConsWhenConnecting.BATTLE_ACTION_MESSAGE)) {
+			String ss=s.substring(ConsWhenConnecting.BATTLE_ACTION_MESSAGE.length());
+			acti.battleAction(ss);
+		}
+		else 	if(s.startsWith(ConsWhenConnecting.THIS_IS_ROOMSET_MESSAGE)) {
+			String ss=s.substring(ConsWhenConnecting.THIS_IS_ROOMSET_MESSAGE.length());
+			acti.roomSetMessage(ss);
+		}else 	if(s.startsWith(ConsWhenConnecting.THIS_IS_SELECTED_ROOM_MESSAGE)) {
+			String ss=s.substring(ConsWhenConnecting.THIS_IS_SELECTED_ROOM_MESSAGE.length());
+			acti.roomOneInfo(ss);
+		}else 	if(s.startsWith(ConsWhenConnecting.THIS_ID_IS_BLUE_TEAM)) {
+			String strRes=s.substring(ConsWhenConnecting.THIS_ID_IS_BLUE_TEAM.length());
+			int userId=Integer.parseInt(strRes);
+			acti.addForce(World.BLUE_FORCE,userId);
+		}
+		else 	if(s.startsWith(ConsWhenConnecting.THIS_ID_IS_RED_TEAM)) {
+			String strRes=s.substring(ConsWhenConnecting.THIS_ID_IS_RED_TEAM.length());
+			int userId=Integer.parseInt(strRes);
+			acti.addForce(World.RED_FORCE,userId);
+		}else 	if(s.startsWith(ConsWhenConnecting.THIS_IS_BATTLE_MESSAGE)) {
+			String strRes=s.substring(ConsWhenConnecting.THIS_IS_BATTLE_MESSAGE.length());
+			acti.battleAction(strRes);
+		}
 		
 		
 		String substring = s.substring(0, 2);

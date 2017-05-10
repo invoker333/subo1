@@ -18,19 +18,20 @@ import Weapon.HookGun;
 import Weapon.MissileGun;
 import Weapon.ShotGun;
 import Weapon.TailGun;
+import aid.Client;
+import aid.ConsWhenConnecting;
 import aid.Log;
 
+import com.mingli.toms.MenuActivity;
 import com.mingli.toms.MusicId;
 import com.mingli.toms.Render;
 import com.mingli.toms.World;
 
 import element2.Tail;
 import element2.TexId;
-public class Player extends JointCreature {
+public class Player extends BattleMan {
     private static final float DOUBLE_JUMP_RATE = 4f/3f;
-	private static final int _4 = 4;
-	private  final float baseGunLength = 64;
-	public    float GunAngle=4;
+	
     public  float px, py;
     public World world;
 
@@ -42,7 +43,6 @@ public class Player extends JointCreature {
     public static boolean[] downData = new boolean[8];
     Creature controller;
 	public Goal goal;
-    private boolean gotGoal;
     
 	private boolean tooLong;
 	
@@ -50,7 +50,7 @@ public class Player extends JointCreature {
 	
 	private Shader shader;	
     public Player(char mapSign,GrassSet gra, World world,float x,float y) {
-    	super(mapSign, gra, x, y);
+    	super(mapSign, gra, x, y, 0);
     	
     	cloth.setTextureId(TexId.CLOTH);
 		cap.setTextureId(TexId.CAP);
@@ -90,6 +90,14 @@ public class Player extends JointCreature {
         footTail.w=48;
         
 
+	}
+	public void changeGun(int textureId) {
+		super.changeGun(textureId);
+		gunFruitId=textureId;
+	}
+	public void changeBlade(int textureId) {
+		super.changeBlade(textureId);
+		bladeFruitId=textureId;
 	}
 	private void extendsDate() {
 		  changeGun(gunFruitId);
@@ -484,11 +492,13 @@ public class Player extends JointCreature {
 	}
 
     public void succeed() {
-    	  gotGoal = true;
           goal.picked();
           world.succeed();
     }
+
     public void timerTask() {
+    	sendBattleMessage();
+    	
     	if(isDead)return;
     	
 //    	setViewPot();
@@ -496,8 +506,8 @@ public class Player extends JointCreature {
     	 if (y < 0 ) {
     		 die();
          }
-         if (goal.pickable&&goal.hasFirstBlood
-        		 &&!gotGoal && x > goal.x1 && x < goal.x2
+         if (goal.showable&&goal.hasFirstBlood
+        		 && x > goal.x1 && x < goal.x2
                  && y > goal.y1 && y < goal.y2) {
         	 succeed();
          }
@@ -527,7 +537,10 @@ public class Player extends JointCreature {
     }
 	
 	public Player clone(){
-		Player p=new Player(mapSign, gra, world, x, y);
+		Player p=new Player(mapSign, gra, world, x, y){
+			 public void sendBattleMessage() {}//cloner dong't send message
+			 public void playSound(){};
+		};
 		p.setEnemySet(enemySet);
 		p.setFriendSet(friendSet);
 		p.goal=goal;
@@ -560,7 +573,7 @@ public class Player extends JointCreature {
 	public void drawDeath(GL10 gl){
 //		Log.i("alpha"+alpha+"DEATHSPEED"+DEATHSPEED);
 		if(alpha>0&&alpha<=DEATHSPEED){
-			if(!gotGoal){// to inlived death when got goal
+			if(goal.hasFirstBlood){// to inlived death when got goal
 				if(lifeCount<1)
 				world.gameOver();
 			}
@@ -651,9 +664,7 @@ public class Player extends JointCreature {
 		if(gun!=null)
 			setGunLength();
 		}
-	private void setGunLength() {
-		gun.setGunLength(sizeRate*baseGunLength);
-	}
+
     public void setViewPot() {
     	if(!World.editMode){
     		moveView();
@@ -764,16 +775,7 @@ public class Player extends JointCreature {
 			controller.jump(jumpRate);
 		}
         
-        if(coolingId>0)coolingId--;
-        if(GunAngle!=_4){
-        	if(gun!=null) {
-        		 setGunAngle(GunAngle*180/3.14);//
-				if(coolingId==0){
-					gun.gunCheck(GunAngle);
-					coolingId=gun.cd;
-				}
-			}
-        }
+        gunAngleAndCdCheck();
      
         if(downData[6]){
         	if (controller==this){        	
@@ -792,6 +794,7 @@ public class Player extends JointCreature {
         }
        
     }
+	
 	private float culJumpRate() {
 		curJumpProgress = jumpProgress;
 		float jumpRate = jumpProgress  / 50f;
@@ -881,7 +884,7 @@ public class Player extends JointCreature {
 
     float vtDestory;//�ƻ�����С�ٶ�
     private double E;//�ƻ�����С����
-	private int coolingId;
+	
 	private Creature treader;
 	private float mh1;
 	private float mh2;
@@ -1031,9 +1034,7 @@ public class Player extends JointCreature {
 	private float mw1;
 	private float mw2;
 
-    
-    
-
+	
 
     public void setMyView(float pxL, float pxR, float pyD, float pyU) {
         mw1 = Render.width * pxL;
@@ -1047,7 +1048,7 @@ public class Player extends JointCreature {
     private int destorySound;
 	public int bloodSecondaryindex;
 	public int secondaryLife=getLifeMax();
-	public Gun gun;
+	
 
 	
 
@@ -1113,96 +1114,42 @@ public class Player extends JointCreature {
 
  
 
-	public boolean isGotGoal() {
-		return gotGoal;
-	}
-
-	public void setGotGoal(boolean gotGoal) {
-		this.gotGoal = gotGoal;
-	}
 	
 	public void CircleDown(float rad) {
 		// TODO Auto-generated method stub
 		 GunAngle= rad;
 		 setAnimationFinished(false);
 //		 setGunAngle(angle*180/3.14);// 
-		
-		 
 	}
 	public void CircleUp() {
 		 GunAngle=_4;
 		 setAnimationFinished(true);
 	}
-	public void changeGun(int textureId) {
-		if(textureId==-1)return;
-		
-		if(World.rpgMode&&haveGun(textureId)){
-			noGun();
-			
-			return;
-		}
-		else{
-			if(textureId== TexId.BOOMGUN)
-				gun=new BoomGun(getEnemySet(),  gra, this, 5);
-			else	if(textureId== TexId.SHUFUDAN)
-				gun=new AutoBubbleGun(getEnemySet(),  gra, this, 5);
-			else if(textureId== TexId.ZIDONGDAN)
-				gun=new AutoBulletGun(getEnemySet(),  gra, this, 10);
-			else  if(textureId== TexId.SHOTGUN)
-				gun=new ShotGun(getEnemySet(),  gra, this, 15);
-			else if(textureId== TexId.JUJI)// 
-				gun=new TailGun(getEnemySet(),  gra, this, 3);
-			else if(textureId== TexId.MISSILE)
-				gun=new MissileGun(getEnemySet(),  gra, this, 4);
-			else if(textureId== TexId.HOOKGUN)
-				gun=new HookGun(getEnemySet(),  gra, this, 5);
-			else if(textureId== TexId.PUTONGQIANG)
-				gun=new Gun(getEnemySet(),  gra, this, 10);
-			else if(textureId== TexId.GUANGDANQIANG)
-				gun=new GuangDanGun(getEnemySet(),  gra, this, 4);
-		}
-		
-		setGunLength();
-		
-		haveGun();
-		gunFruitId=textureId;
-	}
-	public boolean haveGun(int textureId) {
-		return gunFruitId==textureId;
-	}
-	public void changeBlade(int textureId) {
-		if(textureId==-1)return;
-		// TODO Auto-generated method stub
-		if(World.rpgMode&&haveBlade(textureId)) {
-			noBlade();
-			
-		} else {
-			haveBlade();
-			bladeFruitId=textureId;
-		}
-	}
 	public void haveBlade() {
 		super.haveBlade();
 		world.sendMessage(World.BLADEICON);
-	}
+	}	
+
 	 public void noBlade() {
 		super.noBlade();
 		bladeFruitId=-1;
 		world.sendMessage(World.NOBLADEICON);
 	}
-		void haveGun(){
-			super.haveGun();
-			world.sendMessage(World.GUNICON);
-		}
-		void noGun(){
-			super.noGun();
-			gunFruitId=-1;
-			gun=null;
-			world.sendMessage(World.NOGUNICON);
-		}
-	 
+	void haveGun(){
+		super.haveGun();
+		world.sendMessage(World.GUNICON);
+	}
+	void noGun(){
+		super.noGun();
+		gunFruitId=-1;
+		gun=null;
+		world.sendMessage(World.NOGUNICON);
+	}
 	public boolean haveBlade(int textureId) {
 		return bladeFruitId==textureId;
+	}
+	public boolean haveGun(int textureId) {
+		return gunFruitId==textureId;
 	}
 	public void increaseCoinBy(int i) {
 		// TODO Auto-generated method stub
@@ -1238,7 +1185,5 @@ public class Player extends JointCreature {
 		if((this.wudiTime+=time)>time) this.wudiTime=time;
 		
 	}
-
-
 	
 }

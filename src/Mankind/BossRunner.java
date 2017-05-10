@@ -69,7 +69,7 @@ public class BossRunner extends JointCreature{
 	 public void setEnemySet(EnemySet es){
 		 super.setEnemySet(es);
 		 chaser=es.player;
-		 setLifeMax(chaser.attack*10);
+		 setLifeMax(World.baseAttack*10);
 //			setxSpeedMax(chaser.getxSpeedMax()*2);
 //			setxSpeedMin(-chaser.getxSpeedMax()*2);
 	 }

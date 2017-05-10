@@ -269,4 +269,13 @@
             android:textSize="20sp" />
     </RelativeLayout>
 
+    <Button
+        android:id="@+id/battleMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true"
+        android:text="对战模式" />
+
 </RelativeLayout>

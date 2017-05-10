@@ -11,5 +11,6 @@
     <string name="_item">物品</string>
     <string name="_shop">商店</string>
     <string name="title_activity_file">在线关卡</string>
+    <string name="title_activity_battle">BattleActivity</string>
 
 </resources>

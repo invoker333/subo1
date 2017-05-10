@@ -15,7 +15,6 @@ public class FlagPlayer extends Player{
 		// TODO Auto-generated constructor stub
 		super(bi, grassSet,world, x, y);
 		setFlag();
-		setGotGoal(true);
 		setPosition(x, y);
 	}
 	private void setFlag() {
@@ -49,12 +48,12 @@ public class FlagPlayer extends Player{
 //		super.drawElement(gl);
 //		setViewPot();
 //	}
-	public void die(){setGotGoal(true);}// avoid gameOver
+	public void die(){goal.hasFirstBlood=false;}// avoid gameOver
 	void sendIcon(int i){world.sendMessage(World.NOTREADICON);}
 //	public void quitgame(){
 //		for(int i=0;i<downData.length;i++){
 //			downData[i]=false;
 //		}
 //	}
-
+	public void sendBattleMessage() {}
 }

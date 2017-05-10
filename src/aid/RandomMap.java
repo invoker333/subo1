@@ -118,7 +118,7 @@ public void setWholeItem(Map map) {
 	public void set3Item(Map map) {
 		char[][] cm = mapToItem(map);
 		
-		initMap333Item();
+//		initMap333Item();
 		char[][] item=new char[2][12];
 		int start = 0;int end = 0;
 		while (end<cm[0].length-1){
@@ -132,6 +132,7 @@ public void setWholeItem(Map map) {
 			}
 			top.add(item.clone());
 			start+=12;
+			 item=new char[2][12];
 		}
 		
 		 start = 0;end = 0;
@@ -148,6 +149,9 @@ public void setWholeItem(Map map) {
 			}
 			mid.add(item.clone());
 			start+=12;
+			 item=new char[8][12];//克隆也不可少 草
+			 //二维数组克隆之後 里面的一位数组地址并没有变 所以添加克隆添加的也是同样的值
+			 //操了
 		}
 
 		 start = 0;end = 0;
@@ -163,7 +167,17 @@ public void setWholeItem(Map map) {
 				}
 				bottom.add(item.clone());
 				start+=12;
+				 item=new char[2][12];
 			}
+		for(char[][]c:mid){
+			String s="";
+			for(char[] cc:c){
+				for(char ccc:cc)
+					s+=ccc;
+			}
+			Log.i(s);
+		}
+			
 	}
 	 char[][] mapToItem(Map map) {
 //		Map map = new Map(itemString);

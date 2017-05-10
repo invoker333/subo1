@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import onlineStageActivity.OnlineFileActivity;
 import Enviroments.FruitSet;
+import Mankind.BattleMan;
 import aid.Ad;
 import aid.Client;
 import aid.ConsWhenConnecting;
@@ -411,9 +412,10 @@ public class MenuActivity extends Activity {
 	public String userName;
 	public ArrayList<Info4> userInfoList=new ArrayList<Info4>();
 	private String paimingString;
-	String selectedToSaveOnlineFileName;
+	String selectedToSaveOnlineFileName="";
 	private final String requestFoItemMap = "requestFoItemMap.txt";
 	private RandomMap randomMap;
+	static BattleActivity battleActi;
 	public void initPaimingInfo(){
 		paimingString=sp.getString("paimingString", "00000"+userName+" "+score+"1");
 		
@@ -724,6 +726,7 @@ public class MenuActivity extends Activity {
 
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		battleActi=null;
 		Log.i("onActivityResult");
 		if(dl!=null)dl.dismiss();
 		switch (resultCode) { //resultCode为回传的标记，我在B中回传的是RESULT_OK
@@ -823,12 +826,7 @@ public class MenuActivity extends Activity {
 
 
 
-	public void intentToFileChooser() {
-		// TODO Auto-generated method stub
-		Intent intent = new Intent();
-		intent.setClass(this, fileRW.FileActivity.class);
-		this.startActivityForResult(intent, 0);
-	}
+
 //	void 
 
 	public void sendOnlineStageRequest(){
@@ -890,14 +888,44 @@ public class MenuActivity extends Activity {
 		
 		char []cs;
 		if(World.Item3Mode){
-			cs=randomMap.getRandom333Map(10,1);
+			cs=randomMap.getRandom333Map(16,1);
 		}
 		else {
-			cs=randomMap.getRandomWholeMap(10,1);
+			cs=randomMap.getRandomWholeMap(16,1);
 		}
 		world.mapCharSet=cs;
 		world.mapString=null;
 		world.mapFile=null;
 		myHandler.sendEmptyMessage(World.REQUEST_TO_STARTGAME);
+	}
+	public void battleAction(String ss) {
+		// TODO Auto-generated method stub
+		// id x y angle gunid actionid fdirection
+		String[] strSet = ss.split(" ");
+		world.battleAction(strSet);
+	}
+	public void roomSetMessage(String ss) {
+		// TODO Auto-generated method stub
+		if(battleActi!=null)battleActi.roomSetMessage(ss);
+	}
+	public void roomOneInfo(String ss) {
+		// TODO Auto-generated method stub
+		if(battleActi!=null)battleActi.roomOneInfo(ss);
+	}
+	public void intentToFileChooser() {
+		// TODO Auto-generated method stub
+		Intent intent = new Intent();
+		intent.setClass(this, fileRW.FileActivity.class);
+		this.startActivityForResult(intent, 0);
+	}
+	public void intentToBattleMode() {
+		// TODO Auto-generated method stub
+		Intent intent = new Intent();
+		intent.setClass(this, BattleActivity.class);
+		this.startActivityForResult(intent, 111);
+	}
+	public void addForce(int force, int userId) {
+		// TODO Auto-generated method stub
+		world.addForce(force,userId);
 	}
 }

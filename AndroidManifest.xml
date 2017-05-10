@@ -54,7 +54,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-           <!-- <intent-filter>
+            <!--
+            <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
                 <action android:name="android.intent.action.VIEW" />
                 <data android:scheme="file" />
@@ -63,7 +64,8 @@
                 <data android:mimeType="text/plain" />
                 <data android:mimeType="application/xhtml+xml" />
                 <data android:mimeType="application/vnd.wap.xhtml+xml" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".MenuActivity"
@@ -73,14 +75,14 @@
         </activity>
         <!--
      ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
         -->
         <!--
              <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"
              
-            />
+            />
         -->
         <activity
             android:name=".Stagechoosser"
@@ -93,7 +95,12 @@
         </activity>
         <activity
             android:name="onlineStageActivity.OnlineFileActivity"
-            android:label="@string/title_activity_file" android:screenOrientation="landscape">
+            android:label="@string/title_activity_file"
+            android:screenOrientation="landscape" >
+        </activity>
+        <activity
+            android:name=".BattleActivity"
+            android:label="@string/title_activity_battle" android:screenOrientation="landscape">
         </activity>
     </application>
 

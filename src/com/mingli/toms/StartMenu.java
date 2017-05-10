@@ -114,6 +114,7 @@ public class StartMenu{
         Button start = (Button) startView.findViewById(R.id.startgame);
         Button random = (Button) startView.findViewById(R.id.randomchalenge);
         Button more = (Button) startView.findViewById(R.id.more);
+        Button battleMode = (Button) startView.findViewById(R.id.battleMode);
         fileChoose = (Button) startView.findViewById(R.id.fileChoose);
        	onlineStageChoose = (Button) startView.findViewById(R.id.onlineFileChooser);
       
@@ -142,6 +143,7 @@ public class StartMenu{
         start.setOnClickListener(click);
         random.setOnClickListener(click);
         more.setOnClickListener(click);
+        battleMode.setOnClickListener(click);
         fileChoose.setOnClickListener(click);
         onlineStageChoose.setOnClickListener(click);
         stage.setOnClickListener(click);
@@ -180,6 +182,9 @@ public class StartMenu{
 				break;
 			case R.id.fileChoose:
 				acti.intentToFileChooser();
+				break;
+			case R.id.battleMode:
+				acti.intentToBattleMode();
 				break;
 			case R.id.onlineFileChooser:
 				acti.sendOnlineStageRequest();

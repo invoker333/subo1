@@ -8,6 +8,7 @@ import javax.microedition.khronos.opengles.GL10;
 import Element.Animation;
 import Element.AnimationMove;
 import Mankind.Baller;
+import Mankind.BattleMan;
 import Mankind.BladeMan;
 import Mankind.BossRunner;
 import Mankind.Creature;
@@ -63,6 +64,8 @@ public class GrassSet extends Set{
 	private float viewGrid;//隐藏格子
 	public  boolean isCastle;
 	public World world;
+	public ArrayList<BattleMan> battleManList=new ArrayList<BattleMan>();
+	
 
 	private void newMapData(char[] b) {
 		char bi = 0;
@@ -290,6 +293,7 @@ public class GrassSet extends Set{
 				case 0:break;
 			}
 		}
+		
 		enemyList.addAll(emplacementList);
 		
 		setGrassId(getgList().size());
@@ -314,12 +318,55 @@ public class GrassSet extends Set{
 		
 		initGoreAnimation();
 		
-		if(goal==null)goal=new Goal('2', grid*mapWidth-500, 400);
+		float x1,x2;
+		if(Math.random()-0.5>0){	
+			x1=grid*mapWidth-500; 			x2=500;		}
+		else {			x1=500;	x2=grid*mapWidth-500; 		}		
+		
+		if(goal==null)goal=new Goal('2', x1, 400);
 		else goal.searchBoss(player,enemyList);// else is important
 		animationList.add(goal);
-		if(player==null)player=new Player('A', this, world, 500, 400);
-		player.
-		goal=goal;
+		if(player==null)player=new Player('A', this, world, x2, 400);
+		player.goal=goal;
+		initBattleMan();
+	}
+	private void initBattleMan() {
+		// TODO Auto-generated method stub
+
+		if(friendList==null)friendList=new ArrayList<Creature>();
+		char bi=' ';
+		
+		BattleMan bm;
+		float _x=grid*mapWidth-player.x;// 相反方向的 x
+		if(world.force_in_battle==World.RED_FORCE){
+			float tempX=player.x;
+			player.x=_x;
+			player.startX=_x;
+			player.setxPro(_x);
+			_x=player.x;
+		}
+		// enemy and friend's position is xiangfande
+		
+		if(world.force_in_battle==World.RED_FORCE){
+			for(int j:world.blueList){
+				enemyList.add(bm=new BattleMan(bi, this,_x,player.y,World.BLUE_FORCE));
+				battleManList.add(bm);
+			}
+			for(int j:world.redList){
+				friendList.add(bm=new BattleMan(bi, this,player.x,player.y,World.RED_FORCE));
+				battleManList.add(bm);
+			}
+		}else if(world.force_in_battle==World.BLUE_FORCE){
+			for(int j:world.redList){
+				enemyList.add(bm=new BattleMan(bi, this,_x,player.y,World.RED_FORCE));
+				battleManList.add(bm);
+			}
+			for(int j:world.blueList){
+				friendList.add(bm=new BattleMan(bi, this,player.x,player.y,World.BLUE_FORCE));
+				battleManList.add(bm);
+			}
+		}
+		
 	}
 	private void newSpide3(float grid, char bi, int x, int y) {
 		int size=(int) (3*Math.random()+1);// +1 to avoid length is zero
@@ -600,6 +647,7 @@ public class GrassSet extends Set{
 	public Player player;
 	private AnimationMove topAni;// master
 	public AnimationMove goreAni;// springer
+	public ArrayList<Creature> friendList=new ArrayList<Creature>();
 	
 	public void particleCheck(int tringerId, int i, Creature player) {
 		// TODO Auto-generated method stub

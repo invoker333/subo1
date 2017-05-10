@@ -17,7 +17,9 @@ import Element.LightSpotSet;
 import Enviroments.BackGround;
 import Enviroments.CoinSet;
 import Enviroments.FruitSet;
+import Enviroments.Goal;
 import Enviroments.GrassSet;
+import Mankind.BattleMan;
 import Mankind.Creature;
 import Mankind.Emplacement;
 import Mankind.EnemySet;
@@ -100,6 +102,11 @@ public class World extends GLSurfaceView implements Runnable {
 	public static final int DIALOG = 18;
 	final  int[] mes = new int[14];
 	public static final int baseAttack = 100;
+	
+	public static final int BLUE_FORCE = 1;
+	public static final int RED_FORCE = 2;
+	public int force_in_battle=-11111;
+	
 	public static int baseLifeMax=baseAttack/10;
 	Handler handler;
 	private FruitSet fruitSet;
@@ -291,13 +298,16 @@ public class World extends GLSurfaceView implements Runnable {
 		
 		lightningSet = new LightningSet(2);// ����
 		gra = new GrassSet(64f, map.charData, lightningSet,this);
-		
+		goal=gra.getGoal();
 		animationList=gra.animationList;
 		
 		ps = new ParticleSet(gra, 10);
 		{
-			bg = new BackGround(mapIndex);
-			if(!gra.getGoal().pickable)bg.setTextureId(TexId.TIANSHAN);
+			int id=mapIndex;
+			if(mapCharSet!=null)id=(int) (Math.random()*Map.max);//randombackground
+			bg = new BackGround(id);
+			
+			if(!gra.getGoal().showable)bg.setTextureId(TexId.TIANSHAN);
 			// bg = new BackGroundRoll(mapIndex);
 			// bg.setTextureId(TexId.ICE);
 			if (bg.getTextureId() == TexId.TIANSHAN)
@@ -361,6 +371,7 @@ public class World extends GLSurfaceView implements Runnable {
 		 if(storySpeaker==null||editMode)
 		 sendLoadedMessage();
 	}
+
 	public void sendLoadedMessage() {
 		 sendMessage(LOADED);
 	}
@@ -370,6 +381,7 @@ public class World extends GLSurfaceView implements Runnable {
 		music.initSoundPool();
 		drawList.clear();
 //		pauseDraw();
+		
 		if(ct!=null)ct.close();
 		initializeGame(i);
 		
@@ -444,6 +456,7 @@ public class World extends GLSurfaceView implements Runnable {
 	private boolean isGameRunning;
 	private boolean paused;
 	TouchMove touchMove;
+	private Goal goal;
 
 	public void onTouch() {
 		// Touch touch=new Touch(gun,ab,lightBallSet,player);
@@ -504,7 +517,7 @@ public class World extends GLSurfaceView implements Runnable {
 			
 			
 			showSecondaryLifeColumn(player);
-			if (!player.isDead && !player.isGotGoal() && index % 60 == 0) {// 正常游戏计时
+			if (!player.isDead && goal.hasFirstBlood && index % 60 == 0) {// 正常游戏计时
 																			// 没有达到目的地
 																			// 玩家没有死亡
 																			// 才计时
@@ -512,7 +525,6 @@ public class World extends GLSurfaceView implements Runnable {
 					increaseTime(-1);
 				else if (gameTime == 0) {
 //					if(editMode)return;// edit mode dont dai
-					Log.i("gametime"+gameTime+"getgoal"+player.isGotGoal());
 					player.die();
 				}
 
@@ -559,7 +571,7 @@ public class World extends GLSurfaceView implements Runnable {
 			// gra.newBendTail();
 
 		}
-		if (player != null && guidePost != null	&&!player.isGotGoal()) {
+		if (player != null && guidePost != null	&&goal.hasFirstBlood) {
 			if(!isMapMoved(5 * 60) ) {
 				tringerGuidePost();
 			} 
@@ -619,7 +631,7 @@ public class World extends GLSurfaceView implements Runnable {
 	}
 
 	public void drawElements(GL10 gl) {
-//		try{
+		try{
 			for (int i = 0; i < drawList.size(); i++) {
 				drawList.get(i).drawElement(gl);
 			}
@@ -628,14 +640,20 @@ public class World extends GLSurfaceView implements Runnable {
 				ct.drawElement(gl);
 			}
 			if(editMode&&touchMove!=null)touchMove.drawElement(gl);
-//		if(paused)return;
 			timerTask();
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	public void quitGame() {
+		
+		 {////////////clear the foece message
+				redList.clear();
+				blueList.clear();
+				force_in_battle=-111111;
+			}
+		
 		ct.close();
 		for (int i = 0; i < drawList.size(); i++) {
 			drawList.get(i).quitgame();
@@ -859,6 +877,9 @@ public class World extends GLSurfaceView implements Runnable {
 	public String mapString;
 	public char[] mapCharSet;
 	
+	public ArrayList<Integer> blueList=new ArrayList<Integer>();
+	public ArrayList<Integer> redList=new ArrayList<Integer>();
+	
 	public static boolean editMode;
 	public static boolean rpgMode;
 //	public static double baseBSpeed=20;
@@ -904,19 +925,6 @@ public class World extends GLSurfaceView implements Runnable {
 		drawList.add(cloneA);
 	}
 
-//	public void haveBladeIcon(int B) {
-//		// TODO Auto-generated method stub
-//		handler.sendEmptyMessage(B);
-//	}
-//	public void haveGunIcon(int B) {
-//		// TODO Auto-generated method stub
-//		handler.sendEmptyMessage(B);
-//	}
-//	public void haveTreadIcon(int B) {
-//		// TODO Auto-generated method stub
-//		handler.sendEmptyMessage(B);
-//	}
-
 	public void relife() {
 		// TODO Auto-generated method stub
 		setGameMusic();
@@ -950,5 +958,36 @@ public class World extends GLSurfaceView implements Runnable {
 		// TODO Auto-generated method stub
 		if(mapString!=null||mapFile!=null||mapCharSet!=null)return true;
 		return false;
+	}
+
+	public void battleAction(String[] strSet) {
+		// TODO Auto-generated method stub
+		
+		battleActionCheck(strSet, gra.battleManList);
+	}
+
+
+	private void battleActionCheck(String[] strSet, 		ArrayList<BattleMan> list) {
+		int cId=Integer.parseInt(strSet[0]);
+		for(int i=0;i<list.size();i++){
+			Creature c=list.get(i);
+			if(c instanceof BattleMan){
+				BattleMan bm=(BattleMan) c;
+//				if(bm.userId==cId){
+					bm.onlineActionCheck(strSet);
+//				}
+			}
+		}
+	}
+
+	public void addForce(int force, int userId) {
+		// TODO Auto-generated method stub
+		if(userId==acti.userId){
+			force_in_battle=force;return;
+		}
+		switch(force){
+		case BLUE_FORCE:blueList.add((Integer)userId);break;
+		case RED_FORCE:redList.add((Integer)userId);break;
+		}
 	}
 }

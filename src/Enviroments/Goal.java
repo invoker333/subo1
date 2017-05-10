@@ -33,7 +33,7 @@ public class Goal extends RotateFruit{
 	LightSpot ls;
 	Animation a;
 	public boolean hasFirstBlood=true;
-	public boolean pickable=true;
+	public boolean showable=true;
 	Goal(char bi,float x,float y){
 		super(bi,x, y);
 		angleSpeed=0.2f;
@@ -73,7 +73,7 @@ public class Goal extends RotateFruit{
 //		super.drawElement(gl);
 //	}
 	public void drawElement(GL10 gl){
-		if(!pickable)return;
+		if(!showable)return;
 		ls.drawElement(gl);
 		
 		gl.glEnable(GL10.GL_CULL_FACE);//背面裁剪
@@ -101,7 +101,7 @@ public class Goal extends RotateFruit{
 	public void picked() {
 		// TODO Auto-generated method stub
 		playSound();
-		pickable=true;
+		showable=true;
 		hasFirstBlood=false;
 	}
 	public void searchBoss(Player player, ArrayList<Creature> enemyList) {
@@ -111,7 +111,7 @@ public class Goal extends RotateFruit{
 			if(c instanceof JointEnemy){
 				if(Math.abs(c.x-x)<length&&Math.abs(c.y-y)<length){
 					((JointEnemy)c).setPlayerAndToBeBoss(player);
-					pickable=false;
+					showable=false;
 				}
 			}
 		}

@@ -31,7 +31,7 @@ public class PlayerSet extends EnemySet{
 		this.setPlayer(player);
 		
 		// TODO Auto-generated constructor stub
-		this.cList=new ArrayList<Creature>();
+		this.cList=gra.friendList;
 		cList.add(player);
 		this.emplacementList=new ArrayList<Emplacement>();
 		//////////////////////////new list

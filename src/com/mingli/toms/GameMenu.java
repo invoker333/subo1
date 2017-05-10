@@ -92,7 +92,7 @@ public class GameMenu {
 //		popupWindow.update();
 		
 		
-		if(!player.isDead&&!player.isGotGoal())normalMenu();
+		if(!player.isDead&&player.goal.hasFirstBlood)normalMenu();
 		
 		Log.i("popTime", "" + (System.currentTimeMillis() - tim));
 		
@@ -228,7 +228,7 @@ public class GameMenu {
 				chosef.setVisibility(View.INVISIBLE);
 				chosonline.setVisibility(View.INVISIBLE);
 			}
-			if(!World.editMode){
+			if(!World.editMode&&world.mapCharSet==null){
 				save.setVisibility(View.INVISIBLE);
 			}
 		}
