@@ -2,7 +2,7 @@ package Enviroments;
 
 import java.util.ArrayList;
 
-import Mankind.Player;
+import Mankind.BattleMan;
 
 import com.mingli.toms.MenuActivity;
 
@@ -17,7 +17,7 @@ public class FruitBlade extends RotateFruit{
 		// TODO Auto-generated constructor stub
 		setTextureId(TexId.K);
 	}
-	public boolean loadAble(Player player){
+	public boolean loadAble(BattleMan player){
 		
 		for(Fruit f:FruitSet.pickedList)
 			if(f.getTextureId()==getTextureId()){
@@ -28,7 +28,7 @@ public class FruitBlade extends RotateFruit{
 		super.loadAble(player);
 		return true;
 	}
-	public void use( Player player,ArrayList<Fruit> pickedList){
+	public void use( BattleMan player,ArrayList<Fruit> pickedList){
 //		super.use(player, pickedList);
 		player.changeBlade(getTextureId());
 	}

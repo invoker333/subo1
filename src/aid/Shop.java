@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Enviroments.ChanceFruit;
 import Enviroments.Fruit;
 import Enviroments.FruitSet;
+import Mankind.BattleMan;
 import Mankind.Creature;
 import android.content.Context;
 import android.view.Gravity;
@@ -134,7 +135,7 @@ public class Shop {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Creature player=world.player;
+				BattleMan player=world.player;
 				if(selectedItem instanceof ChanceFruit&&player!=null&&!player.isDead){
 					setNoneSelected();
 					MenuActivity.showDialog("店老板", "现在不用复活", R.drawable.egg);
@@ -148,7 +149,7 @@ public class Shop {
 						&& acti.chance - selectedItem.chancecost >= 0) {
 					fs.buyItem(selectedItem);
 					
-					fs.useItem(selectedItem);
+					fs.useItem(player,selectedItem);
 					
 					setNoneSelected();
 					hideCheck();

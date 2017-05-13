@@ -221,7 +221,7 @@ public class GrassSet extends Set{
 				case 50: goal=new Goal(bi, x*grid,(mapHeight-y-1)*grid);break;//2
 				case 51: break;
 				case 52:break;
-				case 66:fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.MISSILE));break;//B boom
+				case 'B':fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.MISSILE));break;//B boom
 				case 67:fruitList.add(new ChanceFruit(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;//C 加机会
 				case 68:fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.HOOKGUN));break;//D drag hook
 				case 'Q':fruitList.add(new Fenshen(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;
@@ -239,6 +239,7 @@ public class GrassSet extends Set{
 				case 110:fruitList.add(new Toukui(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,9999));break;//n toukui
 				case 'x':fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.SHUFUDAN));break;//
 				case 'V':fruitList.add(new Wudi(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;//
+				case 'X':break;
 				case 'A':
 					player = new Player(bi, this, world,(x+0.5f)*grid,(mapHeight-y)*grid);
 					// here has no break because these two char has same code and different code
@@ -349,20 +350,20 @@ public class GrassSet extends Set{
 		
 		if(world.force_in_battle==World.RED_FORCE){
 			for(int j:world.blueList){
-				enemyList.add(bm=new BattleMan(bi, this,_x,player.y,World.BLUE_FORCE));
+				enemyList.add(bm=new BattleMan(bi, this,_x,player.y,World.BLUE_FORCE, j));
 				battleManList.add(bm);
 			}
 			for(int j:world.redList){
-				friendList.add(bm=new BattleMan(bi, this,player.x,player.y,World.RED_FORCE));
+				friendList.add(bm=new BattleMan(bi, this,player.x,player.y,World.RED_FORCE, j));
 				battleManList.add(bm);
 			}
 		}else if(world.force_in_battle==World.BLUE_FORCE){
 			for(int j:world.redList){
-				enemyList.add(bm=new BattleMan(bi, this,_x,player.y,World.RED_FORCE));
+				enemyList.add(bm=new BattleMan(bi, this,_x,player.y,World.RED_FORCE, j));
 				battleManList.add(bm);
 			}
 			for(int j:world.blueList){
-				friendList.add(bm=new BattleMan(bi, this,player.x,player.y,World.BLUE_FORCE));
+				friendList.add(bm=new BattleMan(bi, this,player.x,player.y,World.BLUE_FORCE, j));
 				battleManList.add(bm);
 			}
 		}

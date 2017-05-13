@@ -10,9 +10,9 @@
         android:id="@+id/friendListView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button1"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView2" >
+        android:layout_above="@+id/startInRoomModle"
+        android:layout_below="@+id/linearLayout1" >
+
     </ListView>
 
     <Button
@@ -25,12 +25,34 @@
         android:text="开始对战" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/roomNameAndTeamTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="阵营列表"
+        android:text="10号房间 阵营列表"
         android:textSize="36sp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/roomNameAndTeamTitle"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="玩家"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="得分"
+            android:textSize="30sp" />
+    </LinearLayout>
 
 </RelativeLayout>

@@ -3,7 +3,7 @@ package Enviroments;
 
 import java.util.ArrayList;
 
-import Mankind.Player;
+import Mankind.BattleMan;
 
 import com.mingli.toms.MusicId;
 import com.mingli.toms.R;
@@ -35,12 +35,12 @@ public class Coin extends SixFruit {
 		loadTexture(TexId.COIN);
 		loadSound(MusicId.coin);
 	}
-	public void use(Player player, ArrayList<Fruit> pickedList) {
+	public void use(BattleMan player, ArrayList<Fruit> pickedList) {
 		// TODO Auto-generated method stub
 		super.use(player, pickedList);
 		visible=false;
 	}
-	public boolean loadAble(Player player){
+	public boolean loadAble(BattleMan player){
 		player.increaseScoreBy(getScore());
 		playSound();
 		return false;

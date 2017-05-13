@@ -2,7 +2,9 @@ package Enviroments;
 
 import java.util.ArrayList;
 
-import Mankind.Player;
+
+
+import Mankind.BattleMan;
 
 import com.mingli.toms.R;
 
@@ -30,7 +32,7 @@ public class Tomato extends ShakeFruit{
 //		else loadTexture(TexId.TOMATO,1,0);
 	}
 	
-	public boolean loadAble(Player player){
+	public boolean loadAble(BattleMan player){
 		
 		int db=player.getLifeMax()-player.getLife();
 		if(db>bloodMax) {
@@ -39,13 +41,13 @@ public class Tomato extends ShakeFruit{
 		}
 		return true;
 	}
-	public void use(Player player, ArrayList<Fruit> pickedList){
+	public void use(BattleMan player, ArrayList<Fruit> pickedList){
 		this.bloodMax = maxback;//when use blood max = max so it can use always
 		 setAnimationFinished(false);
 		super.use(player, pickedList);
 	}
 
-	public void effectCheck(Player p,ArrayList<Fruit>effectList) {
+	public void effectCheck(BattleMan p,ArrayList<Fruit>effectList) {
 		if(p.getLife()<p.getLifeMax())p.attacked(-bloodStep);
 		if((bloodMax-=bloodStep)<0){
 			bloodMax=maxback;

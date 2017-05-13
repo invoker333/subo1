@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import Mankind.Player;
+import Mankind.BattleMan;
 
 public class GoreCoin extends Coin{
 
@@ -15,7 +15,7 @@ public class GoreCoin extends Coin{
 		visible=false;
 		// TODO Auto-generated constructor stub
 	}
-	public void use(Player player, ArrayList<Fruit> pickedList) {
+	public void use(BattleMan player, ArrayList<Fruit> pickedList) {
 		// TODO Auto-generated method stub
 //		super.use(player, pickedList);
 		g=1;

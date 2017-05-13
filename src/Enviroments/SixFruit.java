@@ -6,7 +6,8 @@ import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import Mankind.Player;
+import Mankind.BattleMan;
+
 
 public class SixFruit extends Fruit{
 	public SixFruit(char bi,float x, float y) {
@@ -28,7 +29,7 @@ public class SixFruit extends Fruit{
 		gl.glTranslatef(-x, -y, 0);
 		gl.glDisable(GL10.GL_CULL_FACE);//背面裁剪
 	}
-	public boolean loadAble(Player player){
+	public boolean loadAble(BattleMan player){
 		super.loadAble(player);
 		return false;
 	}

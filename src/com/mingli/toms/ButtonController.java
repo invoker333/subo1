@@ -153,19 +153,19 @@ public class ButtonController {
 //				break;
 			case R.id.jumpSeekbar1:
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					Player.downData[3] = true;
+					player.downData[3] = true;
 				} else 
 					if (event.getAction() == MotionEvent.ACTION_UP) {
-					Player.downData[3] = false;
+					player.downData[3] = false;
 //					((ProgressBar) acti.findViewById(R.id.jumpSeekbar1)).setProgress(75);
 				}
 				break;
 			case R.id.attack:
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					Player.downData[2] = true;
+					player.downData[2] = true;
 					v.setBackgroundResource(R.drawable.button_attack1);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					Player.downData[2] = false;
+					player.downData[2] = false;
 					v.setBackgroundResource(R.drawable.button_attack);
 				}
 				break;
@@ -181,7 +181,7 @@ public class ButtonController {
 			case R.id.ride:
 
 				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					Player.downData[6] = true;
+					player.downData[6] = true;
 					v.setBackgroundResource(R.drawable.ride2);
 				} else if (event.getAction() == MotionEvent.ACTION_UP) {
 					// Player.downData[6]=false;
@@ -271,13 +271,13 @@ public class ButtonController {
 			// TODO Auto-generated method stub
 			switch (seekBar.getId()) {
 			case R.id.jumpSeekbar1:
-				Player.downData[3] = false;
+				player.downData[3] = false;
 				seekBar.setProgress(75);
 				break;
 			case R.id.directionSeekBar:
-				Player.downData[0]=false;
-				Player.downData[1]=false;
-				Player.downData[7]=false;
+				player.downData[0]=false;
+				player.downData[1]=false;
+				player.downData[7]=false;
 				agoProgress=50;
 				seekBar.setProgress(50);
 				break;
@@ -286,7 +286,7 @@ public class ButtonController {
 
 		@Override
 		public void onStartTrackingTouch(SeekBar seekBar) {
-			if(seekBar.getId()==R.id.jumpSeekbar1)Player.downData[3] = true;
+			if(seekBar.getId()==R.id.jumpSeekbar1)player.downData[3] = true;
 			
 			else if(seekBar.getId()==R.id.directionSeekBar){
 //				player.doubleDownCheck();
@@ -298,18 +298,18 @@ public class ButtonController {
 				boolean fromUser) {
 			switch (seekBar.getId()) {
 			case R.id.jumpSeekbar1:
-				Player.downData[3] = true;
+				player.downData[3] = true;
 				Player.jumpProgress=progress;
 				
 				break;
 			case R.id.directionSeekBar:
 				slideCheck(progress);
 				if (progress < 50) {
-					Player.downData[0] = true;
-					Player.downData[1] = false;
+					player.downData[0] = true;
+					player.downData[1] = false;
 				}else if (progress > 50) {
-					Player.downData[1] = true;
-					Player.downData[0] = false;
+					player.downData[1] = true;
+					player.downData[0] = false;
 				}
 				break;
 			}
@@ -322,7 +322,7 @@ public class ButtonController {
 					&&agoProgress!=50
 							&&Math.abs(progress-agoProgress)>2) {
 				//				doubleClicked=true;
-				Player.downData[7]=true;
+				player.downData[7]=true;
 			}
 				
 			agoProgress=progress;

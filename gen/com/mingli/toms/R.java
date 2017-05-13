@@ -196,7 +196,6 @@ public final class R {
         public static final int battleMode=0x7f0c0074;
         public static final int buildButton=0x7f0c0015;
         public static final int butset=0x7f0c0062;
-        public static final int button1=0x7f0c0083;
         public static final int buttonwindow=0x7f0c000b;
         public static final int buy=0x7f0c004e;
         public static final int buyAnimationanduse=0x7f0c0008;
@@ -281,6 +280,7 @@ public final class R {
         public static final int retry=0x7f0c0037;
         public static final int ride=0x7f0c0013;
         public static final int roomId=0x7f0c0047;
+        public static final int roomNameAndTeamTitle=0x7f0c0084;
         public static final int roomSetView=0x7f0c0080;
         public static final int roomSize=0x7f0c0048;
         public static final int roomUserName=0x7f0c0049;
@@ -299,7 +299,7 @@ public final class R {
         public static final int stageGridView=0x7f0c0059;
         public static final int stageRating=0x7f0c005c;
         public static final int stageText=0x7f0c0029;
-        public static final int startInRoomModle=0x7f0c0084;
+        public static final int startInRoomModle=0x7f0c0083;
         public static final int startgame=0x7f0c0064;
         public static final int startmenu=0x7f0c005d;
         public static final int state=0x7f0c0075;

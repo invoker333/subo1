@@ -631,7 +631,7 @@ public class World extends GLSurfaceView implements Runnable {
 	}
 
 	public void drawElements(GL10 gl) {
-		try{
+//		try{
 			for (int i = 0; i < drawList.size(); i++) {
 				drawList.get(i).drawElement(gl);
 			}
@@ -641,9 +641,9 @@ public class World extends GLSurfaceView implements Runnable {
 			}
 			if(editMode&&touchMove!=null)touchMove.drawElement(gl);
 			timerTask();
-		}catch(Exception e){
-			e.printStackTrace();
-		}
+//		}catch(Exception e){
+//			e.printStackTrace();
+//		}
 	}
 
 	public void quitGame() {
@@ -970,12 +970,9 @@ public class World extends GLSurfaceView implements Runnable {
 	private void battleActionCheck(String[] strSet, 		ArrayList<BattleMan> list) {
 		int cId=Integer.parseInt(strSet[0]);
 		for(int i=0;i<list.size();i++){
-			Creature c=list.get(i);
-			if(c instanceof BattleMan){
-				BattleMan bm=(BattleMan) c;
-//				if(bm.userId==cId){
-					bm.onlineActionCheck(strSet);
-//				}
+			BattleMan bm=list.get(i);
+			if(bm.userId==cId){
+				bm.onlineActionCheck(strSet);
 			}
 		}
 	}
@@ -985,9 +982,46 @@ public class World extends GLSurfaceView implements Runnable {
 		if(userId==acti.userId){
 			force_in_battle=force;return;
 		}
+	
 		switch(force){
-		case BLUE_FORCE:blueList.add((Integer)userId);break;
-		case RED_FORCE:redList.add((Integer)userId);break;
+		case BLUE_FORCE:{
+			if(!blueList.contains((Integer)userId)){
+				blueList.add((Integer)userId);
+				addCheck(force, userId);
+			}
+			}break;
+		case RED_FORCE:{
+			if(!redList.contains((Integer)userId)){
+				redList.add((Integer)userId);
+				addCheck(force, userId);
+			}
+			}break;
+		}
+		
+	}
+
+	private void addCheck(int force, int userId) {
+		if(!drawList.isEmpty()){
+			BattleMan bm;
+			if(force_in_battle==force){
+				playerSet.addCreature(bm=new BattleMan(' ', gra, player.startX, player.startY,force, userId));
+			}else {
+				enemySet.addCreature(bm=new BattleMan(' ', gra, gra.getGrid()*gra.getMapWidth()
+						-player.startX, player.startY,force, userId));
+			}
+			bm.loadTexture();
+		}
+	}
+
+	public void useItemBattleMan(String strRes) {
+		// TODO Auto-generated method stub
+		String[] strSet = strRes.split(" ");
+		int userId=Integer.parseInt(strSet[0]);
+		ArrayList<BattleMan> list = gra.battleManList;
+		for(BattleMan bm:list){
+			if(bm.userId==userId){
+				bm.useItemOnline(strSet[1]);
+			}
 		}
 	}
 }

@@ -2,7 +2,7 @@ package Enviroments;
 
 import java.util.ArrayList;
 
-import Mankind.Player;
+import Mankind.BattleMan;
 
 import com.mingli.toms.MenuActivity;
 import com.mingli.toms.R;
@@ -70,7 +70,7 @@ public class FruitGun extends RotateFruit{
 			break;
 		}
 	}
-	public boolean loadAble(Player player){
+	public boolean loadAble(BattleMan player){
 		for(Fruit f:FruitSet.pickedList)
 			if(f.getTextureId()==getTextureId()){
 				MenuActivity.showDialog("", "限购一个", getIcon());
@@ -80,7 +80,7 @@ public class FruitGun extends RotateFruit{
 		super.loadAble(player);
 		return true;
 	}
-	public void use( Player player,ArrayList<Fruit> pickedList){
+	public void use( BattleMan player,ArrayList<Fruit> pickedList){
 		player.changeGun(getTextureId());
 	}
 }

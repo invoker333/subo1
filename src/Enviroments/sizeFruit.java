@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import Mankind.BattleMan;
 import Mankind.Player;
 import element2.TexId;
 
@@ -35,7 +36,7 @@ public class sizeFruit extends Fruit{
 	}
 	float growSpeed=1.2f;
 	private float time=32/64f;
-	 public void use( Player player,ArrayList<Fruit> pickedList){
+	 public void use( BattleMan player,ArrayList<Fruit> pickedList){
 		 setAnimationFinished(false);
 		 if(player.growSpeed>=0){
 //				player.noBlade();
@@ -47,7 +48,7 @@ public class sizeFruit extends Fruit{
 			}
 		 super.use(player, pickedList);
 	}
-	public void effectCheck(Player c,ArrayList<Fruit>pickedList){
+	public void effectCheck(BattleMan c,ArrayList<Fruit>pickedList){
 		if(c.growSpeed>0&&c.getH()<c.getAgoMax()[1]||c.growSpeed<0&&c.getH()>c.getAgoMax()[1]*time)//变形
 			c.changeSize(( c.getH()+c.growSpeed)  / c.getAgoMax()[1]);
 

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.microedition.khronos.opengles.GL10;
 
 import Element.AnimationMove;
+import Mankind.BattleMan;
 import Mankind.Player;
 import aid.Log;
 
@@ -18,7 +19,7 @@ import element2.TexId;
 public class FruitSet extends Set {
 	public ArrayList<Fruit> fruitList;
 	ArrayList<Fruit> drawList = new ArrayList<Fruit>();
-	protected ArrayList<Fruit> effectList = new ArrayList<Fruit>();
+	protected static ArrayList<Fruit> effectList = new ArrayList<Fruit>();
 	Player player;
 	// private int fruitId;
 	protected Music music = World.music;
@@ -72,29 +73,30 @@ public class FruitSet extends Set {
 	public static void initShopList() {
 		// TODO Auto-generated method stub
 
-		char bi = 0;
+		char c = 'a';
 		// if (shopList == null)
 		{
 			shopList = new ArrayList<Fruit>();
-			shopList.add( new ChanceFruit(bi, 1, 1));// ..
-			shopList.add(new Wudi(bi, 1, 1));
-			shopList.add(new sizeFruit(bi, 1, 1));
-			shopList.add(new Toukui(bi, 0, 0, 9999));
-			shopList.add(new Gao(bi, 1, 1, 9999));
-			shopList.add(new FruitFly(bi, 1, 1, 9999));
-			shopList.add(new Fenshen(bi, 1, 1));
-			shopList.add(new FruitGun(bi, 1, 1, TexId.BOOMGUN));
-			shopList.add(new FruitGun(bi, 1, 1, TexId.HOOKGUN));
-			shopList.add(new FruitBlade(bi, 1, 1));
+			
+			shopList.add( new ChanceFruit(c++, 1, 1));// ..
+			shopList.add(new Wudi(c++, 1, 1));
+			shopList.add(new sizeFruit(c++, 1, 1));
+			shopList.add(new Toukui(c++, 0, 0, 9999));
+			shopList.add(new Gao(c++, 1, 1, 9999));
+			shopList.add(new FruitFly(c++, 1, 1, 9999));
+			shopList.add(new Fenshen(c++, 1, 1));
+			shopList.add(new FruitGun(c++, 1, 1, TexId.BOOMGUN));
+			shopList.add(new FruitGun(c++, 1, 1, TexId.HOOKGUN));
+			shopList.add(new FruitBlade(c++, 1, 1));
 			if (World.rpgMode) {
-				shopList.add(new Tomato(bi, 1, 1, 500));// ..
+				shopList.add(new Tomato(c++, 1, 1, 500));// ..
 			}
-				shopList.add(new FruitGun(bi, 1, 1, TexId.PUTONGQIANG));
-				shopList.add(new FruitGun(bi, 1, 1, TexId.ZIDONGDAN));
-				shopList.add(new FruitGun(bi, 1, 1, TexId.GUANGDANQIANG));
-				shopList.add(new FruitGun(bi, 1, 1, TexId.SHOTGUN));
-				shopList.add(new FruitGun(bi, 1, 1, TexId.MISSILE));
-				shopList.add(new FruitGun(bi, 1, 1, TexId.JUJI));
+				shopList.add(new FruitGun(c++, 1, 1, TexId.PUTONGQIANG));
+				shopList.add(new FruitGun(c++, 1, 1, TexId.ZIDONGDAN));
+				shopList.add(new FruitGun(c++, 1, 1, TexId.GUANGDANQIANG));
+				shopList.add(new FruitGun(c++, 1, 1, TexId.SHOTGUN));
+				shopList.add(new FruitGun(c++, 1, 1, TexId.MISSILE));
+				shopList.add(new FruitGun(c++, 1, 1, TexId.JUJI));
 //				shopList.add(new FruitGun(bi, 1, 1, TexId.SHUFUDAN));
 		}
 	}
@@ -296,13 +298,14 @@ public class FruitSet extends Set {
 
 	public void useItem(int id) {
 		Fruit item = pickedList.get(id);
-		useItem(item);
+		useItem(player,item);
 	}
 
-	public void useItem(Fruit selectedItem) {
+	public void useItem(BattleMan player,Fruit selectedItem) {
 		// TODO Auto-generated method stub
 		selectedItem.use(player, pickedList);
 		effectList.add(selectedItem);
+		player.sendUseitemMessage(selectedItem);
 	}
 
 	public void buyItem(Fruit item) {
@@ -324,6 +327,16 @@ public class FruitSet extends Set {
 			shopList.add(new Tomato((char) 0, 0, 0, 99999));
 		else
 			shopList.add(new Wudi((char) 0, 0, 0, 99999));
+	}
+
+	public static void useItem(BattleMan player, char itemMapSign) {
+		// TODO Auto-generated method stub
+		for(Fruit f:shopList){
+			if(f.mapSign==itemMapSign){
+				f.use(player, pickedList);
+				effectList.add(f);
+			}
+		}
 	}
 
 }

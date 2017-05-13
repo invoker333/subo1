@@ -4,7 +4,9 @@ package aid;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.DatagramSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 
 import Mankind.Player;
@@ -18,11 +20,66 @@ public class Client implements Runnable{
 	static DataInputStream dis;
 	static DataOutputStream dos;
 	boolean connected;
-	Thread recThread;
+	Thread tcpThread;
 	private MenuActivity acti;
+	private Thread updThread;
+	Runnable udpRunnable;
+	UdpReceiver udpReceiver;
+	static UdpSender udpSender;
 	public Client(MenuActivity acti){
 		this.acti = acti;
+	}
+	private void setUdpAddressPort(String address, final int port) {
+		// TODO Auto-generated method stub
+		udpReceiver=new UdpReceiver(){
+			protected void handleDatagramPacket(String str) {
+				Log.i(str);
+				if(str.startsWith(ConsWhenConnecting.THIS_IS_BATTLE_MESSAGE)) {
+					String strRes=str.substring(ConsWhenConnecting.THIS_IS_BATTLE_MESSAGE.length());
+					acti.battleAction(strRes);
+				}
+				String substring = str.substring(0, 2);
+//				Log.i("subString"+substring);
+				Player player=acti.world.player;
+				if (substring.equals("da")) {
+					player.downData[0]=true;
+					player.downData[1]=false;
+				} else if (substring.equals("dd")) {
+					player.downData[1]=true;
+					player.downData[0]=false;
+				} else if (substring.equals("ua")) {
+					player.downData[0]=false;
+				} else if (substring.equals("ud")) {
+					player.downData[1]=false;
+				} else if (substring.equals("d7")) {
+					player.downData[2]=true;
+				} else if (substring.equals("u7")) {
+					player.downData[2]=false;
+				}
+				 else if (substring.equals("d8")) {
+						player.downData[3]=true;
+						player.jumpProgress=100;
+					} else if (substring.equals("u8")) {
+						player.downData[3]=false;
+					}
+			}
+		};
 		
+		udpSender=new UdpSender();
+		udpSender.connect(address, port);
+		
+		udpRunnable=new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					udpReceiver.receiveAlways(new DatagramSocket(port));
+				} catch (SocketException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		};
 	}
 	public void connect(){
 		while(!connected){
@@ -30,6 +87,8 @@ public class Client implements Runnable{
 			if(!MenuActivity.isNetworkAvailable(acti))continue;
 			Log.i("尝试连接网络");
 			try {
+				String address="192.168.4.243";
+				int port=8888;
 //				s=new Socket("127.0.0.1",8888);
 //				s=new Socket("192.168.137.1",8888);//祖传wifi
 //				s=new Socket("192.168.25.123",8888);
@@ -41,14 +100,18 @@ public class Client implements Runnable{
 //				s=new Socket("192.168.47.73",8888);
 //				s=new Socket("23.105.206.67",8888);//雷志豪
 //				s=new Socket("192.168.65.146",8888);
-				s=new Socket("192.168.4.243",8888);
+				s=new Socket(address,port);
+				
 				if(s!=null){
 					Log.i("已连接","");
 					connected=true;
 					dis=new DataInputStream(s.getInputStream());
 					dos=new DataOutputStream(s.getOutputStream());
 					send(ConsWhenConnecting.THIS_IS_USER_ID_AND_NAME+acti.userId+" "+acti.userName);//sendUserNameFirst
-					(recThread=new Thread(this)).start();
+					setUdpAddressPort(address,port);
+					
+					(tcpThread=new Thread(this)).start();
+					(updThread=new Thread(udpRunnable)).start();
 				}
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block
@@ -62,7 +125,10 @@ public class Client implements Runnable{
 		}
 	}
 
+
+
 	int threadCount=0;
+	
 	public void run(){
 		String s;
 		while(connected){
@@ -117,35 +183,20 @@ public class Client implements Runnable{
 			String strRes=s.substring(ConsWhenConnecting.THIS_ID_IS_RED_TEAM.length());
 			int userId=Integer.parseInt(strRes);
 			acti.addForce(World.RED_FORCE,userId);
-		}else 	if(s.startsWith(ConsWhenConnecting.THIS_IS_BATTLE_MESSAGE)) {
-			String strRes=s.substring(ConsWhenConnecting.THIS_IS_BATTLE_MESSAGE.length());
-			acti.battleAction(strRes);
-		}
+		}	
+		else 	if(s.startsWith(ConsWhenConnecting.USE_ITEM)) {
+			String strRes=s.substring(ConsWhenConnecting.USE_ITEM.length());
+			
+			acti.useItemBattleMan(strRes);
+		}	
 		
 		
-		String substring = s.substring(0, 2);
-//		Log.i("subString"+substring);
-		if (substring.equals("da")) {
-			Player.downData[0]=true;
-			Player.downData[1]=false;
-		} else if (substring.equals("dd")) {
-			Player.downData[1]=true;
-			Player.downData[0]=false;
-		} else if (substring.equals("ua")) {
-			Player.downData[0]=false;
-		} else if (substring.equals("ud")) {
-			Player.downData[1]=false;
-		} else if (substring.equals("d7")) {
-			Player.downData[2]=true;
-		} else if (substring.equals("u7")) {
-			Player.downData[2]=false;
+	
+	}
+	public static void  sendUdp(String str){
+		if(udpSender!=null){
+			udpSender.send(str);
 		}
-		 else if (substring.equals("d8")) {
-				Player.downData[3]=true;
-				Player.jumpProgress=100;
-			} else if (substring.equals("u8")) {
-				Player.downData[3]=false;
-			}
 	}
 	public static void  send(String str){
 //		if(MenuActivity.userId<10)str=ConsWhenConnecting.REQUEST_NEW_USER_ID;
@@ -159,6 +210,8 @@ public class Client implements Runnable{
 	public void closeStream(){
 		try {
 			if(s==null)return;
+			udpReceiver.closeStream();
+			udpSender.closeStream();
 			s.close();
 			dis.close();
 			dos.close();

@@ -54,7 +54,7 @@ public class MenuActivity extends Activity {
 	private int startTime;
 
 	private StateWindow stateWindow;
-	private World world;
+	public World world;
 	private ButtonController btnc;
 	private StartMenu startMenu;
 	private GameMenu gameMenu;
@@ -927,5 +927,9 @@ public class MenuActivity extends Activity {
 	public void addForce(int force, int userId) {
 		// TODO Auto-generated method stub
 		world.addForce(force,userId);
+	}
+	public void useItemBattleMan(String strRes) {
+		// TODO Auto-generated method stub
+		world.useItemBattleMan(strRes);
 	}
 }

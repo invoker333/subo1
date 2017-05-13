@@ -17,8 +17,8 @@ public class AnimationGrass extends AnimationMove {
 	private int collisionId;
 	// private float xs;
 	private float xEdgeNew;
-	private float xPro;
-	private float yPro;
+	protected float xPro;
+	protected float yPro;
 	protected ArrayList<Grass> gList;
 
 	float edge, edge2;

@@ -12,10 +12,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
+import android.widget.TextView;
 
 public class BattleActivity extends Activity {
 	protected static final int REFRESH_ROOMSET = 0;
@@ -25,7 +29,7 @@ public class BattleActivity extends Activity {
 	private RoomSetAdapter roomSetAdapter;
 	private UserAdapter userAdapter;
 	private Handler handler;
-	protected int roomId;
+	public  static int roomId;
 	private TabHost th;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,9 @@ public class BattleActivity extends Activity {
 				.setContent(R.id.tab1));
 		th.addTab(th.newTabSpec("tab2").setIndicator("阵营", null)
 				.setContent(R.id.tab2));
+		
+		View v = findViewById(R.id.tab2);
+		v.setAnimation(new TranslateAnimation(-100, 0, 0, 0));
 		
 		MenuActivity.battleActi=this;
 		
@@ -98,7 +105,8 @@ public class BattleActivity extends Activity {
 				// TODO Auto-generated method stub
 				RoomClient room = rcList.get(position);
 				roomId = room.roomId;
-				
+				TextView teamTitle=(TextView) findViewById(R.id.roomNameAndTeamTitle);
+				teamTitle.setText(roomId+"号房间");
 				
 				Client.send(ConsWhenConnecting.REQUEST_THIS_ROOM+roomId);
 				th.setCurrentTab(1);//跳转
@@ -127,7 +135,7 @@ public class BattleActivity extends Activity {
 			UserRoom ur=new UserRoom(strSet[i],strSet[i+1]);
 			userList.add(ur);
 		}
-//		userAdapter.userList=(ArrayList<UserRoom>) userList.clone();
+		userAdapter.userList=(ArrayList<UserRoom>) userList.clone();
 		handler.sendEmptyMessage(REFRESH_THIS_ROOM);
 	}
 }

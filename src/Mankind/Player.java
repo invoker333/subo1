@@ -39,18 +39,17 @@ public class Player extends BattleMan {
     public static float dpy;
    
     
-    private boolean doubleClicked;
-    public static boolean[] downData = new boolean[8];
+   
+    
     Creature controller;
 	public Goal goal;
     
 	private boolean tooLong;
 	
-	Tail footTail;
+
 	
-	private Shader shader;	
     public Player(char mapSign,GrassSet gra, World world,float x,float y) {
-    	super(mapSign, gra, x, y, 0);
+    	super(mapSign, gra, x, y, -333, -333);
     	
     	cloth.setTextureId(TexId.CLOTH);
 		cap.setTextureId(TexId.CAP);
@@ -58,39 +57,20 @@ public class Player extends BattleMan {
     	
     	this.world = world;
     	controller=this;
-    	initEffect(x, y);
         loadSound();
         initView();
-        initVtDestory();
+       
 //        setTextureId(TexId.BUBBLE);
 //        speedMaxBack=10;
 //        		getxSpeedMax();
         initGuideTail(gra);     
         reSetDownDate();
-      
+        attack=World.baseAttack;
         lifeCount=1;
         treadable=false;
     }
-	private void initVtDestory() {
-		// TODO Auto-generated method stub
-		vtDestory=-(float) Math.sqrt(2*getGra().getGrid()*getG());
-		Log.i("vtDestory"+vtDestory);
-//        vtDestory = -(float) Math.sqrt(2 * (getJumpHeight() - getGra().getGrid()) * getgMax()) - 2 * getgMax();
-        E = Math.pow(vtDestory, 2);//�� ���ܹ�ʽΪE=v^2
-	}
-	private void initEffect(float x, float y) {
-		DEATHSPEED=super.DEATHSPEED/2;
-    	
-		
-		shader=new Shader(0.05f, this);
-        
-		pifeng=new Pifeng(this,5);
-		
-        footTail=new Tail(10,TexId.CANDLETAIL);
-        footTail.w=48;
-        
 
-	}
+	
 	public void changeGun(int textureId) {
 		super.changeGun(textureId);
 		gunFruitId=textureId;
@@ -111,17 +91,7 @@ public class Player extends BattleMan {
 		downData[i]=false;
 		}
 	}
-	public void changeToukui(int time) {
-		// TODO Auto-generated method stub
-		this.setToukuiTime(this.getToukuiTime() + time);
-		this.getCap().setTextureId(TexId.TOUKUI);
-	}
-    public void changeGao(int time) {
-		// TODO Auto-generated method stub
-    	  Player.gaoTime += time;
-    	  foot.setTextureId(TexId.GOLDENFOOT);
-    	  foot1.setTextureId(TexId.GOLDENFOOT);
-	}
+
 	public void setEnemySet(EnemySet enemySet){
     	super.setEnemySet(enemySet);
 //    	 ab=new AutoBubble(enemySet,  gra, this);
@@ -335,9 +305,8 @@ public class Player extends BattleMan {
     Tail guideTail;
     Creature guideCre;
   
-   int wudiTimeBorn=60;
-	 public int wudiTime=wudiTimeBorn;// wudi time
-	private Pifeng pifeng;
+
+
 	private boolean isBenti=true;
 	private static int relifeLandId;
 //	 private Pifeng pifeng2;
@@ -345,35 +314,8 @@ public class Player extends BattleMan {
 	 
     public void drawElement(GL10 gl) {
     	if(touched)drawGuideTail(gl);	
-    	if(isDoubleClicked())shader.drawElement(gl);
+    	super.drawElement(gl);
      
-   
-       if(gun!=null)gun.drawElement(gl);
-      
-       
-       if(downData[5]
-//    		   &&gaoTime>0
-    		   ){
-    	   footTail.tringer(x, y-getH());
-    	   footTail.drawElement(gl);
-//    	   footTail.drawScale(gl);
-       }
-       
-       final float alpw=0.5f;// alpha wudi
-       if(wudiTime>0){
-    	   gl.glColor4f(alpw,alpw,alpw,alpw);
-       		super.drawElement(gl);
-       		gl.glColor4f(1,1,1,1);
-       		wudiTime--;
-       }// draw as alpha as wudi
-       else{
-    	   super.drawElement(gl);
-       }
-       
-       if(flyTime>0){
-    	   pifeng.timerTask();
-    	   pifeng.drawElement(gl);
-       }
      
     }
     
@@ -397,33 +339,7 @@ public class Player extends BattleMan {
     	 downData[5]=false;// remove destory jump
     }
     
-    protected void tooDown() {
-    	fallen=true;
-        if (getySpeed() < vtDestory) {
-            int goreId;
-            int x1 = (int) (x / getGra().getGrid());
-            if ((goreId = getGra().map[x1][getMy1()]) == getGra().getZero()) {
-                x1 = getMx1();
-                goreId = getLandId();
-            }
-            if (gaoTime>0&&downData[5]) {
-                boolean destoryed=destory(goreId, x1, getMy1());//���ƻ� Ҫ��Ȼש��᲻��ʧ
-              if(destoryed) {
-            	  setySpeed((float) -Math.sqrt(Math.pow(ySpeed, 2) - E));//��������ʧ
-            	  gaoTime--;
-            	  dropToCheck(goreId);
-              }
-                //p*v^2p*v^2=E��
-            } 
-            else {
-          	  //fog trick lightning
-                getgList().get(goreId).setRgb((float) Math.random(),
-                        (float) Math.random(), (float) Math.random());
-            }
-        } 
-        super.tooDown();
-        
-    }
+   
 
     
 	private void initView() {
@@ -485,11 +401,7 @@ public class Player extends BattleMan {
 //		Log.i("Player.jumpHeight: "+getJumpHeight());
 //		Log.i("Player.ySpeed "+ySpeed);
 	}
-	public void setJumpHeight(int jumpHeight) {
-		super.setJumpHeight(jumpHeight);
-		Log.i("Player.jumpHeight: "+jumpHeight);
-		Log.i("Player.ySpeedMax: "+getySpeedMax());
-	}
+
 
     public void succeed() {
           goal.picked();
@@ -523,24 +435,14 @@ public class Player extends BattleMan {
      	gra.downHoleCheck(x, y);
      	gra.downHoleCheck(x-gra.getGrid(), y);
 	}
-	public void attacked(int attack) {
-		if(wudiTime>0)return;
-    	if(isDead)return;
-    	super.attacked(attack);
-        world.showLifeColumn(this);
-        
-        if (isDead) {
-//        	///duoici
-        }
-        
-//        bloodSecondaryindex=0;
-    }
+	
 	
 	public Player clone(){
 		Player p=new Player(mapSign, gra, world, x, y){
 			 public void sendBattleMessage() {}//cloner dong't send message
 			 public void playSound(){};
 		};
+		p.downData=this.downData;//can be controlled same time
 		p.setEnemySet(enemySet);
 		p.setFriendSet(friendSet);
 		p.goal=goal;
@@ -580,27 +482,16 @@ public class Player extends BattleMan {
 		}
 		super.drawDeath(gl);
 	}
+	
 	public void reLife(int time){
-		relifeJust();
-		
-		lifeCount++;
-		wudiTime=time;
-//		setGotGoal(false);
+		super.reLife();
 		
 		Grass footGrass=gList.get(relifeLandId);
 		setPosition(footGrass.data[0]+gra.getGrid()/2, footGrass.data[3]+gethEdge()*1.2f);
-		xSpeed=0;
+		lifeCount++;
 		world.relife();
 	}
-	private void relifeJust() {
-		isDead=false;
-		setLife(getLifeMax());
-		alpha=1;
-		angle=0;
-	}
-	public void reLife(){
-		reLife(wudiTimeBorn);
-	}
+
     public void die() {
     	if(isDead)return;
     	
@@ -711,7 +602,7 @@ public class Player extends BattleMan {
 //        if (blade != null) blade.resume();
     }
 
-    public float growSpeed;
+  
 
 //    boolean tread;// ��
 	
@@ -871,66 +762,15 @@ public class Player extends BattleMan {
 	 }
 	
 
-    boolean destory(int grassId, int x1, int my1) {
-    	Grass g=gra.getgList().get(grassId);
-    	if(!g.canBeBreak){
-    		return false;
-    	}
-        gra.particleCheck(grassId, 5, this);
-        getGra().toNull(grassId, x1, my1);
-        playSound(destorySound);
-        return true;
-    }
 
-    float vtDestory;//�ƻ�����С�ٶ�
-    private double E;//�ƻ�����С����
+ 
 	
 	private Creature treader;
 	private float mh1;
 	private float mh2;
-	private void dropToCheck(int goreId) {
-		// TODO Auto-generated method stub
-		Grass gg=gList.get(goreId);
-		int dir=x<gg.x?1:-1;
-		
-		double v = Math.sqrt(Math.abs(2*1*(x-gg.x)));
-		xSpeed+=dir*v;
-		
-	}
-	private boolean crossToCheck(int goreId) {
-		// TODO Auto-generated method stub
-		Grass gg=gList.get(goreId);
-		int dir=x>gg.x?1:-1;
 
-		float max=gra.getGrid()/2+wEdge;
-		float dw = dir*max-(x-gg.x)-xSpeed;// xSpeed 1 is more to avoid move inside grass
-		
-		float most = gra.getGrid()/4;
-		if(Math.abs(dw)>most)return false;
-		
-		setxPro(getxPro() + dw);
-		return true;
-	}
-    protected void tooHigh() {
-        int goreId;
-        int x1 = (int) (x / getGra().getGrid());
-        if ((goreId = getGra().map[x1][getMy1()]) == getGra().getZero()) {
-            x1 = getMx1();
-            goreId = getTopId();
-            if(crossToCheck(goreId))return;
-        }
-
-        if (toukuiTime > 0) destory(goreId, x1, getMy1());//���ƻ� Ҫ��Ȼש��᲻��ʧ
-         {
-//            getGra().up(goreId, xSpeed,ySpeed);
-        	 getGra().up(goreId, 0,ySpeed);
-            goreEnemyCheck();
-//            goreCoinCheck();
-        }
-
-        super.tooHigh();
-//		if(getVt()>-vtDestory)
-    }
+	
+   
 
 
     public void changeState(int step) {
@@ -1043,9 +883,6 @@ public class Player extends BattleMan {
         mh2 = Render.height * pyU;
     }
 
-    int death;
-    private int brake;
-    private int destorySound;
 	public int bloodSecondaryindex;
 	public int secondaryLife=getLifeMax();
 	
@@ -1054,37 +891,15 @@ public class Player extends BattleMan {
 
 	public  static int gunFruitId=-1;
 	public  static int bladeFruitId=-1;
-    private static int toukuiTime;
-    private static int gaoTime;
-    public static int flyTime;
+    
 	
 	public boolean touched;
 	public static float curJumpProgress;
 	public static int jumpProgress=100;
 
-    private void goreEnemyCheck() {
-        Creature e;
-        AnimationMove goreAni = gra.goreAni;
-        for (int i = 0; i < enemyList.size(); i++) {
-            e = enemyList.get(i);
-            if(!e.isDead)
-            if (Math.abs(e.x-goreAni.x)<e.w+goreAni.w
-            		&&Math.abs(e.y-goreAni.y)<e.h+goreAni.h) {
-                // e.setVt(e.getVt() + ySpe/20f);
-                e.setxSpeed(e.getxSpeed() + goreAni.getxSpeed());
-                e.setySpeed(e.getySpeed() + goreAni.getySpeed());
-                e.attacked((int) (10 * goreAni.getySpeed()));
-            }
+   
 
-        }
-    }
 
-    public void loadSound() {
-        brake = MusicId.brake01;
-        setSoundId(MusicId.walker);
-        death = MusicId.gameover;
-        destorySound = MusicId.wood2;
-    }
 
 
     public void increaseScoreBy(int score) {
@@ -1100,19 +915,6 @@ public class Player extends BattleMan {
         this.isDead = playerDead;
     }
 
-    public int getToukuiTime() {
-        return toukuiTime;
-    }
-
-    public void setToukuiTime(int toukuiTime) {
-        Player.toukuiTime = toukuiTime;
-    }
-
-    public int getGaoTime() {
-        return gaoTime;
-    }
-
- 
 
 	
 	public void CircleDown(float rad) {
@@ -1158,32 +960,19 @@ public class Player extends BattleMan {
 	public void increaseChanceBy(int ch){
 		world.increaseChance(ch);
 	}
-	public void addFlyTime(int time) {
-		// TODO Auto-generated method stub
-		flyTime+=time;
-		pifeng.setPosition(x, y);
-	}
+
 	public void doubleDownCheck() {
 		if(true)return;
 		
 //		if(downIndex<20)setDoubleClicked(true);
 //		downIndex=0;
 	}
-	public void StopDoubleClick() {
-		// TODO Auto-generated method stub
-		setDoubleClicked(false);
-	}
-	public boolean isDoubleClicked() {
-		return doubleClicked;
-	}
-	public void setDoubleClicked(boolean doubleClicked) {
-		this.doubleClicked = doubleClicked;
-		shader.backToMaster();
-	}
-	public void incWudiTime(int time) {
-		// TODO Auto-generated method stub
-		if((this.wudiTime+=time)>time) this.wudiTime=time;
-		
-	}
+	public void attacked(int attack) {
+		if(wudiTime>0)return;
+    	if(isDead)return;
+    	super.attacked(attack);
+        world.showLifeColumn(this);
+    }
+	public void useItemOnline(String itemName) {}
 	
 }

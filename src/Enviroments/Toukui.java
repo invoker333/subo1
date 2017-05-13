@@ -2,7 +2,9 @@ package Enviroments;
 
 import java.util.ArrayList;
 
-import Mankind.Player;
+
+
+import Mankind.BattleMan;
 
 import com.mingli.toms.MusicId;
 
@@ -24,7 +26,7 @@ public class Toukui extends ShakeFruit{
 		loadTexture(TexId.TOUKUI);
 		loadSound(MusicId.creeper4);
 	}
-	public void use(Player player,ArrayList<Fruit> pickedList){
+	public void use(BattleMan player,ArrayList<Fruit> pickedList){
 		if(player.getToukuiTime()>0) {
 		} else {
 			player.changeToukui(time);
@@ -50,11 +52,11 @@ class Gao extends ShakeFruit{
 		loadTexture(TexId.GAO);
 		loadSound(MusicId.gore);
 	}
-	public void use(Player player,ArrayList<Fruit> pickedList){
+	public void use(BattleMan player,ArrayList<Fruit> pickedList){
 		player.changeGao(time);
 	}
 //	Tail footTail;
-	public void effectCheck(Player p, ArrayList<Fruit> pickedList){
+	public void effectCheck(BattleMan p, ArrayList<Fruit> pickedList){
 //		super.effectCheck(p,pickedList);
 	}
 }
@@ -73,10 +75,10 @@ class FruitFly extends ShakeFruit{
 		loadTexture(TexId.FRUITFLY);
 		loadSound(MusicId.land);
 	}
-	public void use(Player player,ArrayList<Fruit> pickedList){
+	public void use(BattleMan player,ArrayList<Fruit> pickedList){
 		player.addFlyTime(time);
 	}
-	public void effectCheck(Player p, ArrayList<Fruit> pickedList){
+	public void effectCheck(BattleMan p, ArrayList<Fruit> pickedList){
 //		super.effectCheck(p,pickedList);
 	}
 }
@@ -122,7 +124,7 @@ class FruitFly extends ShakeFruit{
 		setSoundId(MusicId.light);
 		loadTexture(TexId.ZAN);
 	}
-	public void use(Player player,ArrayList<Fruit> pickedList){
+	public void use(BattleMan player,ArrayList<Fruit> pickedList){
 		final int max=200;
 		player.incWudiTime(time);
 		doubleCost(max);
@@ -151,7 +153,7 @@ class FruitFly extends ShakeFruit{
 			setSoundId(MusicId.light);
 			loadTexture(TexId.FENSHEN);
 		}
-		public void use(Player player,ArrayList<Fruit> pickedList){
+		public void use(BattleMan player,ArrayList<Fruit> pickedList){
 			final int max=200;
 			player.fenshen(count);
 			doubleCost(max);
