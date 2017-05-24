@@ -24,15 +24,16 @@ public class Client implements Runnable{
 	private MenuActivity acti;
 	private Thread updThread;
 	Runnable udpRunnable;
-	UdpReceiver udpReceiver;
 	static UdpSender udpSender;
 	public Client(MenuActivity acti){
 		this.acti = acti;
 	}
 	private void setUdpAddressPort(String address, final int port) {
 		// TODO Auto-generated method stub
-		udpReceiver=new UdpReceiver(){
-			protected void handleDatagramPacket(String str) {
+		
+		
+		udpSender=new UdpSender(){
+			 protected void handleDatagramPacket(String str) {
 				Log.i(str);
 				if(str.startsWith(ConsWhenConnecting.THIS_IS_BATTLE_MESSAGE)) {
 					String strRes=str.substring(ConsWhenConnecting.THIS_IS_BATTLE_MESSAGE.length());
@@ -64,22 +65,8 @@ public class Client implements Runnable{
 					}
 			}
 		};
-		
-		udpSender=new UdpSender();
 		udpSender.connect(address, port);
-		
-		udpRunnable=new Runnable() {
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				try {
-					udpReceiver.receiveAlways(new DatagramSocket(port));
-				} catch (SocketException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		};
+		udpSender.startReceive(udpSender.dsSend);
 	}
 	public void connect(){
 		while(!connected){
@@ -87,7 +74,10 @@ public class Client implements Runnable{
 			if(!MenuActivity.isNetworkAvailable(acti))continue;
 			Log.i("尝试连接网络");
 			try {
-				String address="192.168.4.243";
+//				String address="192.168.4.243";
+//				String address="192.168.8.129";
+				String address="118.89.187.14";//tencent
+//				String address="192.168.47.157";
 				int port=8888;
 //				s=new Socket("127.0.0.1",8888);
 //				s=new Socket("192.168.137.1",8888);//祖传wifi
@@ -210,7 +200,6 @@ public class Client implements Runnable{
 	public void closeStream(){
 		try {
 			if(s==null)return;
-			udpReceiver.closeStream();
 			udpSender.closeStream();
 			s.close();
 			dis.close();

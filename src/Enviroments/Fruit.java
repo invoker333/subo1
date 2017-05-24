@@ -62,7 +62,8 @@ public class Fruit extends Animation{
 		else changeState(100);
 	}
 
-	public void effectCheck(BattleMan p,ArrayList<Fruit>pickedList) {
+	public void effectCheck(BattleMan p,ArrayList<Fruit>effectedList) {
+		effectedList.remove(this);
 	}
 	public float getBlue() {
 		return blue;

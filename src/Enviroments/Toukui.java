@@ -55,10 +55,6 @@ class Gao extends ShakeFruit{
 	public void use(BattleMan player,ArrayList<Fruit> pickedList){
 		player.changeGao(time);
 	}
-//	Tail footTail;
-	public void effectCheck(BattleMan p, ArrayList<Fruit> pickedList){
-//		super.effectCheck(p,pickedList);
-	}
 }
 class FruitFly extends ShakeFruit{
 
@@ -78,9 +74,6 @@ class FruitFly extends ShakeFruit{
 	public void use(BattleMan player,ArrayList<Fruit> pickedList){
 		player.addFlyTime(time);
 	}
-	public void effectCheck(BattleMan p, ArrayList<Fruit> pickedList){
-//		super.effectCheck(p,pickedList);
-	}
 }
 //class FruitAuto extends ShakeFruit{
 //
@@ -97,9 +90,6 @@ class FruitFly extends ShakeFruit{
 //	}
 //	public void use(Player player,ArrayList<Fruit> pickedList){
 //		player.autoBulletTime+=time;
-//	}
-//	public void effectCheck(Player p, ArrayList<Fruit> pickedList){
-////		super.effectCheck(p,pickedList);
 //	}
 //}
 

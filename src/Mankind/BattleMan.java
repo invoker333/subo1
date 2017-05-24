@@ -495,7 +495,8 @@ public class BattleMan extends JointCreature{
 		}else this.yPro=y;
 
 		float dxAbs = Math.abs(dx);
-		if(dxAbs<5){// inner 5 wucha is pommit yunxude
+		if(dxAbs<10){// inner 5 wucha is pommit yunxude
+			stopMove();//must
 		}else 
 		if(dxAbs<128){
 //			if(Math.abs(dxSpeed)>5){
