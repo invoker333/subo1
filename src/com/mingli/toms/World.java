@@ -334,7 +334,7 @@ public class World extends GLSurfaceView implements Runnable {
 		
 		
 		cs = new CoinSet(player, gra.getCoinList(), gra, this);
-		fruitSet = new FruitSet(player, gra.getFruitList(), gra);
+		fruitSet = new FruitSet(player, gra.getFruitList(), this, gra);
 		
 			
 			ArrayList<Creature>cList=new ArrayList<Creature>();
@@ -435,7 +435,9 @@ public class World extends GLSurfaceView implements Runnable {
 				tringerGuidePost();
 //				MenuActivity.showDialog(null, "欢迎来到"+mapName, R.drawable.cup);
 			}
-			if(i==2)MenuActivity.showDialog("厉害了我的哥", "欢迎来到火星猎人的世界第"+i+"关", R.drawable.zan);
+			if(mapString != null || mapFile != null || mapCharSet != null)return;
+//			if(i==2)MenuActivity.showDialog("厉害了我的哥", "欢迎来到火星猎人的世界第"+i+"关", R.drawable.zan);
+			if(i==2)MenuActivity.showDialog(acti.userName, "哈哈！坏蛋看到我都得逃跑！", R.drawable.cap);
 			else if(i==Map.max+1){
 				MenuActivity.showDialog("厉害了我的哥", "经历了各种有趣的难关，终于到达这里，旅程也算告一段落，但是精彩并没有结束！还有各种有意思的地方没有去。更多精彩尽在“在线关卡”，各种新奇关卡，等你来闯关！", R.drawable.zan);
 				gameTime=0;

@@ -62,8 +62,8 @@ public class ButtonController {
 			attack = (View) buttonView.findViewById(R.id.attack);
 			circle = (Circle) buttonView.findViewById(R.id.circle1);
 			
-			if(Player.bladeFruitId==-1)attack.setVisibility(View.INVISIBLE);
-			if(Player.gunFruitId==-1)circle.setVisibility(View.INVISIBLE);
+			if(Player.extendsBladeFruitId==-1)attack.setVisibility(View.INVISIBLE);
+			if(Player.extendsGunFruitId==-1)circle.setVisibility(View.INVISIBLE);
 			
 			circle.player = world.player;
 			circleSurface = (CircleSurface) buttonView

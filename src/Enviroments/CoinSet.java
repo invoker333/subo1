@@ -13,12 +13,10 @@ public class CoinSet extends FruitSet {
 
 	public CoinSet(Player player, ArrayList<Fruit> fruitList, GrassSet gs,
 			World world) {
-		super(player, fruitList, gs);
+		super(player, fruitList, world, gs);
 		// TODO Auto-generated constructor stub
-		this.world = world;
 	}
 
-	private World world;
 
 	protected void picked(Fruit coin) {
 		world.increaseCoin(((Coin) coin).getCoinCount());

@@ -134,6 +134,11 @@ public class BattleMan extends JointCreature{
 		super(bi, gra, x, y);
 		this.userId = userId;
 		// TODO Auto-generated constructor stub
+		
+		cloth.setTextureId(TexId.CLOTH);
+		cap.setTextureId(TexId.CAP);
+		expression.setTextureId(TexId.EXPRESSION);
+		
 		treadable=false;
 		attack=0;
 		this.force_in_battle = force_in_battle;
@@ -241,7 +246,8 @@ public class BattleMan extends JointCreature{
 		int dir=x<gg.x?1:-1;
 		
 		double v = Math.sqrt(Math.abs(2*1*(x-gg.x)));
-		xSpeed+=dir*v;
+		float speed = (float) (dir*v);
+		if(Math.abs(xSpeed)<speed)xSpeed=speed;
 		
 	}
  
@@ -295,7 +301,7 @@ public class BattleMan extends JointCreature{
 			else if(textureId== TexId.MISSILE)
 				gun=new MissileGun(getEnemySet(),  gra, this, 4);
 			else if(textureId== TexId.HOOKGUN)
-				gun=new HookGun(getEnemySet(),  gra, this, 5);
+				gun=new HookGun(getEnemySet(),  gra, this, 1);
 			else if(textureId== TexId.PUTONGQIANG)
 				gun=new Gun(getEnemySet(),  gra, this, 10);
 			else if(textureId== TexId.GUANGDANQIANG)
@@ -539,7 +545,7 @@ public class BattleMan extends JointCreature{
 	}
 	public void sendUseitemMessage(Fruit f) {
 		// TODO Auto-generated method stub
-		Client.send(ConsWhenConnecting.USE_ITEM+userId+" "+f.mapSign);
+		Client.send(ConsWhenConnecting.USE_ITEM+MenuActivity.userId+" "+f.mapSign);
 	}
 	
 }

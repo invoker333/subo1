@@ -4,6 +4,7 @@ package aid;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.Socket;
 import java.net.SocketException;
@@ -22,8 +23,6 @@ public class Client implements Runnable{
 	boolean connected;
 	Thread tcpThread;
 	private MenuActivity acti;
-	private Thread updThread;
-	Runnable udpRunnable;
 	static UdpSender udpSender;
 	public Client(MenuActivity acti){
 		this.acti = acti;
@@ -33,8 +32,8 @@ public class Client implements Runnable{
 		
 		
 		udpSender=new UdpSender(){
-			 protected void handleDatagramPacket(String str) {
-				Log.i(str);
+			 protected void handleDatagramPacket(DatagramPacket dp,String str) {
+				 if(Math.random()>0.96)Log.i(str);
 				if(str.startsWith(ConsWhenConnecting.THIS_IS_BATTLE_MESSAGE)) {
 					String strRes=str.substring(ConsWhenConnecting.THIS_IS_BATTLE_MESSAGE.length());
 					acti.battleAction(strRes);
@@ -66,7 +65,9 @@ public class Client implements Runnable{
 			}
 		};
 		udpSender.connect(address, port);
+		Log.i("udpSender.connect(address, port);");
 		udpSender.startReceive(udpSender.dsSend);
+		Log.i("	udpSender.startReceive(udpSender.dsSend);");
 	}
 	public void connect(){
 		while(!connected){
@@ -77,8 +78,9 @@ public class Client implements Runnable{
 //				String address="192.168.4.243";
 //				String address="192.168.8.129";
 				String address="118.89.187.14";//tencent
+//				String address="192.168.13.102";//
 //				String address="192.168.47.157";
-				int port=8888;
+				
 //				s=new Socket("127.0.0.1",8888);
 //				s=new Socket("192.168.137.1",8888);//祖传wifi
 //				s=new Socket("192.168.25.123",8888);
@@ -90,7 +92,7 @@ public class Client implements Runnable{
 //				s=new Socket("192.168.47.73",8888);
 //				s=new Socket("23.105.206.67",8888);//雷志豪
 //				s=new Socket("192.168.65.146",8888);
-				s=new Socket(address,port);
+				s=new Socket(address,ConsWhenConnecting.tcpPort);
 				
 				if(s!=null){
 					Log.i("已连接","");
@@ -98,10 +100,9 @@ public class Client implements Runnable{
 					dis=new DataInputStream(s.getInputStream());
 					dos=new DataOutputStream(s.getOutputStream());
 					send(ConsWhenConnecting.THIS_IS_USER_ID_AND_NAME+acti.userId+" "+acti.userName);//sendUserNameFirst
-					setUdpAddressPort(address,port);
+					setUdpAddressPort(address,ConsWhenConnecting.udpPort);
 					
 					(tcpThread=new Thread(this)).start();
-					(updThread=new Thread(udpRunnable)).start();
 				}
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block

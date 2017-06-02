@@ -22,4 +22,7 @@ public class ConsWhenConnecting {
 	public static final String THIS_ID_IS_BLUE_TEAM = "THIS_ID_IS_BLUE_TEAM";
 	public static final String THIS_ID_IS_RED_TEAM = "THIS_ID_IS_RED_TEAM";
 	public static final String USE_ITEM = "USE_ITEM";
+	
+	public static final int tcpPort=8888;
+	public static final int udpPort=9999;
 }

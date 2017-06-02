@@ -9,6 +9,7 @@ import Mankind.BattleMan;
 import Mankind.Player;
 import aid.Log;
 
+import com.mingli.toms.MenuActivity;
 import com.mingli.toms.Music;
 import com.mingli.toms.R;
 import com.mingli.toms.World;
@@ -30,12 +31,14 @@ public class FruitSet extends Set {
 	protected float COUNT;
 	public static ArrayList<Fruit> shopList;
 	public static ArrayList<Fruit> pickedList = new ArrayList<Fruit>();
-	private  ChanceFruit chanceFruit;
+//	private  ChanceFruit chanceFruit;
+	protected World world;
 
-	public FruitSet(Player player, ArrayList<Fruit> fruitList, GrassSet gs) {// 跳台起始x值，长度，起始
+	public FruitSet(Player player, ArrayList<Fruit> fruitList, World world,GrassSet gs) {// 跳台起始x值，长度，起始
 		// y值
 		this.player = player;
 		this.fruitList = fruitList;
+		this.world = world;
 		this.gs = gs;
 		COUNT = fruitList.size();
 
@@ -44,8 +47,17 @@ public class FruitSet extends Set {
 		// checkH=player.getH()+fruitList.get(0).getH();//设置碰撞宽度
 		// initItemList();
 		initShopList();
-		if (World.curMapIndex < 10)
+		if (MenuActivity.maxMapId < 10&&world.mapString==null){
 			checkShopList();
+		}
+		if(world.mapString!=null){
+			for(int i=0;i<shopList.size();i++){
+				if(shopList.get(i).name.equals("分身果")){
+					shopList.remove(i);
+					break;
+				}
+			}
+		}
 	}
 
 	private void checkShopList() {

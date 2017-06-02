@@ -1,5 +1,7 @@
 ﻿package Mankind;
 
+import javax.microedition.khronos.opengles.GL10;
+
 import Enviroments.GrassSet;
 import android.view.Gravity;
 
@@ -13,6 +15,7 @@ public class BossRunner extends JointCreature{
 	private Creature chaser;
 	String []strSet={
 	"嘿嘿！火星可不是一般人能来的！"
+	,"追得上我你就来吧！"
 //	,"我永远效忠于伟大的“冰棍”首领！",
 //	"我们的计划是冰冻整个火星！",	
 //	"所有反抗者都会变成冰渣！哈哈哈！",
@@ -27,10 +30,18 @@ public class BossRunner extends JointCreature{
 		this.world = world;
 		if(world!=null)world.storySpeaker=this;
 		attack=0;
+//		 setLifeMax(World.baseAttack*10);
+		setJumpHeight(128);
 		// TODO Auto-generated constructor stub
 	}	
+	public void die(){
+		super.die();
+		if(chaser!=null&&chaser instanceof Player)((Player)chaser).succeed();
+	}
 	protected void tooHigh(){}
 	 public void randomAction(){
+		
+		
 		 if(y<0)jump();
 		 int direction1=Gravity.CENTER_HORIZONTAL;
 		 int direction2;
@@ -69,9 +80,9 @@ public class BossRunner extends JointCreature{
 	 public void setEnemySet(EnemySet es){
 		 super.setEnemySet(es);
 		 chaser=es.player;
-		 setLifeMax(World.baseAttack*10);
-//			setxSpeedMax(chaser.getxSpeedMax()*2);
-//			setxSpeedMin(-chaser.getxSpeedMax()*2);
+		
+			setxSpeedMax(chaser.getxSpeedMax()*1.5f);
+			setxSpeedMin(-chaser.getxSpeedMax()*1.5f);
 	 }
 	 protected void tooLeft(){
 		 super.tooLeft();
@@ -81,4 +92,6 @@ public class BossRunner extends JointCreature{
 		 super.tooRight();
 		 jump();
 	 }
+	  protected void speedBackTooRight() {}
+	  protected void speedBackTooLeft() {}
 }

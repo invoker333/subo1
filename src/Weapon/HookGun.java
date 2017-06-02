@@ -13,7 +13,7 @@ public class HookGun extends Gun {
 
 	public HookGun(EnemySet es, GrassSet gra, Creature c, int bCount) {
 		super(es,  gra, c, bCount);
-		cd=3*super.cd;
+		cd=9*super.cd;
 		// TODO Auto-generated constructor stub
 	}
 	protected void setBullet(int bCount) {

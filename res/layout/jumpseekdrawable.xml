@@ -3,26 +3,28 @@
 
     <item android:id="@android:id/background">
 
-        <shape>
-            <solid android:color="#88ddddff" />
+         <shape>
+            <solid android:color="#00000000" />
+             <!-- <solid android:color="#88ddddff" /> -->
             <stroke
                 android:width="20dp"
                 android:color="#00555555" />
 
             <corners android:radius="5dp" />
-        </shape>
+        </shape> 
     </item>
 
     <item android:id="@android:id/secondaryProgress">
-
-        <clip>
+  		<clip android:drawable="@drawable/touming" />
+       <!--  <clip>
 
             <shape>
 
-                <!-- 描述：描边 -->
+                描述：描边
 
                 <stroke
                     android:width="20dp"
+                   android:color="#00000000" />
                     android:color="#00555555" />
 
                 <corners android:radius="5dip" />
@@ -34,7 +36,7 @@
                     android:endColor="#ffaaaaaa"
                     android:startColor="#ffaaaaaa" />
             </shape>
-        </clip>
+        </clip> -->
     </item>
 
     <item android:id="@android:id/progress">

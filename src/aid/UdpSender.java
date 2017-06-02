@@ -11,12 +11,13 @@ import java.net.SocketException;
 public class UdpSender implements Runnable{
 	private String str="";
 	DatagramSocket dsSend;
-	private DatagramSocket dsReceive;
-	private DatagramPacket datagramPacket;
+	public DatagramSocket dsReceive;
+	private DatagramPacket dpSend;
 	
 	private String strReceive;
 	private boolean connected;
 
+	
 	public void connect(String address,int port) {
 		InetSocketAddress inetSocketAddress = new InetSocketAddress(
 				address, port);
@@ -24,20 +25,30 @@ public class UdpSender implements Runnable{
 		// 定义一个UDP的数据发送包来发送数据，inetSocketAddress表示要接收的地址
 		try {
 			dsSend = new DatagramSocket();
-			datagramPacket = new DatagramPacket(str.getBytes(),
-					str.getBytes().length, inetSocketAddress);
-			
+			dpSend = new DatagramPacket(str.getBytes(),
+					str.getBytes().length,inetSocketAddress);
 
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	public void sendReply(DatagramPacket dp, String str) {
+		dp.setData(str.getBytes());
+		try {
+			
+			dsReceive.send(dp);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public void send(String str) {
-		datagramPacket.setData(str.getBytes());
+		dpSend.setData(str.getBytes());
 		try {
-			dsSend.send(datagramPacket);
+			dsSend.send(dpSend);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,13 +83,16 @@ public class UdpSender implements Runnable{
 	            //定义将UDP的数据包接收到什么地方  
 	            byte[] buf = new byte[1024];  
 	            //定义UDP的数据接收包  
+	            
+	            
 	            DatagramPacket dp = new DatagramPacket(buf, buf.length);  
-	           dp.getSocketAddress();
 	            while (connected) {  
 	                //接收数据包  
-	                ds.receive(dp);  
+	                ds.
+	                receive(dp);  
 	                strReceive = new String(dp.getData(), 0, dp.getLength());  
-	                handleDatagramPacket(strReceive);  
+	                
+	                handleDatagramPacket(dp,strReceive);  
 	            }  
 	        } catch (SocketException e) {  
 	            e.printStackTrace();  
@@ -90,8 +104,7 @@ public class UdpSender implements Runnable{
 	                ds.close();  
 	        }  
 	 }
-	 protected void handleDatagramPacket(String strReceive2) {
-		
+	 protected void handleDatagramPacket(DatagramPacket dp, String strReceive2) {
 		System.out.println("length:" + strReceive2.length()+ "->" + strReceive);
 	}
 	@Override

@@ -8,40 +8,40 @@ Element.AnimationGrass:
     int xCheckId
     int yCheckId
     125:126:protected void downCheck1(int,int)
-    233:239:protected void jumpCheck()
-    268:274:protected void landCheck()
-    347:350:private void stand(float)
-    353:357:protected void fallInBend()
-    388:389:public void setgList(java.util.ArrayList)
-    408:408:public int getCollisionId()
-    417:417:public float getwRate()
-    452:453:public void setMx1(int)
-    460:461:public void setMy1(int)
+    241:247:protected void jumpCheck()
+    276:282:protected void landCheck()
+    355:358:private void stand(float)
+    361:365:protected void fallInBend()
+    396:397:public void setgList(java.util.ArrayList)
+    416:416:public int getCollisionId()
+    425:425:public float getwRate()
+    460:461:public void setMx1(int)
+    468:469:public void setMy1(int)
 Element.AnimationMove:
-    26:27:public void springCheck(Element.AnimationMove,int)
-    63:69:public void masterCheck(Element.AnimationMove,float,float,float)
-    71:76:public void earthSunCheck(Element.AnimationMove,float,float,float)
-    78:80:public void earthSunCheck2(Element.AnimationMove,float,float,float)
-    82:84:public void springCheck2(Element.AnimationMove,float,float,float)
-    86:91:public void pushCheck(Element.AnimationMove,float,float,float)
-    121:130:private void pushACheck(Element.AnimationMove,float,float,float)
-    139:143:public void xspringCheck(Element.AnimationMove,float,float,float)
-    170:174:public void ySpringCheck(Element.AnimationMove,float,float,float)
+    24:25:public void springCheck(Element.AnimationMove,int)
+    61:67:public void masterCheck(Element.AnimationMove,float,float,float)
+    69:74:public void earthSunCheck(Element.AnimationMove,float,float,float)
+    76:78:public void earthSunCheck2(Element.AnimationMove,float,float,float)
+    80:82:public void springCheck2(Element.AnimationMove,float,float,float)
+    84:89:public void pushCheck(Element.AnimationMove,float,float,float)
+    119:128:private void pushACheck(Element.AnimationMove,float,float,float)
+    137:141:public void xspringCheck(Element.AnimationMove,float,float,float)
+    168:172:public void ySpringCheck(Element.AnimationMove,float,float,float)
 Element.BackGroundRoll
 Element.BloodSet:
-    31:31:public void resume()
-    46:55:public void tringerUp(float,float,float,float,int)
-    73:82:public void tringerDirection(float,float,float,float,int)
-    84:104:public void tringerGod(int,float,float,int)
+    30:30:public void resume()
+    45:54:public void tringerUp(float,float,float,float,int)
+    72:81:public void tringerDirection(float,float,float,float,int)
+    83:103:public void tringerGod(int,float,float,int)
 Element.BoomSet:
     17:20:public BoomSet(int,int)
     22:22:public void resume()
 Element.Bubble:
-    116:118:void tringerExplode(float,float)
+    113:115:void tringerExplode(float,float)
 Element.BubbleSet:
-    49:61:public void tringerExplode(int,float,float,int)
-    90:90:public void pause()
-    93:93:public void resume()
+    46:58:public void tringerExplode(int,float,float,int)
+    87:87:public void pause()
+    90:90:public void resume()
 Element.Draw:
     private boolean living
     20:20:public void resume()
@@ -50,98 +50,102 @@ Element.Draw:
     53:53:public boolean isLiving()
     56:57:public void setLiving(boolean)
 Element.Fire:
-    106:107:public void tringer(double,double)
+    102:103:public void tringer(double,double)
 Element.FireSet:
-    68:69:public void tringerExplode(int,float,float,int)
+    64:65:public void tringerExplode(int,float,float,int)
 Element.LightSpotSet:
     31:31:public void resume()
     49:52:public void tringerInColor(float,float)
 Element.Pifeng:
     28:29:public void timerTask(int,float,float)
 Enviroments.Coin:
-    29:30:public void setCoinCount(int)
+    28:29:public void setCoinCount(int)
+Enviroments.Fenshen:
+    private int time
 Enviroments.Fruit:
-    64:66:void animation()
-    92:93:public void setAlpha(float)
+    61:63:void animation()
+    90:91:public void setAlpha(float)
 Enviroments.FruitSet:
-    private Enviroments.ChanceFruit chanceFruit
-    236:244:private void gunLoseCheck(Enviroments.Fruit)
-    280:286:public void resume()
+    250:258:private void gunLoseCheck(Enviroments.Fruit)
+    294:300:public void resume()
+Enviroments.Grass:
+    79:79:public boolean isIsburrow()
 Enviroments.GrassSet:
-    public Enviroments.Grass[][] grassMap
-    325:335:private void newSpide3(float,char,int,int)
-    467:473:public void run1()
-    509:509:public int getGrassId()
-    518:519:public void setSpeedBack(float)
-    524:525:public void disappear(int)
-    530:531:public void setgList(java.util.ArrayList)
-    538:539:public void setGrid(float)
-    546:547:public void setMapWidth(int)
-    552:553:public void setMapHeight(int)
-    558:559:public void setCoinList(java.util.ArrayList)
-    566:567:public void setEnemyList(java.util.ArrayList)
-    576:577:public void setGoal(Enviroments.Goal)
-    582:583:public void setFruitList(java.util.ArrayList)
-    595:596:public void setViewGrid(float)
-    619:620:public void setEmplacementList(java.util.ArrayList)
-    632:632:public Enviroments.Grass getFromXY(int,int)
+    373:383:private void newSpide3(float,char,int,int)
+    493:499:public void run1()
+    535:535:public int getGrassId()
+    544:545:public void setSpeedBack(float)
+    550:551:public void disappear(int)
+    556:557:public void setgList(java.util.ArrayList)
+    564:565:public void setGrid(float)
+    572:573:public void setMapWidth(int)
+    578:579:public void setMapHeight(int)
+    584:585:public void setCoinList(java.util.ArrayList)
+    592:593:public void setEnemyList(java.util.ArrayList)
+    602:603:public void setGoal(Enviroments.Goal)
+    608:609:public void setFruitList(java.util.ArrayList)
+    621:622:public void setViewGrid(float)
+    645:646:public void setEmplacementList(java.util.ArrayList)
+    659:659:public Enviroments.Grass getFromXY(int,int)
+Enviroments.sizeFruit:
+    31:32:public boolean loadAble(Mankind.Player)
+Mankind.BattleMan:
+    protected static final int _4
+    int battleId
+    70:71:public void StopDoubleClick()
+    240:240:public int getGaoTime()
 Mankind.Creature:
-    351:352:void setY(float)
-    392:398:public void resetSpirit()
-    438:438:public boolean isAttackAble()
-    442:443:public void setAttackAble(boolean)
-    446:446:public boolean isMoving()
-    450:451:public void setMoving(boolean)
-    469:470:public void setAniStep2(float[])
-    473:473:public int getJumpHeight()
-    502:503:public void setJumpAble(boolean)
-    506:506:public float getAf()
-    522:522:public float getAmMax()
-    526:527:public void setAmMax(float)
-    534:535:public void setAgoMax(float[])
-    543:543:public float getAmLand()
-    547:548:public void setAmLand(float)
-    555:556:public void setGra(Enviroments.GrassSet)
-    575:576:public void setAlpha(float)
-    627:628:public void setySpeedMax(float)
-Mankind.Damage
+    347:348:void setY(float)
+    388:394:public void resetSpirit()
+    397:397:public float getAm()
+    434:434:public boolean isAttackAble()
+    438:439:public void setAttackAble(boolean)
+    457:458:public void setAniStep2(float[])
+    461:461:public int getJumpHeight()
+    492:493:public void setJumpAble(boolean)
+    496:496:public float getAf()
+    512:512:public float getAmMax()
+    516:517:public void setAmMax(float)
+    524:525:public void setAgoMax(float[])
+    533:533:public float getAmLand()
+    537:538:public void setAmLand(float)
+    545:546:public void setGra(Enviroments.GrassSet)
+    565:566:public void setAlpha(float)
+    617:618:public void setySpeedMax(float)
+    638:638:public Mankind.EnemySet getFriendSet()
 Mankind.EnemySet:
     private static final int _256
-    81:84:public void resume()
-    87:90:public void pause()
-    253:255:public void resetSpirit()
-    292:292:public void removeEnemy()
-    295:295:public boolean isCHASE_MODEL()
-    307:309:public void addEmplacement(Mankind.Emplacement)
+    67:70:public void resume()
+    73:76:public void pause()
+    239:241:public void resetSpirit()
+    278:278:public void removeEnemy()
+    281:281:public boolean isCHASE_MODEL()
+    293:295:public void addEmplacement(Mankind.Emplacement)
 Mankind.EpAuto
 Mankind.Flyer:
     private static final int cdMAX
 Mankind.JointCreature:
     float ang
-    304:305:public void setCap(element2.Joint)
-Mankind.JointCreature$1:
-    87:87:public void attack()
+    299:300:public void setCap(element2.Joint)
+Mankind.JointEnemy:
+    20:20:public Mankind.Player getPlayer()
 Mankind.Player:
     private static final float DOUBLE_JUMP_RATE
-    private static final int _4
     public static float dpx
     public static float dpy
     public int bloodSecondaryindex
-    199:207:private void drawGuideCre(javax.microedition.khronos.opengles.GL10)
-    623:633:public void resume()
-    882:887:private void randomColor()
-    891:891:public void changeState(int)
-    896:923:public void actionCheckDown(int)
-    926:937:public void actionCheckUp(int)
-    1051:1051:public boolean isPlayerDead()
-    1055:1056:public void setPlayerDead(boolean)
-    1067:1067:public int getGaoTime()
-    1080:1080:public java.util.ArrayList getPlayerList()
+    189:197:private void drawGuideCre(javax.microedition.khronos.opengles.GL10)
+    604:614:public void resume()
+    789:789:public void changeState(int)
+    794:821:public void actionCheckDown(int)
+    824:835:public void actionCheckUp(int)
+    922:922:public boolean isPlayerDead()
+    926:927:public void setPlayerDead(boolean)
+    976:976:public void doubleDownCheck()
 Mankind.PlayerSet:
-    private Mankind.Creature greenWalker
-    21:23:public PlayerSet(Enviroments.GrassSet,Mankind.Player,Mankind.EnemySet)
+    18:20:public PlayerSet(Enviroments.GrassSet,Mankind.Player,Mankind.EnemySet)
 Mankind.Shader:
-    33:33:public void attacked(int)
+    30:30:public void attacked(int)
 Mankind.Spide3
 Mankind.Spide3$1
 Menu.CircleSlide
@@ -162,51 +166,59 @@ Menu.State:
 Weapon.AutoBubble:
     1:1:public bridge synthetic float getwReal()
 Weapon.AutoBullet:
-    22:24:public AutoBullet(Mankind.EnemySet,Enviroments.GrassSet,Mankind.Creature,float)
-    47:63:public void tringerCheck(float,float)
+    18:20:public AutoBullet(Mankind.EnemySet,Enviroments.GrassSet,Mankind.Creature,float)
+    42:58:public void tringerCheck(float,float)
     1:1:public bridge synthetic float getwReal()
 Weapon.Blade:
     private static final float bloodGetRate
     private static final float angleAMax
-    237:237:public boolean isFire()
-    241:242:public void setFire(boolean)
-    245:247:public void addEnemySet(Mankind.EnemySet)
-    250:250:public Mankind.EnemySet getEs()
+    231:231:public boolean isFire()
+    235:236:public void setFire(boolean)
+    239:241:public void addEnemySet(Mankind.EnemySet)
+    244:244:public Mankind.EnemySet getEs()
 Weapon.Bullet:
-    168:169:public void setFire(boolean)
+    165:166:public void setFire(boolean)
 Weapon.Gun:
-    168:168:public Mankind.EnemySet getEnemySet()
-    172:173:public void setEnemySet(Mankind.EnemySet)
+    156:156:public Mankind.EnemySet getEnemySet()
+    160:161:public void setEnemySet(Mankind.EnemySet)
 Weapon.GunDraw:
-    25:26:public GunDraw(Mankind.Creature,float,float,float,float,float,float,int)
-    30:32:public GunDraw(int,Mankind.Creature,float,float,float,float,float,float,int)
+    23:24:public GunDraw(Mankind.Creature,float,float,float,float,float,float,int)
+    28:30:public GunDraw(int,Mankind.Creature,float,float,float,float,float,float,int)
 Weapon.KindNessGun
 Weapon.ToBigBullet:
     93:93:public float getwReal()
 aid.Ad:
     private com.baidu.appx.BDSplashAd splashAd
-    34:40:public void removeView(android.view.View)
-    104:115:void hideInterstitial()
-    140:146:public void loadSplashAd(android.view.View)
-    149:158:public void showSplashAd(android.view.View)
-    166:166:public com.baidu.appx.BDAppWallAd getAppWallAd()
-    170:171:public void setAppWallAd(com.baidu.appx.BDAppWallAd)
+    31:37:public void removeView(android.view.View)
+    101:112:void hideInterstitial()
+    137:143:public void loadSplashAd(android.view.View)
+    146:155:public void showSplashAd(android.view.View)
+    163:163:public com.baidu.appx.BDAppWallAd getAppWallAd()
+    167:168:public void setAppWallAd(com.baidu.appx.BDAppWallAd)
 aid.Clothes
 aid.ConsWhenConnecting
 aid.DP
 aid.Fileeee
 aid.Log:
+    private static int degugId
     3:3:public Log()
-    12:13:public static void v(java.lang.String,java.lang.String)
+    13:14:public static void v(java.lang.String,java.lang.String)
+    21:24:public static void waitDebug(int)
 aid.Producer:
-    148:148:public aid.Producer$ItemAdapter getItemadapter()
-    152:153:public void setItemadapter(aid.Producer$ItemAdapter)
+    143:143:public aid.Producer$ItemAdapter getItemadapter()
+    147:148:public void setItemadapter(aid.Producer$ItemAdapter)
 aid.Ser
 aid.Shop:
-    192:192:public aid.Shop$ItemAdapter getItemadapter()
-    196:197:public void setItemadapter(aid.Shop$ItemAdapter)
+    188:188:public aid.Shop$ItemAdapter getItemadapter()
+    192:193:public void setItemadapter(aid.Shop$ItemAdapter)
 aid.Tips:
     23:26:public void showAtTip(android.view.View,java.lang.String,int,int)
+aid.UdpSender:
+    38:46:public void sendReply(java.net.DatagramPacket,java.lang.String)
+    59:71:public static void main(java.lang.String[])
+aid.UserName:
+    4:4:public UserName()
+    23:24:public static void main(java.lang.String[])
 android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat
 android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoIcsImpl
 android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat$AccessibilityServiceInfoStubImpl
@@ -1000,6 +1012,9 @@ com.baidu.appx.ui.i$2
 com.baidu.appx.ui.i$3
 com.baidu.appx.ui.i$4
 com.mingli.toms.AStar
+com.mingli.toms.BattleActivity:
+    protected static final int REFRESH_ROOMSET
+    protected static final int REFRESH_THIS_ROOM
 com.mingli.toms.BuildConfig
 com.mingli.toms.GameMenu:
     private android.widget.TextView instruction
@@ -1008,11 +1023,12 @@ com.mingli.toms.ItemWindow:
     95:96:public void setItemadapter(com.mingli.toms.ItemWindow$ItemAdapter)
 com.mingli.toms.MenuActivity:
     int[] in
-    654:657:private android.view.View getContentView111()
+    658:661:private android.view.View getContentView111()
+    862:864:void requestFoItemMap()
 com.mingli.toms.Music:
     28:30:static void setSwitch(boolean,boolean)
 com.mingli.toms.MusicId:
-    5:5:public MusicId()
+    4:4:public MusicId()
 com.mingli.toms.Node
 com.mingli.toms.R
 com.mingli.toms.R$anim
@@ -1028,23 +1044,20 @@ com.mingli.toms.R$string
 com.mingli.toms.R$style
 com.mingli.toms.R$xml
 com.mingli.toms.Render:
-    51:54:public void jiepin()
-    128:130:private void speedView(float,float)
+    47:50:public void jiepin()
+    124:126:private void speedView(float,float)
 com.mingli.toms.StartMenu:
     private android.widget.Button fileChoose1
 com.mingli.toms.StateWindow:
     private android.widget.PopupWindow popupWindow
-    134:135:public void hide()
+    123:124:public void hide()
 com.mingli.toms.TouchMove:
     private Element.BubbleSet fireSet
     private element2.FireworkSet fireWorkSet
-    45:47:public TouchMove(Element.LightSpotSet,Mankind.Player)
-    67:69:public TouchMove(Element.Curtain,Mankind.Player)
-    80:82:public TouchMove(Element.BubbleSet,Mankind.Player)
-    85:88:public TouchMove(element2.FireworkSet,Mankind.Player)
-com.mingli.toms.UserName:
-    4:4:public UserName()
-    17:18:public static void main(java.lang.String[])
+    43:45:public TouchMove(Element.LightSpotSet,Mankind.Player)
+    65:67:public TouchMove(Element.Curtain,Mankind.Player)
+    78:80:public TouchMove(Element.BubbleSet,Mankind.Player)
+    83:86:public TouchMove(element2.FireworkSet,Mankind.Player)
 com.mingli.toms.World:
     public static float red
     public static float green
@@ -1069,20 +1082,22 @@ com.mingli.toms.World:
     public static final int REQUEST_TO_STARTGAME
     public static final int DIALOG
     public static final int baseAttack
+    public static final int BLUE_FORCE
+    public static final int RED_FORCE
     private com.mingli.toms.AStar astar
-    119:120:public static void recycleDraw(Element.Draw)
-    586:589:private boolean isPlayerMoved(int)
-    859:872:public void astarSearch(float,float)
-    933:934:public void removeDraw(Element.Animation)
+    126:127:public static void recycleDraw(Element.Draw)
+    610:613:private boolean isPlayerMoved(int)
+    895:908:public void astarSearch(float,float)
+    956:957:public void removeDraw(Element.Animation)
 element2.ColorJoint
 element2.FireworkSet:
-    19:19:public void resume()
-    32:32:public int getCount()
+    14:14:public void resume()
+    27:27:public int getCount()
 element2.HikariSet:
     22:22:public void resume()
     76:77:public void tringer(double,double,double,double,int)
 element2.Joint:
-    163:164:public void setDirection(int)
+    158:159:public void setDirection(int)
 element2.LightningSet:
     23:23:public void resume()
 element2.Lightninig:
@@ -1095,7 +1110,7 @@ element2.ParticleBall:
     158:158:public int getTringerId()
     166:166:public float getAngleRate()
 element2.ParticleSet:
-    30:50:public void tringerCheck(Element.Animation,int,Mankind.Creature,int)
+    28:48:public void tringerCheck(Element.Animation,int,Mankind.Creature,int)
 element2.Set:
     private boolean living
     13:18:public void resume()

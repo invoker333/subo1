@@ -66,6 +66,8 @@ com.baidu.appx.ui.f$d: com.baidu.appx.ui.f$d valueOf(java.lang.String)
 com.baidu.appx.ui.h: android.webkit.WebView getWebView()
 com.baidu.appx.uikit.BDActivity
 com.baidu.appx.uikit.BDActivity: BDActivity()
+com.mingli.toms.BattleActivity
+com.mingli.toms.BattleActivity: BattleActivity()
 com.mingli.toms.MenuActivity
 com.mingli.toms.MenuActivity: MenuActivity()
 com.mingli.toms.MenuActivity: void removeView(android.view.View)
@@ -120,12 +122,14 @@ com.mingli.toms.R$drawable: int coinicon
 com.mingli.toms.R$drawable: int creeper
 com.mingli.toms.R$drawable: int cup
 com.mingli.toms.R$drawable: int daodan
+com.mingli.toms.R$drawable: int direction
 com.mingli.toms.R$drawable: int egg
 com.mingli.toms.R$drawable: int enemy1
 com.mingli.toms.R$drawable: int eraser
 com.mingli.toms.R$drawable: int espression
 com.mingli.toms.R$drawable: int espressionenemy
 com.mingli.toms.R$drawable: int fball
+com.mingli.toms.R$drawable: int fenshenguo
 com.mingli.toms.R$drawable: int file_icon
 com.mingli.toms.R$drawable: int fireball
 com.mingli.toms.R$drawable: int firetail
@@ -143,6 +147,7 @@ com.mingli.toms.R$drawable: int green
 com.mingli.toms.R$drawable: int greenrect
 com.mingli.toms.R$drawable: int greenstroke
 com.mingli.toms.R$drawable: int greenwalker
+com.mingli.toms.R$drawable: int guangdan
 com.mingli.toms.R$drawable: int guidecircle
 com.mingli.toms.R$drawable: int guidepost
 com.mingli.toms.R$drawable: int guidepost2
@@ -158,6 +163,7 @@ com.mingli.toms.R$drawable: int icon
 com.mingli.toms.R$drawable: int jian
 com.mingli.toms.R$drawable: int jingubang
 com.mingli.toms.R$drawable: int jujidan
+com.mingli.toms.R$drawable: int jump
 com.mingli.toms.R$drawable: int light
 com.mingli.toms.R$drawable: int light2
 com.mingli.toms.R$drawable: int lightning
@@ -232,6 +238,7 @@ com.mingli.toms.R$id: int animationShopadcontainer
 com.mingli.toms.R$id: int attack
 com.mingli.toms.R$id: int backStart
 com.mingli.toms.R$id: int backtostagechoosser
+com.mingli.toms.R$id: int battleMode
 com.mingli.toms.R$id: int buildButton
 com.mingli.toms.R$id: int butset
 com.mingli.toms.R$id: int buttonwindow
@@ -261,6 +268,7 @@ com.mingli.toms.R$id: int ex
 com.mingli.toms.R$id: int fileChoose
 com.mingli.toms.R$id: int file_name
 com.mingli.toms.R$id: int filepathtextview
+com.mingli.toms.R$id: int friendListView
 com.mingli.toms.R$id: int gameMenuTitle
 com.mingli.toms.R$id: int gameModel
 com.mingli.toms.R$id: int gamemenuadcontainer
@@ -305,6 +313,8 @@ com.mingli.toms.R$id: int radioButton1
 com.mingli.toms.R$id: int radioGroup1
 com.mingli.toms.R$id: int rampage
 com.mingli.toms.R$id: int randomNameButton
+com.mingli.toms.R$id: int randomchalenge
+com.mingli.toms.R$id: int randommap
 com.mingli.toms.R$id: int ratingBar1
 com.mingli.toms.R$id: int ratingBar2
 com.mingli.toms.R$id: int ratingBar3
@@ -314,6 +324,12 @@ com.mingli.toms.R$id: int relativeLayout1
 com.mingli.toms.R$id: int resume
 com.mingli.toms.R$id: int retry
 com.mingli.toms.R$id: int ride
+com.mingli.toms.R$id: int roomId
+com.mingli.toms.R$id: int roomNameAndTeamTitle
+com.mingli.toms.R$id: int roomSetView
+com.mingli.toms.R$id: int roomSize
+com.mingli.toms.R$id: int roomUserName
+com.mingli.toms.R$id: int roomUserScore
 com.mingli.toms.R$id: int savemap
 com.mingli.toms.R$id: int score
 com.mingli.toms.R$id: int scoreText
@@ -328,9 +344,13 @@ com.mingli.toms.R$id: int stageChoose
 com.mingli.toms.R$id: int stageGridView
 com.mingli.toms.R$id: int stageRating
 com.mingli.toms.R$id: int stageText
+com.mingli.toms.R$id: int startInRoomModle
 com.mingli.toms.R$id: int startgame
 com.mingli.toms.R$id: int startmenu
 com.mingli.toms.R$id: int state
+com.mingli.toms.R$id: int tab1
+com.mingli.toms.R$id: int tab2
+com.mingli.toms.R$id: int tabhost
 com.mingli.toms.R$id: int textView1
 com.mingli.toms.R$id: int textView2
 com.mingli.toms.R$id: int textView3
@@ -348,13 +368,13 @@ com.mingli.toms.R$id: int usericonEdit
 com.mingli.toms.R$id: int usernameedit
 com.mingli.toms.R$id: int view1
 com.mingli.toms.R$id: int view2
+com.mingli.toms.R$layout: int activity_battle
 com.mingli.toms.R$layout: int activity_file
 com.mingli.toms.R$layout: int activity_online_stage
 com.mingli.toms.R$layout: int animationshop
 com.mingli.toms.R$layout: int biankuang
 com.mingli.toms.R$layout: int buttonset
 com.mingli.toms.R$layout: int charact
-com.mingli.toms.R$layout: int chartitem
 com.mingli.toms.R$layout: int dialog
 com.mingli.toms.R$layout: int file_list
 com.mingli.toms.R$layout: int gamemenu
@@ -365,15 +385,20 @@ com.mingli.toms.R$layout: int osguidelayout
 com.mingli.toms.R$layout: int paimin
 com.mingli.toms.R$layout: int ratingbar_drawable_gamesucceed
 com.mingli.toms.R$layout: int ratingbar_drawable_stagechooser
+com.mingli.toms.R$layout: int roomsetitem
+com.mingli.toms.R$layout: int roomuseritem
 com.mingli.toms.R$layout: int shop
 com.mingli.toms.R$layout: int shopitem
 com.mingli.toms.R$layout: int stagechoosser
 com.mingli.toms.R$layout: int stageitem
 com.mingli.toms.R$layout: int startmenu
 com.mingli.toms.R$layout: int state
+com.mingli.toms.R$layout: int tab1
+com.mingli.toms.R$layout: int tab2
 com.mingli.toms.R$layout: int tip
 com.mingli.toms.R$layout: int title
 com.mingli.toms.R$layout: int userinfo
+com.mingli.toms.R$menu: int battle
 com.mingli.toms.R$menu: int file
 com.mingli.toms.R$menu: int main
 com.mingli.toms.R$menu: int stagechoosser
@@ -461,6 +486,7 @@ com.mingli.toms.R$string: int pref_title_social_recommendations
 com.mingli.toms.R$string: int pref_title_sync_frequency
 com.mingli.toms.R$string: int pref_title_system_sync_settings
 com.mingli.toms.R$string: int pref_title_vibrate
+com.mingli.toms.R$string: int title_activity_battle
 com.mingli.toms.R$string: int title_activity_file
 com.mingli.toms.R$string: int title_activity_settings
 com.mingli.toms.R$string: int title_activity_stagechoosser

@@ -95,31 +95,31 @@ Element.Animation -> a.a:
     java.lang.Object clone() -> clone
 Element.AnimationGrass -> a.b:
     float[] xdata -> C
-    float[] ydata -> U
+    float[] ydata -> W
     Enviroments.GrassSet gra -> D
-    int landId -> V
-    int topId -> W
-    int collisionId -> X
-    float xEdgeNew -> Y
-    float xPro -> Z
-    float yPro -> aa
-    java.util.ArrayList gList -> E
-    float edge -> F
-    float edge2 -> G
+    int landId -> X
+    int topId -> Y
+    int collisionId -> Z
+    float xEdgeNew -> aa
+    float xPro -> E
+    float yPro -> F
+    java.util.ArrayList gList -> G
+    float edge -> H
+    float edge2 -> I
     float wRate -> ab
     float hRate -> ac
-    float sin -> H
-    float cos -> I
+    float sin -> J
+    float cos -> K
     int mx1 -> ad
     int my1 -> ae
-    int mx2 -> J
-    int my2 -> K
+    int mx2 -> L
+    int my2 -> M
     float xEdgeAgo -> af
-    float climbBuffer -> L
+    float climbBuffer -> N
     float yEdgeNew -> ag
     float yEdgeAgo -> ah
     float backSpeed -> ai
-    boolean fallen -> M
+    boolean fallen -> O
     void setPosition(float,float) -> b
     void toStartPosition() -> v
     void sizeCheck() -> y
@@ -133,41 +133,43 @@ Element.AnimationGrass -> a.b:
     boolean leftCheck(int) -> p
     boolean rightCheck(int) -> q
     void tooLeft() -> G
-    void autoClimb() -> H
-    void tooRight() -> I
+    void speedBackTooLeft() -> H
+    void autoClimb() -> I
+    void tooRight() -> J
+    void speedBackTooRight() -> K
     boolean upCheck(int) -> e
-    void tooHigh() -> J
+    void tooHigh() -> L
     boolean downCheck(int) -> f
-    void tooDown() -> K
-    void bendUpCheck() -> L
-    void bendDownCheck() -> M
+    void tooDown() -> M
+    void bendUpCheck() -> N
+    void bendDownCheck() -> O
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-    int getLandId() -> N
+    int getLandId() -> P
     void setLandId(int) -> g
-    java.util.ArrayList getgList() -> O
-    float getyPro() -> P
+    java.util.ArrayList getgList() -> Q
+    float getyPro() -> R
     void setyPro(float) -> o
-    float getxPro() -> Q
+    float getxPro() -> S
     void setxPro(float) -> p
     void setCollisionId(int) -> h
     void setwRate(float) -> q
-    int getTopId() -> R
+    int getTopId() -> T
     void setTopId(int) -> i
-    float gethRate() -> S
+    float gethRate() -> U
     void sethRate(float) -> r
     void sethEdge(int) -> j
-    int getMx1() -> T
-    int getMy1() -> U
+    int getMx1() -> V
+    int getMy1() -> W
     void attacked(int) -> k
 Element.AnimationGravity -> a.c:
     float g -> C
     void gravity() -> A
 Element.AnimationMove -> a.d:
-    float xSpeed -> N
-    float ySpeed -> O
-    float aTanxing -> P
-    float aSin -> Q
-    float aCos -> R
+    float xSpeed -> P
+    float ySpeed -> Q
+    float aTanxing -> R
+    float aSin -> S
+    float aCos -> T
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void toStartPosition() -> v
     void aCheck(Element.AnimationMove,float,float,float) -> a
@@ -182,9 +184,9 @@ Element.AnimationMove -> a.d:
     void yACheck(Element.AnimationMove,float,float,float) -> i
     void move() -> C
     void gravity() -> A
-    float getxSpeed() -> V
+    float getxSpeed() -> X
     void setxSpeed(float) -> s
-    float getySpeed() -> W
+    float getySpeed() -> Y
     void setySpeed(float) -> t
 Element.Blood -> a.e:
 Element.BloodSet -> a.f:
@@ -265,28 +267,28 @@ Element.Curtain -> a.l:
 Element.Draw -> a.m:
     boolean running -> a
     int textureId -> b
-    int soundId -> S
-    com.mingli.toms.Music music -> T
+    int soundId -> U
+    com.mingli.toms.Music music -> V
     void loadTexture() -> a
-    void quitgame() -> X
+    void quitgame() -> Z
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void setRunning(boolean) -> b
-    void loadSound() -> Y
+    void loadSound() -> aa
     void loadSound(int) -> l
-    void playSound() -> Z
+    void playSound() -> ab
     void setTexture() -> g
-    int getSoundId() -> aa
+    int getSoundId() -> ac
     void setSoundId(int) -> m
     void playSound(int) -> n
-    int getTextureId() -> ab
+    int getTextureId() -> ad
     void setTextureId(int) -> o
 Element.Fire -> a.n:
     float frontTime -> H
     float backTime -> I
     float timeAll -> J
     float alphaMid -> M
-    float alpha -> U
-    float blue -> V
+    float alpha -> N
+    float blue -> O
     float green -> W
     float red -> X
     float dAlpha -> K
@@ -360,28 +362,34 @@ Enviroments.BigGrass -> b.c:
     boolean turnDown(Element.AnimationGrass) -> d
 Enviroments.Burrow -> b.d:
     float edge -> C
+    Enviroments.Burrow brother -> D
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void syncTextureSize() -> i
+    boolean breakCheck() -> z
+    void culKeng() -> A
 Enviroments.ChanceFruit -> b.e:
-    void use(Mankind.Player,java.util.ArrayList) -> a
-    boolean loadAble(Mankind.Player) -> a
-    void effectCheck(Mankind.Player,java.util.ArrayList) -> b
+    void use(Mankind.BattleMan,java.util.ArrayList) -> a
+    boolean loadAble(Mankind.BattleMan) -> a
+    void effectCheck(Mankind.BattleMan,java.util.ArrayList) -> b
 Enviroments.Coin -> b.f:
     int coinCount -> F
     int getCoinCount() -> y
     int getIcon() -> d
     void init() -> z
-    void use(Mankind.Player,java.util.ArrayList) -> a
-    boolean loadAble(Mankind.Player) -> a
+    void use(Mankind.BattleMan,java.util.ArrayList) -> a
+    boolean loadAble(Mankind.BattleMan) -> a
 Enviroments.CoinSet -> b.g:
-    com.mingli.toms.World world -> j
     void picked(Enviroments.Fruit) -> a
-    void loadSound() -> Y
-    void playSound() -> Z
+    void loadSound() -> aa
+    void playSound() -> ab
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void timerTask() -> b
     float getStar() -> c
-Enviroments.Fog -> b.h:
+Enviroments.Fenshen -> b.h:
+    int count -> H
+    void init() -> z
+    void use(Mankind.BattleMan,java.util.ArrayList) -> a
+Enviroments.Fog -> b.i:
     float dr -> C
     float dg -> D
     float db -> E
@@ -392,10 +400,10 @@ Enviroments.Fog -> b.h:
     float max -> H
     float min -> I
     void setRgb(float,float,float) -> a
-    void colorInc() -> z
+    void colorInc() -> A
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void lightning() -> E
-Enviroments.Fruit -> b.i:
+Enviroments.Fruit -> b.j:
     float alpha -> E
     float blue -> F
     float green -> G
@@ -404,10 +412,10 @@ Enviroments.Fruit -> b.i:
     java.lang.String instruction -> D
     void doubleCost(int) -> e
     void init() -> z
-    boolean loadAble(Mankind.Player) -> a
-    void use(Mankind.Player,java.util.ArrayList) -> a
-    void playSound() -> Z
-    void effectCheck(Mankind.Player,java.util.ArrayList) -> b
+    boolean loadAble(Mankind.BattleMan) -> a
+    void use(Mankind.BattleMan,java.util.ArrayList) -> a
+    void playSound() -> ab
+    void effectCheck(Mankind.BattleMan,java.util.ArrayList) -> b
     float getBlue() -> A
     void setBlue(float) -> o
     float getGreen() -> B
@@ -415,20 +423,19 @@ Enviroments.Fruit -> b.i:
     float getRed() -> C
     void setRed(float) -> q
     float getAlpha() -> D
-Enviroments.FruitBlade -> b.j:
-    boolean loadAble(Mankind.Player) -> a
-    void use(Mankind.Player,java.util.ArrayList) -> a
+Enviroments.FruitBlade -> b.k:
+    boolean loadAble(Mankind.BattleMan) -> a
+    void use(Mankind.BattleMan,java.util.ArrayList) -> a
     void syncTextureSize() -> i
-Enviroments.FruitFly -> b.k:
+Enviroments.FruitFly -> b.l:
     int time -> H
     void init() -> z
-    void use(Mankind.Player,java.util.ArrayList) -> a
-    void effectCheck(Mankind.Player,java.util.ArrayList) -> b
-Enviroments.FruitGun -> b.l:
+    void use(Mankind.BattleMan,java.util.ArrayList) -> a
+Enviroments.FruitGun -> b.m:
     void nameCheck(int) -> f
-    boolean loadAble(Mankind.Player) -> a
-    void use(Mankind.Player,java.util.ArrayList) -> a
-Enviroments.FruitSet -> b.m:
+    boolean loadAble(Mankind.BattleMan) -> a
+    void use(Mankind.BattleMan,java.util.ArrayList) -> a
+Enviroments.FruitSet -> b.n:
     java.util.ArrayList fruitList -> a
     java.util.ArrayList drawList -> b
     java.util.ArrayList effectList -> c
@@ -438,6 +445,7 @@ Enviroments.FruitSet -> b.m:
     float COUNT -> g
     java.util.ArrayList shopList -> h
     java.util.ArrayList pickedList -> i
+    com.mingli.toms.World world -> j
     void checkShopList() -> i
     void initShopList() -> d
     void initItemList(char[]) -> a
@@ -450,38 +458,38 @@ Enviroments.FruitSet -> b.m:
     java.util.ArrayList getItemList() -> f
     float getStar() -> c
     void useItem(int) -> a
-    void useItem(Enviroments.Fruit) -> c
-    void buyItem(Enviroments.Fruit) -> d
+    void useItem(Mankind.BattleMan,Enviroments.Fruit) -> a
+    void buyItem(Enviroments.Fruit) -> c
     void cml() -> h
-Enviroments.Gao -> b.n:
+    void useItem(Mankind.BattleMan,char) -> a
+Enviroments.Gao -> b.o:
     int time -> H
     void init() -> z
-    void use(Mankind.Player,java.util.ArrayList) -> a
-    void effectCheck(Mankind.Player,java.util.ArrayList) -> b
-Enviroments.Goal -> b.o:
+    void use(Mankind.BattleMan,java.util.ArrayList) -> a
+Enviroments.Goal -> b.p:
     float x1 -> E
     float x2 -> F
     float y1 -> G
     float y2 -> H
     Element.LightSpot ls -> I
     Element.Animation a -> J
-    boolean hasFirstBlood -> L
-    boolean pickable -> K
+    boolean hasFirstBlood -> K
+    boolean showable -> L
     void init() -> z
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-    void loadSound() -> Y
-    void playSound() -> Z
+    void loadSound() -> aa
+    void playSound() -> ab
     void picked() -> y
-    void searchBoss(Mankind.Player,java.util.ArrayList) -> c
-Enviroments.Goal$1 -> b.p:
+    void searchBoss(Mankind.Player,java.util.ArrayList) -> a
+Enviroments.Goal$1 -> b.q:
     Enviroments.Goal this$0 -> C
     void loadTexture(int) -> a
-Enviroments.GoreCoin -> b.q:
+Enviroments.GoreCoin -> b.r:
     float ySpeed -> F
     float g -> G
-    void use(Mankind.Player,java.util.ArrayList) -> a
+    void use(Mankind.BattleMan,java.util.ArrayList) -> a
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-Enviroments.Grass -> b.r:
+Enviroments.Grass -> b.s:
     float[] data -> J
     float green -> C
     float red -> D
@@ -492,13 +500,12 @@ Enviroments.Grass -> b.r:
     boolean attackedAble -> M
     void setRgb(float,float,float) -> a
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-    float getGreen() -> A
+    float getGreen() -> B
     void setGreen(float) -> o
-    float getRed() -> B
+    float getRed() -> C
     void setRed(float) -> p
-    float getBlue() -> C
+    float getBlue() -> D
     void setBlue(float) -> q
-    boolean isIsburrow() -> D
     void setIsburrow(boolean) -> c
     boolean tooDown(Element.AnimationGrass) -> e
     boolean tooHigh(Element.AnimationGrass) -> a
@@ -506,79 +513,82 @@ Enviroments.Grass -> b.r:
     boolean tooRight(Element.AnimationGrass) -> c
     boolean turnDown(Element.AnimationGrass) -> d
     void gored() -> y
-Enviroments.GrassPrick -> b.s:
+    boolean breakCheck() -> z
+Enviroments.GrassPrick -> b.t:
     int angle -> C
     boolean tooDown(Element.AnimationGrass) -> e
     boolean tooHigh(Element.AnimationGrass) -> a
+    void setTexture() -> g
     boolean tooLeft(Element.AnimationGrass) -> b
     boolean tooRight(Element.AnimationGrass) -> c
     void attack(Element.AnimationGrass) -> f
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void drawDirection(javax.microedition.khronos.opengles.GL10) -> e
-Enviroments.GrassSet -> b.t:
+Enviroments.GrassSet -> b.u:
     int[][] map -> a
-    java.util.ArrayList gList -> j
-    java.util.ArrayList drawList -> k
+    java.util.ArrayList gList -> m
+    java.util.ArrayList drawList -> n
     java.util.ArrayList animationList -> b
-    java.util.ArrayList coinList -> l
-    java.util.ArrayList fruitList -> m
-    java.util.ArrayList enemyList -> n
-    int grassId -> o
-    float speedBack -> p
-    int mapHeight -> q
-    float grid -> r
-    int mapWidth -> s
+    java.util.ArrayList coinList -> o
+    java.util.ArrayList fruitList -> p
+    java.util.ArrayList enemyList -> q
+    int grassId -> r
+    float speedBack -> s
+    int mapHeight -> t
+    float grid -> u
+    int mapWidth -> v
     int index -> c
-    int zero -> t
-    Enviroments.Goal goal -> u
+    int zero -> w
+    Enviroments.Goal goal -> x
     float[] bendDownData -> d
     float[] bendUpData -> e
-    element2.Tail grassTail -> v
-    float viewGrid -> w
+    element2.Tail grassTail -> y
+    float viewGrid -> z
     boolean isCastle -> f
-    com.mingli.toms.World world -> x
-    boolean gore -> y
-    java.util.ArrayList emplacementList -> z
-    int topId -> A
-    element2.ParticleSet ps -> g
-    Mankind.Player player -> h
-    Element.AnimationMove topAni -> B
-    Element.AnimationMove goreAni -> i
+    com.mingli.toms.World world -> g
+    java.util.ArrayList battleManList -> h
+    boolean gore -> A
+    java.util.ArrayList emplacementList -> B
+    int topId -> C
+    element2.ParticleSet ps -> i
+    Mankind.Player player -> j
+    Element.AnimationMove topAni -> D
+    Element.AnimationMove goreAni -> k
+    java.util.ArrayList friendList -> l
     void newMapData(char[]) -> a
     float[] grassData(int,int) -> a
     void loadTexture() -> a
     byte[] saveMap() -> b
-    void initGoreAnimation() -> s
-    void toStartPosition() -> c
-    void newBendTail() -> t
-    void newBendData() -> u
+    byte[][] getMapArray() -> c
+    void initBattleMan() -> t
+    void initGoreAnimation() -> u
+    void toStartPosition() -> d
+    void newBendTail() -> v
+    void newBendData() -> w
     void downHoleCheck(float,float) -> a
-    void sort() -> d
+    void sort() -> e
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-    void loadSound() -> Y
-    void playSound() -> Z
+    void loadSound() -> aa
+    void playSound() -> ab
     void up(int,float,float) -> a
     void setGrassId(int) -> a
-    float getSpeedBack() -> e
-    java.util.ArrayList getgList() -> f
-    float getGrid() -> h
-    int getMapWidth() -> i
-    int getMapHeight() -> j
-    java.util.ArrayList getCoinList() -> k
-    java.util.ArrayList getEnemyList() -> l
-    int getZero() -> m
-    Enviroments.Goal getGoal() -> n
-    java.util.ArrayList getFruitList() -> o
-    boolean isGore() -> p
+    float getSpeedBack() -> f
+    java.util.ArrayList getgList() -> h
+    float getGrid() -> i
+    int getMapWidth() -> j
+    int getMapHeight() -> k
+    java.util.ArrayList getCoinList() -> l
+    java.util.ArrayList getEnemyList() -> m
+    int getZero() -> n
+    Enviroments.Goal getGoal() -> o
+    java.util.ArrayList getFruitList() -> p
+    boolean isGore() -> q
     void setGore(boolean) -> a
-    float getViewGrid() -> q
+    float getViewGrid() -> r
     float getRate(int) -> b
     void toNull(int,int,int) -> a
-    java.util.ArrayList getEmplacementList() -> r
+    java.util.ArrayList getEmplacementList() -> s
     void particleCheck(int,int,Mankind.Creature) -> a
-Enviroments.GrassSet$1 -> b.u:
-    Enviroments.GrassSet this$0 -> L
-    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
 Enviroments.GrassSticker -> b.v:
     boolean tooDown(Element.AnimationGrass) -> e
     boolean tooHigh(Element.AnimationGrass) -> a
@@ -602,7 +612,7 @@ Enviroments.SixFruit -> b.y:
     int angleSpeed -> E
     int angle -> F
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-    boolean loadAble(Mankind.Player) -> a
+    boolean loadAble(Mankind.BattleMan) -> a
     void setTexture() -> g
     void syncTextureSize() -> i
     void baseDrawElement(javax.microedition.khronos.opengles.GL10) -> c
@@ -611,205 +621,281 @@ Enviroments.Tomato -> b.z:
     int bloodStep -> I
     int maxback -> J
     void init() -> z
-    boolean loadAble(Mankind.Player) -> a
-    void use(Mankind.Player,java.util.ArrayList) -> a
-    void effectCheck(Mankind.Player,java.util.ArrayList) -> b
+    boolean loadAble(Mankind.BattleMan) -> a
+    void use(Mankind.BattleMan,java.util.ArrayList) -> a
+    void effectCheck(Mankind.BattleMan,java.util.ArrayList) -> b
 Enviroments.Toukui -> b.aa:
     int time -> H
     void init() -> z
-    void use(Mankind.Player,java.util.ArrayList) -> a
+    void use(Mankind.BattleMan,java.util.ArrayList) -> a
 Enviroments.Wudi -> b.ab:
     int time -> H
     void init() -> z
-    void use(Mankind.Player,java.util.ArrayList) -> a
+    void use(Mankind.BattleMan,java.util.ArrayList) -> a
 Enviroments.sizeFruit -> b.ac:
     float growSpeed -> E
     float time -> F
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-    boolean loadAble(Mankind.Player) -> a
     void culYScaleRate() -> f
-    void use(Mankind.Player,java.util.ArrayList) -> a
-    void effectCheck(Mankind.Player,java.util.ArrayList) -> b
+    void use(Mankind.BattleMan,java.util.ArrayList) -> a
+    void effectCheck(Mankind.BattleMan,java.util.ArrayList) -> b
 Mankind.Baller -> c.a:
-    void init() -> ac
-    void afterInit() -> ad
+    void init() -> ae
+    void afterInit() -> af
     void attackAnotherOne(Mankind.EnemySet) -> a
-    void die() -> ae
+    void die() -> ag
     void tooClose(Mankind.Creature,Mankind.EnemySet) -> a
-    void randomAction() -> af
-Mankind.BladeMan -> c.b:
+    void randomAction() -> ah
+Mankind.BattleMan -> c.b:
+    int userId -> W
+    int force_in_battle -> X
+    float baseGunLength -> bc
+    float GunAngle -> Y
+    Weapon.Gun gun -> Z
+    int coolingId -> aa
+    int gunFruitId -> ab
+    int bladeFruitId -> ac
+    int toukuiTime -> ad
+    int gaoTime -> ae
+    int flyTime -> af
+    boolean[] downData -> ag
+    boolean doubleClicked -> ah
+    Element.Pifeng pifeng -> bd
+    element2.Tail footTail -> ai
+    Mankind.Shader shader -> aj
+    int death -> ak
+    int brake -> al
+    int destorySound -> am
+    float vtDestory -> an
+    double E -> be
+    int wudiTimeBorn -> ao
+    int wudiTime -> ap
+    int sendMesId -> bf
+    java.lang.String[] strOnlineMesSet -> bg
+    int idMaxREceive -> aq
+    float growSpeed -> ar
+    void initEffect(float,float) -> d
+    boolean isDoubleClicked() -> ai
+    void setDoubleClicked(boolean) -> c
+    void loadSound() -> aa
+    void actCheck(Mankind.Creature) -> a
+    void setGunLength() -> aj
+    void initVtDestory() -> ba
+    int getToukuiTime() -> ak
+    boolean crossToCheck(int) -> p
+    void tooHigh() -> L
+    void goreEnemyCheck() -> bb
+    boolean destory(int,int,int) -> b
+    void changeToukui(int) -> q
+    void changeGao(int) -> r
+    void setToukuiTime(int) -> s
+    void dropToCheck(int) -> I
+    void tooDown() -> M
+    void changeGun(int) -> t
+    void changeBlade(int) -> u
+    void haveBlade() -> al
+    void noBlade() -> am
+    void haveGun() -> an
+    void noGun() -> ao
+    boolean haveGun(int) -> v
+    boolean haveBlade(int) -> w
+    void incWudiTime(int) -> x
+    void attacked(int) -> k
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-    void chaseCheck(Mankind.Creature) -> c
-    void randomAction() -> af
-Mankind.BossRunner -> c.c:
-    Mankind.Creature chaser -> aG
-    java.lang.String[] strSet -> U
-    int strId -> V
-    int cdMax -> aH
-    int cd -> aI
-    com.mingli.toms.World world -> aJ
-    void randomAction() -> af
+    void addFlyTime(int) -> y
+    void gunAngleAndCdCheck() -> ap
+    boolean culTreadSpeedAndCanBeTread(Mankind.Creature) -> b
+    void sendBattleMessage() -> aq
+    void timerTask() -> ar
+    void onlineActionCheck(java.lang.String[]) -> a
+    void onlineAction() -> bc
+    void setJumpHeight(int) -> z
+    void speedMakeUp(int,int,int,int) -> a
+    void relifeJust() -> as
+    void reLife() -> at
+    void reLife(int) -> A
+    void useItemOnline(java.lang.String) -> a
+    void fenshen(int) -> B
+    void sendUseitemMessage(Enviroments.Fruit) -> a
+Mankind.BladeMan -> c.c:
+    Mankind.Creature chaser -> Y
+    void drawElement(javax.microedition.khronos.opengles.GL10) -> b
+    void chaseCheck(Mankind.Creature) -> a
+    void randomAction() -> ah
+    void searchAndAttack() -> ai
+Mankind.BossRunner -> c.d:
+    Mankind.Creature chaser -> Y
+    java.lang.String[] strSet -> W
+    int strId -> X
+    int cdMax -> Z
+    int cd -> aa
+    com.mingli.toms.World world -> ab
+    void die() -> ag
+    void tooHigh() -> L
+    void randomAction() -> ah
     void setEnemySet(Mankind.EnemySet) -> b
     void tooLeft() -> G
-    void tooRight() -> I
-Mankind.Creature -> c.d:
-    float DEATHSPEED -> W
-    int jumpHeight -> U
-    float g -> V
-    float ySpeedMax -> at
-    float amLand -> au
-    float afLand -> X
-    float am -> av
-    float af -> aw
-    float xSpeedMax -> ax
-    float xSpeedMin -> ay
-    boolean jumpAble -> az
-    int landId -> aA
-    int fdirection -> Y
-    int direction -> Z
-    int lifeMax -> aB
-    int life -> aC
-    int attack -> aa
-    float speedSizeMax -> ab
-    float[] agoMax -> aD
-    java.util.ArrayList friendList -> ac
-    java.util.ArrayList enemyList -> ad
-    boolean isDead -> ae
-    float sizeRate -> af
-    float red -> ag
-    float green -> ah
-    float blue -> ai
-    float alpha -> aj
-    float index -> ak
-    boolean attackable -> al
-    boolean moving -> aE
-    float aniStep -> aF
-    float[] aniStep2 -> am
-    int chance -> an
-    int attackSoundId -> ao
-    Mankind.EnemySet enemySet -> ap
-    Mankind.EnemySet friendSet -> aq
-    int rightDirection -> ar
-    boolean treadable -> as
-    void afterInit() -> ad
-    void init() -> ac
-    void autoClimb() -> H
-    boolean turnDown() -> ag
+    void tooRight() -> J
+    void speedBackTooRight() -> K
+    void speedBackTooLeft() -> H
+Mankind.Creature -> c.e:
+    float DEATHSPEED -> as
+    int jumpHeight -> W
+    float g -> X
+    float ySpeedMax -> Y
+    float amLand -> Z
+    float afLand -> at
+    float am -> aa
+    float af -> ab
+    float xSpeedMax -> ac
+    float xSpeedMin -> ad
+    boolean jumpAble -> ae
+    int landId -> af
+    int fdirection -> au
+    int direction -> av
+    int lifeMax -> ag
+    int life -> ah
+    int attack -> aw
+    float speedSizeMax -> ax
+    float[] agoMax -> ai
+    java.util.ArrayList friendList -> ay
+    java.util.ArrayList enemyList -> az
+    boolean isDead -> aA
+    float sizeRate -> aB
+    float red -> aC
+    float green -> aD
+    float blue -> aE
+    float alpha -> aF
+    float index -> aG
+    boolean attackable -> aH
+    float aniStep -> aj
+    float[] aniStep2 -> aI
+    int chance -> aJ
+    int attackSoundId -> aK
+    Mankind.EnemySet enemySet -> aL
+    Mankind.EnemySet friendSet -> aM
+    int rightDirection -> aN
+    boolean treadable -> aO
+    void afterInit() -> af
+    void init() -> ae
+    void autoClimb() -> I
+    boolean turnDown() -> au
     void changeSpeed(float) -> u
     void changeSize(float) -> v
-    void stopJump() -> ah
+    void stopJump() -> av
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void disappear(float) -> w
     void drawDeath(javax.microedition.khronos.opengles.GL10) -> e
     void gravity() -> A
-    void changeToLandData() -> ai
-    void tooDown() -> K
+    void changeToLandData() -> aw
+    void tooDown() -> M
     void moveCheck() -> D
-    void faceRight() -> aj
-    void stopMove() -> ak
-    void turnRight() -> al
-    void turnLeft() -> am
-    void faceLeft() -> an
-    void attack() -> ao
-    void animation() -> ap
-    void speedCheck() -> aq
-    void jump() -> ar
-    void changeToAirData() -> aJ
+    void faceRight() -> ax
+    void stopMove() -> ay
+    void turnRight() -> az
+    void turnLeft() -> aA
+    void faceLeft() -> aB
+    void attack() -> aC
+    void animation() -> aD
+    void speedCheck() -> aE
+    void jump() -> aF
+    void changeToAirData() -> ai
     void jump(float) -> x
-    void land() -> as
-    int getLandId() -> N
+    void land() -> aG
+    int getLandId() -> P
     void setLandId(int) -> g
-    float getG() -> at
+    float getG() -> aH
     void setG(float) -> y
-    void increaseScoreBy(int) -> p
-    void increaseChanceBy(int) -> q
+    void increaseScoreBy(int) -> C
+    void increaseChanceBy(int) -> D
     void attacked(int) -> k
-    void baseAttacked(int) -> w
-    float getAm() -> au
+    void baseAttacked(int) -> p
     void setAm(float) -> z
     void setAf(float) -> A
-    int getLife() -> av
-    void setLife(int) -> r
-    int getLifeMax() -> aw
-    void setLifeMax(int) -> s
-    int getDirection() -> ax
-    void setDirection(int) -> t
-    float[] getAniStep2() -> ay
-    void setJumpHeight(int) -> u
-    float getxSpeedMax() -> az
+    int getLife() -> aI
+    void setLife(int) -> E
+    int getLifeMax() -> aJ
+    void setLifeMax(int) -> F
+    int getDirection() -> aK
+    void setDirection(int) -> G
+    float[] getAniStep2() -> aL
+    void setJumpHeight(int) -> z
+    float getxSpeedMax() -> aM
     void setxSpeedMax(float) -> B
-    float getxSpeedMin() -> aA
+    float getxSpeedMin() -> aN
     void setxSpeedMin(float) -> C
-    boolean isJumpAble() -> aB
-    void randomAction() -> af
-    float[] getAgoMax() -> aC
-    void treaded(Mankind.Creature) -> a
-    Enviroments.GrassSet getGra() -> aD
+    boolean isJumpAble() -> aO
+    void randomAction() -> ah
+    float[] getAgoMax() -> aP
+    void treaded(Mankind.Creature) -> c
+    Enviroments.GrassSet getGra() -> aQ
     void attackAnotherOne(Mankind.EnemySet) -> a
-    void die() -> ae
-    float getAlpha() -> aE
-    float getBlue() -> aF
+    void die() -> ag
+    float getAlpha() -> aR
+    float getBlue() -> aS
     void setBlue(float) -> D
-    float getGreen() -> aG
+    float getGreen() -> aT
     void setGreen(float) -> E
-    float getRed() -> aH
+    float getRed() -> aU
     void setRed(float) -> F
     void setRgb(float,float,float) -> a
     void setGunAngle(double) -> a
     void setSpeed(double,double) -> a
-    float getySpeedMax() -> aI
+    float getySpeedMax() -> aV
     void changeLifeRate(float) -> G
-    void setSoundIdAttack(int) -> v
+    void setSoundIdAttack(int) -> H
     void setEnemySet(Mankind.EnemySet) -> b
+    Mankind.EnemySet getEnemySet() -> aW
     void setFriendSet(Mankind.EnemySet) -> c
-    void culTreadxSpeed(Mankind.Creature) -> b
-Mankind.Creeper -> c.e:
-    void init() -> ac
-    void afterInit() -> ad
+    boolean culTreadSpeedAndCanBeTread(Mankind.Creature) -> b
+    void timerTask() -> ar
+Mankind.Creeper -> c.f:
+    void init() -> ae
+    void afterInit() -> af
     void attackAnotherOne(Mankind.EnemySet) -> a
-    void culTreadxSpeed(Mankind.Creature) -> b
-    void treaded(Mankind.Creature) -> a
-    void tooClose(Mankind.Creature) -> c
-    void randomAction() -> af
-Mankind.Emplacement -> c.f:
-    int cdMax -> av
-    Weapon.Bullet b -> U
-    double bSpeed -> V
-    int range -> aw
-    double range2 -> at
-    int angleSpeed -> ax
-    Mankind.Creature targetPeople -> ay
-    int cd -> au
-    void init() -> ac
+    boolean culTreadSpeedAndCanBeTread(Mankind.Creature) -> b
+    void treaded(Mankind.Creature) -> c
+    void tooClose(Mankind.Creature,Mankind.EnemySet) -> a
+    void randomAction() -> ah
+Mankind.Emplacement -> c.g:
+    int cdMax -> aa
+    Weapon.Bullet b -> W
+    double bSpeed -> X
+    int range -> ab
+    double range2 -> Y
+    int angleSpeed -> ac
+    Mankind.Creature targetPeople -> ad
+    int cd -> Z
+    void init() -> ae
     void setEnemySet(Mankind.EnemySet) -> b
     void initbullet(Mankind.EnemySet) -> d
-    void randomAction() -> af
-    boolean targetCanbeCatched(Mankind.Creature) -> c
+    void randomAction() -> ah
+    boolean targetCanbeCatched(Mankind.Creature) -> a
     void bulletCheck(Mankind.Creature,double) -> a
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void attacked(int) -> k
-    int getRange() -> aJ
-    void setRange(int) -> w
-Mankind.Enemy -> c.g:
-    void init() -> ac
+    int getRange() -> ai
+    void setRange(int) -> p
+Mankind.Enemy -> c.h:
+    void init() -> ae
     void changeSize(float) -> v
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void baseDrawElement(javax.microedition.khronos.opengles.GL10) -> c
     void drawDeath(javax.microedition.khronos.opengles.GL10) -> e
     void changeState(float) -> d
     void attacked(int) -> k
-    void jump() -> ar
-    void tooRight() -> I
+    void jump() -> aF
+    void tooRight() -> J
     void tooLeft() -> G
     void attackAnotherOne(Mankind.EnemySet) -> a
     void tooClose(Mankind.Creature,Mankind.EnemySet) -> a
-Mankind.EnemyGrass -> c.h:
+Mankind.EnemyGrass -> c.i:
     void moveCheck() -> D
     void gravityCheck() -> B
     void setPosition(float,float) -> b
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void attacked(int) -> k
-Mankind.EnemySet -> c.i:
+Mankind.EnemySet -> c.j:
     java.util.ArrayList cList -> a
     java.util.ArrayList emplacementList -> b
     Element.BloodSet bloodSet -> c
@@ -821,8 +907,7 @@ Mankind.EnemySet -> c.i:
     float bloodW -> g
     float bloodH -> h
     Element.Animation guideCircle -> l
-    Mankind.EnemySet friendSet -> m
-    Mankind.Creature systemAttacker -> n
+    Mankind.Creature systemAttacker -> m
     Mankind.Creature enemyGrass -> i
     void setPlayer(Mankind.Creature) -> a
     void initGuideCircle() -> d
@@ -842,258 +927,226 @@ Mankind.EnemySet -> c.i:
     void setEnemySet(Mankind.EnemySet) -> b
     Mankind.Creature getSystemAttacker() -> c
     void setSystemAttacker(Mankind.Creature) -> c
-Mankind.FireBall -> c.j:
-    float angleSpeed -> U
-    Element.FireSet fireSet -> V
+Mankind.FireBall -> c.k:
+    float angleSpeed -> W
+    Element.FireSet fireSet -> X
+    boolean culTreadSpeedAndCanBeTread(Mankind.Creature) -> b
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-    void afterInit() -> ad
-    void init() -> ac
+    void afterInit() -> af
+    void init() -> ae
     void attackAnotherOne(Mankind.EnemySet) -> a
     void tooClose(Mankind.Creature,Mankind.EnemySet) -> a
     void gravityCheck() -> B
     void moveCheck() -> D
-    void die() -> ae
-Mankind.FlagMan -> c.k:
-    void setFlag() -> aQ
-    void tooRight() -> I
+    void die() -> ag
+Mankind.FlagMan -> c.l:
+    void setFlag() -> ai
+    void tooRight() -> J
     void tooLeft() -> G
-    void die() -> ae
-Mankind.FlagPlayer -> c.l:
-    void setFlag() -> bc
-    void tooRight() -> I
+    void die() -> ag
+Mankind.FlagPlayer -> c.m:
+    void setFlag() -> bg
+    void tooRight() -> J
     void tooLeft() -> G
-    void die() -> ae
-    void sendIcon(int) -> w
-Mankind.Flyer -> c.m:
-    float yStart -> U
-    Weapon.BoomBullet b -> V
-    int cd -> at
+    void die() -> ag
+    void sendIcon(int) -> I
+    void sendBattleMessage() -> aq
+Mankind.Flyer -> c.n:
+    float yStart -> W
+    Weapon.BoomBullet b -> X
+    int cd -> Y
     void setEnemySet(Mankind.EnemySet) -> b
     void initbullet(Mankind.EnemySet) -> d
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-    void init() -> ac
-    void afterInit() -> ad
-    void tooDown() -> K
+    void init() -> ae
+    void afterInit() -> af
     void sizeCheck() -> y
-    void sizeCheck2() -> aJ
+    void sizeCheck2() -> ai
     void attacked(int) -> k
-    void toWalker() -> aK
-    void hwChange() -> aL
+    void toWalker() -> aj
+    void hwChange() -> ak
     void attackAnotherOne(Mankind.EnemySet) -> a
     void tooClose(Mankind.Creature,Mankind.EnemySet) -> a
-    void randomAction() -> af
-Mankind.GunMan -> c.n:
-    Weapon.Gun gun -> aH
+    void randomAction() -> ah
+Mankind.GunMan -> c.o:
+    Weapon.Gun gun -> Y
     void setEnemySet(Mankind.EnemySet) -> b
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-    void randomAction() -> af
-    void chaseCheck(Mankind.Creature) -> c
-Mankind.Hedgehog -> c.o:
-    void toCrepper() -> aJ
-    void init() -> ac
-    void afterInit() -> ad
-    void attacked(int) -> k
+    void randomAction() -> ah
+    void searchAndAttack() -> ai
+    void chaseCheck(Mankind.Creature) -> a
+Mankind.Hedgehog -> c.p:
+    void toCrepper() -> ai
+    void init() -> ae
+    void afterInit() -> af
+    void die() -> ag
     void attackAnotherOne(Mankind.EnemySet) -> a
     void tooClose(Mankind.Creature,Mankind.EnemySet) -> a
-    void randomAction() -> af
-Mankind.JointCreature -> c.p:
-    java.util.ArrayList jointList -> U
-    java.util.ArrayList shakeList -> V
-    java.util.ArrayList holdList -> at
-    float[] speedAgo -> au
-    float[] speedJump -> av
-    element2.Joint cap -> aw
-    Weapon.GunDraw gunDraw -> ax
-    Weapon.Blade blade -> ay
-    element2.Joint hand -> az
-    Weapon.GunDraw gunHand -> aG
-    element2.Joint normalHand -> aH
-    Weapon.GunDraw haveGunDraw -> aI
-    Weapon.GunDraw noGunDraw -> aJ
-    Weapon.Blade noBlade -> aA
-    element2.Joint foot -> aB
-    element2.Joint foot1 -> aC
-    Weapon.Blade realBlade -> aD
-    element2.Joint expression -> aE
-    element2.Joint cloth -> aF
-    Mankind.JointCreature clone() -> aJ
-    void haveGun() -> aK
-    void noGun() -> aL
-    void init() -> ac
+    void randomAction() -> ah
+Mankind.JointCreature -> c.q:
+    java.util.ArrayList jointList -> W
+    java.util.ArrayList shakeList -> X
+    java.util.ArrayList holdList -> aP
+    float[] speedAgo -> aQ
+    float[] speedJump -> aR
+    element2.Joint cap -> aS
+    Weapon.GunDraw gunDraw -> aT
+    Weapon.Blade blade -> aU
+    element2.Joint hand -> aV
+    Weapon.GunDraw gunHand -> Y
+    element2.Joint normalHand -> Z
+    Weapon.GunDraw haveGunDraw -> aa
+    Weapon.GunDraw noGunDraw -> ab
+    Weapon.Blade noBlade -> aW
+    element2.Joint foot -> aX
+    element2.Joint foot1 -> aY
+    Weapon.Blade realBlade -> aZ
+    element2.Joint expression -> ba
+    element2.Joint cloth -> bb
+    Mankind.JointCreature clone() -> aX
+    void haveGun() -> an
+    void noGun() -> ao
+    void init() -> ae
     void jump(float) -> x
-    void stopJump() -> ah
+    void stopJump() -> av
     void setGunAngle(double) -> a
-    void faceLeft() -> an
-    void turnLeft() -> am
-    void turnRight() -> al
-    void faceRight() -> aj
-    void attack() -> ao
+    void faceLeft() -> aB
+    void turnLeft() -> aA
+    void turnRight() -> az
+    void faceRight() -> ax
+    void attack() -> aC
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-    void incAngle() -> aM
+    void incAngle() -> aY
     void baseDrawElement(javax.microedition.khronos.opengles.GL10) -> c
     void changeState(float,float,element2.Joint) -> a
-    void stopMove() -> ak
-    void animation() -> ap
-    element2.Joint getCap() -> aN
-    void haveBlade() -> aO
-    void noBlade() -> aP
+    void stopMove() -> ay
+    void animation() -> aD
+    element2.Joint getCap() -> aZ
+    void haveBlade() -> al
+    void noBlade() -> am
     void setEnemySet(Mankind.EnemySet) -> b
     Element.Animation clone() -> b
-Mankind.JointCreature$1 -> c.q:
+Mankind.JointCreature$1 -> c.r:
     Mankind.JointCreature this$0 -> C
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void drawNotMove(javax.microedition.khronos.opengles.GL10) -> e
     void drawTail(javax.microedition.khronos.opengles.GL10) -> f
-Mankind.JointCreature$2 -> c.r:
+    void attack(int) -> e
+Mankind.JointCreature$2 -> c.s:
     Mankind.JointCreature this$0 -> C
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void drawNotMove(javax.microedition.khronos.opengles.GL10) -> e
-Mankind.JointEnemy -> c.s:
-    Mankind.Player player -> U
-    int cdMAX -> V
-    int cd -> aG
-    void die() -> ae
-Mankind.Player -> c.t:
-    float baseGunLength -> bq
-    float GunAngle -> U
-    float px -> V
-    float py -> aG
-    com.mingli.toms.World world -> aH
-    boolean doubleClicked -> br
-    boolean[] downData -> aI
-    Mankind.Creature controller -> aJ
-    Enviroments.Goal goal -> aK
-    boolean gotGoal -> bs
-    boolean tooLong -> bt
-    element2.Tail footTail -> aL
-    Mankind.Shader shader -> bu
-    float guideAlpha -> aM
-    float guideAlphaSpeed -> bv
-    float ex1 -> aN
-    float ey1 -> aO
-    float testRate -> aP
-    double yGuideSpeed -> bw
-    double xGuideSpeed -> bx
-    element2.Tail guideTail -> aQ
-    Mankind.Creature guideCre -> aR
-    int wudiTimeBorn -> aS
-    int wudiTime -> aT
-    Element.Pifeng pifeng -> by
-    float gx1 -> aU
-    float gx2 -> aV
-    float gy1 -> aW
-    float gy2 -> aX
-    float growSpeed -> aY
-    float hx1 -> aZ
-    float hy1 -> ba
-    float hx2 -> bb
-    float hy2 -> bc
-    int agoProgress -> bd
-    int downIndex -> be
-    float vtDestory -> bf
-    double E -> bz
-    int coolingId -> bA
-    Mankind.Creature treader -> bB
-    float mh1 -> bC
-    float mh2 -> bD
-    float xMax -> bg
-    float mw1 -> bE
-    float mw2 -> bF
-    int death -> bh
-    int brake -> bG
-    int destorySound -> bH
-    int secondaryLife -> bi
-    Weapon.Gun gun -> bj
-    int gunFruitId -> bk
-    int bladeFruitId -> bl
-    int toukuiTime -> bI
-    int gaoTime -> bJ
-    int flyTime -> bm
-    boolean touched -> bn
-    float curJumpProgress -> bo
-    int jumpProgress -> bp
-    void initVtDestory() -> bc
-    void initEffect(float,float) -> g
-    void extendsDate() -> bd
-    void reSetDownDate() -> be
-    void changeToukui(int) -> x
-    void changeGao(int) -> y
+Mankind.JointEnemy -> c.t:
+    Mankind.Player player -> Y
+    int cdMAX -> W
+    int cd -> X
+    void die() -> ag
+    void setPlayerAndToBeBoss(Mankind.Player) -> a
+Mankind.Player -> c.u:
+    float px -> bc
+    float py -> bd
+    com.mingli.toms.World world -> be
+    Mankind.Creature controller -> bf
+    Enviroments.Goal goal -> bg
+    boolean tooLong -> bF
+    float guideAlpha -> bh
+    float guideAlphaSpeed -> bG
+    float ex1 -> bi
+    float ey1 -> bj
+    float testRate -> bk
+    double yGuideSpeed -> bH
+    double xGuideSpeed -> bI
+    element2.Tail guideTail -> bl
+    Mankind.Creature guideCre -> bm
+    int relifeLandId -> bJ
+    int lifeCount -> bn
+    float gx1 -> bo
+    float gx2 -> bp
+    float gy1 -> bq
+    float gy2 -> br
+    float hx1 -> bs
+    float hy1 -> bt
+    float hx2 -> bu
+    float hy2 -> bv
+    int downIndex -> bw
+    Mankind.Creature treader -> bK
+    float mh1 -> bL
+    float mh2 -> bM
+    float yMax -> bx
+    float xMax -> by
+    float mw1 -> bN
+    float mw2 -> bO
+    int secondaryLife -> bz
+    int extendsGunFruitId -> bA
+    int extendsBladeFruitId -> bB
+    boolean touched -> bC
+    float curJumpProgress -> bD
+    int jumpProgress -> bE
+    void changeGun(int) -> t
+    void changeBlade(int) -> u
+    void extendsDate() -> bg
+    void reSetDownDate() -> bh
     void setEnemySet(Mankind.EnemySet) -> b
     void startTouch(float,float) -> d
     void endTouch(float,float) -> e
     void drawGuideTail(javax.microedition.khronos.opengles.GL10) -> f
     void moveAction(float,float) -> f
-    void calcuPlayerSpeed(float,float) -> h
+    void calcuPlayerSpeed(float,float) -> g
     void setGuideSpeed(double,double) -> b
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void initGuideTail(Enviroments.GrassSet) -> a
-    void changeToLandData() -> ai
-    void tooDown() -> K
-    void initView() -> bf
-    boolean turnDown() -> ag
-    void stopJump() -> ah
+    void changeToLandData() -> aw
+    void initView() -> bi
+    boolean turnDown() -> au
+    void stopJump() -> av
     void jump(float) -> x
-    void setJumpHeight(int) -> u
-    void succeed() -> aQ
-    void timerTask() -> bg
-    void attacked(int) -> k
+    void succeed() -> ba
+    void timerTask() -> ar
+    Mankind.BattleMan clone() -> bb
+    void fenshen(int) -> B
+    void setFriendSet(Mankind.EnemySet) -> c
     void drawDeath(javax.microedition.khronos.opengles.GL10) -> e
-    void reLife(int) -> z
-    void reLife() -> aR
-    void die() -> ae
+    void reLife(int) -> A
+    void die() -> ag
     void baseDrawElement(javax.microedition.khronos.opengles.GL10) -> c
     void move() -> C
     void changeSize(float) -> v
-    void setGunLength() -> bh
-    void setViewPot() -> aS
+    void setViewPot() -> bc
     void gravityCheck() -> B
-    void setLeftData(boolean,int) -> a
-    void doubleClickCheck(int) -> I
-    void setRightData(boolean,int) -> b
-    void actCheck(Mankind.Creature) -> c
-    float culJumpRate() -> bi
-    void treadCheck() -> bj
+    void actCheck(Mankind.Creature) -> a
+    float culJumpRate() -> bj
+    void treadCheck() -> bk
     boolean treadListCheck(Mankind.EnemySet) -> d
-    void sendIcon(int) -> w
-    boolean destory(int,int,int) -> b
-    void dropToCheck(int) -> J
-    boolean crossToCheck(int) -> K
-    void tooHigh() -> J
-    void landView() -> aT
-    void moveView() -> aU
+    void sendIcon(int) -> I
+    boolean culTreadSpeedAndCanBeTread(Mankind.Creature) -> b
+    void moveView() -> bd
+    void landView() -> be
     void setMyView(float,float,float,float) -> a
-    void goreEnemyCheck() -> bk
-    void loadSound() -> Y
-    void increaseScoreBy(int) -> p
-    int getToukuiTime() -> aV
-    void setToukuiTime(int) -> A
-    boolean isGotGoal() -> aW
-    void setGotGoal(boolean) -> c
-    void setPlayerList(java.util.ArrayList) -> a
-    Mankind.EnemySet getEnemySet() -> aX
+    void increaseScoreBy(int) -> C
     void CircleDown(float) -> H
-    void CircleUp() -> aY
-    void changeGun(int) -> B
-    boolean haveGun(int) -> C
-    void changeBlade(int) -> D
-    void haveBlade() -> aO
-    void noBlade() -> aP
-    void haveGun() -> aK
-    void noGun() -> aL
-    boolean haveBlade(int) -> E
-    void increaseCoinBy(int) -> F
-    void increaseChanceBy(int) -> q
-    void addFlyTime(int) -> G
-    void doubleDownCheck() -> aZ
-    void StopDoubleClick() -> ba
-    boolean isDoubleClicked() -> bb
-    void setDoubleClicked(boolean) -> d
-    void incWudiTime(int) -> H
-Mankind.PlayerSet -> c.u:
+    void CircleUp() -> bf
+    void haveBlade() -> al
+    void noBlade() -> am
+    void haveGun() -> an
+    void noGun() -> ao
+    boolean haveBlade(int) -> w
+    boolean haveGun(int) -> v
+    void increaseCoinBy(int) -> J
+    void increaseChanceBy(int) -> D
+    void attacked(int) -> k
+    void useItemOnline(java.lang.String) -> a
+    Mankind.JointCreature clone() -> aX
+Mankind.Player$1 -> c.v:
+    Mankind.Player this$0 -> bc
+    void sendBattleMessage() -> aq
+    void playSound() -> ab
+    void die() -> ag
+    void timerTask() -> ar
+Mankind.PlayerSet -> c.w:
     void setPlayer(Mankind.Creature) -> a
     void timerTask() -> b
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-Mankind.Shader -> c.v:
+Mankind.Shader -> c.x:
     Mankind.Creature master -> c
     element2.Tail tail -> d
     float[][] position -> a
@@ -1104,28 +1157,28 @@ Mankind.Shader -> c.v:
     void setPosition(float,float) -> a
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void backToMaster() -> c
-Mankind.Spide -> c.w:
-    float dsmax -> av
-    element2.Tail tail -> aw
-    Mankind.Creature catcher -> ax
-    int hirtIndexBorn -> ay
-    int hirtIndex -> az
+Mankind.Spide -> c.y:
+    float dsmax -> aa
+    element2.Tail tail -> ab
+    Mankind.Creature catcher -> ac
+    int hirtIndexBorn -> ad
+    int hirtIndex -> ae
     void initbullet(Mankind.EnemySet) -> d
-    void randomAction() -> af
+    void randomAction() -> ah
     void attacked(int) -> k
-    boolean targetCanbeCatched(Mankind.Creature) -> c
+    boolean targetCanbeCatched(Mankind.Creature) -> a
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void moveCheck() -> D
     void gravityCheck() -> B
-    void tailCheck() -> aK
-Mankind.Spide$1 -> c.x:
+    void tailCheck() -> aj
+Mankind.Spide$1 -> c.z:
     Mankind.Spide this$0 -> C
     void gotTarget(Mankind.Creature) -> a
-Mankind.TestEnemy -> c.y:
-    void init() -> ac
-Mankind.Walker -> c.z:
+Mankind.TestEnemy -> c.aa:
+    void init() -> ae
+Mankind.Walker -> c.ab:
     void sizeCheck() -> y
-    void init() -> ac
+    void init() -> ae
     void attackAnotherOne(Mankind.EnemySet) -> a
     void tooClose(Mankind.Creature,Mankind.EnemySet) -> a
 Menu.Square -> d.a:
@@ -1164,12 +1217,11 @@ Weapon.AutoBullet -> e.c:
     Mankind.Creature player -> C
     float speed -> I
     Mankind.Creature enemy -> D
-    boolean grassCheck() -> B
     void tringer(float,float,Mankind.Creature) -> a
     void speedCheck(float,float) -> d
-    void resetBullet() -> D
-    void targetCheck() -> E
-    void loadSound() -> Y
+    void resetBullet() -> B
+    void targetCheck() -> D
+    void loadSound() -> aa
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void setwReal(float) -> o
 Weapon.AutoBulletGun -> e.d:
@@ -1183,18 +1235,17 @@ Weapon.Blade -> e.e:
     Mankind.Creature player -> Y
     float attackHandCentre -> I
     Mankind.EnemySet es -> Z
-    float w1 -> aa
-    float w2 -> ab
+    float w2 -> aa
     element2.Tail tail -> J
     int length -> K
-    float attack -> ac
-    float checkWidth -> ad
+    float attack -> ab
+    float checkWidth -> ac
     float anglface -> L
     float angrface -> M
     float holdx -> N
     float holdy -> O
-    float distanceToHeart -> ae
-    float length2 -> af
+    float distanceToHeart -> ad
+    float length2 -> ae
     void syncTextureSize() -> i
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void drawTail(javax.microedition.khronos.opengles.GL10) -> f
@@ -1204,8 +1255,8 @@ Weapon.Blade -> e.e:
     void positionCheck() -> A
     void attack(int) -> e
     void gotTarget(Mankind.Creature) -> a
-    void loadSound() -> Y
-    void playSound() -> Z
+    void loadSound() -> aa
+    void playSound() -> ab
     void setEs(Mankind.EnemySet) -> a
 Weapon.BoomAttack -> e.f:
     Element.LightSpot ls -> a
@@ -1213,7 +1264,6 @@ Weapon.BoomAttack -> e.f:
     void gotTarget(Mankind.Creature) -> a
     void drawElement(javax.microedition.khronos.opengles.GL10) -> a
 Weapon.BoomBullet -> e.g:
-    Enviroments.GrassSet gra -> D
     Weapon.BoomAttack boomA -> C
     void gravity() -> A
     void gotTarget(Mankind.Creature) -> a
@@ -1226,26 +1276,28 @@ Weapon.Bullet -> e.i:
     java.util.ArrayList eList -> K
     int attack -> L
     int frameMax -> M
-    Mankind.EnemySet es -> U
+    Mankind.EnemySet es -> N
     Enviroments.GrassSet gra -> D
-    Mankind.Creature enemyGrass -> V
+    Mankind.Creature enemyGrass -> O
     void setSize(float,float) -> e
-    void playSound() -> Z
+    void playSound() -> ab
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-    void shot() -> F
-    void rangeCheck() -> G
-    void targetCheck() -> E
-    boolean grassCheck() -> B
+    void shot() -> E
+    void rangeCheck() -> F
+    void targetCheck() -> D
+    boolean grassCheck() -> G
     void gotTarget(Mankind.Creature) -> a
     void push(Mankind.Creature,float) -> a
     void push(Mankind.Creature) -> b
-    void resetBullet() -> D
+    void resetBullet() -> B
     void disappear() -> z
     void setSpeed(double,double) -> a
     void setFire() -> y
     void tringer(float,float,double,double) -> a
     boolean isFire() -> H
-Weapon.Gun -> e.j:
+Weapon.GuangDanGun -> e.j:
+    void setBullet(int) -> a
+Weapon.Gun -> e.k:
     int bulletIndex -> a
     float gunLength -> b
     float x -> c
@@ -1271,12 +1323,12 @@ Weapon.Gun -> e.j:
     double getAngle() -> c
     void setAngle(double) -> a
     void setGunLength(float) -> b
-Weapon.GunDraw -> e.k:
+Weapon.GunDraw -> e.l:
     int holdAngle -> C
     int holdIndex -> H
     void setAngle(float) -> m
     void positionCheck() -> A
-Weapon.Hook -> e.l:
+Weapon.Hook -> e.m:
     boolean back -> D
     int speed -> E
     Mankind.Creature player -> C
@@ -1287,25 +1339,25 @@ Weapon.Hook -> e.l:
     int hookLength -> Y
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void gotTarget(Mankind.Creature) -> a
-    void rangeCheck() -> G
-    void targetCheck() -> E
-    void shot() -> F
+    void rangeCheck() -> F
+    void targetCheck() -> D
+    void shot() -> E
     void letGo() -> I
     void speedCheck(float,float) -> d
     void tringer(float,float,double,double) -> a
     int getRange() -> J
     void setRange(int) -> e
-Weapon.HookGun -> e.m:
+Weapon.HookGun -> e.n:
     void setBullet(int) -> a
     boolean gunCheck(float,float) -> a
-Weapon.Missile -> e.n:
+Weapon.Missile -> e.o:
     Weapon.BoomAttack boomA -> C
-    void shot() -> F
+    void shot() -> E
     void gotTarget(Mankind.Creature) -> a
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-Weapon.MissileGun -> e.o:
+Weapon.MissileGun -> e.p:
     void setBullet(int) -> a
-Weapon.ShotGun -> e.p:
+Weapon.ShotGun -> e.q:
     int count -> o
     boolean gunCheck(float,float) -> a
     void gunCheck(float,float,int) -> a
@@ -1313,9 +1365,9 @@ Weapon.ShotGun -> e.p:
     void gunCheck(float) -> a
     void otherBulletCheck(int) -> b
     void playSound2() -> d
-    void playSound() -> Z
+    void playSound() -> ab
     void setBullet(int) -> a
-Weapon.TailBullet -> e.q:
+Weapon.TailBullet -> e.r:
     element2.Tail tail -> H
     int attackMax -> I
     void setSize(float,float) -> e
@@ -1323,14 +1375,14 @@ Weapon.TailBullet -> e.q:
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void setPosition(float,float) -> b
     void tringer(float,float,double,double) -> a
-Weapon.TailGun -> e.r:
+Weapon.TailGun -> e.s:
     void setBullet(int) -> a
-Weapon.ToBigBullet -> e.s:
+Weapon.ToBigBullet -> e.t:
     float scaleTime -> W
     float backTime -> X
     float wReal -> C
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-    void resetBullet() -> D
+    void resetBullet() -> B
     void setwReal(float) -> o
 aid.Ad -> aid.a:
     com.baidu.appx.BDBannerAd bannerview -> a
@@ -1408,22 +1460,29 @@ aid.Client -> aid.c:
     java.io.DataInputStream dis -> b
     java.io.DataOutputStream dos -> c
     boolean connected -> d
-    java.lang.Thread recThread -> e
-    com.mingli.toms.MenuActivity acti -> g
-    int threadCount -> f
+    java.lang.Thread tcpThread -> e
+    com.mingli.toms.MenuActivity acti -> h
+    aid.UdpSender udpSender -> f
+    int threadCount -> g
+    void setUdpAddressPort(java.lang.String,int) -> a
     void connect() -> a
     void run() -> run
-    void handleReceiveMessage(java.lang.String) -> b
-    void send(java.lang.String) -> a
+    void handleReceiveMessage(java.lang.String) -> c
+    void sendUdp(java.lang.String) -> a
+    void send(java.lang.String) -> b
     void closeStream() -> b
-aid.Log -> aid.d:
+    com.mingli.toms.MenuActivity access$0(aid.Client) -> a
+aid.Client$1 -> aid.d:
+    aid.Client this$0 -> a
+    void handleDatagramPacket(java.net.DatagramPacket,java.lang.String) -> a
+aid.Log -> aid.e:
     void i(java.lang.String,java.lang.String) -> a
     void i(java.lang.String) -> a
     void d(java.lang.String) -> b
 aid.MyMoveView -> aid.MyMoveView:
     com.mingli.toms.TouchMove tm -> a
     boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
-aid.Producer -> aid.e:
+aid.Producer -> aid.f:
     android.widget.PopupWindow popupWindow -> d
     com.mingli.toms.MenuActivity acti -> a
     aid.Producer$ItemAdapter itemadapter -> e
@@ -1431,24 +1490,23 @@ aid.Producer -> aid.e:
     Element.Animation selectedItem -> c
     android.widget.AdapterView$OnItemClickListener gridListener -> f
     com.mingli.toms.World world -> g
-    aid.Tips tips -> h
-    android.view.ViewGroup animationShopadcontainer -> i
+    android.view.ViewGroup animationShopadcontainer -> h
     void showWindow(android.view.View) -> a
     void initButton(android.view.View) -> b
     void hideCheck() -> a
     com.mingli.toms.World access$0(aid.Producer) -> a
     aid.Producer$ItemAdapter access$1(aid.Producer) -> b
-aid.Producer$1 -> aid.f:
+aid.Producer$1 -> aid.g:
     android.view.View selectedView -> b
     aid.Producer this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-aid.Producer$2 -> aid.g:
+aid.Producer$2 -> aid.h:
     aid.Producer this$0 -> a
     boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
-aid.Producer$3 -> aid.h:
+aid.Producer$3 -> aid.i:
     aid.Producer this$0 -> a
     void onClick(android.view.View) -> onClick
-aid.Producer$ItemAdapter -> aid.i:
+aid.Producer$ItemAdapter -> aid.j:
     android.content.Context context -> c
     java.util.ArrayList animationList -> a
     aid.Producer this$0 -> b
@@ -1456,7 +1514,21 @@ aid.Producer$ItemAdapter -> aid.i:
     java.lang.Object getItem(int) -> getItem
     long getItemId(int) -> getItemId
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-aid.Shop -> aid.j:
+aid.RandomMap -> aid.k:
+    com.mingli.toms.World world -> e
+    java.util.ArrayList top -> a
+    java.util.ArrayList mid -> b
+    java.util.ArrayList bottom -> c
+    java.util.ArrayList whole -> d
+    char[] getRandomWholeMap(int,int) -> a
+    char[] array2to1(char[][]) -> a
+    char[] getRandom333Map(int,int) -> b
+    void setWholeItem(com.mingli.toms.Map) -> a
+    void set3Item(com.mingli.toms.Map) -> b
+    char[][] mapToItem(com.mingli.toms.Map) -> c
+    void initMapWholeItem() -> a
+    void initMap333Item() -> b
+aid.Shop -> aid.l:
     android.widget.PopupWindow popupWindow -> d
     com.mingli.toms.MenuActivity acti -> a
     aid.Shop$ItemAdapter itemadapter -> e
@@ -1483,16 +1555,16 @@ aid.Shop -> aid.j:
     void access$4(aid.Shop) -> c
     Enviroments.FruitSet access$5(aid.Shop) -> d
     aid.Shop$ItemAdapter access$6(aid.Shop) -> e
-aid.Shop$1 -> aid.k:
+aid.Shop$1 -> aid.m:
     aid.Shop this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-aid.Shop$2 -> aid.l:
+aid.Shop$2 -> aid.n:
     aid.Shop this$0 -> a
     boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
-aid.Shop$3 -> aid.m:
+aid.Shop$3 -> aid.o:
     aid.Shop this$0 -> a
     void onClick(android.view.View) -> onClick
-aid.Shop$ItemAdapter -> aid.n:
+aid.Shop$ItemAdapter -> aid.p:
     android.content.Context context -> c
     java.util.ArrayList shopList -> a
     aid.Shop this$0 -> b
@@ -1500,7 +1572,7 @@ aid.Shop$ItemAdapter -> aid.n:
     java.lang.Object getItem(int) -> getItem
     long getItemId(int) -> getItemId
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-aid.Tips -> aid.o:
+aid.Tips -> aid.q:
     android.widget.PopupWindow popupWindow -> a
     com.mingli.toms.MenuActivity acti -> b
     android.widget.TextView te -> c
@@ -1508,9 +1580,26 @@ aid.Tips -> aid.o:
     void initTip(android.view.View) -> a
     boolean isHided() -> a
     android.widget.TextView getTextView() -> b
-aid.Tips$1 -> aid.p:
+aid.Tips$1 -> aid.r:
     aid.Tips this$0 -> a
     boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
+aid.UdpSender -> aid.s:
+    java.lang.String str -> a
+    java.net.DatagramSocket dsSend -> b
+    java.net.DatagramSocket dsReceive -> c
+    java.net.DatagramPacket dpSend -> d
+    java.lang.String strReceive -> e
+    boolean connected -> f
+    void connect(java.lang.String,int) -> a
+    void send(java.lang.String) -> a
+    void closeStream() -> a
+    void receiveAlways(java.net.DatagramSocket) -> a
+    void handleDatagramPacket(java.net.DatagramPacket,java.lang.String) -> a
+    void run() -> run
+    void startReceive(java.net.DatagramSocket) -> b
+aid.UserName -> aid.t:
+    java.lang.String[] nameArray -> a
+    java.lang.String randomName() -> a
 android.support.v4.os.ParcelableCompat -> f.a.a.a.a:
     android.os.Parcelable$Creator newCreator(android.support.v4.os.ParcelableCompatCreatorCallbacks) -> a
 android.support.v4.os.ParcelableCompat$CompatCreator -> f.a.a.a.b:
@@ -3356,7 +3445,34 @@ com.baidu.appx.uikit.b -> com.baidu.appx.uikit.c:
 com.baidu.appx.uikit.b$a -> com.baidu.appx.uikit.d:
     void b() -> b
     void c() -> c
-com.mingli.toms.ButtonController -> com.mingli.toms.a:
+com.mingli.toms.BattleActivity -> com.mingli.toms.BattleActivity:
+    java.util.ArrayList rcList -> a
+    java.util.ArrayList userList -> b
+    com.mingli.toms.RoomSetAdapter roomSetAdapter -> d
+    com.mingli.toms.UserAdapter userAdapter -> e
+    android.os.Handler handler -> f
+    int roomId -> c
+    android.widget.TabHost th -> g
+    void onCreate(android.os.Bundle) -> onCreate
+    void initOneRoom() -> a
+    void finish() -> finish
+    void initHandler() -> b
+    void initRoomSet() -> c
+    void roomSetMessage(java.lang.String) -> a
+    void roomOneInfo(java.lang.String) -> b
+    com.mingli.toms.RoomSetAdapter access$0(com.mingli.toms.BattleActivity) -> a
+    com.mingli.toms.UserAdapter access$1(com.mingli.toms.BattleActivity) -> b
+    android.widget.TabHost access$2(com.mingli.toms.BattleActivity) -> c
+com.mingli.toms.BattleActivity$1 -> com.mingli.toms.a:
+    com.mingli.toms.BattleActivity this$0 -> a
+    void onClick(android.view.View) -> onClick
+com.mingli.toms.BattleActivity$2 -> com.mingli.toms.b:
+    com.mingli.toms.BattleActivity this$0 -> a
+    void handleMessage(android.os.Message) -> handleMessage
+com.mingli.toms.BattleActivity$3 -> com.mingli.toms.c:
+    com.mingli.toms.BattleActivity this$0 -> a
+    void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
+com.mingli.toms.ButtonController -> com.mingli.toms.d:
     com.mingli.toms.MenuActivity acti -> c
     com.mingli.toms.World world -> d
     com.mingli.toms.GameMenu gameMenu -> e
@@ -3385,20 +3501,22 @@ com.mingli.toms.ButtonController -> com.mingli.toms.a:
     com.mingli.toms.GameMenu access$4(com.mingli.toms.ButtonController) -> e
     android.widget.ImageButton access$5(com.mingli.toms.ButtonController) -> f
     android.graphics.drawable.Drawable access$6(com.mingli.toms.ButtonController) -> g
-com.mingli.toms.ButtonController$1 -> com.mingli.toms.b:
+com.mingli.toms.ButtonController$1 -> com.mingli.toms.e:
     com.mingli.toms.ButtonController this$0 -> a
     void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
     void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
     void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
-com.mingli.toms.ButtonController$2 -> com.mingli.toms.c:
+com.mingli.toms.ButtonController$2 -> com.mingli.toms.f:
+    int agoProgress -> b
     com.mingli.toms.ButtonController this$0 -> a
     void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
     void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
     void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
-com.mingli.toms.ButtonController$ClickGame -> com.mingli.toms.d:
+    void slideCheck(int) -> a
+com.mingli.toms.ButtonController$ClickGame -> com.mingli.toms.g:
     com.mingli.toms.ButtonController this$0 -> a
     boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
-com.mingli.toms.GameMenu -> com.mingli.toms.e:
+com.mingli.toms.GameMenu -> com.mingli.toms.h:
     android.widget.PopupWindow popupWindow -> g
     com.mingli.toms.MenuActivity acti -> a
     com.mingli.toms.GameMenu$PopWindowTouchEvent touchEvent -> h
@@ -3426,34 +3544,35 @@ com.mingli.toms.GameMenu -> com.mingli.toms.e:
     void normalMenu() -> d
     void gameover() -> e
     void succeed() -> f
-    android.view.View access$0(com.mingli.toms.GameMenu) -> a
-    com.mingli.toms.World access$1(com.mingli.toms.GameMenu) -> b
+    com.mingli.toms.World access$0(com.mingli.toms.GameMenu) -> a
+    android.view.View access$1(com.mingli.toms.GameMenu) -> b
     com.mingli.toms.GameMenu$PopWindowTouchEvent access$2(com.mingli.toms.GameMenu) -> c
-com.mingli.toms.GameMenu$1 -> com.mingli.toms.f:
+com.mingli.toms.GameMenu$1 -> com.mingli.toms.i:
     com.mingli.toms.GameMenu this$0 -> a
     void onAnimationEnd(android.view.animation.Animation) -> onAnimationEnd
     void onAnimationRepeat(android.view.animation.Animation) -> onAnimationRepeat
     void onAnimationStart(android.view.animation.Animation) -> onAnimationStart
-com.mingli.toms.GameMenu$2 -> com.mingli.toms.g:
+com.mingli.toms.GameMenu$2 -> com.mingli.toms.j:
     com.mingli.toms.GameMenu this$0 -> a
     boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
-com.mingli.toms.GameMenu$PopWindowTouchEvent -> com.mingli.toms.h:
+com.mingli.toms.GameMenu$PopWindowTouchEvent -> com.mingli.toms.k:
     com.mingli.toms.MenuActivity menuActivity -> d
     android.widget.CheckBox ex -> a
     android.widget.CheckBox music -> b
-    android.view.View$OnTouchListener otl -> e
+    android.view.View randomMap -> e
+    android.view.View$OnTouchListener otl -> f
     com.mingli.toms.GameMenu this$0 -> c
     void findView(android.view.View) -> a
     void touchAction(android.view.View,android.view.MotionEvent) -> a
-com.mingli.toms.GameMenu$PopWindowTouchEvent$1 -> com.mingli.toms.i:
+com.mingli.toms.GameMenu$PopWindowTouchEvent$1 -> com.mingli.toms.l:
     com.mingli.toms.GameMenu$PopWindowTouchEvent this$1 -> a
     boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
-com.mingli.toms.Info4 -> com.mingli.toms.j:
+com.mingli.toms.Info4 -> com.mingli.toms.m:
     int paiming -> a
     int userScore -> b
     java.lang.String userName -> c
     int userId -> d
-com.mingli.toms.ItemWindow -> com.mingli.toms.k:
+com.mingli.toms.ItemWindow -> com.mingli.toms.n:
     android.widget.GridView slideWindow -> d
     android.app.Activity acti -> a
     com.mingli.toms.ItemWindow$ItemAdapter itemadapter -> e
@@ -3469,13 +3588,13 @@ com.mingli.toms.ItemWindow -> com.mingli.toms.k:
     void freshItem() -> d
     Enviroments.FruitSet access$0(com.mingli.toms.ItemWindow) -> a
     com.mingli.toms.ItemWindow$ItemAdapter access$1(com.mingli.toms.ItemWindow) -> b
-com.mingli.toms.ItemWindow$1 -> com.mingli.toms.l:
+com.mingli.toms.ItemWindow$1 -> com.mingli.toms.o:
     com.mingli.toms.ItemWindow this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.mingli.toms.ItemWindow$2 -> com.mingli.toms.m:
+com.mingli.toms.ItemWindow$2 -> com.mingli.toms.p:
     com.mingli.toms.ItemWindow this$0 -> a
     void onDrawerOpened() -> onDrawerOpened
-com.mingli.toms.ItemWindow$ItemAdapter -> com.mingli.toms.n:
+com.mingli.toms.ItemWindow$ItemAdapter -> com.mingli.toms.q:
     android.content.Context context -> c
     java.util.ArrayList fruList -> a
     com.mingli.toms.ItemWindow this$0 -> b
@@ -3483,64 +3602,68 @@ com.mingli.toms.ItemWindow$ItemAdapter -> com.mingli.toms.n:
     java.lang.Object getItem(int) -> getItem
     long getItemId(int) -> getItemId
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.mingli.toms.Map -> com.mingli.toms.o:
+com.mingli.toms.Map -> com.mingli.toms.r:
     byte[] data -> a
     char[] charData -> b
     int max -> c
     void saveMap(byte[],java.io.File) -> a
     void saveMap(java.lang.String,java.io.File) -> a
 com.mingli.toms.MenuActivity -> com.mingli.toms.MenuActivity:
-    android.content.SharedPreferences sp -> q
-    android.content.Context content -> r
-    android.content.Context myActivity -> s
+    android.content.SharedPreferences sp -> t
+    android.content.Context content -> u
+    android.content.Context myActivity -> v
     int FPS -> a
     aid.Ad ad -> b
-    int startTime -> t
-    com.mingli.toms.StateWindow stateWindow -> u
-    com.mingli.toms.World world -> v
-    com.mingli.toms.ButtonController btnc -> w
-    com.mingli.toms.StartMenu startMenu -> x
-    com.mingli.toms.GameMenu gameMenu -> y
-    com.mingli.toms.MenuActivity$MyHandler myHandler -> z
-    android.app.Dialog dl -> A
-    android.content.SharedPreferences$Editor editor -> B
-    int screenWidth -> c
-    int screenHeight -> d
-    int score -> e
-    int chance -> f
-    int coinCount -> g
-    com.mingli.toms.Stagechoosser stageChooser -> C
-    int mapIndex -> h
-    java.lang.String starString -> i
-    int[] star -> j
-    int userId -> k
-    java.lang.String itemString -> D
-    char[] item -> l
-    aid.Shop shop -> E
-    aid.Tips tips -> F
-    aid.Producer animationShop -> G
-    boolean titleMode -> m
-    java.lang.String speaker -> H
-    java.lang.String talk -> I
-    int resId -> J
-    int direction1 -> K
-    int direction2 -> L
-    aid.Client client -> M
-    java.lang.String userName -> n
-    java.util.ArrayList userInfoList -> o
-    java.lang.String paimingString -> N
-    java.lang.String selectedToSaveOnlineFileName -> p
+    int startTime -> w
+    com.mingli.toms.StateWindow stateWindow -> x
+    com.mingli.toms.World world -> c
+    com.mingli.toms.ButtonController btnc -> y
+    com.mingli.toms.StartMenu startMenu -> z
+    com.mingli.toms.GameMenu gameMenu -> A
+    com.mingli.toms.MenuActivity$MyHandler myHandler -> B
+    android.app.Dialog dl -> C
+    android.content.SharedPreferences$Editor editor -> D
+    int screenWidth -> d
+    int screenHeight -> e
+    int score -> f
+    int chance -> g
+    int coinCount -> h
+    com.mingli.toms.Stagechoosser stageChooser -> E
+    int mapIndex -> i
+    java.lang.String starString -> j
+    int[] star -> k
+    int userId -> l
+    java.lang.String itemString -> F
+    char[] item -> m
+    aid.Shop shop -> G
+    aid.Tips tips -> H
+    aid.Producer animationShop -> I
+    boolean titleMode -> n
+    java.lang.String speaker -> J
+    java.lang.String talk -> K
+    int resId -> L
+    int direction1 -> M
+    int direction2 -> N
+    aid.Client client -> O
+    java.lang.String userName -> o
+    java.util.ArrayList userInfoList -> p
+    java.lang.String paimingString -> P
+    java.lang.String selectedToSaveOnlineFileName -> q
+    java.lang.String requestFoItemMap -> Q
+    aid.RandomMap randomMap -> R
+    int maxMapId -> r
+    com.mingli.toms.BattleActivity battleActi -> s
     void onDestroy() -> onDestroy
     void finish() -> finish
     void onCreate(android.os.Bundle) -> onCreate
-    void initNetController() -> y
-    void initTips() -> z
+    void initNetController() -> A
+    void initTips() -> B
     void initGame() -> a
     void initStartMenu() -> b
-    void getUserId() -> A
-    void initSp() -> B
-    void initAd() -> C
-    void initWindowSize() -> D
+    void getUserId() -> C
+    void initSp() -> D
+    void initAd() -> E
+    void initWindowSize() -> F
     void startGame() -> c
     void loadGameMenu() -> d
     boolean onKeyDown(int,android.view.KeyEvent) -> onKeyDown
@@ -3551,9 +3674,9 @@ com.mingli.toms.MenuActivity -> com.mingli.toms.MenuActivity:
     void showDialog(java.lang.String,java.lang.String,int) -> a
     void showGuideDialog() -> g
     void showDialogView() -> h
-    void showExitDialog() -> E
+    void showExitDialog() -> G
     void save() -> i
-    void getMessage() -> F
+    void getMessage() -> H
     void saveUserMessage(java.lang.String) -> b
     int getMaxMapIndex() -> j
     void reLoadGame() -> k
@@ -3575,47 +3698,54 @@ com.mingli.toms.MenuActivity -> com.mingli.toms.MenuActivity:
     void showBanner(android.view.ViewGroup) -> a
     void onActivityResult(int,int,android.content.Intent) -> onActivityResult
     boolean getLifeFree() -> s
-    void showInAd() -> G
+    void showInAd() -> I
     boolean isNetworkAvailable(android.content.Context) -> a
     void showAnimationShop(android.view.View) -> showAnimationShop
     void adShow() -> t
     void adClicked() -> u
     void saveUserId(java.lang.String) -> d
     void showBuyLifeShop(android.view.View) -> showBuyLifeShop
-    void intentToFileChooser() -> v
-    void sendOnlineStageRequest() -> w
+    void sendOnlineStageRequest() -> v
     void showOnlineStage(java.lang.String) -> e
     void getTheOnlineStage(java.lang.String) -> f
-    void startGame(java.lang.String) -> g
+    void startGame(java.io.File) -> a
+    void startGame(java.lang.String) -> k
+    void randomChalenge() -> w
+    void battleAction(java.lang.String) -> g
+    void roomSetMessage(java.lang.String) -> h
+    void roomOneInfo(java.lang.String) -> i
+    void intentToFileChooser() -> x
+    void intentToBattleMode() -> y
+    void addForce(int,int) -> a
+    void useItemBattleMan(java.lang.String) -> j
     com.mingli.toms.StateWindow access$0(com.mingli.toms.MenuActivity) -> a
     com.mingli.toms.ButtonController access$1(com.mingli.toms.MenuActivity) -> b
     com.mingli.toms.StartMenu access$2(com.mingli.toms.MenuActivity) -> c
-    com.mingli.toms.World access$3(com.mingli.toms.MenuActivity) -> d
-    aid.Tips access$4(com.mingli.toms.MenuActivity) -> e
-    void access$5(com.mingli.toms.MenuActivity,com.mingli.toms.StateWindow) -> a
-    com.mingli.toms.GameMenu access$6(com.mingli.toms.MenuActivity) -> f
-    android.content.SharedPreferences$Editor access$7(com.mingli.toms.MenuActivity) -> g
-    aid.Client access$8(com.mingli.toms.MenuActivity) -> h
-    android.app.Dialog access$9() -> x
-com.mingli.toms.MenuActivity$1 -> com.mingli.toms.p:
+    aid.Tips access$3(com.mingli.toms.MenuActivity) -> d
+    void access$4(com.mingli.toms.MenuActivity,com.mingli.toms.StateWindow) -> a
+    com.mingli.toms.GameMenu access$5(com.mingli.toms.MenuActivity) -> e
+    android.content.SharedPreferences$Editor access$6(com.mingli.toms.MenuActivity) -> f
+    aid.Client access$7(com.mingli.toms.MenuActivity) -> g
+    android.app.Dialog access$8() -> z
+com.mingli.toms.MenuActivity$1 -> com.mingli.toms.s:
     com.mingli.toms.MenuActivity this$0 -> a
     void run() -> run
-com.mingli.toms.MenuActivity$2 -> com.mingli.toms.q:
+com.mingli.toms.MenuActivity$2 -> com.mingli.toms.t:
     com.mingli.toms.MenuActivity this$0 -> a
     void onClick(android.view.View) -> onClick
-com.mingli.toms.MenuActivity$3 -> com.mingli.toms.r:
+com.mingli.toms.MenuActivity$3 -> com.mingli.toms.u:
     com.mingli.toms.MenuActivity this$0 -> a
     android.app.Dialog val$d -> b
     boolean onTouch(android.view.View,android.view.MotionEvent) -> onTouch
-com.mingli.toms.MenuActivity$4 -> com.mingli.toms.s:
+com.mingli.toms.MenuActivity$4 -> com.mingli.toms.v:
     com.mingli.toms.MenuActivity this$0 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.mingli.toms.MenuActivity$MyHandler -> com.mingli.toms.t:
+com.mingli.toms.MenuActivity$MyHandler -> com.mingli.toms.w:
     com.mingli.toms.MenuActivity this$0 -> a
     void handleMessage(android.os.Message) -> handleMessage
     void gameover() -> a
     void succeed() -> b
-com.mingli.toms.Music -> com.mingli.toms.u:
+com.mingli.toms.Music -> com.mingli.toms.x:
     android.media.MediaPlayer mp -> a
     android.media.SoundPool sp -> f
     android.content.Context context -> g
@@ -3637,9 +3767,9 @@ com.mingli.toms.Music -> com.mingli.toms.u:
     void resume() -> i
     void setLooping(boolean) -> a
     void pauseBGM() -> j
-com.mingli.toms.MusicId -> com.mingli.toms.v:
+com.mingli.toms.MusicId -> com.mingli.toms.y:
     int baller -> a
-    int gun -> b
+    int guangdanqiang -> b
     int sword -> c
     int brake01 -> d
     int land -> e
@@ -3666,7 +3796,7 @@ com.mingli.toms.MusicId -> com.mingli.toms.v:
     int light -> z
     int fresh -> A
     void loadSoundId(com.mingli.toms.Music) -> a
-com.mingli.toms.Render -> com.mingli.toms.w:
+com.mingli.toms.Render -> com.mingli.toms.z:
     float px -> a
     float py -> b
     float width -> c
@@ -3685,6 +3815,17 @@ com.mingli.toms.Render -> com.mingli.toms.w:
     void onSurfaceChanged(javax.microedition.khronos.opengles.GL10,int,int) -> onSurfaceChanged
     void onDrawFrame(javax.microedition.khronos.opengles.GL10) -> onDrawFrame
     void onDestory() -> a
+com.mingli.toms.RoomClient -> com.mingli.toms.aa:
+    int roomId -> a
+    int roomSize -> b
+    int roomMax -> c
+com.mingli.toms.RoomSetAdapter -> com.mingli.toms.ab:
+    java.util.ArrayList rcList -> a
+    com.mingli.toms.BattleActivity acti -> b
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
 com.mingli.toms.Stagechoosser -> com.mingli.toms.Stagechoosser:
     com.mingli.toms.MenuActivity acti -> a
     int itemCount -> b
@@ -3692,13 +3833,13 @@ com.mingli.toms.Stagechoosser -> com.mingli.toms.Stagechoosser:
     void loadStage() -> a
     void hide() -> b
     com.mingli.toms.MenuActivity access$0(com.mingli.toms.Stagechoosser) -> a
-com.mingli.toms.Stagechoosser$1 -> com.mingli.toms.x:
+com.mingli.toms.Stagechoosser$1 -> com.mingli.toms.ac:
     com.mingli.toms.Stagechoosser this$0 -> a
     void onClick(android.view.View) -> onClick
-com.mingli.toms.Stagechoosser$2 -> com.mingli.toms.y:
+com.mingli.toms.Stagechoosser$2 -> com.mingli.toms.ad:
     com.mingli.toms.Stagechoosser this$0 -> a
     void onItemClick(android.widget.AdapterView,android.view.View,int,long) -> onItemClick
-com.mingli.toms.Stagechoosser$StageAdapter -> com.mingli.toms.z:
+com.mingli.toms.Stagechoosser$StageAdapter -> com.mingli.toms.ae:
     android.content.Context context -> c
     int[] star -> a
     com.mingli.toms.Stagechoosser this$0 -> b
@@ -3706,7 +3847,7 @@ com.mingli.toms.Stagechoosser$StageAdapter -> com.mingli.toms.z:
     java.lang.Object getItem(int) -> getItem
     long getItemId(int) -> getItemId
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.mingli.toms.StartMenu -> com.mingli.toms.aa:
+com.mingli.toms.StartMenu -> com.mingli.toms.af:
     com.mingli.toms.MenuActivity acti -> c
     android.widget.RadioButton noweapon -> d
     android.widget.RadioButton alwaysgun -> e
@@ -3731,35 +3872,36 @@ com.mingli.toms.StartMenu -> com.mingli.toms.aa:
     android.widget.RadioButton access$3(com.mingli.toms.StartMenu) -> d
     android.view.View access$4(com.mingli.toms.StartMenu) -> e
     android.widget.Button access$5(com.mingli.toms.StartMenu) -> f
-com.mingli.toms.StartMenu$1 -> com.mingli.toms.ab:
+com.mingli.toms.StartMenu$1 -> com.mingli.toms.ag:
     int t -> a
     com.mingli.toms.StartMenu this$0 -> b
     void onClick(android.view.View) -> onClick
     void newEditDialog() -> a
     com.mingli.toms.StartMenu access$0(com.mingli.toms.StartMenu$1) -> a
-com.mingli.toms.StartMenu$1$1 -> com.mingli.toms.ac:
+com.mingli.toms.StartMenu$1$1 -> com.mingli.toms.ah:
     com.mingli.toms.StartMenu$1 this$1 -> a
     android.widget.TextView val$editT -> b
     android.app.Dialog val$dl -> c
     void onClick(android.view.View) -> onClick
-com.mingli.toms.StartMenu$2 -> com.mingli.toms.ad:
+com.mingli.toms.StartMenu$2 -> com.mingli.toms.ai:
     java.lang.String str -> a
     java.lang.String moneyStr -> b
     java.lang.String editStr -> c
     java.lang.String rpgStr -> d
     java.lang.String bigMode -> e
     java.lang.String openStr -> f
-    int maxLength -> g
-    com.mingli.toms.StartMenu this$0 -> h
+    java.lang.String item3Str -> g
+    int maxLength -> h
+    com.mingli.toms.StartMenu this$0 -> i
     void onCheckedChanged(android.widget.CompoundButton,boolean) -> onCheckedChanged
-com.mingli.toms.StartMenu$PaimingAdapter -> com.mingli.toms.ae:
+com.mingli.toms.StartMenu$PaimingAdapter -> com.mingli.toms.aj:
     java.util.ArrayList userInfoList -> a
     com.mingli.toms.StartMenu this$0 -> b
     int getCount() -> getCount
     java.lang.Object getItem(int) -> getItem
     long getItemId(int) -> getItemId
     android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
-com.mingli.toms.StateWindow -> com.mingli.toms.af:
+com.mingli.toms.StateWindow -> com.mingli.toms.ak:
     android.widget.TextView coin -> b
     android.widget.TextView score -> c
     android.widget.TextView chance -> d
@@ -3779,15 +3921,15 @@ com.mingli.toms.StateWindow -> com.mingli.toms.af:
     android.widget.ProgressBar access$4(com.mingli.toms.StateWindow) -> e
     android.widget.TextView access$5(com.mingli.toms.StateWindow) -> f
     android.widget.TextView access$6(com.mingli.toms.StateWindow) -> g
-com.mingli.toms.StateWindow$1 -> com.mingli.toms.ag:
+com.mingli.toms.StateWindow$1 -> com.mingli.toms.al:
     com.mingli.toms.StateWindow this$0 -> a
     void onClick(android.view.View) -> onClick
 com.mingli.toms.Titlectivity -> com.mingli.toms.Titlectivity:
     void onCreate(android.os.Bundle) -> onCreate
-com.mingli.toms.Titlectivity$1 -> com.mingli.toms.ah:
+com.mingli.toms.Titlectivity$1 -> com.mingli.toms.am:
     com.mingli.toms.Titlectivity this$0 -> a
     void run() -> run
-com.mingli.toms.TouchMove -> com.mingli.toms.ai:
+com.mingli.toms.TouchMove -> com.mingli.toms.an:
     Element.LightSpotSet lightSpotSet -> e
     Mankind.Player player -> f
     element2.Tail tail -> g
@@ -3813,74 +3955,87 @@ com.mingli.toms.TouchMove -> com.mingli.toms.ai:
     void startEditTarget(float,float) -> d
     Element.Animation newAnimation(float,float) -> e
     void drawElement(javax.microedition.khronos.opengles.GL10) -> a
-com.mingli.toms.UserName -> com.mingli.toms.aj:
-    java.lang.String[] nameArray -> a
-    java.lang.String randomName() -> a
-com.mingli.toms.World -> com.mingli.toms.ak:
+com.mingli.toms.UserAdapter -> com.mingli.toms.ao:
+    com.mingli.toms.BattleActivity acti -> b
+    java.util.ArrayList userList -> a
+    int getCount() -> getCount
+    java.lang.Object getItem(int) -> getItem
+    long getItemId(int) -> getItemId
+    android.view.View getView(int,android.view.View,android.view.ViewGroup) -> getView
+com.mingli.toms.UserRoom -> com.mingli.toms.ap:
+    java.lang.String name -> a
+    java.lang.String score -> b
+com.mingli.toms.World -> com.mingli.toms.aq:
     long flash -> a
     Mankind.Player player -> b
-    Enviroments.GrassSet gra -> K
-    Mankind.EnemySet enemySet -> L
-    Mankind.EnemySet playerSet -> M
-    Enviroments.BackGround bg -> N
-    Enviroments.CoinSet cs -> O
-    com.mingli.toms.Map map -> P
-    element2.ParticleSet ps -> Q
-    element2.HikariSet hikariSet -> R
-    element2.FireworkSet fireWorkSet -> S
-    element2.SnowSet snowSet -> T
-    element2.LightningSet lightningSet -> U
-    Element.BoomSet boomSet -> V
-    com.mingli.toms.Music music -> c
-    com.mingli.toms.MenuActivity acti -> d
-    float alpha -> e
-    java.util.ArrayList drawList -> W
-    java.util.ArrayList recycleList -> f
-    int dStage -> g
-    Element.LightSpotSet lightSpotSet -> Z
-    element2.Tail touchTail -> h
-    Element.BubbleSet bubbleSet -> aa
-    Element.GuidePost guidePost -> ab
-    Element.Curtain ct -> ac
-    int playerMoveIndex -> i
-    int mapMoveIndex -> ad
-    element2.TexId texId -> j
-    boolean RAMPAGE -> k
-    boolean NOWEPON -> l
-    boolean ALWAYSGUN -> m
-    int[] mes -> n
-    int baseLifeMax -> o
-    android.os.Handler handler -> p
-    Enviroments.FruitSet fruitSet -> ae
-    com.mingli.toms.Render render -> af
-    Element.BloodSet snowBloodSet -> ag
-    java.io.File mapFile -> q
-    java.lang.String mapName -> r
-    Mankind.Creature storySpeaker -> s
-    int curMapIndex -> t
-    int gameTime -> u
-    boolean isGameRunning -> ah
-    boolean paused -> ai
-    com.mingli.toms.TouchMove touchMove -> v
-    float px -> w
-    float py -> x
-    int drawThreadIndex -> y
-    int index -> z
-    int SPEEDSTAR -> aj
-    int COINSTAR -> ak
-    int ITEMSTAR -> al
-    Element.Draw sucDraw -> am
-    int timerMax -> A
-    Element.FireSet fireSet -> an
-    java.util.ArrayList animationList -> B
-    java.util.ArrayList animationshopList -> C
-    java.lang.String mapString -> D
-    boolean editMode -> E
-    boolean rpgMode -> F
-    double baseBSpeed -> G
-    boolean bigMode -> H
-    boolean openMode -> I
-    int baseActionCdMax -> J
+    Enviroments.GrassSet gra -> Q
+    Mankind.EnemySet enemySet -> R
+    Mankind.EnemySet playerSet -> S
+    Enviroments.BackGround bg -> T
+    Enviroments.CoinSet cs -> U
+    com.mingli.toms.Map map -> V
+    element2.ParticleSet ps -> W
+    element2.HikariSet hikariSet -> Z
+    element2.FireworkSet fireWorkSet -> aa
+    element2.SnowSet snowSet -> ab
+    element2.LightningSet lightningSet -> c
+    Element.BoomSet boomSet -> ac
+    com.mingli.toms.Music music -> d
+    com.mingli.toms.MenuActivity acti -> e
+    float alpha -> f
+    java.util.ArrayList drawList -> ad
+    java.util.ArrayList recycleList -> g
+    int dStage -> h
+    Element.LightSpotSet lightSpotSet -> ae
+    element2.Tail touchTail -> i
+    Element.BubbleSet bubbleSet -> af
+    Element.GuidePost guidePost -> ag
+    Element.Curtain ct -> ah
+    int playerMoveIndex -> j
+    int mapMoveIndex -> ai
+    element2.TexId texId -> k
+    boolean RAMPAGE -> l
+    boolean NOWEPON -> m
+    boolean ALWAYSGUN -> n
+    int[] mes -> o
+    int force_in_battle -> p
+    int baseLifeMax -> q
+    android.os.Handler handler -> r
+    Enviroments.FruitSet fruitSet -> aj
+    com.mingli.toms.Render render -> ak
+    Element.BloodSet snowBloodSet -> al
+    java.io.File mapFile -> s
+    java.lang.String mapName -> t
+    Mankind.Creature storySpeaker -> u
+    int curMapIndex -> v
+    int gameTime -> w
+    boolean isGameRunning -> am
+    boolean paused -> an
+    com.mingli.toms.TouchMove touchMove -> x
+    Enviroments.Goal goal -> ao
+    float px -> y
+    float py -> z
+    int drawThreadIndex -> A
+    int index -> B
+    int SPEEDSTAR -> ap
+    int COINSTAR -> aq
+    int ITEMSTAR -> ar
+    Element.Draw sucDraw -> as
+    int timerMax -> C
+    Element.FireSet fireSet -> at
+    java.util.ArrayList animationList -> D
+    java.util.ArrayList animationshopList -> E
+    java.lang.String mapString -> F
+    char[] mapCharSet -> G
+    java.util.ArrayList blueList -> H
+    java.util.ArrayList redList -> I
+    boolean editMode -> J
+    boolean rpgMode -> K
+    double baseBSpeed -> L
+    boolean bigMode -> M
+    boolean openMode -> N
+    int baseActionCdMax -> O
+    boolean Item3Mode -> P
     java.lang.String getStr(int) -> a
     void saveMap(java.lang.String,java.lang.String) -> a
     void saveMap() -> a
@@ -3927,23 +4082,28 @@ com.mingli.toms.World -> com.mingli.toms.ak:
     void setGameMusic() -> s
     void addDrawAnimation(Element.Animation) -> b
     boolean isOutMapResource() -> p
+    void battleAction(java.lang.String[]) -> a
+    void battleActionCheck(java.lang.String[],java.util.ArrayList) -> a
+    void addForce(int,int) -> a
+    void addCheck(int,int) -> b
+    void useItemBattleMan(java.lang.String) -> a
     com.mingli.toms.Render access$0(com.mingli.toms.World) -> a
     element2.FireworkSet access$1(com.mingli.toms.World) -> b
     Element.BoomSet access$2(com.mingli.toms.World) -> c
     java.util.ArrayList access$3(com.mingli.toms.World) -> d
     Element.Draw access$4(com.mingli.toms.World) -> e
-com.mingli.toms.World$1 -> com.mingli.toms.al:
+com.mingli.toms.World$1 -> com.mingli.toms.ar:
     com.mingli.toms.World this$0 -> a
     void run() -> run
-com.mingli.toms.World$2 -> com.mingli.toms.am:
+com.mingli.toms.World$2 -> com.mingli.toms.as:
     com.mingli.toms.World this$0 -> a
     int val$mapIndex -> b
     void run() -> run
-com.mingli.toms.World$3 -> com.mingli.toms.an:
+com.mingli.toms.World$3 -> com.mingli.toms.at:
     int sucIndex -> a
     com.mingli.toms.World this$0 -> b
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-com.mingli.toms.World$4 -> com.mingli.toms.ao:
+com.mingli.toms.World$4 -> com.mingli.toms.au:
     com.mingli.toms.World this$0 -> a
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
 com.mingli.toms.mySeekBar -> com.mingli.toms.mySeekBar:
@@ -3952,27 +4112,27 @@ com.mingli.toms.mySeekBar -> com.mingli.toms.mySeekBar:
     void onDraw(android.graphics.Canvas) -> onDraw
     boolean onTouchEvent(android.view.MotionEvent) -> onTouchEvent
 element2.Firework -> g.a:
-    float red -> au
-    float green -> av
-    float blue -> aw
-    float time -> ax
-    float dr -> ay
-    float dg -> az
-    float db -> aA
-    float alpha -> aB
-    float da -> aC
-    float max -> U
-    float min -> V
+    float red -> Z
+    float green -> aa
+    float blue -> ab
+    float time -> ac
+    float dr -> ad
+    float dg -> ae
+    float db -> af
+    float alpha -> ag
+    float da -> ah
+    float max -> W
+    float min -> X
     void setRgb(float,float,float,float) -> a
-    void colorChange() -> aJ
+    void colorChange() -> ai
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
-    void init() -> ac
-    void afterInit() -> ad
-    float getRed() -> aH
+    void init() -> ae
+    void afterInit() -> af
+    float getRed() -> aU
     void setRed(float) -> F
-    float getGreen() -> aG
+    float getGreen() -> aT
     void setGreen(float) -> E
-    float getBlue() -> aF
+    float getBlue() -> aS
     void setBlue(float) -> D
 element2.FireworkSet -> g.b:
     void loadTexture() -> a
@@ -3991,8 +4151,8 @@ element2.Joint -> g.d:
     float xp -> P
     float yp -> Q
     int direction -> R
-    int myDirection -> U
-    float mAngle -> V
+    int myDirection -> S
+    float mAngle -> T
     float angstart -> W
     float angend -> X
     float speed -> I
@@ -4045,30 +4205,30 @@ element2.Lightninig -> g.f:
     float getGreen() -> A
     float getRed() -> B
 element2.ParticleBall -> g.g:
-    int tringerId -> U
-    float angleRate -> V
+    int tringerId -> W
+    float angleRate -> X
     void tringer(float,float,float,int) -> a
-    void autoClimb() -> H
-    void init() -> ac
+    void autoClimb() -> I
+    void init() -> ae
     float getLineSpeed(float) -> H
     float getAngleSpeed(float) -> I
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
     void tooLeft() -> G
-    void tooRight() -> I
-    void speedCheck() -> aq
-    void xSpeedLoss() -> aJ
-    void ySpeedLoss() -> aK
-    void xSpeedCheck(int) -> y
-    void ySpeedCheck(int) -> z
-    float getRate(int) -> w
+    void tooRight() -> J
+    void speedCheck() -> aE
+    void xSpeedLoss() -> ai
+    void ySpeedLoss() -> aj
+    void xSpeedCheck(int) -> r
+    void ySpeedCheck(int) -> s
+    float getRate(int) -> p
     void gravityCheck() -> B
     void jump(float) -> x
-    void jump() -> ar
-    void tooHigh() -> J
-    void setTringerId(int) -> x
+    void jump() -> aF
+    void tooHigh() -> L
+    void setTringerId(int) -> q
     void setAngleRate(float) -> J
 element2.ParticleBallRandom -> g.h:
-    void init() -> ac
+    void init() -> ae
 element2.ParticleBroken -> g.i:
     void setTexture() -> g
 element2.ParticleSet -> g.j:
@@ -4078,10 +4238,10 @@ element2.ParticleSet -> g.j:
     void tringerCheck(int,int,Mankind.Creature) -> a
     void drawElement(javax.microedition.khronos.opengles.GL10) -> b
 element2.Rain -> g.k:
-    float windRate -> at
-    void speedCheck() -> aq
-    void init() -> ac
-    void afterInit() -> ad
+    float windRate -> Y
+    void speedCheck() -> aE
+    void init() -> ae
+    void afterInit() -> af
     void jump(float) -> x
 element2.SceneTail -> g.l:
     void startTouch(float,float) -> d
@@ -4119,7 +4279,7 @@ element2.Tail -> g.o:
     void setTexture() -> g
 element2.TexId -> g.p:
     int[] textures -> a
-    int textureId -> aX
+    int textureId -> aZ
     int[] resIcon -> b
     int BAMBOOPIPLE -> c
     int PIFENG -> d
@@ -4220,7 +4380,9 @@ element2.TexId -> g.p:
     int CAPENEMY -> aU
     int FLAG -> aV
     int EXPRESSIONENEMY -> aW
-    android.content.Context context -> aY
+    int PUTONGQIANG -> aX
+    int FENSHEN -> aY
+    android.content.Context context -> ba
     void loadTextureId(javax.microedition.khronos.opengles.GL10) -> a
     int loadTexture(javax.microedition.khronos.opengles.GL10,int) -> a
     int repeatLoadTexture(javax.microedition.khronos.opengles.GL10,int) -> b

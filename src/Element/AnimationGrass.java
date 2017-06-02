@@ -202,6 +202,11 @@ public class AnimationGrass extends AnimationMove {
 		scaleTringer(2*getW()-maxScaleLengthX);
 
 		setxPro(xdata[2] + wEdge);
+		speedBackTooLeft();
+	}
+
+	 protected void speedBackTooLeft() {
+		// TODO Auto-generated method stub
 		if (getxSpeed() < -backSpeed)
 			setxSpeed(gra.getSpeedBack() * Math.abs(getxSpeed()));// 没有这句就特别卡
 		else
@@ -210,7 +215,6 @@ public class AnimationGrass extends AnimationMove {
 		// 会引起一直跳
 //			setxSpeed(-1 * backSpeed);
 	}
-
 	protected void autoClimb() {
 	}
 	private float backSpeed=5;
@@ -220,6 +224,11 @@ public class AnimationGrass extends AnimationMove {
 		scaleTringer(2*getW()-maxScaleLengthX);
 		
 		setxPro(xdata[0] - wEdge);// 牵扯到向下取整
+		speedBackTooRight();
+	}
+
+	 protected void speedBackTooRight() {
+		// TODO Auto-generated method stub
 		if (getxSpeed() > backSpeed)
 			setxSpeed(gra.getSpeedBack() * -Math.abs(getxSpeed()));
 		else
@@ -228,7 +237,6 @@ public class AnimationGrass extends AnimationMove {
 //			setxSpeed(1 * backSpeed);
 
 	}
-
 	protected void jumpCheck() {
 		for (int i = 0; i < gra.getGrassId(); i++) {
 			if (x + wEdge > gList.get(i).data[0]

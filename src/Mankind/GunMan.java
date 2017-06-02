@@ -17,7 +17,7 @@ public class GunMan extends JointEnemy {
 		// TODO Auto-generated constructor stub
 		haveGun();
 		treadable = false;
-		haveBlade();
+//		haveBlade();
 	}
 
 	public void setEnemySet(EnemySet enemySet) {
@@ -74,7 +74,7 @@ public class GunMan extends JointEnemy {
 			float enemyAngle = (float) Math.atan2(enemy.y - y, enemy.x - x);
 			gun.gunCheck(enemyAngle);
 			setGunAngle(enemyAngle * 180 / 3.14f);
-			attack();
+//			attack();
 		}
 	}
 

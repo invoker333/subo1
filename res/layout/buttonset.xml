@@ -24,9 +24,10 @@
         android:layout_height="205sp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:background="@drawable/jump"
         android:progress="25"
         android:secondaryProgress="50"
-        android:thumb="@drawable/button_thumb" />
+        android:thumb="@drawable/blank" />
 
     <!-- android:background="@drawable/button_up" -->
 
@@ -56,6 +57,7 @@
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:background="@drawable/direction"
         android:progress="50"
         android:thumb="@drawable/button_thumb" />
 

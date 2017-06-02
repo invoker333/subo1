@@ -2,12 +2,17 @@ package Mankind;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import com.mingli.toms.MenuActivity;
+import com.mingli.toms.Render;
+import com.mingli.toms.World;
+
 import Enviroments.GrassSet;
 import element2.TexId;
 
 public class BladeMan extends JointEnemy{
 
 
+	private Creature chaser;
 	public BladeMan(char bi, GrassSet gra, float x, float y) {
 		super(bi, gra, x, y);
 		// TODO Auto-generated constructor stub
@@ -15,6 +20,7 @@ public class BladeMan extends JointEnemy{
 		treadable=false;
 		cloth.setTextureId(TexId.CLOTHENEMY);
 		cap.setTextureId(TexId.CAPENEMY);
+		cdMAX=2*World.baseActionCdMax;
 	}
 	public void drawElement(GL10 gl){
 		super.drawElement(gl);
@@ -40,33 +46,37 @@ public class BladeMan extends JointEnemy{
 	}
 	
 	public void randomAction(){
-		if (cd < cdMAX*4/5){
-			int id=(int) (Math.random()*enemySet.cList.size());
-			Creature chaser = enemySet.cList.get(id);
-			chaseCheck(chaser);
-		}else {
-			searchAndAttack();
+		if (cd < cdMAX*1/2){
 			stopMove();
+		}else {
+			
+			if(chaser==null||chaser.isDead||Math.abs(chaser.x-x)>Render.width){
+				int id=(int) (Math.random()*enemySet.cList.size());
+				chaser = enemySet.cList.get(id);
+			}
+			chaseCheck(chaser);
+			
+			searchAndAttack();
 		}
 		
-		if (cd++ > cdMAX) {
+		if (cd++ > cdMAX) {//must attack 
 			cd = 0;
 		} else return;
 		super.randomAction();
 		
 	}
 	void searchAndAttack(){
-		for (int i = 0; i < enemySet.cList.size(); i++) {
-			Creature another = enemySet.cList.get(i);
-			if (!another.isDead&&
-					Math.abs(x - another.x) < another.getwEdge() + getwEdge()+realBlade.length
-				&&Math.abs(y - another.y) < another.gethEdge() + gethEdge()+realBlade.length) {
-				if(another.x-x>0)faceRight();
+//		for (int i = 0; i < enemySet.cList.size(); i++) {
+//			Creature another = enemySet.cList.get(i);
+			if (chaser!=null&&!chaser.isDead&&
+					Math.abs(x - chaser.x) < chaser.getwEdge() + getwEdge()+realBlade.length
+				&&Math.abs(y - chaser.y) < chaser.gethEdge() + gethEdge()+realBlade.length) {
+				if(chaser.x-x>0)faceRight();
 				else faceLeft();
 				
 				attack();
 				cd=0;
 			}
 		}
-	}
+//	}
 }

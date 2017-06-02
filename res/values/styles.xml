@@ -49,7 +49,7 @@
     <style name="myDialog" parent="@android:style/Theme.Dialog">
 
         <!-- 更换背景图片实现全透明 -->
-        <!-- <item name="android:windowBackground">@drawable/ic_launcher</item> -->
+       <item name="android:windowBackground">@drawable/blank</item>
         <!-- 屏幕背景不变暗 -->
         <item name="android:backgroundDimEnabled">false</item>
         <!-- 隐藏标题 -->

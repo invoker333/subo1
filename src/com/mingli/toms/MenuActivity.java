@@ -409,12 +409,13 @@ public class MenuActivity extends Activity {
 	private static int direction1;
 	private static int direction2;
 	private Client client;
-	public String userName;
+	public  String userName;
 	public ArrayList<Info4> userInfoList=new ArrayList<Info4>();
 	private String paimingString;
 	String selectedToSaveOnlineFileName="";
 	private final String requestFoItemMap = "requestFoItemMap.txt";
 	private RandomMap randomMap;
+	public static int maxMapId;
 	static BattleActivity battleActi;
 	public void initPaimingInfo(){
 		paimingString=sp.getString("paimingString", "00000"+userName+" "+score+"1");
@@ -550,8 +551,8 @@ public class MenuActivity extends Activity {
 
 	private void getMessage() {
 		// TODO Auto-generated method stub
-		coinCount = sp.getInt("coin", 500);
-		chance = sp.getInt("chance", 300);
+		coinCount = sp.getInt("coin", 150);
+		chance = sp.getInt("chance", 150);
 		score = sp.getInt("score", 0);
 		
 		World.openMode=sp.getBoolean("openMode", false);
@@ -577,7 +578,7 @@ public class MenuActivity extends Activity {
 	}
 
 	int getMaxMapIndex() {
-		return sp.getInt("mapIndex", 1);
+		return maxMapId=sp.getInt("mapIndex", 1);
 	}
 
 	public void reLoadGame() {

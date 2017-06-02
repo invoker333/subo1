@@ -1,4 +1,4 @@
-package Mankind;
+﻿package Mankind;
 
 import java.util.ArrayList;
 
@@ -49,11 +49,9 @@ public class Player extends BattleMan {
 
 	
     public Player(char mapSign,GrassSet gra, World world,float x,float y) {
-    	super(mapSign, gra, x, y, -333, -333);
+    	super(mapSign, gra, x, y, world.force_in_battle, MenuActivity.userId);
+    	// this two value may not be intlized
     	
-    	cloth.setTextureId(TexId.CLOTH);
-		cap.setTextureId(TexId.CAP);
-		expression.setTextureId(TexId.EXPRESSION);
     	
     	this.world = world;
     	controller=this;
@@ -72,16 +70,23 @@ public class Player extends BattleMan {
 
 	
 	public void changeGun(int textureId) {
+		Log.i("supergunFruitId"+super.gunFruitId);
 		super.changeGun(textureId);
-		gunFruitId=textureId;
+		extendsGunFruitId=textureId;
+		Log.i("gunFruitId"+gunFruitId);
 	}
-	public void changeBlade(int textureId) {
+	 public void changeBlade(int textureId) {
 		super.changeBlade(textureId);
-		bladeFruitId=textureId;
+		extendsBladeFruitId=textureId;
+		Log.i("BladeFruitId"+bladeFruitId);
 	}
 	private void extendsDate() {
-		  changeGun(gunFruitId);
-	        changeBlade(bladeFruitId);
+		Log.i("GunBlade"+gunFruitId+" "+bladeFruitId);
+		Log.i("superGunBlade"+super.gunFruitId+" "+super.bladeFruitId);
+		  changeGun(extendsGunFruitId);
+	        changeBlade(extendsBladeFruitId);
+	        Log.i("GunBlade"+gunFruitId+" "+bladeFruitId);
+			Log.i("superGunBlade"+super.gunFruitId+" "+super.bladeFruitId);
 	        if(toukuiTime>0)this.changeToukui(0);
 	        if(gaoTime>0)this.changeGao(0);
 	}
@@ -104,10 +109,11 @@ public class Player extends BattleMan {
     	this.ey1 = ey1;
     	float ex = Render.px + ex1;
 		float ey = Render.py + ey1;
-		   if(this.isBenti)
+//		   if(this.isBenti)
 		   {
 	        	for(Creature c:friendList){
-	        		if(c instanceof Player&&!c.isDead){
+	        		if(c instanceof BattleMan&&((BattleMan) c).downData==this.downData
+	        				&&!c.isDead){
 	        			float xx=c.x;float yy=c.y;
 	        			if(c!=this&&
 	        					Math.abs(xx-ex)<getW()&&
@@ -307,7 +313,7 @@ public class Player extends BattleMan {
   
 
 
-	private boolean isBenti=true;
+//	private boolean isBenti=true;
 	private static int relifeLandId;
 //	 private Pifeng pifeng2;
 	 static int lifeCount=1;
@@ -424,12 +430,6 @@ public class Player extends BattleMan {
         	 succeed();
          }
          actCheck(controller);
-         if(!isBenti){
-        	 if(getxPro()<Player.hx1)setxPro((float) (Player.hx1+Math.random()*Render.width));
-             else if(getxPro()>Player.hx2)setxPro((float) (Player.hx2-Math.random()*Render.width));
-             if(getyPro()<Player.hy1)setyPro((float) (Player.hy1+Render.height*Math.random()));
-             else if(getyPro()>Player.hy2)setyPro((float) (Player.hy2-Render.height*Math.random()));
-         }
         
          
      	gra.downHoleCheck(x, y);
@@ -437,16 +437,27 @@ public class Player extends BattleMan {
 	}
 	
 	
-	public Player clone(){
-		Player p=new Player(mapSign, gra, world, x, y){
+	public BattleMan clone(){
+		BattleMan p=new BattleMan(mapSign, gra, x, y, -222, -222){
 			 public void sendBattleMessage() {}//cloner dong't send message
 			 public void playSound(){};
+			 public void die(){
+				 super.die();
+				 lifeCount--;
+				 }
+			 public void timerTask(){
+				 super.timerTask();
+			        if(getxPro()<Player.hx1)setxPro((float) (Player.hx1+Math.random()*Render.width));
+			          else if(getxPro()>Player.hx2)setxPro((float) (Player.hx2-Math.random()*Render.width));
+			          if(getyPro()<Player.hy1)setyPro((float) (Player.hy1+Render.height*Math.random()));
+			           else if(getyPro()>Player.hy2)setyPro((float) (Player.hy2-Render.height*Math.random()));
+			 }
 		};
 		p.downData=this.downData;//can be controlled same time
 		p.setEnemySet(enemySet);
 		p.setFriendSet(friendSet);
-		p.goal=goal;
-		p.isBenti=false;
+//		p.goal=goal;
+//		p.isBenti=false;
 		return p;
 	}
 	
@@ -484,7 +495,7 @@ public class Player extends BattleMan {
 	}
 	
 	public void reLife(int time){
-		super.reLife();
+		super.reLife( time);
 		
 		Grass footGrass=gList.get(relifeLandId);
 		setPosition(footGrass.data[0]+gra.getGrid()/2, footGrass.data[3]+gethEdge()*1.2f);
@@ -515,9 +526,10 @@ public class Player extends BattleMan {
     	}
     	 super.die();
     	 
-        if(this.isBenti){
+//        if(this.isBenti)
         	for(Creature c:friendList){
-        		if(c instanceof Player&&!c.isDead){
+        		if(c instanceof BattleMan&&((BattleMan) c).downData==this.downData
+        				&&!c.isDead){
         			float xx=c.x;float yy=c.y;
         			c.setPosition(x, y);
         			c.die();
@@ -526,7 +538,6 @@ public class Player extends BattleMan {
         			return;
         		}
         	}
-        }
 //       if(isJumpAble())
     	   jump();
         playSound(death);
@@ -889,8 +900,8 @@ public class Player extends BattleMan {
 
 	
 
-	public  static int gunFruitId=-1;
-	public  static int bladeFruitId=-1;
+	public  static int extendsGunFruitId=-1;
+	public  static int extendsBladeFruitId=-1;
     
 	
 	public boolean touched;
@@ -934,7 +945,7 @@ public class Player extends BattleMan {
 
 	 public void noBlade() {
 		super.noBlade();
-		bladeFruitId=-1;
+		extendsBladeFruitId=-1;
 		world.sendMessage(World.NOBLADEICON);
 	}
 	void haveGun(){
@@ -943,7 +954,7 @@ public class Player extends BattleMan {
 	}
 	void noGun(){
 		super.noGun();
-		gunFruitId=-1;
+		extendsGunFruitId=-1;
 		gun=null;
 		world.sendMessage(World.NOGUNICON);
 	}
