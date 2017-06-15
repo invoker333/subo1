@@ -277,7 +277,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="对战模式"
-        android:textSize="24sp"
-        android:visibility="invisible" />
+        android:textSize="24sp" />
 
 </RelativeLayout>

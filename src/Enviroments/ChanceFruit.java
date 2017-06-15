@@ -11,8 +11,11 @@ import element2.TexId;
 
 public class ChanceFruit extends ShakeFruit{
 
-	public ChanceFruit(char bi,float x, float y) {
+	private int time;
+
+	public ChanceFruit(char bi,float x, float y,int time) {
 		super(bi,x, y);
+		this.time = time;
 		name="复活蛋";
 		setGoodsCost(0, 10);
 		instruction="能够复活，增加时间，并且无敌一会儿";
@@ -22,8 +25,11 @@ public class ChanceFruit extends ShakeFruit{
 	public void use(BattleMan player,ArrayList<Fruit> pickedList){
 		final int max=80;
 		doubleCost(max);
+		if(player.isDead)player.reLife(time);
+		else player.increaseChanceBy(1);
 		super.use(player, pickedList);
 	}
+
 	public boolean loadAble(BattleMan player){
 		if(World.rpgMode)
 		for(Fruit f:FruitSet.pickedList)
@@ -36,12 +42,5 @@ public class ChanceFruit extends ShakeFruit{
 	
 		 super.loadAble(player);
 		 return true;
-	}
-	public void effectCheck(BattleMan p,ArrayList<Fruit>pickedList) {
-		if(p.isDead)p.reLife();
-		else p.increaseChanceBy(1);
-		
-		pickedList.remove(this);
-		super.effectCheck(p, pickedList);
 	}
 }

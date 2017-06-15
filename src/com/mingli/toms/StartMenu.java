@@ -3,6 +3,7 @@ package com.mingli.toms;
 import java.util.ArrayList;
 
 import Enviroments.FruitSet;
+import aid.Client;
 import aid.Log;
 import aid.UserName;
 import android.app.Dialog;
@@ -181,7 +182,12 @@ public class StartMenu{
 				acti.randomChalenge();// clear the map dile and string
 				break;
 			case R.id.fileChoose:
+				try{
+					
 				acti.intentToFileChooser();
+				}catch(Exception e){
+					Client.send(e.getMessage());
+				}
 				break;
 			case R.id.battleMode:
 				acti.intentToBattleMode();

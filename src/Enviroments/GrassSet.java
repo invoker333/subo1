@@ -222,7 +222,7 @@ public class GrassSet extends Set{
 				case 51: break;
 				case 52:break;
 				case 'B':fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.MISSILE));break;//B boom
-				case 67:fruitList.add(new ChanceFruit(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;//C 加机会
+				case 67:fruitList.add(new ChanceFruit(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,World.baseWudiTime));break;//C 加机会
 				case 68:fruitList.add(new FruitGun(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,TexId.HOOKGUN));break;//D drag hook
 				case 'Q':fruitList.add(new Fenshen(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid));break;
 				case 71:fruitList.add(new Gao(bi, (x+0.5f)*grid,(mapHeight-y-0.5f)*grid,9999));break;//G

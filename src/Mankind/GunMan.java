@@ -30,7 +30,10 @@ public class GunMan extends JointEnemy {
 		super.drawElement(gl);
 		gun.drawElement(gl);
 	}
-	
+	public void drawEffect(GL10 gl) {
+		// TODO Auto-generated method stub
+		gun.drawElement(gl);
+	}
 	
 
 	public void randomAction() {// 周期

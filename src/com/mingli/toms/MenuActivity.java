@@ -46,6 +46,7 @@ import android.widget.TextView;
 public class MenuActivity extends Activity {
 
 
+	
 	private SharedPreferences sp;
 	private static Context content;
 	private static Context myActivity;
@@ -81,7 +82,9 @@ public class MenuActivity extends Activity {
 	int in[];
 	String starString = "00000000000000000";
 	public int[] star;
-	public static int userId=-1;
+	private static final int NOT_INIT_USER_ID = -1;
+	public static final int NO_USER_ID = 5;
+	public static int userId=NOT_INIT_USER_ID;
 
 	private String itemString = "HT";// a sizeFruit and a Tomato will give to ever player 
 	char[] item;
@@ -184,19 +187,14 @@ public class MenuActivity extends Activity {
 		startMenu.loadStartMenu();
 		
 		if(client!=null)Client.send(ConsWhenConnecting.REQUEST_PIMING_INFO+userId);
-		getUserId();
 		initPaimingInfo();
 		
 		if (startTime > 2) {
 			showBanner((ViewGroup) findViewById(R.id.container));
 		}
 	}
-
-	private void getUserId() {
-		// TODO Auto-generated method stub
-		if(MenuActivity.userId<10)
-			Client.send(ConsWhenConnecting.REQUEST_NEW_USER_ID+userName+" "+score);
-	}
+	
+	
 
 	private void initSp() {
 		// TODO Auto-generated method stub
@@ -566,7 +564,7 @@ public class MenuActivity extends Activity {
 		if(!sp.contains("userName")){
 			editor.putString("userName", userName);
 		}
-		userId=sp.getInt("userId", 5);
+		userId=sp.getInt("userId", NO_USER_ID);
 	}
 	void saveUserMessage(String sn){
 		userName=sn;
@@ -932,5 +930,9 @@ public class MenuActivity extends Activity {
 	public void useItemBattleMan(String strRes) {
 		// TODO Auto-generated method stub
 		world.useItemBattleMan(strRes);
+	}
+	public void thisOneDie(String strRes) {
+		// TODO Auto-generated method stub
+		world.thisOneDie(strRes);
 	}
 }

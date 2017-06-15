@@ -167,6 +167,8 @@ public class EnemySet extends Set {
 			{
 				c.move();
 				c.gravity();
+				
+				c.drawEffect(gl);
 			}
 		}
 

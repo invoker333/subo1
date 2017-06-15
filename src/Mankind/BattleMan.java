@@ -133,11 +133,15 @@ public class BattleMan extends JointCreature{
 	public BattleMan(char bi, GrassSet gra, float x, float y,int force_in_battle,int userId) {
 		super(bi, gra, x, y);
 		this.userId = userId;
+		setScore(100);
+		
 		// TODO Auto-generated constructor stub
 		
-		cloth.setTextureId(TexId.CLOTH);
-		cap.setTextureId(TexId.CAP);
-		expression.setTextureId(TexId.EXPRESSION);
+//		cloth.setTextureId(TexId.CLOTH);
+//		cap.setTextureId(TexId.CAP);
+//		expression.setTextureId(TexId.EXPRESSION);
+		
+		
 		
 		treadable=false;
 		attack=0;
@@ -147,7 +151,19 @@ public class BattleMan extends JointCreature{
 		initEffect(x, y);
 		 initVtDestory();
 	}
-	   float vtDestory;//�ƻ�����С�ٶ�
+	 public void die() {
+    	if(isDead)return;
+    	super.die();
+    	sendDieMEssage();
+	}
+	   void sendDieMEssage() {
+		// TODO Auto-generated method stub
+		String str=ConsWhenConnecting.DIE+userId;
+	    Client.send(str);
+	    Log.i(str);
+	}
+
+	float vtDestory;//�ƻ�����С�ٶ�
 	    private double E;//�ƻ�����С����
 	private void initVtDestory() {
 		// TODO Auto-generated method stub
@@ -366,6 +382,10 @@ public class BattleMan extends JointCreature{
         
 //        bloodSecondaryindex=0;
     }
+	public void drawEffect(GL10 gl) {
+		// TODO Auto-generated method stub
+		  if(gun!=null)gun.drawElement(gl);
+	}
     public void drawElement(GL10 gl) {
         if(gun!=null)gun.drawElement(gl);
         if(isDoubleClicked())shader.drawElement(gl);
@@ -428,7 +448,7 @@ public class BattleMan extends JointCreature{
 		int gunAngle=(int) (GunAngle*100);
     		Client.sendUdp(ConsWhenConnecting.THIS_IS_BATTLE_MESSAGE+
     				MenuActivity.userId+" "+BattleActivity.roomId+" "+(int)x+" "+(int)y+" "+(int)xSpeed+" "+(int)ySpeed+" "+gunAngle+" "
-    				+gunFruitId+" "+fdirection+" "+bladeFruitId+" "+sendMesId+++" "///////////
+    				+fdirection+" "+sendMesId+++" "///////////
     				+downData[0]+" "+downData[1]+" "+downData[2]+" "+downData[7]+" "+isDead);
 //    	}
 	}
@@ -443,7 +463,7 @@ public class BattleMan extends JointCreature{
 	int idMaxREceive;
 	private void onlineAction() {
 		if(strOnlineMesSet==null)return;
-		if(Integer.parseInt((strOnlineMesSet[10]))<idMaxREceive){
+		if(Integer.parseInt((strOnlineMesSet[8]))<idMaxREceive){
 			
 			return;
 		}
@@ -454,21 +474,19 @@ public class BattleMan extends JointCreature{
 		speedMakeUp(x,y,xSpeed,ySpeed);
 		
 		GunAngle=(Integer.parseInt(strOnlineMesSet[6])/100f);
-		changeGun(Integer.parseInt((strOnlineMesSet[7])));
-//		fdirection=(Integer.parseInt(strOnlineMesSet[8]));
+//		fdirection=(Integer.parseInt(strOnlineMesSet[7]));
 //			{
 //				if(fdirection<0)turnLeft();
 //				else if(fdirection>0)turnRight();
 //				else stopMove();
 //			}
-		changeBlade(Integer.parseInt((strOnlineMesSet[9])));
-		idMaxREceive=(Integer.parseInt(strOnlineMesSet[10]));
+		idMaxREceive=(Integer.parseInt(strOnlineMesSet[8]));
 		
-		downData[0]=Boolean.parseBoolean(strOnlineMesSet[11]);
-		downData[1]=Boolean.parseBoolean(strOnlineMesSet[12]);
-		downData[2]=Boolean.parseBoolean(strOnlineMesSet[13]);
+		downData[0]=Boolean.parseBoolean(strOnlineMesSet[9]);
+		downData[1]=Boolean.parseBoolean(strOnlineMesSet[10]);
+		downData[2]=Boolean.parseBoolean(strOnlineMesSet[11]);
 		
-		downData[7]=Boolean.parseBoolean(strOnlineMesSet[14]);
+		downData[7]=Boolean.parseBoolean(strOnlineMesSet[12]);
 		
 		strOnlineMesSet=null;
 	}
@@ -522,9 +540,7 @@ public class BattleMan extends JointCreature{
 		alpha=1;
 		angle=0;
 	}
-	public void reLife(){
-		reLife(wudiTimeBorn);
-	}
+
 	public void reLife(int time){
 		relifeJust();
 		
@@ -543,7 +559,7 @@ public class BattleMan extends JointCreature{
 		// TODO Auto-generated method stub
 		
 	}
-	public void sendUseitemMessage(Fruit f) {
+	public static void sendUseitemMessage(Fruit f) {
 		// TODO Auto-generated method stub
 		Client.send(ConsWhenConnecting.USE_ITEM+MenuActivity.userId+" "+f.mapSign);
 	}

@@ -6,6 +6,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 import Element.AnimationMove;
 import Element.Pifeng;
+import Enviroments.FruitSet;
 import Enviroments.Goal;
 import Enviroments.Grass;
 import Enviroments.GrassSet;
@@ -496,7 +497,7 @@ public class Player extends BattleMan {
 	
 	public void reLife(int time){
 		super.reLife( time);
-		
+		FruitSet.sendRelifeFreeMes(180);
 		Grass footGrass=gList.get(relifeLandId);
 		setPosition(footGrass.data[0]+gra.getGrid()/2, footGrass.data[3]+gethEdge()*1.2f);
 		lifeCount++;
@@ -545,7 +546,7 @@ public class Player extends BattleMan {
         relifeLandId=this.getLandId();
         lifeCount--;
     }
-   
+    void sendDieMEssage(){};
     
 	public void baseDrawElement(GL10 gl){
     	super.baseDrawElement(gl);

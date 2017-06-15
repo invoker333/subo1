@@ -162,7 +162,6 @@ public class Creature extends AnimationGrass {
 	public void drawElement(GL10 gl) {
 		super.drawElement(gl);
 		animation();
-
 	}
 
 	float red = 1, green = 1, blue = 1;
@@ -326,6 +325,7 @@ public class Creature extends AnimationGrass {
 		// setG(gMax);
 
 		changeToAirData();
+	
 	}
 
 	private void changeToAirData() {
@@ -671,6 +671,11 @@ public class Creature extends AnimationGrass {
 	}
 
 	public void timerTask() {//
+	}
+
+	public void drawEffect(GL10 gl) {
+		// TODO Auto-generated method stub
+		// draw thing when not in screen
 	}
 	
 }

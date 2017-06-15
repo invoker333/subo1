@@ -890,6 +890,7 @@ public class World extends GLSurfaceView implements Runnable {
 	public static boolean openMode;
 	public static int baseActionCdMax=180;
 	public static boolean Item3Mode;
+	public static int baseWudiTime=60;
 
 	public void astarSearch(float x, float y) {
 		if (astar == null)
@@ -1023,6 +1024,21 @@ public class World extends GLSurfaceView implements Runnable {
 		for(BattleMan bm:list){
 			if(bm.userId==userId){
 				bm.useItemOnline(strSet[1]);
+			}
+		}
+	}
+
+	public void thisOneDie(String strRes) {
+		// TODO Auto-generated method stub
+		int userId=Integer.parseInt(strRes);
+		if(player.userId==userId){
+			player.die();
+		}
+		
+		ArrayList<BattleMan> list = gra.battleManList;
+		for(BattleMan bm:list){
+			if(bm.userId==userId){
+				bm.die();
 			}
 		}
 	}

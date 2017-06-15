@@ -154,6 +154,10 @@ public class Emplacement extends Creature {
 		super.drawElement(gl);
 		b.drawElement(gl);
 	}
+	public void drawEffect(GL10 gl) {
+		// TODO Auto-generated method stub
+		b.drawElement(gl);
+	}
 	public void attacked(int a){
 		playSound();
 		super.attacked(a);

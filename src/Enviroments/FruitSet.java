@@ -7,6 +7,8 @@ import javax.microedition.khronos.opengles.GL10;
 import Element.AnimationMove;
 import Mankind.BattleMan;
 import Mankind.Player;
+import aid.Client;
+import aid.ConsWhenConnecting;
 import aid.Log;
 
 import com.mingli.toms.MenuActivity;
@@ -31,6 +33,7 @@ public class FruitSet extends Set {
 	protected float COUNT;
 	public static ArrayList<Fruit> shopList;
 	public static ArrayList<Fruit> pickedList = new ArrayList<Fruit>();
+	private static Fruit relifeFruit;
 //	private  ChanceFruit chanceFruit;
 	protected World world;
 
@@ -90,7 +93,8 @@ public class FruitSet extends Set {
 		{
 			shopList = new ArrayList<Fruit>();
 			
-			shopList.add( new ChanceFruit(c++, 1, 1));// ..
+			shopList.add( new ChanceFruit(c++, 1, 1,World.baseWudiTime));// ..
+					relifeFruit=new ChanceFruit(c, 1, 1,3*World.baseWudiTime);
 			shopList.add(new Wudi(c++, 1, 1));
 			shopList.add(new sizeFruit(c++, 1, 1));
 			shopList.add(new Toukui(c++, 0, 0, 9999));
@@ -349,6 +353,11 @@ public class FruitSet extends Set {
 				effectList.add(f);
 			}
 		}
+	}
+
+	public static void sendRelifeFreeMes(int i) {
+		// TODO Auto-generated method stub
+		Player.sendUseitemMessage(relifeFruit);
 	}
 
 }

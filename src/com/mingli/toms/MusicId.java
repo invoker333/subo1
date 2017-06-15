@@ -2,9 +2,6 @@ package com.mingli.toms;
 
 
 public class MusicId {
-	
-	
-	
 	public static int baller;
 	public static int guangdanqiang;
 	public static int sword;

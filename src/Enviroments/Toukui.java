@@ -1,4 +1,4 @@
-package Enviroments;
+﻿package Enviroments;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ public class Toukui extends ShakeFruit{
 		// TODO Auto-generated constructor stub
 		this.time = time;
 		name="头盔";
-		instruction="使用后您可以顶掉上方一些砖块，被攻击后失效";
+		instruction="使用后可以顶掉上方一些砖块";
 		setGoodsCost(5,0);
 	}
 	void init(){
@@ -44,7 +44,7 @@ class Gao extends ShakeFruit{
 		// TODO Auto-generated constructor stub
 		this.time = time;
 		name="十字镐";
-		instruction="手指下滑跳到一定高度下落，可以破坏下面一些砖块，被攻击后失效";
+		instruction="使用手指下滑手势，可以破坏下面一些砖块";
 		setGoodsCost(5,0);
 //		footTail=new Tail(15,x,y,8);
 	}
@@ -64,7 +64,7 @@ class FruitFly extends ShakeFruit{
 		// TODO Auto-generated constructor stub
 		this.time = time;
 		name="飞行套装";
-		instruction="使用后穿上帅气的披风，并且点击任意位置可跳跃，被攻击后失效";
+		instruction="使用后穿上帅气的披风，并且点击任意位置可跳跃";
 		setGoodsCost(10,0);
 	}
 	void init(){

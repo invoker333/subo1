@@ -33,7 +33,7 @@ public class Client implements Runnable{
 		
 		udpSender=new UdpSender(){
 			 protected void handleDatagramPacket(DatagramPacket dp,String str) {
-				 if(Math.random()>0.96)Log.i(str);
+				 if(Math.random()>0.99)Log.i(str);
 				if(str.startsWith(ConsWhenConnecting.THIS_IS_BATTLE_MESSAGE)) {
 					String strRes=str.substring(ConsWhenConnecting.THIS_IS_BATTLE_MESSAGE.length());
 					acti.battleAction(strRes);
@@ -77,9 +77,11 @@ public class Client implements Runnable{
 			try {
 //				String address="192.168.4.243";
 //				String address="192.168.8.129";
-				String address="118.89.187.14";//tencent
+//				String address="118.89.187.14";//tencent
 //				String address="192.168.13.102";//
-//				String address="192.168.47.157";
+//				String address="192.168.37.213";
+//				String address="192.168.137.1";
+				String address="192.168.51.124";
 				
 //				s=new Socket("127.0.0.1",8888);
 //				s=new Socket("192.168.137.1",8888);//祖传wifi
@@ -103,6 +105,13 @@ public class Client implements Runnable{
 					setUdpAddressPort(address,ConsWhenConnecting.udpPort);
 					
 					(tcpThread=new Thread(this)).start();
+					while(MenuActivity.userId<10){
+						// TODO Auto-generated method stub
+						if(MenuActivity.userId==MenuActivity.NO_USER_ID)
+							Client.send(ConsWhenConnecting.REQUEST_NEW_USER_ID+acti.userName+" "+acti.score);
+					
+						World.timeRush(1000);
+					}
 				}
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block
@@ -179,6 +188,11 @@ public class Client implements Runnable{
 			String strRes=s.substring(ConsWhenConnecting.USE_ITEM.length());
 			
 			acti.useItemBattleMan(strRes);
+		}	
+		else 	if(s.startsWith(ConsWhenConnecting.DIE)) {
+			String strRes=s.substring(ConsWhenConnecting.DIE.length());
+			
+			acti.thisOneDie(strRes);
 		}	
 		
 		
