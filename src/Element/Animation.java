@@ -134,6 +134,7 @@ public class Animation extends Draw implements Cloneable {
 			scaleSpeed -= scaleZuni;
 		else if (scaleSpeed < -scaleZuni)
 			scaleSpeed += scaleZuni;
+		else scaleSpeed=0;
 		// enegy loss
 
 		scaleLength += scaleSpeed;
@@ -280,16 +281,7 @@ public class Animation extends Draw implements Cloneable {
 		}
 	}
 
-	public void changeState(int time) {
-		try {
-			Thread.sleep(time);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (xState++ >= xCount - 1)
-			setxState(0);
-	}
+	
 
 	public float getH() {
 		return h;

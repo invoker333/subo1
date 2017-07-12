@@ -87,7 +87,7 @@ public class JointCreature extends Creature{
 		jointList
 				.add(body=new Joint(this, -x0, -y0, x0, y0, 0, 11, TexId.BODY, 1, 5));
 		jointList.add(expression=new Joint(4, this, -20, -24, 20, 24, 16, 18,
-				TexId.EXPRESSION, 1, 5));
+				TexId.EXPRESSIONENEMY, 1, 5));
 //		jointList.add(expression=new Joint(4, this, -20, -24, 20, 34, 16, 18,
 //				TexId.MEIMAO, 1, 5));
 		
@@ -233,7 +233,7 @@ public class JointCreature extends Creature{
 		
 		
 		if (fdirection == 0 && Math.abs(ySpeed) < 2)
-			changeState(0.01f, 0.25f, expression);
+			changeException(0.005f, 0.25f, expression);
 		else
 			expression.setxState(0);
 
@@ -266,7 +266,7 @@ public class JointCreature extends Creature{
 		}
 	}
 
-	private void changeState(float step, float stepy, Joint joint) {
+	private void changeException(float step, float stepy, Joint joint) {
 		if ((int) joint.getxState() % 2 == 0)
 			joint.setxState(joint.getxState() + step);
 		else

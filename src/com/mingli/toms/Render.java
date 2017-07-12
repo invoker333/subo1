@@ -32,7 +32,7 @@ public class Render implements Renderer{
 	private TexId texId;
 
 	public  boolean created;
-	static float rate;
+	public static float rate=1;
 
 //	public static float hw;
 

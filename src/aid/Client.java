@@ -27,7 +27,7 @@ public class Client implements Runnable{
 	public Client(MenuActivity acti){
 		this.acti = acti;
 	}
-	private void setUdpAddressPort(String address, final int port) {
+	 protected void setUdpAddressPort(String address, final int port) {
 		// TODO Auto-generated method stub
 		
 		
@@ -71,7 +71,8 @@ public class Client implements Runnable{
 	}
 	public void connect(){
 		while(!connected){
-			World.timeRush(1000);
+			World.timeRush(2000);
+//			if(connected)continue;
 			if(!MenuActivity.isNetworkAvailable(acti))continue;
 			Log.i("尝试连接网络");
 			try {
@@ -82,6 +83,7 @@ public class Client implements Runnable{
 //				String address="192.168.37.213";
 //				String address="192.168.137.1";
 				String address="192.168.51.124";
+//				String address="192.168.25.28";
 				
 //				s=new Socket("127.0.0.1",8888);
 //				s=new Socket("192.168.137.1",8888);//祖传wifi

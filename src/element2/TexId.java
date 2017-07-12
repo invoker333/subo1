@@ -9,6 +9,11 @@ import aid.Log;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.opengl.GLUtils;
 
 import com.mingli.toms.R;
@@ -20,7 +25,8 @@ public class TexId{
 		resIcon = new int[TexId.textureCount];//
 	}
 	public int[] textures;
-	private int textureId;
+//	private int maxId=0;// add auto in start
+	private GL10 loadGl;
 	public static int[] resIcon;
 	
 	public static  int BAMBOOPIPLE ;
@@ -114,7 +120,7 @@ public class TexId{
 	public static int GUANGDANQIANG;
 	public static int WOODROOT;
 	
-	public static int textureCount=130-28;//纹理数量 行号之差
+	
 	public static int GOALCIRCLE;
 	public static int GUIDERECT;
 	public static int FRUITFLY;
@@ -133,8 +139,14 @@ public class TexId{
 	public static int EXPRESSIONENEMY;
 	public static int PUTONGQIANG;
 	public static int FENSHEN;
+	public static int DIALOGTRINGLE;
+	
+	public static int textureCount=200;//纹理数量 行号之差
+	
 	public  void loadTextureId(GL10 gl) {
+		this.loadGl=gl;
 //		if(1<2)return;
+		DIALOGTRINGLE=loadTexture(gl,R.drawable.dialogtringle);
 		FENSHEN=loadTexture(gl,R.drawable.fenshenguo);
 		PUTONGQIANG=loadTexture(gl,R.drawable.putongdan);
 		EXPRESSIONENEMY=loadTexture(gl,R.drawable.espressionenemy);
@@ -244,11 +256,87 @@ public class TexId{
 		EVENING=repeatLoadTexture(gl, R.drawable.huangshan2);
 		SUNSET=repeatLoadTexture(gl, R.drawable.sunset);
 		TIANSHAN=repeatLoadTexture(gl, R.drawable.tianshan);
+		WORD = loadBmpTexture(gl, initFontBitmap(10, 32, "Hello World"));
 	}
 
 	private Context context;
+	TexIdAndBitMap WORD;
+	private int maxId;
 	
+	
+	
+	public static Bitmap initFontBitmap(int pad,int textSize,String str){
+		return initFontBitmap(pad, textSize, str.split(" "));
+	}
+	public static Bitmap initFontBitmap(int pad,int textSize,String []strs){
+		int max=1;
+		for(String s:strs){
+			if(s.length()>max){
+				max=s.length();
+			}
+		}
+		 Bitmap bitmap = Bitmap.createBitmap(max*textSize+2*pad, strs.length*textSize+3*pad,
+				 Bitmap.Config.ARGB_8888);// strs.length+1 because draw direction is up but tail is down...
+		 Canvas canvas = new Canvas(bitmap);
+		//背景颜色
+//		canvas.drawColor(Color.LTGRAY);
+		Paint paint = new Paint();
+		paint.setColor(Color.WHITE);
+		RectF rect=new RectF(0, 0, bitmap.getWidth(), bitmap.getHeight());
+		canvas.drawRoundRect(rect, pad, pad, paint);
+		//字体设置
+		String fontType = "宋体";
+		Typeface typeface = Typeface.create(fontType, Typeface.BOLD);
+		//消除锯齿
+		paint.setAntiAlias(true);
+		//字体为红色
+		paint.setColor(Color.BLACK);
+		paint.setTypeface(typeface);
+		paint.setTextSize(textSize);
+		//绘制字体
+//		canvas.drawText(font, 0, 100, paint);
+		for(int i=0;i<strs.length;i++){
+			canvas.drawText(strs[i], pad, pad+textSize*(i+1), paint);
+		}
+		return bitmap;
+	}
+	
+	public  void reLoadFront( int texId,String s) {
+		reLoadFront(texId, s.split(" "));
+	}
+	public  void reLoadFront( int texId,String []strs) {// ������Ĭ����������id��bitmap����һ��
+		Log.i("TextureId ago "+texId);
+		Bitmap bm = initFontBitmap(20, 36, strs);
+		loadGl.glDeleteTextures(1, textures, texId);
+		maxId--;
+		WORD=loadBmpTexture(loadGl, bm);
+		Log.i("TextureId after "+WORD.textureId);
+	}
+	public  TexIdAndBitMap loadBmpTexture(GL10 gl, Bitmap bm) {// ������Ĭ����������id��bitmap����һ��
+		maxId++;
+		indexAndPara(gl);
+		repeatNo(gl);
+		TexIdAndBitMap tb
+		=new TexIdAndBitMap(bm, texImage2d( bm));
+		return tb;
+	}
 	public int loadTexture(GL10 gl, int resId) {// ������Ĭ����������id��bitmap����һ��
+		maxId++;
+		Bitmap bm = initBitMap(resId);
+		indexAndPara(gl);
+		repeatNo(gl);
+		return texImage2d( bm);
+	}
+	public int repeatLoadTexture(GL10 gl, int resId) {// ������Ĭ����������id��bitmap����һ��
+		maxId++;
+		Bitmap bm = initBitMap(resId);
+		indexAndPara(gl);
+		repeatYes(gl);
+		return texImage2d( bm);// �Զ�����id
+	}
+	
+	private Bitmap initBitMap(int resId) {
+		resIcon[maxId] = resId;
 		InputStream is = null;
 		Bitmap bm;
 		try {
@@ -261,68 +349,36 @@ public class TexId{
 				e.printStackTrace();
 			}
 		}
-		gl.glGenTextures(1, textures, textureId);// ����id���������indexλ��
-		gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[textureId]);// id--�������opengl��Ӧ������ʼ����
-		// ����������id��������������ڻ״̬���ڵ�һ�ΰ�һ���������ʱ,
-		// �Ὣһϵ�г�ʼֵ����Ӧ���Ӧ�á�
-		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER,
-				GL10.GL_NEAREST); // ���ù�С NEAREST�������
-		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER,
-				GL10.GL_LINEAR); // �<a>��������˲�
+		return bm;
+	}
+	private int texImage2d(Bitmap bm) {
+		GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);// ͼ--���� ָ������
+	
+		Log.i("texturesId 【】"+textures[maxId]+" "+maxId);
+		return textures[maxId];
+	}
+	private void repeatNo(GL10 gl) {
 		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S,
-				GL10.GL_CLAMP_TO_EDGE);// GL_REPEAT
+				GL10.GL_CLAMP_TO_EDGE);// another is GL_REPEAT
 		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T,
 				GL10.GL_CLAMP_TO_EDGE);
-
-		/*
-		 * gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S,
-		 * GL10.GL_REPEAT);//GL_REPEAT // s t ���򲻶��ظ�����
-		 * gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T,
-		 * GL10.GL_REPEAT);
-		 */
-		GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);// ͼ--���� ָ������
-		resIcon[textures[textureId]] = resId;
-		Log.i("texturesId"+textures[textureId]);
-		return textures[textureId++];// �Զ�����id
 	}
-
-	public int repeatLoadTexture(GL10 gl, int resId) {// ������Ĭ����������id��bitmap����һ��
-		InputStream is = null;
-		Bitmap bm;
-		try {
-			is = context.getResources().openRawResource(resId);
-			bm = BitmapFactory.decodeStream(is);
-		} finally {
-			try {
-				is.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		gl.glGenTextures(1, textures, textureId);// ����id���������indexλ��
-		gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[textureId]);// id--�������opengl��Ӧ������ʼ����
+	
+	private void repeatYes(GL10 gl) {
+		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S,
+				GL10.GL_REPEAT);// GL_REPEAT
+		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T,
+				GL10.GL_REPEAT);
+	}
+	private void indexAndPara(GL10 gl) {
+		gl.glGenTextures(1, textures, maxId);// ����id���������indexλ��
+		gl.glBindTexture(GL10.GL_TEXTURE_2D, textures[maxId]);// id--�������opengl��Ӧ������ʼ����
 		// ����������id��������������ڻ״̬���ڵ�һ�ΰ�һ���������ʱ,
 		// �Ὣһϵ�г�ʼֵ����Ӧ���Ӧ�á�
 		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MIN_FILTER,
 				GL10.GL_NEAREST); // ���ù�С NEAREST�������
 		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_MAG_FILTER,
 				GL10.GL_LINEAR); // �<a>��������˲�
-		/*
-		 * gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S,
-		 * GL10.GL_CLAMP_TO_EDGE);//GL_REPEAT
-		 * gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T,
-		 * GL10.GL_CLAMP_TO_EDGE);
-		 */
-
-		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_S,
-				GL10.GL_REPEAT);// GL_REPEAT
-		// s t ���򲻶��ظ�����
-		gl.glTexParameterf(GL10.GL_TEXTURE_2D, GL10.GL_TEXTURE_WRAP_T,
-				GL10.GL_REPEAT);
-		GLUtils.texImage2D(GL10.GL_TEXTURE_2D, 0, bm, 0);// ͼ--���� ָ������
-		resIcon[textures[textureId]] = resId;
-		Log.i("texturesId"+textures[textureId]);
-		return textures[textureId++];// �Զ�����id
 	}
 
 	public  void deleteTex(GL10 gl) {
@@ -331,3 +387,12 @@ public class TexId{
 			gl.glDeleteTextures(1, textures, i);
 	}
 }
+class TexIdAndBitMap{
+	Bitmap bitmap;
+	int textureId;
+	public TexIdAndBitMap(Bitmap bitmap,int id) {
+		this.bitmap = bitmap;
+		this.textureId = id;
+	}
+}
+

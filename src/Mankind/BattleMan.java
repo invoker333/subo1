@@ -137,9 +137,11 @@ public class BattleMan extends JointCreature{
 		
 		// TODO Auto-generated constructor stub
 		
-//		cloth.setTextureId(TexId.CLOTH);
-//		cap.setTextureId(TexId.CAP);
-//		expression.setTextureId(TexId.EXPRESSION);
+		if(force_in_battle!=World.RED_FORCE){
+			cloth.setTextureId(TexId.CLOTH);
+			cap.setTextureId(TexId.CAP);
+			expression.setTextureId(TexId.EXPRESSION);
+		}
 		
 		
 		

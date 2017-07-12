@@ -181,6 +181,14 @@ public class MenuActivity extends Activity {
 		// LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT));
 	}
 
+	class NoUdpClient extends Client{
+
+		public NoUdpClient(MenuActivity acti) {
+			super(acti);
+			// TODO Auto-generated constructor stub
+		}
+		 protected void setUdpAddressPort(String address, final int port) {}
+	}
 	void initStartMenu() {
 		
 		startMenu = new StartMenu(this);
@@ -188,6 +196,14 @@ public class MenuActivity extends Activity {
 		
 		if(client!=null)Client.send(ConsWhenConnecting.REQUEST_PIMING_INFO+userId);
 		initPaimingInfo();
+		
+		if(!startMenu.battleMode()){
+			if(!(client instanceof NoUdpClient)){
+				client.closeStream();
+				client=new NoUdpClient(this);
+				client.connect();
+			}
+		}
 		
 		if (startTime > 2) {
 			showBanner((ViewGroup) findViewById(R.id.container));

@@ -33,6 +33,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.widget.Toast;
 import element2.FireworkSet;
+import element2.GlDialog;
 import element2.HikariSet;
 import element2.LightningSet;
 import element2.ParticleSet;
@@ -114,7 +115,6 @@ public class World extends GLSurfaceView implements Runnable {
 	private BloodSet snowBloodSet;
 	public  File mapFile;
 	String mapName;
-	public Creature storySpeaker;
 	public static int curMapIndex;
 	
 	
@@ -207,7 +207,7 @@ public class World extends GLSurfaceView implements Runnable {
 		for(int i=0;i<animationshopList.size();i++){
 			Animation ani=animationshopList.get(i);
 			Log.i(ani.getClass().getName());
-			ani.name=""+ani.mapSign;//////////
+//			ani.name=""+ani.mapSign;//////////
 		
 //			if(ani.mapSign=='j'||ani.mapSign=='E'){
 			if(ani instanceof Creature){
@@ -368,7 +368,6 @@ public class World extends GLSurfaceView implements Runnable {
 		guidePost = new GuidePost();
 		
 		 if(editMode)initAnimationShopList();
-		 if(storySpeaker==null||editMode)
 		 sendLoadedMessage();
 	}
 
@@ -377,7 +376,6 @@ public class World extends GLSurfaceView implements Runnable {
 	}
 
 	public void loadGame(int i) {
-		storySpeaker=null;
 		music.initSoundPool();
 		drawList.clear();
 //		pauseDraw();
@@ -437,7 +435,7 @@ public class World extends GLSurfaceView implements Runnable {
 			}
 			if(mapString != null || mapFile != null || mapCharSet != null)return;
 //			if(i==2)MenuActivity.showDialog("厉害了我的哥", "欢迎来到火星猎人的世界第"+i+"关", R.drawable.zan);
-			if(i==2)MenuActivity.showDialog(acti.userName, "哈哈！坏蛋看到我都得逃跑！", R.drawable.cap);
+//			if(i==2)MenuActivity.showDialog(acti.userName, "哈哈！坏蛋看到我都得逃跑！", R.drawable.cap);
 			else if(i==Map.max+1){
 				MenuActivity.showDialog("厉害了我的哥", "经历了各种有趣的难关，终于到达这里，旅程也算告一段落，但是精彩并没有结束！还有各种有意思的地方没有去。更多精彩尽在“在线关卡”，各种新奇关卡，等你来闯关！", R.drawable.zan);
 				gameTime=0;
@@ -641,6 +639,9 @@ public class World extends GLSurfaceView implements Runnable {
 				ct.setPosition(Render.px, Render.py);
 				ct.drawElement(gl);
 			}
+			if(gd!=null&&haveDialog){
+				gd.drawElement(gl);
+			}
 			if(editMode&&touchMove!=null)touchMove.drawElement(gl);
 			timerTask();
 //		}catch(Exception e){
@@ -657,6 +658,7 @@ public class World extends GLSurfaceView implements Runnable {
 			}
 		
 		ct.close();
+		haveDialog=false;
 		for (int i = 0; i < drawList.size(); i++) {
 			drawList.get(i).quitgame();
 		}
@@ -1041,5 +1043,14 @@ public class World extends GLSurfaceView implements Runnable {
 				bm.die();
 			}
 		}
+	}
+
+	GlDialog gd;
+	boolean haveDialog;
+	public  void showGlDialog(String string,Animation a, float dx,float dy) {
+		if(string.length()<1)haveDialog=false;
+		else haveDialog=true;
+		if(gd==null)gd=new GlDialog(texId);
+		gd.setText(string, a, dx, dy);
 	}
 }

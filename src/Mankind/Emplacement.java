@@ -30,6 +30,7 @@ public class Emplacement extends Creature {
 		setxSpeedMax(1);
 		setxSpeedMin(-1);
 		setLifeMax(5*World.baseAttack);
+		attack=0;
 	}// 炮台
 
 	protected void init(){

@@ -44,20 +44,24 @@ public class BigGrass extends Grass{
 		});
 		fbSpi.flip();//将存入数据转换成写入状态
 	}
-	public boolean tooHigh(AnimationGrass animationGrass) {
+	public boolean tooHigh(AnimationGrass a) {
 		// TODO Auto-generated method stub
+		scaleTringer(w-w* a.getySpeed()*2/h);
 		return false;
 	}
-	public boolean tooLeft(AnimationGrass animationGrass) {
+	public boolean tooLeft(AnimationGrass a) {
 		// TODO Auto-generated method stub
+		scaleTringer(w+w*a.getxSpeed()*2/w);
 		return false;
 	}
-	public boolean tooRight(AnimationGrass animationGrass) {
+	public boolean tooRight(AnimationGrass a) {
 		// TODO Auto-generated method stub
+		scaleTringer(w+w*a.getxSpeed()*2/w);
 		return false;
 	}
-	public boolean turnDown(AnimationGrass creature) {
+	public boolean turnDown(AnimationGrass a) {
 		// TODO Auto-generated method stub
+		scaleTringer(w-w* a.getySpeed()*2/h);
 		return true;
 	}
 }

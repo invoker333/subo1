@@ -1,6 +1,8 @@
 package aid;
 
 
+import com.mingli.toms.Render;
+
 import Mankind.Player;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,7 +13,7 @@ import android.view.View;
 public class Circle extends View {  
     private Paint paint;  
     //固定摇杆背景圆形的X,Y坐标以及半径  
-    static  int LENGTH=128;  
+      int LENGTH=64;//128px/2
     private int RockerCircleX = LENGTH;  
     private int RockerCircleY = LENGTH;  
    
@@ -19,7 +21,7 @@ public class Circle extends View {
     private float SmallRockerCircleX = LENGTH;  
     private float SmallRockerCircleY = LENGTH;  
     
-    private int SmallRockerCircleR = 50;
+    private int SmallRockerCircleR = 32;
     private int RockerCircleR = LENGTH-SmallRockerCircleR;
 	private double rad;
 	public Player player;  
@@ -30,6 +32,22 @@ public class Circle extends View {
         setFocusable(true);  
         setFocusableInTouchMode(true);  
         
+        
+//        float rate=1/Render.rate;
+        float lengthDip = DP.dip2px(getContext(), LENGTH);//64=128/2
+        float rate=lengthDip/LENGTH;
+        {
+        	LENGTH*=rate;
+        	SmallRockerCircleR*=rate;
+        	RockerCircleR*=rate;
+        	RockerCircleX = LENGTH;  
+        	RockerCircleY = LENGTH;  
+        	   
+        	    //摇杆的X,Y坐标以及摇杆的半径  
+        	SmallRockerCircleX = LENGTH;  
+        	SmallRockerCircleY = LENGTH;  
+        	    
+        }
 //        LENGTH=(int) DP.dip2px(context, 128);
 //        SmallRockerCircleR=(int) DP.dip2px(context, 50);
 	}

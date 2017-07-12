@@ -10,25 +10,25 @@ import com.mingli.toms.R;
 import com.mingli.toms.Render;
 import com.mingli.toms.World;
 
+import element2.TexId;
+
 public class BossRunner extends JointCreature{
 
 	private Creature chaser;
 	String []strSet={
 	"嘿嘿！火星可不是一般人能来的！"
+			,"你能有多大能耐呢"
 	,"追得上我你就来吧！"
-//	,"我永远效忠于伟大的“冰棍”首领！",
-//	"我们的计划是冰冻整个火星！",	
-//	"所有反抗者都会变成冰渣！哈哈哈！",
+	
 	};
 	int strId;
 	private final int cdMax=World.baseActionCdMax;
-	private int cd=cdMax;
+	private int cd;
 	private World world;
 
 	public BossRunner(World world,char bi, GrassSet gra, float x, float y) {
 		super(bi, gra, x, y);
 		this.world = world;
-		if(world!=null)world.storySpeaker=this;
 		attack=0;
 //		 setLifeMax(World.baseAttack*10);
 		setJumpHeight(128);
@@ -43,20 +43,16 @@ public class BossRunner extends JointCreature{
 		
 		
 		 if(y<0)jump();
-		 int direction1=Gravity.CENTER_HORIZONTAL;
-		 int direction2;
 		  float length=Render.width*1/3;
 		  float length2=Render.width*2/3;
 		float dx=x-chaser.x;
 		if(dx>0) {
-			direction1=Gravity.RIGHT;
 			if (dx<length) {
 				turnRight();
 			} else if(dx<length2) {
 				stopMove();
 			}
 		} else if(dx<0) {
-			direction1=Gravity.LEFT;
 			if (dx>-length) {
 				turnLeft();
 			} else if(dx>-length2) {
@@ -65,14 +61,14 @@ public class BossRunner extends JointCreature{
 		}
 		
 		 if(cd++>cdMax) {
+			 String word="";
 			if (strId<strSet.length) {
-				  float mid = (Render.height/2+Render.py);
-				  if(y<mid)direction2=Gravity.TOP;
-				  else direction2=Gravity.BOTTOM;
-				MenuActivity.showDialog("冰寒集团跑腿", strSet[strId], R.drawable.toukuienemy,direction1,direction2);
+				word=strSet[strId];
 			 } else if(strId==strSet.length){
-				 world.sendLoadedMessage();
+				 word="";
+//				 world.sendLoadedMessage();
 			 }
+			world.showGlDialog(word,this,0,60);
 			cd=0;
 			strId++;
 		} 

@@ -115,7 +115,7 @@ public class StartMenu{
         Button start = (Button) startView.findViewById(R.id.startgame);
         Button random = (Button) startView.findViewById(R.id.randomchalenge);
         Button more = (Button) startView.findViewById(R.id.more);
-        Button battleMode = (Button) startView.findViewById(R.id.battleMode);
+        battleMode = (Button) startView.findViewById(R.id.battleMode);
         fileChoose = (Button) startView.findViewById(R.id.fileChoose);
        	onlineStageChoose = (Button) startView.findViewById(R.id.onlineFileChooser);
       
@@ -366,6 +366,10 @@ public class StartMenu{
 	private Button fileChoose1;
 	private View user;
 	private PaimingAdapter paimingAdapter;
+	private Button battleMode;
+	boolean battleMode(){
+		return battleMode.getVisibility()==View.VISIBLE;
+	}
 	public void hide() {
 		// TODO Auto-generated method stub
 		acti.removeView(startView);

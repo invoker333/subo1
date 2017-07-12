@@ -177,7 +177,7 @@ public class Tail extends Square {
         fbtex=new FloatBuffer[getxCount()][getyCount()];
         int drawXYCount=2*count;//xy的对儿的数目
         int drawRawCount=2*drawXYCount;//单个数据的数目
-        float xLength=1f/(drawRawCount-1);//
+        float xLength=1f/(drawRawCount-4);//-2*2
         float yLength=1f/getyCount();
         float[] buffer=new float[drawRawCount];//每个店x，y两个数据
         for(int i=0;i<drawRawCount;i+=4){

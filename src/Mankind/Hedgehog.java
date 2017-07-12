@@ -14,6 +14,7 @@ public class Hedgehog extends Enemy {
 		setSoundId(MusicId.hedgehog);
 		changeLifeRate(2);
 		attack=(int) (0.2f*World.baseAttack);
+		treadable=false;
 	}
 	void toCrepper(){
 		setLife(getLifeMax());
@@ -46,6 +47,13 @@ public class Hedgehog extends Enemy {
 	public void die(){
 		if(getTextureId()==TexId.HEDGEHOG) toCrepper();
 		else super.die();
+	}
+	public void treaded(Creature player) {//creeper's code
+		super.treaded(player);
+		float width=wEdge+player.gethEdge();
+		float dx=player.x-x;
+		player.setxSpeed(player.getxSpeed()+(float) (-player.getySpeed()*Math.sin(3.14f*dx/width)));
+		this.xSpeed+=-player.getxSpeed()/2;
 	}
 	 public void attackAnotherOne(EnemySet es){
 			Creature another;
