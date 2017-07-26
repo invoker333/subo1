@@ -21,7 +21,7 @@ public class FireBall extends Enemy{
 		setSoundId(MusicId.firecolumn);
 		attack=(int) (0.2f*World.baseAttack);
 		
-		fireSet=new FireSet(5,x,gra.getGrid());
+		fireSet=new FireSet(5,x,y);
 		treadable=false;
 	}
 	public boolean culTreadSpeedAndCanBeTread(Creature c){
@@ -34,8 +34,8 @@ public class FireBall extends Enemy{
 		fireSet.drawElement(gl);
 	}
 	protected void afterInit(){
-		setG(0.3f);
-		y=0;
+		setG(0.2f);
+//		y=0;
 		super.afterInit();
 	}
 	protected void init(){
@@ -55,25 +55,25 @@ public class FireBall extends Enemy{
 					&&Math.abs(y - another.y) < another.getW() + getH()) {
 					tooClose(another,es);
 				}
-				else if (Math.abs(fireSet.x - another.x) < another.getwEdge() + fireSet.w
-						&&another.y+another.h>fireSet.h
-						&&another.y-another.h<fireSet.y+fireSet.h) {
-						tooClose(another,es);
-				}
+//				else if (Math.abs(fireSet.x - another.x) < another.getwEdge() + fireSet.w
+//						&&another.y+another.h>fireSet.y-fireSet.h
+//						&&another.y-another.h<fireSet.y+fireSet.h) {
+//						tooClose(another,es);
+//				}
 			}
 	}
 	  protected void tooClose(Creature another,EnemySet es) {
 		es.attacked(another, attack);// 伤人判定
 	}
 	protected void gravityCheck(){
-//		if(false)super.gravityCheck();
+//		ySpeed=0;
 		if(y<fireSet.h){
-//			y=0;
 			jump();
 			if(x>Player.gx1&&x<Player.gx2&&y>Player.gy1
 					&&y<Player.gy2)
 				playSound();
 		}
+		fireSet.x=this.x;fireSet.y=this.y-this.h;
 	}
 	protected void moveCheck(){
 		angleSpeed=ySpeed;

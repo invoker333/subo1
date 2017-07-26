@@ -25,7 +25,6 @@ public class BloodSet extends Set {
 		for(AnimationGravity b:bloodList)
 			b.setTextureId(textureId);
 	}
-
 	public void resume() {
 	}
 

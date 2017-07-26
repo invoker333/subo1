@@ -48,6 +48,9 @@ public class Hedgehog extends Enemy {
 		if(getTextureId()==TexId.HEDGEHOG) toCrepper();
 		else super.die();
 	}
+	public boolean culTreadSpeedAndCanBeTread(Creature c){
+		return false;
+	}
 	public void treaded(Creature player) {//creeper's code
 		super.treaded(player);
 		float width=wEdge+player.gethEdge();

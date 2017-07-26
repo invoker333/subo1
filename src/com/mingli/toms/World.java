@@ -631,7 +631,7 @@ public class World extends GLSurfaceView implements Runnable {
 	}
 
 	public void drawElements(GL10 gl) {
-//		try{
+		try{
 			for (int i = 0; i < drawList.size(); i++) {
 				drawList.get(i).drawElement(gl);
 			}
@@ -644,9 +644,11 @@ public class World extends GLSurfaceView implements Runnable {
 			}
 			if(editMode&&touchMove!=null)touchMove.drawElement(gl);
 			timerTask();
-//		}catch(Exception e){
-//			e.printStackTrace();
-//		}
+		}catch(Exception e){
+			String str=e.getStackTrace().toString();
+			MenuActivity.showDialog("", str, R.drawable.close);
+			e.printStackTrace();
+		}
 	}
 
 	public void quitGame() {

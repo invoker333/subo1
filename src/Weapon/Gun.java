@@ -97,17 +97,21 @@ public class Gun extends Set {// 子弹
 		return true;
 	}
 
-	protected void tringerCheck(Bullet bullet) {
+	protected void tringerCheck(Bullet bullet,float x,float y) {
+		culCosSin();
+		bullet.tringer(x, y, bSpeed * cos, bSpeed * sin);
+	}
+	private void culCosSin() {
 		cos = Math.cos(angle);
 		sin = Math.sin(angle);
+	}
+	protected void tringerCheck(Bullet bullet) {
+		culCosSin();
 
 		x = (float) (gunLength * cos + player.x);
 		y = (float) (gunLength * sin + player.y);// 枪长更新
-//		float bSpeed=(float) (bulletIndex*2+this.bSpeed);
-		
 		
 		bullet.tringer(x, y, bSpeed * cos, bSpeed * sin);
-//		bullet.tringer(x, y, bSpeed * cos+player.getxSpeed(), bSpeed * sin+player.getySpeed());
 	}
 	public void alwaysFire() {// luan kai qiang
 		if (bulletIndex >= bList.size())

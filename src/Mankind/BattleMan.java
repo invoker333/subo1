@@ -265,7 +265,7 @@ public class BattleMan extends JointCreature{
 		
 		double v = Math.sqrt(Math.abs(2*1*(x-gg.x)));
 		float speed = (float) (dir*v);
-		if(Math.abs(xSpeed)<speed)xSpeed=speed;
+		if(Math.abs(xSpeed)<v)xSpeed=speed;
 		
 	}
  

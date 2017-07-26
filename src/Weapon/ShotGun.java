@@ -49,7 +49,7 @@ public class ShotGun extends Gun{
 				continue;// 子弹停止的时候
 			setAngle(0.6*(Math.random()-0.5)+superAngle);
 			
-			tringerCheck(b);
+			tringerCheck(b,x,y);
 			playSound2();
 			
 		}

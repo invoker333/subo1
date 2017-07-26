@@ -50,7 +50,9 @@ public class Spide extends Emplacement {
 		dsmax = ((Hook) b).getRange();
 		setRange(((Hook) b).getRange());
 	}
-
+	public boolean culTreadSpeedAndCanBeTread(Creature c){
+		return false;
+	}
 	public void randomAction() {
 		if(catcher!=null&&!catcher.isDead)return;
 		if (hirtIndex > hirtIndexBorn)

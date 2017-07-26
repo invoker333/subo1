@@ -1,6 +1,7 @@
 ﻿package Mankind;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -65,7 +66,6 @@ public class Player extends BattleMan {
         initGuideTail(gra);     
         reSetDownDate();
         attack=World.baseAttack;
-        lifeCount=1;
         treadable=false;
     }
 
@@ -315,9 +315,9 @@ public class Player extends BattleMan {
 
 
 //	private boolean isBenti=true;
-	private static int relifeLandId;
+	private  int relifeLandId;
 //	 private Pifeng pifeng2;
-	 static int lifeCount=1;
+
 	 
     public void drawElement(GL10 gl) {
     	if(touched)drawGuideTail(gl);	
@@ -439,19 +439,20 @@ public class Player extends BattleMan {
 	
 	
 	public BattleMan clone(){
-		BattleMan p=new BattleMan(mapSign, gra, x, y, -222, -222){
+		final BattleMan p=new BattleMan(mapSign, gra, x, y, -222, -222){
 			 public void sendBattleMessage() {}//cloner dong't send message
 			 public void playSound(){};
-			 public void die(){
-				 super.die();
-				 lifeCount--;
-				 }
+//			 public void die(){
+//				 super.die();
+//				 lifeCount--;
+//				 }
 			 public void timerTask(){
 				 super.timerTask();
 			        if(getxPro()<Player.hx1)setxPro((float) (Player.hx1+Math.random()*Render.width));
 			          else if(getxPro()>Player.hx2)setxPro((float) (Player.hx2-Math.random()*Render.width));
 			          if(getyPro()<Player.hy1)setyPro((float) (Player.hy1+Render.height*Math.random()));
 			           else if(getyPro()>Player.hy2)setyPro((float) (Player.hy2-Render.height*Math.random()));
+			          if(isJumpAble()&&downData[3]) this.jump(jumpRate);
 			 }
 		};
 		p.downData=this.downData;//can be controlled same time
@@ -465,7 +466,6 @@ public class Player extends BattleMan {
 	public void fenshen(int count){
 		if(isDead)return;
 		
-		int lifeCount=Player.lifeCount;// new player lead to life count ==1
 		for(int i=0;i<count;i++){
 			JointCreature c;
 			friendList.add(c=this.clone());
@@ -477,7 +477,6 @@ public class Player extends BattleMan {
 			c.changeSize((float) (0.5+0.5*Math.random()));
 			c.cap.setTextureId(TexId.BLANK);
 		}
-		Player.lifeCount=lifeCount+count;// new player lead to life count ==1
 	}
 	public void setFriendSet(EnemySet fs){
 		super.setFriendSet(fs);
@@ -488,7 +487,6 @@ public class Player extends BattleMan {
 //		Log.i("alpha"+alpha+"DEATHSPEED"+DEATHSPEED);
 		if(alpha>0&&alpha<=DEATHSPEED){
 			if(goal.hasFirstBlood){// to inlived death when got goal
-				if(lifeCount<1)
 				world.gameOver();
 			}
 		}
@@ -500,7 +498,6 @@ public class Player extends BattleMan {
 		FruitSet.sendRelifeFreeMes(180);
 		Grass footGrass=gList.get(relifeLandId);
 		setPosition(footGrass.data[0]+gra.getGrid()/2, footGrass.data[3]+gethEdge()*1.2f);
-		lifeCount++;
 		world.relife();
 	}
 
@@ -518,33 +515,32 @@ public class Player extends BattleMan {
         		toukuiTime=0;this.getCap().setTextureId(TexId.CAP);
         		gaoTime=0;foot.setTextureId(TexId.FOOT);foot1.setTextureId(TexId.FOOT);
         		
-        		
         		setLife(getLifeMax());
         		wudiTime=wudiTimeBorn;
         		Log.i("after"+flyTime+" "+toukuiTime+" "+gaoTime);
         		return;// do not die as super
         	}
     	}
-    	 super.die();
-    	 
-//        if(this.isBenti)
-        	for(Creature c:friendList){
-        		if(c instanceof BattleMan&&((BattleMan) c).downData==this.downData
-        				&&!c.isDead){
+    	
+    	boolean anyOneAlive=false;
+    	for(Creature c:friendList){
+        		if(c!=this&&c instanceof BattleMan&&((BattleMan) c).downData==this.downData
+        				&&!c.isDead&&c.x>Player.gx1&&c.x<Player.gx2&&c.y>Player.gy1&&c.y<Player.gy2){
         			float xx=c.x;float yy=c.y;
         			c.setPosition(x, y);
         			c.die();
         			setPosition(xx,yy+gethEdge()-c.gethEdge());
-        			relifeJust();
+//        			relifeJust();
+        			anyOneAlive=true;
         			return;
         		}
         	}
+    	if(!anyOneAlive)super.die();
 //       if(isJumpAble())
     	   jump();
         playSound(death);
         setRgb(1, 0, 0);
         relifeLandId=this.getLandId();
-        lifeCount--;
     }
     void sendDieMEssage(){};
     
@@ -632,54 +628,13 @@ public class Player extends BattleMan {
     int downIndex;
     
     void actCheck(Creature controller) {
-    	
-        if (!downData[0] && !downData[1]) {
-			controller. stopMove();
-			setDoubleClicked(false);
-		}
-        downIndex++;
-//    	Log.i("downIndex+clicked"+downIndex+doubleClicked);
-    	
-        if (downData[0]) {
-            downData[1] = false;// ��ֹ�����ж�
-            if (isDoubleClicked())
-                controller.changeSpeed(-1.5f);
-            else
-            	controller. changeSpeed(-1);
-            
-            controller. turnLeft();
-            if(controller!=this)  faceLeft();
-            if (controller.getxSpeed() == getxSpeedMax() && isJumpAble()) playSound(brake);
-        }
-        if (downData[1]) {
-            downData[0] = false;// ��ֹ�����ж�
-            if (isDoubleClicked())
-            	controller. changeSpeed(1.5f);        	
-            else
-            	controller. changeSpeed(1);
-            
-            controller.turnRight();
-           if(controller!=this)faceRight();
-            
-            if (controller.getxSpeed() == getxSpeedMin() && isJumpAble()) playSound(brake);
-        }
-    
-        if (downData[2]) {
-//            if (controller.isAttackAble()) {
-            	controller.attack();
-            	attack();
-//            }
-        } 
+    	super.actCheck(controller);
+    	  downIndex++;
         if (downData[3] && isJumpAble()) {
-        	
     		float jumpRate = culJumpRate();
-        	
 			jump(jumpRate);
 			controller.jump(jumpRate);
 		}
-        
-        gunAngleAndCdCheck();
-     
         if(downData[6]){
         	if (controller==this){        	
         		if(treader!=null) {
@@ -690,17 +645,11 @@ public class Player extends BattleMan {
         	}
         	downData[6]=false;
         }
-        if(downData[7]){
-        	if(!doubleClicked)setDoubleClicked(true);
-        }else {
-        	setDoubleClicked(false);
-        }
-       
     }
 	
 	private float culJumpRate() {
 		curJumpProgress = jumpProgress;
-		float jumpRate = jumpProgress  / 50f;
+		jumpRate = jumpProgress  / 50f;
 		if (jumpRate > 1)
 			jumpRate = 1;
 		return jumpRate;
@@ -906,8 +855,10 @@ public class Player extends BattleMan {
     
 	
 	public boolean touched;
-	public static float curJumpProgress;
+	public  float curJumpProgress;
 	public static int jumpProgress=100;
+
+	private float jumpRate;
 
    
 
